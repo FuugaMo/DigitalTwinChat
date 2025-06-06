@@ -12,4 +12,7 @@ export const firebaseConfig = {
 export const TWIN_CODE = "123";
 export const ASSISTANT_CODE = "321";
 
-export const API_BASE = "https://fbce-72-46-85-7.ngrok-free.app";
+export const API_BASE =
+  import.meta.env.MODE === "development"
+    ? "http://localhost:8000"
+    : "https://digitaltwin.vercel.app/api";
