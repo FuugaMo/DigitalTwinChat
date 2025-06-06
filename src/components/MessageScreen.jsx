@@ -42,7 +42,7 @@ function MessageScreen(props) {
             }}
           >
             <div className={"messageListWrapper"}>
-              {props.isLoading ? (
+              {props.loading ? (
                 <CircularProgress />
               ) : (
                 props.messages.map((msg) => (

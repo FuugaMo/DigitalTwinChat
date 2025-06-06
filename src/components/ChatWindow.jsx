@@ -39,7 +39,7 @@ function ChatWindow(props) {
   const [blockUserMessages, setBlockUserMessages] = useState(false); // 是否禁止用户输入
   const [isDisplayTyping, setIsDisplayTyping] = useState(false); // 是否显示机器人“正在输入”
   const [typingByUser, setTypingByUser] = useState(false); // 回放专用，用户输入消息时设置为true，以在右侧进行渲染。
-  const [isLoading, setIsLoading] = useState(false); // 是否加载中
+  const [loading, setLoading] = useState(false); // 是否加载中
   const [gptConversation, setGptConversation] = useState(""); // GPT 上下文（未使用）
   const [lastUserMessage, setLastUserMessage] = useState(""); // 上一条用户消息（未使用）
   const [name, setName] = useState(props.name); // 用户昵称
@@ -177,11 +177,11 @@ function ChatWindow(props) {
   // 从数据库加载历史对话与当前步骤
 
   async function getUserDataFromDatabase() {
-    setIsLoading(true);
+    setLoading(true);
     try {
       const docSnap = await getDoc(docRef);
       if (!docSnap.exists() || !docSnap.data().step) {
-        setIsLoading(false);
+        setLoading(false);
         return;
       }
 
@@ -194,7 +194,7 @@ function ChatWindow(props) {
     } catch (e) {
       console.log(e);
     }
-    setIsLoading(false);
+    setLoading(false);
   }
 
   // 更新数据库中用户的对话步骤
@@ -258,14 +258,14 @@ function ChatWindow(props) {
 
   async function loadReplayUserData(baseUserId) {
     // console.log("loadReplayUserData called");
-    // setIsLoading(true);
+    // setLoading(true);
     try {
       const userRef = doc(db, "users", baseUserId);
       const userSnap = await getDoc(userRef);
 
       if (!userSnap.exists()) {
-        alert(`未找到用户 ${baseUserId}`);
-        setIsLoading(false);
+        alert(`Didn't find user ${baseUserId}`);
+        setLoading(false);
         return;
       }
       const userData = userSnap.data();
@@ -274,10 +274,10 @@ function ChatWindow(props) {
       setIsTwin(userData.isTwin);
       if (userData.isTwin === 1) {
         setAvatar(userData.avatar);
-        setName(`${userData.name}的数字孪生`);
+        setName(`${userData.name}'s Digital Twin'`);
         // console.log(avatar);
       } else {
-        setName(`${userData.name}的数字助理`);
+        setName(`${userData.name}'s Digital Assistant'`);
       }
 
       const docRef = doc(db, "chats", userId);
@@ -299,9 +299,9 @@ function ChatWindow(props) {
         console.log("No such document!");
       }
     } catch (err) {
-      console.error(`加载回放时出错：`, err);
+      console.error(`Error when loading replay: `, err);
     }
-    setIsLoading(false);
+    setLoading(false);
   }
 
   // 页面挂载时加载历史数据
@@ -457,7 +457,7 @@ function ChatWindow(props) {
 
         <MessageScreen
           messages={messages}
-          isLoading={isLoading}
+          loading={Loading}
           name={name}
           avatar={avatar}
           isTwin={isTwin}

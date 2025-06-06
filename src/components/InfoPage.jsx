@@ -28,14 +28,18 @@ export default function InfoPage({ handleInfoSubmit, isTwin }) {
   const [avatarFile, setAvatarFile] = useState(null);
   const [previewURL, setPreviewURL] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const MAX_SIZE_MB = 10;
+
   const handleAvatarChange = (e) => {
     setErrorMsg("");
+    setLoading(true);
     const file = e.target.files[0];
     if (file) {
       if (file.size > MAX_SIZE_MB * 1024 * 1724) {
-        setErrorMsg(`图片大小不能超过 ${MAX_SIZE_MB}MB`);
+        setLoading(false);
+        setErrorMsg(`The size of the picture cannot exceed ${MAX_SIZE_MB}MB.`);
         setAvatarFile(null);
         setPreviewURL("");
         return;
@@ -43,18 +47,23 @@ export default function InfoPage({ handleInfoSubmit, isTwin }) {
       setAvatarFile(file);
       setPreviewURL(URL.createObjectURL(file));
     }
+    setLoading(false);
   };
 
   const handleSubmit = () => {
+    setLoading(true);
     if (!name) {
-      alert("请输入昵称");
+      setLoading(false);
+      alert("Please enter name.");
       return;
     }
     if (!!isTwin && !avatarFile) {
+      setLoading(false);
       // 只有TWIN组需要上传头像
-      alert("请上传头像，且大小不能超过10MB");
+      alert("Please upload an avatar, and the size should not exceed 10MB.");
       return;
     }
+    setLoading(false);
     handleInfoSubmit(name, avatarFile);
   };
 
@@ -70,6 +79,22 @@ export default function InfoPage({ handleInfoSubmit, isTwin }) {
           justifyContent: "center",
         }}
       >
+        {loading && (
+          <Box
+            sx={{
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              zIndex: 9999,
+              backgroundColor: "rgba(255,255,255,0.6)",
+              padding: 4,
+              borderRadius: 4,
+            }}
+          >
+            <CircularProgress />
+          </Box>
+        )}
         <Container maxWidth="xs" sx={{ padding: 4 }}>
           <Paper
             elevation={3}

@@ -12,6 +12,7 @@ import {
   Box,
   Typography,
   Button,
+  CircularProgress,
 } from "@mui/material";
 
 // Material 3 配色方案
@@ -102,6 +103,7 @@ export default function App() {
   const [code, setCode] = useState(-1); // 以password输入code, 用于分类是Twin组还是Assistant组
   const [isTwin, setIsTwin] = useState(0); // 1 = Twin / 0 = Assistant / -1 = Admin
   const [isReplayMode, setIsReplayMode] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   // 登录第一步：仅获取 ID
   async function handleLogin(id, enteredCode) {
@@ -109,6 +111,8 @@ export default function App() {
       alert("Please enter ID");
       return;
     }
+
+    setLoading(true);
 
     // 先请求后端判断是否管理员
     try {
@@ -127,8 +131,10 @@ export default function App() {
         return;
       }
     } catch (e) {
-      alert("网络错误，请稍后再试");
+      alert("Interenet error. Please try agin later.");
       return;
+    } finally {
+      setLoading(false);
     }
 
     if (id.endsWith("-A")) {
@@ -136,7 +142,7 @@ export default function App() {
 
       const userDoc = await getDoc(doc(db, "users", baseId));
       if (!userDoc.exists()) {
-        alert(`找不到用户 ${baseId}`);
+        alert(`Can't find user ${baseId}`);
         return;
       }
 
@@ -147,7 +153,7 @@ export default function App() {
         (isTwinUser && enteredCode !== TWIN_CODE) ||
         (!isTwinUser && enteredCode !== ASSISTANT_CODE)
       ) {
-        alert("密码错误。");
+        alert("Wrong password.");
         return;
       }
 
@@ -182,7 +188,7 @@ export default function App() {
         (isTwinUser && enteredCode !== TWIN_CODE) ||
         (!isTwinUser && enteredCode !== ASSISTANT_CODE)
       ) {
-        alert("密码错误。");
+        alert("Wrong password.");
         return;
       }
 
@@ -225,7 +231,23 @@ export default function App() {
       <CssBaseline />
       <AuthContext.Provider value={connectId}>
         <div className="App">
-          {isTwin === -1 ? (
+          {loading ? (
+            // 中心显示loading指示
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                height: "100vh",
+              }}
+            >
+              <CircularProgress />
+              <Typography variant="body1" sx={{ mt: 2 }}>
+                Loging in...
+              </Typography>
+            </Box>
+          ) : isTwin === -1 ? (
             <AdminPage
               logoutHandler={() => {
                 setConnectId("");
@@ -237,7 +259,7 @@ export default function App() {
             />
           ) : connectId.endsWith("-A") ? (
             <ChatWindow
-              userId={connectId} // 这里的id已经是带-A的了
+              userId={connectId}
               name={name}
               avatar={avatar}
               code={code}

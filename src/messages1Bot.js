@@ -8,6 +8,8 @@ import {
   bot5Name,
 } from "./constants/botNames";
 
+// 这是信息收集script
+
 export const message1BotGroups = [
   {
     step: 1,
