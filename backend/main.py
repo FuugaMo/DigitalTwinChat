@@ -37,7 +37,6 @@ def read_root():
 
 @app.post("/api/chat")
 async def chat(request: Request):
-    print(f"api_key: {api_key}")
     data = await request.json()
     prompt = data.get("prompt", "")
 
