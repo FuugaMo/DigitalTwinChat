@@ -1,0 +1,13 @@
+.App {
+  font-family: "Lucida Grande", sans-serif;
+  font-size: 14px;
+  text-align: center;
+}
+
+.title {
+  padding-top: 20px;
+}
+
+.title-login {
+  padding: 20px;
+}

@@ -1,0 +1,15 @@
+.messageScreen {
+  padding: 3px;
+  /* background-color: #c3d081; */
+  /* background-color: #81bb7e; */
+  /* background-color: linear-gradient(to right, #f6d365, #fda085); */
+}
+
+.messageListWrapper {
+  padding: 15px 15px 0px 15px;
+  /* margin: 0px 0px -10px 0px; */
+}
+
+.messageImage {
+  padding-right: 30px;
+}

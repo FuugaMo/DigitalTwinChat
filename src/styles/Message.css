@@ -1,0 +1,117 @@
+.message {
+  display: flex;
+  margin: 16px 0px;
+}
+
+.messageReceived {
+  justify-content: start;
+}
+
+.messageSent {
+  justify-content: flex-end;
+  margin-left: auto; /* <-- 关键 */
+  width: fit-content; /* 或者最大宽度 */
+  max-width: 80%;
+}
+
+.messageText {
+  max-width: 270px;
+  display: flex;
+  flex-direction: column;
+  padding: 8px 16px;
+  margin-left: 8px;
+  border-radius: 20px;
+}
+
+.messageTextReceived {
+  background-color: #ffffff;
+  justify-content: left;
+  text-align: left;
+}
+
+.messageTextHost {
+  background-color: #ffffff;
+  justify-content: left;
+  text-align: left;
+}
+.messageTextSent {
+  background-color: #6750a4;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 12px;
+
+  margin-left: auto;
+  margin-right: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  word-break: break-word;
+  overflow-wrap: break-word; /* ✅ 加强兼容性 */
+  white-space: pre-wrap; /* ✅ 保留空格和换行，但允许自动换行 */
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+.messageReceivedAvatarWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+}
+
+.messageReceivedAvatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover; /* <-- 关键 */
+}
+
+.messageSystem {
+  color: #f5f5f5;
+  font-size: 14px;
+  margin: 16px 0px;
+}
+
+.messageSenderName {
+  margin-bottom: 4px;
+  font-weight: 600;
+}
+
+.messageSenderName1 {
+  /* color: #72a4d4; */
+  color: #40719f;
+}
+
+.messageSenderName2 {
+  /* color: #f4db52; */
+  color: #b09b22;
+}
+
+.messageSenderName3 {
+  /* color: #445b65; */
+  color: #0c1518;
+}
+
+.messageSenderName4 {
+  /* color: #69bb76; */
+  color: #553c01;
+}
+
+.messageSenderName5 {
+  /* color: #ffb100; */
+  color: #1a3855;
+}
+
+.messageImage {
+  padding-left: 8px;
+}
+
+.messageRatingSlider {
+  /* max-width: 250px; */
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  padding: 8px 0px;
+  /* margin-left: 8px; */
+  border-radius: 20px;
+}
