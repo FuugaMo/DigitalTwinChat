@@ -32,7 +32,7 @@ app.add_middleware(
 #     return response
 
 
-@app.post("/chat")
+@app.post("/api/chat")
 async def chat(request: Request):
     data = await request.json()
     prompt = data.get("prompt", "")
@@ -62,7 +62,7 @@ async def chat(request: Request):
         "reply": result["choices"][0]["message"]["content"]
     }
 
-@app.post("/verify-admin")
+@app.post("/api/verify-admin")
 async def verify_admin(request: Request):
     data = await request.json()
     user_id = data.get("id")

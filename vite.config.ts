@@ -6,7 +6,8 @@ export default defineConfig({
   plugins: [react()],
   server: {
     host: true,
-    allowedHosts: ["qcvsw4-5173.csb.app"],
+    allowedHosts: [".csb.app"],
     port: 5173,
   },
+  base: "./",
 });

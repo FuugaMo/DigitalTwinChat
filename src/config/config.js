@@ -12,7 +12,5 @@ export const firebaseConfig = {
 export const TWIN_CODE = "123";
 export const ASSISTANT_CODE = "321";
 
-export const API_BASE =
-  import.meta.env.MODE === "development"
-    ? "http://localhost:8000"
-    : "https://digitaltwin.vercel.app/api";
+// src/config.js 或者你其他配置文件
+export const API_BASE = import.meta.env.VITE_API_BASE || "/api";
