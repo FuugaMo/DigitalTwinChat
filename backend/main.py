@@ -31,6 +31,9 @@ app.add_middleware(
 #     print(f"响应状态码: {response.status_code}")
 #     return response
 
+@app.get("/")
+def read_root():
+    return {"message": "Backend is up and running!"}
 
 @app.post("/api/chat")
 async def chat(request: Request):
