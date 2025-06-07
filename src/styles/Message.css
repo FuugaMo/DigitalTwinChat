@@ -32,10 +32,13 @@
 }
 
 .messageTextHost {
+  max-width: 70%;
+  width: fit-content;
   background-color: #ffffff;
   justify-content: left;
   text-align: left;
 }
+
 .messageTextSent {
   max-width: 100%;
   width: fit-content;
