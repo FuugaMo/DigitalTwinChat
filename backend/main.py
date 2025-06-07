@@ -43,11 +43,12 @@ async def chat(request: Request):
     # phase 1 回应用户消息用
     userMessage = data.get("userMessage", "")  
     lastHostMessage = data.get("lastHostMessage", "")
+    print("🔵 Incoming request data:")
+
     print(f"Prompt: {prompt}")
     print(f"Last Host message: {lastHostMessage}")
     print(f"User message: {userMessage}")
 
-    print("🔵 Incoming request data:")
     messages = []
     if prompt:
         messages.append({"role": "system", "content": prompt})
@@ -57,6 +58,8 @@ async def chat(request: Request):
  
     if userMessage:
         messages.append({"role": "user", "content": userMessage})
+
+    print(f"Messages: {messages}")
 
     headers = {
         "Content-Type": "application/json",
