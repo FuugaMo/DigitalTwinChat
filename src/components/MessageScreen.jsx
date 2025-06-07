@@ -75,7 +75,7 @@ function MessageScreen(props) {
                       <Skeleton
                         animation="wave"
                         sx={{
-                          bgcolor: "#C8E6C9",
+                          bgcolor: "#EADDFF",
                           marginLeft: "10px",
                           transform: "scaleX(-1)",
                         }}
@@ -87,7 +87,7 @@ function MessageScreen(props) {
                     <Skeleton
                       animation="wave"
                       sx={{
-                        bgcolor: "#DCF8C6", // 用户气泡色（类似微信）
+                        bgcolor: "#FFFFFF", // 用户气泡色（类似微信）
                         borderRadius: "20px",
                         transform: "scaleX(-1)",
                       }}

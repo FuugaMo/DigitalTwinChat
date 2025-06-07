@@ -370,7 +370,7 @@ export const message1BotGroups = [
       {
         id: 16,
         content: (name) =>
-          `Have you ever faced a major challenge at work or while looking for a job? What happened? `,
+          `Have you ever faced a major challenge at work or while looking for a job? What happened? How did you feel during that time?`,
         sender: EntityType.Host,
         senderName: "Host",
         type: MessageType.Message,
@@ -378,30 +378,9 @@ export const message1BotGroups = [
       },
     ],
   },
+  
   {
     step: 17,
-    messages: [
-      {
-        id: 45,
-        prompt: (name) =>
-          `Give a reply of around 20 words of user's answer. Don't ask questions.`,
-        sender: EntityType.Host,
-        senderName: "Host",
-        type: MessageType.GPT,
-        delay: 3,
-      },
-      {
-        id: 17,
-        content: (name) => `How did you feel during that time?`,
-        sender: EntityType.Host,
-        senderName: "Host",
-        type: MessageType.Message,
-        delay: 3.0,
-      },
-    ],
-  },
-  {
-    step: 18,
     messages: [
       {
         id: 46,
@@ -424,7 +403,7 @@ export const message1BotGroups = [
     ],
   },
   {
-    step: 19,
+    step: 18,
     messages: [
       {
         id: 47,
@@ -447,7 +426,7 @@ export const message1BotGroups = [
     ],
   },
   {
-    step: 20,
+    step: 19,
     messages: [
       {
         id: 48,
@@ -469,7 +448,7 @@ export const message1BotGroups = [
     ],
   },
   {
-    step: 21,
+    step: 20,
     messages: [
       {
         id: 49,
@@ -492,7 +471,7 @@ export const message1BotGroups = [
     ],
   },
   {
-    step: 22,
+    step: 21,
     messages: [
       {
         id: 50,
@@ -515,7 +494,7 @@ export const message1BotGroups = [
     ],
   },
   {
-    step: 23,
+    step: 22,
     messages: [
       {
         id: 51,
