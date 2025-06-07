@@ -85,6 +85,15 @@ export const message1BotGroups = [
     step: 4,
     messages: [
       {
+        id: 32,
+        prompt: (name) =>
+          `Give a reply of around 20 words of user's answer. Don't ask questions.`,
+        sender: EntityType.Host,
+        senderName: "Host",
+        type: MessageType.GPT,
+        delay: 3,
+      },
+      {
         id: 4,
         content: (name) =>
           `What city do you live in? What do you think about it?`,
@@ -98,6 +107,15 @@ export const message1BotGroups = [
   {
     step: 5,
     messages: [
+      {
+        id: 33,
+        prompt: (name) =>
+          `Give a reply of around 20 words of user's answer. Don't ask questions.`,
+        sender: EntityType.Host,
+        senderName: "Host",
+        type: MessageType.GPT,
+        delay: 3,
+      },
       {
         id: 5,
         content: (name) =>
@@ -113,6 +131,15 @@ export const message1BotGroups = [
     step: 6,
     messages: [
       {
+        id: 34,
+        prompt: (name) =>
+          `Give a reply of around 20 words of user's answer. Don't ask questions.`,
+        sender: EntityType.Host,
+        senderName: "Host",
+        type: MessageType.GPT,
+        delay: 3,
+      },
+      {
         id: 6,
         content: (name) =>
           `Do you have any favorite actors or actresses? Why do you like them?`,
@@ -127,6 +154,15 @@ export const message1BotGroups = [
     step: 7,
     messages: [
       {
+        id: 35,
+        prompt: (name) =>
+          `Give a reply of around 20 words of user's answer. Don't ask questions.`,
+        sender: EntityType.Host,
+        senderName: "Host",
+        type: MessageType.GPT,
+        delay: 3,
+      },
+      {
         id: 7,
         content: (name) => `What’s your favorite food, and why do you like it?`,
         sender: EntityType.Host,
@@ -139,6 +175,15 @@ export const message1BotGroups = [
   {
     step: 8,
     messages: [
+      {
+        id: 36,
+        prompt: (name) =>
+          `Give a reply of around 20 words of user's answer. Don't ask questions.`,
+        sender: EntityType.Host,
+        senderName: "Host",
+        type: MessageType.GPT,
+        delay: 3,
+      },
       {
         id: 8,
         content: (name) =>
@@ -154,6 +199,15 @@ export const message1BotGroups = [
     step: 9,
     messages: [
       {
+        id: 37,
+        prompt: (name) =>
+          `Give a reply of around 20 words of user's answer. Don't ask questions.`,
+        sender: EntityType.Host,
+        senderName: "Host",
+        type: MessageType.GPT,
+        delay: 3,
+      },
+      {
         id: 9,
         content: (name) =>
           `Do you have any favorite singers or bands? Why are they your favorite?`,
@@ -168,6 +222,15 @@ export const message1BotGroups = [
     step: 10,
     messages: [
       {
+        id: 38,
+        prompt: (name) =>
+          `Give a reply of around 20 words of user's answer. Don't ask questions.`,
+        sender: EntityType.Host,
+        senderName: "Host",
+        type: MessageType.GPT,
+        delay: 3,
+      },
+      {
         id: 10,
         content: (name) => `What are your hobbies?`,
         sender: EntityType.Host,
@@ -180,6 +243,15 @@ export const message1BotGroups = [
   {
     step: 11,
     messages: [
+      {
+        id: 39,
+        prompt: (name) =>
+          `Give a reply of around 20 words of user's answer. Don't ask questions.`,
+        sender: EntityType.Host,
+        senderName: "Host",
+        type: MessageType.GPT,
+        delay: 3,
+      },
       {
         id: 11,
         content: (name) =>
@@ -195,6 +267,15 @@ export const message1BotGroups = [
     step: 12,
     messages: [
       {
+        id: 40,
+        prompt: (name) =>
+          `Give a reply of around 20 words of user's answer. Don't ask questions.`,
+        sender: EntityType.Host,
+        senderName: "Host",
+        type: MessageType.GPT,
+        delay: 3,
+      },
+      {
         id: 12,
         content: (name) =>
           `Can you describe a time in your life that was especially positive or meaningful? What happened, when and where did it happen, who was there, and how did you feel?`,
@@ -208,6 +289,15 @@ export const message1BotGroups = [
   {
     step: 13,
     messages: [
+      {
+        id: 41,
+        prompt: (name) =>
+          `Give a reply of around 20 words of user's answer. Don't ask questions.`,
+        sender: EntityType.Host,
+        senderName: "Host",
+        type: MessageType.GPT,
+        delay: 3,
+      },
       {
         id: 13,
         content: (name) =>
@@ -223,6 +313,15 @@ export const message1BotGroups = [
     step: 14,
     messages: [
       {
+        id: 42,
+        prompt: (name) =>
+          `Give a reply of around 20 words of user's answer. Don't ask questions.`,
+        sender: EntityType.Host,
+        senderName: "Host",
+        type: MessageType.GPT,
+        delay: 3,
+      },
+      {
         id: 14,
         content: (name) =>
           `When a friend shares something bad that happened to them, how do you usually give emotional support? You can describe what you say or how you act.`,
@@ -236,6 +335,15 @@ export const message1BotGroups = [
   {
     step: 15,
     messages: [
+      {
+        id: 43,
+        prompt: (name) =>
+          `Give a reply of around 20 words of user's answer. Don't ask questions.`,
+        sender: EntityType.Host,
+        senderName: "Host",
+        type: MessageType.GPT,
+        delay: 3,
+      },
       {
         id: 15,
         content: (name) =>
@@ -251,6 +359,15 @@ export const message1BotGroups = [
     step: 16,
     messages: [
       {
+        id: 44,
+        prompt: (name) =>
+          `Give a reply of around 20 words of user's answer. Don't ask questions.`,
+        sender: EntityType.Host,
+        senderName: "Host",
+        type: MessageType.GPT,
+        delay: 3,
+      },
+      {
         id: 16,
         content: (name) =>
           `Have you ever faced a major challenge at work or while looking for a job? What happened? `,
@@ -265,6 +382,15 @@ export const message1BotGroups = [
     step: 17,
     messages: [
       {
+        id: 45,
+        prompt: (name) =>
+          `Give a reply of around 20 words of user's answer. Don't ask questions.`,
+        sender: EntityType.Host,
+        senderName: "Host",
+        type: MessageType.GPT,
+        delay: 3,
+      },
+      {
         id: 17,
         content: (name) => `How did you feel during that time?`,
         sender: EntityType.Host,
@@ -277,6 +403,15 @@ export const message1BotGroups = [
   {
     step: 18,
     messages: [
+      {
+        id: 46,
+        prompt: (name) =>
+          `Give a reply of around 20 words of user's answer. Don't ask questions.`,
+        sender: EntityType.Host,
+        senderName: "Host",
+        type: MessageType.GPT,
+        delay: 3,
+      },
       {
         id: 18,
         content: (name) =>
@@ -292,6 +427,15 @@ export const message1BotGroups = [
     step: 19,
     messages: [
       {
+        id: 47,
+        prompt: (name) =>
+          `Give a reply of around 20 words of user's answer. Don't ask questions.`,
+        sender: EntityType.Host,
+        senderName: "Host",
+        type: MessageType.GPT,
+        delay: 3,
+      },
+      {
         id: 19,
         content: (name) =>
           `What is something you’ve always wanted to do but haven’t yet? Why?`,
@@ -306,6 +450,15 @@ export const message1BotGroups = [
     step: 20,
     messages: [
       {
+        id: 48,
+        prompt: (name) =>
+          `Give a reply of around 20 words of user's answer. Don't ask questions.`,
+        sender: EntityType.Host,
+        senderName: "Host",
+        type: MessageType.GPT,
+        delay: 3,
+      },
+      {
         id: 20,
         content: (name) => `What does success mean to you?`,
         sender: EntityType.Host,
@@ -318,6 +471,15 @@ export const message1BotGroups = [
   {
     step: 21,
     messages: [
+      {
+        id: 49,
+        prompt: (name) =>
+          `Give a reply of around 20 words of user's answer. Don't ask questions.`,
+        sender: EntityType.Host,
+        senderName: "Host",
+        type: MessageType.GPT,
+        delay: 3,
+      },
       {
         id: 21,
         content: (name) =>
@@ -333,6 +495,15 @@ export const message1BotGroups = [
     step: 22,
     messages: [
       {
+        id: 50,
+        prompt: (name) =>
+          `Give a reply of around 20 words of user's answer. Don't ask questions.`,
+        sender: EntityType.Host,
+        senderName: "Host",
+        type: MessageType.GPT,
+        delay: 3,
+      },
+      {
         id: 22,
         content: (name) =>
           `Has your most important value changed over time? If so, how and why?`,
@@ -346,6 +517,15 @@ export const message1BotGroups = [
   {
     step: 23,
     messages: [
+      {
+        id: 51,
+        prompt: (name) =>
+          `Give a reply of around 20 words of user's answer. Don't ask questions.`,
+        sender: EntityType.Host,
+        senderName: "Host",
+        type: MessageType.GPT,
+        delay: 3,
+      },
       {
         id: 23,
         content: (name) =>
