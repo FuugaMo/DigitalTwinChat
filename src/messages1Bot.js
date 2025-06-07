@@ -62,6 +62,15 @@ export const message1BotGroups = [
     step: 3,
     messages: [
       {
+        id: 31,
+        prompt: (name) =>
+          `Give a reply of around 20 words of user's answer. Don't ask questions.`,
+        sender: EntityType.Host,
+        senderName: "Host",
+        type: MessageType.GPT,
+        delay: 3,
+      },
+      {
         id: 3,
         content: (name) =>
           `Are there any tasks you don’t like on CloudResearch? Please provide some examples.`,
