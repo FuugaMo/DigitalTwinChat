@@ -53,7 +53,7 @@ async def chat(request: Request):
     if prompt:
         messages.append({"role": "system", "content": prompt})
     
-    if hostMessage:
+    if lastHostMessage:
         messages.append({"role": "assistant", "content": lastHostMessage})
  
     if userMessage:
