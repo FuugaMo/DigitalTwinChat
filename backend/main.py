@@ -36,11 +36,6 @@ def read_root():
     return {"message": "Backend is up and running!"}
 
 @app.post("/api/chat")
-from fastapi import Request
-import httpx
-
-api_key = "your_openai_api_key_here"
-
 async def chat(request: Request):
     data = await request.json()
     prompt = data.get("prompt", "")
