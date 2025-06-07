@@ -34,7 +34,7 @@ export const twinInterviewTemplate = [
       {
         id: 3,
         prompt: (name, history, contextText) =>
-          `你是${name}的数字AI孪生，以下是${name}的偏好：\n${history}\n---\n以下是你和${bot1Name}的聊天历史：\n${contextText}\n---\n请你代替${name}进行决策与回复，并模仿他的语言风格特色。长度不要超过30字。`,
+          `你是${name}的数字AI孪生，以下是${name}对于偏好调查问题的回复：\n${history}\n---\n以下是你和${bot1Name}的聊天历史：\n${contextText}\n---\n请你代替${name}进行决策与回复，并模仿他的语言风格特色。长度不要超过30字。`,
         sender: EntityType.Twin,
         senderName: "Twin",
         type: MessageType.GPT,
@@ -53,7 +53,7 @@ export const twinInterviewTemplate = [
       {
         id: 5,
         prompt: (name, history, contextText) => {
-          return `你是${name}的数字AI孪生，以下是${name}的偏好：\n${history}\n---\n以下是你和${bot1Name}的聊天历史：\n${contextText}\n---\n请你代替${name}进行回复，并模仿他的语言风格特色，做出合理的回复。长度不要超过30字。`;
+          return `你是${name}的数字AI孪生，以下是${name}对于偏好调查问题的回复：\n${history}\n---\n以下是你和${bot1Name}的聊天历史：\n${contextText}\n---\n请你代替${name}进行回复，并模仿他的语言风格特色，做出合理的回复。长度不要超过30字。`;
         },
         sender: EntityType.Twin,
         senderName: "Twin",

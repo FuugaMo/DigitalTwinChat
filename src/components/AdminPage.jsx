@@ -138,16 +138,10 @@ const injectVariables = (template, user) => {
   const { name, history, isTwin } = user;
 
   // 拼接所有 message 字段为一段语料（字符串）
-  // const joinedHistory = (history || [])
-  //   .map((entry) => entry.message)
-  //   .filter(Boolean)
-  //   .join(" / "); // 可换为 '\n' 或其它分隔符
-
-  const joinedHistory = (history || []).slice(1).map((entry, index) => {
-    // 跳过第一个 'start' 回复。
-    const question = questions[index] || "";
-    return `Question: ${question} User's Answer : ${entry.message}`;
-  });
+  const joinedHistory = (history || [])
+    .map((entry) => entry.message)
+    .filter(Boolean)
+    .join(" / "); // 可换为 '\n' 或其它分隔符
 
   console.log(`Joined history: ${joinedHistory}`);
 
@@ -188,10 +182,16 @@ const injectVariables = (template, user) => {
 const stepwiseGPTConversation = async (template, user) => {
   const { name, history } = user;
 
-  const joinedHistory = (history || [])
-    .map((entry) => entry.message)
-    .filter(Boolean)
-    .join(" / ");
+  // const joinedHistory = (history || [])
+  //   .map((entry) => entry.message)
+  //   .filter(Boolean)
+  //   .join(" / ");
+
+  const joinedHistory = (history || []).slice(1).map((entry, index) => {
+    // 跳过第一个 'start' 回复。
+    const question = questions[index] || "";
+    return `Question: ${question} ${name} : ${entry.message}`;
+  });
 
   const priorDialogText = []; // 用于拼接前面已生成的“对话文本”（非 prompt）
   const stepMsgs = [];
