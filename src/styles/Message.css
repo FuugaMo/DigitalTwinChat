@@ -15,7 +15,6 @@
 }
 
 .messageText {
-  max-width: 270px;
   display: flex;
   flex-direction: column;
   padding: 8px 16px;
@@ -27,6 +26,9 @@
   background-color: #ffffff;
   justify-content: left;
   text-align: left;
+
+  max-width: 70%;
+  width: fit-content;
 }
 
 .messageTextHost {
@@ -35,6 +37,9 @@
   text-align: left;
 }
 .messageTextSent {
+  max-width: 100%;
+  width: fit-content;
+
   background-color: #6750a4;
   color: white;
   padding: 8px 12px;

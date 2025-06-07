@@ -244,7 +244,9 @@ export default function App() {
             >
               <CircularProgress />
               <Typography variant="body1" sx={{ mt: 2 }}>
-                Loging in...
+                Logging in...
+                <br />
+                This may take up to 1 minute.
               </Typography>
             </Box>
           ) : isTwin === -1 ? (

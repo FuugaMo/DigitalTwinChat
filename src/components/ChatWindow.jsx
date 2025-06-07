@@ -274,10 +274,10 @@ function ChatWindow(props) {
       setIsTwin(userData.isTwin);
       if (userData.isTwin === 1) {
         setAvatar(userData.avatar);
-        setName(`${userData.name}'s Digital Twin'`);
+        setName(`${userData.name}'s Digital Twin`);
         // console.log(avatar);
       } else {
-        setName(`${userData.name}'s Digital Assistant'`);
+        setName(`${userData.name}'s Digital Assistant`);
       }
 
       const docRef = doc(db, "chats", userId);
@@ -457,7 +457,7 @@ function ChatWindow(props) {
 
         <MessageScreen
           messages={messages}
-          loading={Loading}
+          loading={loading}
           name={name}
           avatar={avatar}
           isTwin={isTwin}
