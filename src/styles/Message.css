@@ -10,8 +10,8 @@
 .messageSent {
   justify-content: flex-end;
   margin-left: auto; /* <-- 关键 */
-  width: fit-content; /* 或者最大宽度 */
-  /* max-width: 80%; */
+  /* width: fit-content; 或者最大宽度 */
+  /* max-width: 100%; */
 }
 
 .messageText {
@@ -61,6 +61,7 @@
   align-items: flex-start;
   text-align: left;
 }
+
 .messageReceivedAvatarWrapper {
   display: flex;
   flex-direction: column;
