@@ -8,7 +8,7 @@ import { messageGroupsAllBots } from "../messages";
 import "../styles/ChatWindow.css";
 
 // Firebase 初始化
-import { firebaseConfig } from "../config/config.js";
+import { firebaseConfig, API_BASE } from "../config/config.js";
 import { initializeApp } from "firebase/app";
 import {
   getFirestore,
@@ -41,7 +41,8 @@ function ChatWindow(props) {
   const [typingByUser, setTypingByUser] = useState(false); // 回放专用，用户输入消息时设置为true，以在右侧进行渲染。
   const [loading, setLoading] = useState(false); // 是否加载中
   const [gptConversation, setGptConversation] = useState(""); // GPT 上下文（未使用）
-  const [lastUserMessage, setLastUserMessage] = useState(""); // 上一条用户消息（未使用）
+  const [lastUserMessage, setLastUserMessage] = useState(""); // 上一条用户消息
+  const [lastHostMessage, setLastHostMessage] = useState(""); // 上一条Host消息
   const [name, setName] = useState(props.name); // 用户昵称
   const [isTwin, setIsTwin] = useState(props.isTwin); // 是否孪生组flag
   const [avatar, setAvatar] = useState(props.avatar); // 用户头像
@@ -134,21 +135,50 @@ function ChatWindow(props) {
   }
 
   // 调用 GPT API 获取机器人回复
-  async function getGPTMessage(prompt, userMessage) {
+  async function getGPTMessage(prompt, userMessage, lastHostMessage) {
+    // try {
+    //   const req = {
+    //     model: "gpt-4-1106-preview",
+    //     messages: [
+    //       { role: "system", content: prompt },
+    //       { role: "user", content: userMessage.toString() },
+    //     ],
+    //     temperature: 0.01,
+    //     max_tokens: 200,
+    //   };
+    //   const response = await openai.current.chat.completions.create(req);
+    //   return response.choices[0].message.content;
+    // } catch (e) {
+    //   console.log(e);
+    // }
     try {
-      const req = {
-        model: "gpt-4-1106-preview",
-        messages: [
-          { role: "system", content: prompt },
-          { role: "user", content: userMessage.toString() },
-        ],
-        temperature: 0.01,
-        max_tokens: 200,
-      };
-      const response = await openai.current.chat.completions.create(req);
-      return response.choices[0].message.content;
-    } catch (e) {
-      console.log(e);
+      const response = await fetch(`${API_BASE}/chat`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          prompt: prompt,
+          userMessage: userMessage,
+          lastHostMessage,
+        }),
+      });
+
+      if (!response.ok) {
+        const err = await response.text();
+        console.error("❌ GPT API Error:", err);
+        return `（API错误：${err.slice(0, 100)}）`;
+      }
+
+      const data = await response.json();
+
+      console.log(data.reply);
+
+      // 这里用 data.reply 而不是 data.choices
+      return data.reply || "（无返回内容）";
+    } catch (error) {
+      console.error("❌ 网络异常:", error);
+      return `（异常：${error.message}）`;
     }
   }
 
@@ -376,9 +406,13 @@ function ChatWindow(props) {
       if (message.type === MessageType.GPT) {
         const gptMessage = await getGPTMessage(
           message.prompt(props.name),
-          lastUserMessage
+          lastUserMessage,
+          lastHostMessage
         );
         message.content = () => gptMessage; // 让 content 变为函数返回值
+      } else {
+        // 是 host script 消息
+        setLastHostMessage(message.content(props.name));
       }
 
       setIsDisplayTyping(false);

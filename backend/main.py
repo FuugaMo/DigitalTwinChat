@@ -36,9 +36,33 @@ def read_root():
     return {"message": "Backend is up and running!"}
 
 @app.post("/api/chat")
+from fastapi import Request
+import httpx
+
+api_key = "your_openai_api_key_here"
+
 async def chat(request: Request):
     data = await request.json()
     prompt = data.get("prompt", "")
+
+    # phase 1 回应用户消息用
+    userMessage = data.get("userMessage", "")  
+    hostMessage = data.get("hostMessage", "")
+
+    print("🔵 Incoming request data:")
+    print(f"Prompt: {prompt}")
+    print(f"Host message: {hostMessage}")
+    print(f"User message: {userMessage}")
+
+    messages = []
+    if prompt:
+        messages.append({"role": "system", "content": prompt})
+    
+    if hostMessage:
+        messages.append({"role": "assistant", "content": hostMessage})
+ 
+    if userMessage:
+        messages.append({"role": "user", "content": userMessage})
 
     headers = {
         "Content-Type": "application/json",
@@ -47,11 +71,8 @@ async def chat(request: Request):
 
     body = {
         "model": "gpt-4.1-nano-2025-04-14",
-        "messages": [
-            { "role": "system", "content": "你是一个温和而有启发性的AI对话助手。" },
-            { "role": "user", "content": prompt }
-        ],
-        "temperature": 0.01
+        "messages": messages,
+        "temperature": 0.01,
     }
 
     async with httpx.AsyncClient() as client:

@@ -7,6 +7,7 @@ import {
   bot4Name,
   bot5Name,
 } from "./constants/botNames";
+import Message from "./components/Message";
 
 // 这是信息收集script
 
@@ -37,6 +38,15 @@ export const message1BotGroups = [
   {
     step: 2,
     messages: [
+      {
+        id: 30,
+        prompt: (name) =>
+          `Give a reply of around 20 words of user's answer. Don't ask questions.`,
+        sender: EntityType.Host,
+        senderName: "Host",
+        type: MessageType.GPT,
+        delay: 3,
+      },
       {
         id: 2,
         content: (name) =>

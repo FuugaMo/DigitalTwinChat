@@ -122,10 +122,10 @@ export default function App() {
         body: JSON.stringify({ id }),
       });
       const data = await res.json();
-      console.log(data);
+      // console.log(data);
       if (data.success === true) {
         // 管理员直接登录，无需密码
-        console.log(`admin id ${id}`);
+        // console.log(`admin id ${id}`);
         setConnectId(id);
         setIsTwin(-1);
         return;
