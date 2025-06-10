@@ -256,6 +256,29 @@ function ChatWindow(props) {
     );
   }
 
+  function calculateTypingDelay(content, baseDelay = 1000) {
+    // 基本参数设置
+    const minDelay = 500; // 最小延迟时间，防止过短内容没有延迟
+    const maxDelay = 5000; // 最大延迟时间，防止过长内容延迟太久
+    const delayPerChar = 20; // 每字符增加的基础延迟时间(毫秒)
+    const randomFactor = 0.3; // 随机波动因子，使打字速度更自然
+
+    // 计算内容长度
+    const contentLength = content.length;
+
+    // 基础延迟加上与内容长度相关的延迟
+    let delay = baseDelay + contentLength * delayPerChar;
+
+    // 添加随机波动，模拟人类打字速度变化
+    const randomVariation = (Math.random() * 2 - 1) * randomFactor * delay;
+    delay += randomVariation;
+
+    // 应用最大最小限制
+    delay = Math.max(minDelay, Math.min(delay, maxDelay));
+
+    return Math.round(delay);
+  }
+
   async function replayMessagesSequentially(allMessages) {
     // console.log("replayMessagesSequentially called");
     setBlockUserMessages(true); // 禁用输入
@@ -264,20 +287,21 @@ function ChatWindow(props) {
     const timer = (ms) => new Promise((res) => setTimeout(res, ms));
 
     for (let i = 0; i < allMessages.length; i++) {
-      // console.log(i);
       const { content, sender, delay = 0, id, senderName } = allMessages[i];
 
-      let delay1 = 2000;
+      // 计算基于内容长度的动态延迟
+      // const dynamicDelay = calculateTypingDelay(content, delay);
+      dynamicDelay = delay;
 
       if (sender === "Assistant" || sender === "Twin") {
         setTypingByUser(true);
         setIsDisplayTyping(true);
-        await timer(delay1); // 模拟打字和随机等待
-        addUserMessage(content, id); // 用你的自定义函数
+        await timer(dynamicDelay); // 使用动态计算的延迟
+        addUserMessage(content, id);
       } else {
         setTypingByUser(false);
         setIsDisplayTyping(true);
-        await timer(delay1); // 模拟打字和随机等待
+        await timer(dynamicDelay); // 使用动态计算的延迟
         setMessages((prev) => [
           ...prev,
           {
