@@ -35,13 +35,17 @@ app.add_middleware(
 def read_root():
     return {"message": "Backend is up and running!"}
 
+
+MAX_RETRIES = 3
+RETRY_DELAY = 2  # 每次失败后等待秒数，可做指数退避
+
 @app.post("/api/chat")
 async def chat(request: Request):
     data = await request.json()
     prompt = data.get("prompt", "")
-
     userMessage = data.get("userMessage", "")  
     lastHostMessage = data.get("lastHostMessage", "")
+
     print("🔵 Incoming request data:")
     print(f"Prompt: {prompt}")
     print(f"Last Host message: {lastHostMessage}")
@@ -68,33 +72,35 @@ async def chat(request: Request):
         "temperature": 0.01,
     }
 
-    try:
-        async with httpx.AsyncClient() as client:
-            response = await client.post(
-                "https://api.openai.com/v1/chat/completions",
-                headers=headers,
-                json=body
-            )
-            response.raise_for_status()
-            result = response.json()
-            print("🟢 OpenAI response:", result["choices"][0]["message"]["content"])
-            return {
-                "reply": result["choices"][0]["message"]["content"]
-            }
+    # 自动重试逻辑
+    for attempt in range(1, MAX_RETRIES + 1):
+        try:
+            async with httpx.AsyncClient() as client:
+                response = await client.post(
+                    "https://api.openai.com/v1/chat/completions",
+                    headers=headers,
+                    json=body,
+                    timeout=20  # 设置超时时间，防止长时间卡住
+                )
+                response.raise_for_status()
+                result = response.json()
+                print(f"✅ Success on attempt {attempt}:")
+                print(result["choices"][0]["message"]["content"])
+                return {
+                    "reply": result["choices"][0]["message"]["content"]
+                }
 
-    except httpx.HTTPStatusError as http_err:
-        print("🔴 HTTP error occurred:", http_err)
-        print("Response content:", http_err.response.text)
-        return {"error": "Failed to fetch from OpenAI: HTTP error"}
+        except httpx.RequestError as req_err:
+            print(f"🔴 Attempt {attempt} failed: {req_err}")
+            traceback.print_exc()
+            if attempt < MAX_RETRIES:
+                print(f"⏳ Retrying in {RETRY_DELAY} seconds...")
+                await asyncio.sleep(RETRY_DELAY)
+            else:
+                return {
+                    "error": "Failed to fetch from OpenAI after multiple attempts."
+                }
 
-    except httpx.RequestError as req_err:
-        print("🔴 Request error occurred:", req_err)
-        return {"error": "Failed to fetch from OpenAI: Request error"}
-
-    except Exception as e:
-        print("🔴 Unexpected error occurred:", str(e))
-        traceback.print_exc()
-        return {"error": "An unexpected error occurred"}
 
 @app.post("/api/verify-admin")
 async def verify_admin(request: Request):
