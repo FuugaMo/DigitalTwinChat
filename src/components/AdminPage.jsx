@@ -21,7 +21,7 @@ import { twinNonProsocialScript } from "../twinNonProsocialScript.js";
 import { twinWithoutScript } from "../twinWithoutScript.js";
 import { assistantProsocialScript } from "../assistantProsocialScript.js";
 import { assistantNonProsocialScript } from "../assistantNonProsocialScript.js";
-import { assistantWithoutScript } from "../assistantWithoutScript copy.js";
+import { assistantWithoutScript } from "../assistantWithoutScript.js";
 
 // 初始化 Firebase
 const app = initializeApp(firebaseConfig);
