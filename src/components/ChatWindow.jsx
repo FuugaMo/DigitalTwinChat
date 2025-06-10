@@ -119,6 +119,7 @@ function ChatWindow(props) {
     isTwin,
     prosocialStatus
   ) {
+    console.log(name, avatar, isTwin, prosocialStatus);
     try {
       let avatarUrl = "";
 

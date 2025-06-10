@@ -354,6 +354,7 @@ export default function App() {
               code={code}
               isTwin={isTwin}
               isReplayMode={isReplayMode}
+              prosocialStatus={prosocialStatus}
               logoutHandler={() => {
                 setConnectId("");
                 setName("");
