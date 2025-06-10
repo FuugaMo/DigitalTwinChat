@@ -34,7 +34,6 @@ import {
   ASSISTANT_CODE_NON,
   ASSISTANT_CODE_WITHOUT,
   API_BASE,
-  TWIN_CODE_PROSOCIAL,
 } from "./config/config";
 // Firebase 初始化
 import { initializeApp } from "firebase/app";
