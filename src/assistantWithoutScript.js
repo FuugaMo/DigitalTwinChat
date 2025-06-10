@@ -57,8 +57,8 @@ export const assistantWithoutScript = [
         Following is the recent conversation between ${name} and ${bot1Name}:  
         ${contextText}  
         ---  
-        Based on the above information, respond to ${name}'s latest message.  
-        Focus on providing an informative and relevant reply.  
+        Based on the above information, respond to ${bot1Name}'s latest message in the first person.
+        Focus on providing an informative and relevant reply.
         Do not mimic ${name}'s tone or speaking style. Return only the response content. Don't ask any question.`,
         sender: EntityType.Assistant,
         senderName: "Assistant",
@@ -92,7 +92,7 @@ export const assistantWithoutScript = [
         Following is the recent conversation between ${name} and ${bot1Name}:  
         ${contextText}  
         ---  
-        Based on the information above, respond to ${bot1Name}'s latest message by sharing what kinds of tasks ${name} enjoy on CloudResearch.  
+        Based on the information above, respond to ${bot1Name}'s latest message in the first person by sharing what kinds of tasks ${name} enjoy on CloudResearch.  
         Focus on providing an informative and relevant reply.  
         Do not mimic ${name}'s tone or speaking style. Return only the response content. Don't ask any question.`,
         sender: EntityType.Assistant,
@@ -132,7 +132,7 @@ export const assistantWithoutScript = [
         Following is the recent conversation between ${name} and ${bot1Name}:  
         ${contextText}  
         ---  
-        Based on the information above, respond to ${bot1Name}'s latest message by sharing what kinds of tasks ${name} doesn't like on CloudResearch.  
+        Based on the information above, respond to ${bot1Name}'s latest message in the first person by sharing what kinds of tasks ${name} doesn't like on CloudResearch.  
         Focus on providing an informative and relevant reply.  
         Do not mimic ${name}'s tone or speaking style. Return only the response content. Don't ask any question.`,
         sender: EntityType.Assistant,
@@ -182,7 +182,7 @@ export const assistantWithoutScript = [
         Following is the recent conversation between ${name} and ${bot1Name}:  
         ${contextText}  
         ---  
-        Based on the information above, respond to ${bot1Name}'s latest message.  
+        Based on the information above, respond to ${bot1Name}'s latest message in the first person.  
         Focus on providing an informative and relevant reply.  
         Do not mimic ${name}'s tone or speaking style. Return only the response content. Don't ask any question.`,
         sender: EntityType.Assistant,
@@ -214,7 +214,7 @@ export const assistantWithoutScript = [
         Following is the recent conversation between ${name} and ${bot1Name}:  
         ${contextText}  
         ---  
-        Based on the information above, respond to ${bot1Name}'s latest message.  
+        Based on the information above, respond to ${bot1Name}'s latest message in the first person.
         Focus on providing an informative and relevant reply.  
         Do not mimic ${name}'s tone or speaking style. Return only the response content. Don't ask any question.`,
         sender: EntityType.Assistant,
@@ -282,7 +282,7 @@ export const assistantWithoutScript = [
         Following is the recent conversation between ${name} and ${bot1Name}:  
         ${contextText}  
         ---  
-        Based on the information above, respond to ${bot1Name}'s latest message.  
+        Based on the information above, respond to ${bot1Name}'s latest message in the first person.  
         Focus on providing an informative and relevant reply.  
         Do not mimic ${name}'s tone or speaking style. Return only the response content. Don't ask any question.`,
         sender: EntityType.Assistant,
@@ -321,7 +321,7 @@ export const assistantWithoutScript = [
         Following is the recent conversation between ${name} and ${bot1Name}:  
         ${contextText}  
         ---  
-        Based on the information above, respond to ${bot1Name}'s latest message.  
+        Based on the information above, respond to ${bot1Name}'s latest message in the first person. 
         Focus on providing an informative and relevant reply.  
         Do not mimic ${name}'s tone or speaking style. Return only the response content. Don't ask any question.`,
         sender: EntityType.Assistant,
@@ -348,240 +348,6 @@ export const assistantWithoutScript = [
         delay: 3000,
       },
 
-      // Prosocial
-      {
-        id: 29,
-        content: (name) => `Though lately I haven't watched it as much.`,
-        sender: EntityType.Bot1,
-        senderName: bot1Name,
-        type: MessageType.Message,
-        delay: 2000,
-      },
-      {
-        id: 30,
-        content: (name) => `Oh really? Something happened?`,
-        sender: EntityType.Assistant,
-        senderName: "Assistant",
-        type: MessageType.Message,
-        delay: 2000,
-      },
-      {
-        id: 31,
-        content: (name) => `Yeah, I lost my job a few weeks ago.`,
-        sender: EntityType.Bot1,
-        senderName: bot1Name,
-        type: MessageType.Message,
-        delay: 2000,
-      },
-      {
-        id: 32,
-        content: (name) =>
-          `I've been job hunting since then, but it's been tough.`,
-        sender: EntityType.Bot1,
-        senderName: bot1Name,
-        type: MessageType.Message,
-        delay: 3000,
-      },
-      {
-        id: 33,
-        content: (name) =>
-          `Money's been a bit tight, so I've been trying to pick up more paid studies here and there.`,
-        sender: EntityType.Bot1,
-        senderName: bot1Name,
-        type: MessageType.Message,
-        delay: 3000,
-      },
-      {
-        id: 34,
-        prompt: (name, history, contextText) =>
-          `You are the digital assistant for ${name}.  
-        Below are ${name}'s responses to various personal preference questions:  
-        ${history}  
-        ---  
-        The following is a recent conversation between ${name} and ${bot1Name}:  
-        ${contextText}  
-        ---  
-        Based on the information above — especially ${name}'s response to “When a friend shares something bad that happened to them, how do you usually give emotional support?” — reply to ${bot1Name}'s latest message.  
-        Your response should be relevant, informative, and based on ${name}'s preferences.  
-        Do not imitate ${name}'s tone or style. Do not ask any questions. Return only the reply content.`,
-        sender: EntityType.Assistant,
-        senderName: "Assistant",
-        type: MessageType.GPT,
-        delay: 3000,
-      },
-      {
-        id: 35,
-        prompt: (name, history, contextText) => {
-          return `The following is a conversation between you and ${name}:
-        ${contextText}
-        Continue the conversation as ${bot1Name} by giving a short response and show your gratitude to ${name}'s latest message.
-        Only return the reply. Don't ask any question.`;
-        },
-        sender: EntityType.Bot1,
-        senderName: bot1Name,
-        type: MessageType.GPT,
-        delay: 2000,
-      },
-      {
-        id: 36,
-        prompt: (name, history, contextText) =>
-          `You are the digital assistant for ${name}.  
-        Below are ${name}'s responses to various personal preference questions:  
-        ${history}  
-        ---  
-        The following is a recent conversation between ${name} and ${bot1Name}:  
-        ${contextText}  
-        ---  
-        Based on the information above — especially ${name}'s response to “Have you ever had a hard time at work? How did you feel during that time?” — reply to ${bot1Name}'s latest message.  
-        Your response should be relevant, informative, and based on ${name}'s preferences.  
-        Do not imitate ${name}'s tone or style. Do not ask any questions. Return only the reply content.`,
-        sender: EntityType.Assistant,
-        senderName: "Assistant",
-        type: MessageType.GPT,
-        delay: 3000,
-      },
-      {
-        id: 37,
-        prompt: (name, history, contextText) => {
-          return `The following is a conversation between you and ${name}:
-        ${contextText}
-        Continue the conversation as ${bot1Name} by giving a short response and show your gratitude to ${name}'s latest message.
-        Only return the reply. Don't ask any question.`;
-        },
-        sender: EntityType.Bot1,
-        senderName: bot1Name,
-        type: MessageType.GPT,
-        delay: 2000,
-      },
-      {
-        id: 38,
-        content: (name) =>
-          `I've been trying to stay positive, but honestly, some days I just feel stuck.`,
-        sender: EntityType.Bot1,
-        senderName: bot1Name,
-        type: MessageType.Message,
-        delay: 3000,
-      },
-      {
-        id: 39,
-        content: (name) =>
-          `Like I'm trying to move forward, but nothing seems to click, and it gets exhausting.`,
-        sender: EntityType.Bot1,
-        senderName: bot1Name,
-        type: MessageType.Message,
-        delay: 3000,
-      },
-      {
-        id: 40,
-        prompt: (name, history, contextText) =>
-          `You are the digital assistant for ${name}.  
-        Below are ${name}'s responses to various personal preference questions:  
-        ${history}  
-        ---  
-        The following is a recent conversation between ${name} and ${bot1Name}:  
-        ${contextText}  
-        ---  
-        Based on the information above — especially ${name}'s response to “When someone feels bad about something, how do you usually help them think about it in a more positive or different way?” — reply to ${bot1Name}'s latest message.  
-        Your response should be relevant, informative, and based on ${name}'s preferences.  
-        Do not imitate ${name}'s tone or style. Do not ask any questions. Return only the reply content.`,
-        sender: EntityType.Assistant,
-        senderName: "Assistant",
-        type: MessageType.GPT,
-        delay: 3000,
-      },
-      {
-        id: 41,
-        prompt: (name, history, contextText) => {
-          return `The following is a conversation between you and ${name}:
-        ${contextText}
-        Continue the conversation as ${bot1Name} by giving a short response and show your gratitude to ${name}'s latest message.
-        Only return the reply. Don't ask any question.`;
-        },
-        sender: EntityType.Bot1,
-        senderName: bot1Name,
-        type: MessageType.GPT,
-        delay: 2000,
-      },
-      {
-        id: 42,
-        content: (name) =>
-          `Do you happen to know any good job boards or tips that might help?`,
-        sender: EntityType.Bot1,
-        senderName: bot1Name,
-        type: MessageType.Message,
-        delay: 3000,
-      },
-      {
-        id: 43,
-        content: (name) =>
-          `I'm open to aqnything really, just trying to get some momentum going again.`,
-        sender: EntityType.Bot1,
-        senderName: bot1Name,
-        type: MessageType.Message,
-        delay: 3000,
-      },
-      {
-        id: 44,
-        prompt: (name, history, contextText) =>
-          `You are the digital assistant for ${name}.  
-        Below are ${name}'s responses to various personal preference questions:  
-        ${history}  
-        ---  
-        The following is a recent conversation between ${name} and ${bot1Name}:  
-        ${contextText}  
-        ---  
-        Based on the information above — especially ${name}'s response to “Do you have any tips or helpful resouces for finding a job?” — reply to ${bot1Name}'s latest message.  
-        Your response should be relevant, informative, and based on ${name}'s preferences.  
-        Do not imitate ${name}'s tone or style. Do not ask any questions. Return only the reply content.`,
-        sender: EntityType.Assistant,
-        senderName: "Assistant",
-        type: MessageType.GPT,
-        delay: 3000,
-      },
-      {
-        id: 45,
-        prompt: (name, history, contextText) => {
-          return `The following is a conversation between you and ${name}:
-        ${contextText}
-        Continue the conversation as ${bot1Name} by giving a short response and show your gratitude to ${name}'s latest message.
-        Only return the reply. Don't ask any question.`;
-        },
-        sender: EntityType.Bot1,
-        senderName: bot1Name,
-        type: MessageType.GPT,
-        delay: 2000,
-      },
-      {
-        id: 46,
-        prompt: (name, history, contextText) =>
-          `You are the digital assistant for ${name}.  
-        Below are ${name}'s responses to various personal preference questions:  
-        ${history}  
-        ---  
-        The following is a recent conversation between ${name} and ${bot1Name}:  
-        ${contextText}  
-        ---  
-        Based on the information above — especially ${name}'s response to “What do you usually do when you're feeling down or not happy?” — reply to ${bot1Name}'s latest message.  
-        Your response should be relevant, informative, and based on ${name}'s preferences.  
-        Do not imitate ${name}'s tone or style. Do not ask any questions. Return only the reply content.`,
-        sender: EntityType.Assistant,
-        senderName: "Assistant",
-        type: MessageType.GPT,
-        delay: 3000,
-      },
-      {
-        id: 47,
-        prompt: (name, history, contextText) => {
-          return `The following is a conversation between you and ${name}:
-        ${contextText}
-        Continue the conversation as ${bot1Name} by giving a short response and show your gratitude to ${name}'s latest message.
-        Only return the reply. Don't ask any question.`;
-        },
-        sender: EntityType.Bot1,
-        senderName: bot1Name,
-        type: MessageType.GPT,
-        delay: 2000,
-      },
       // Ending
       {
         id: 48,

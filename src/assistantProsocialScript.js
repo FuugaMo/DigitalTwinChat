@@ -57,8 +57,8 @@ export const assistantProsocialScript = [
         Following is the recent conversation between ${name} and ${bot1Name}:  
         ${contextText}  
         ---  
-        Based on the above information, respond to ${name}'s latest message.  
-        Focus on providing an informative and relevant reply.  
+        Based on the above information, respond to ${bot1Name}'s latest message in the first person.
+        Focus on providing an informative and relevant reply.
         Do not mimic ${name}'s tone or speaking style. Return only the response content. Don't ask any question.`,
         sender: EntityType.Assistant,
         senderName: "Assistant",
@@ -92,7 +92,7 @@ export const assistantProsocialScript = [
         Following is the recent conversation between ${name} and ${bot1Name}:  
         ${contextText}  
         ---  
-        Based on the information above, respond to ${bot1Name}'s latest message by sharing what kinds of tasks ${name} enjoy on CloudResearch.  
+        Based on the information above, respond to ${bot1Name}'s latest message in the first person by sharing what kinds of tasks ${name} enjoy on CloudResearch.  
         Focus on providing an informative and relevant reply.  
         Do not mimic ${name}'s tone or speaking style. Return only the response content. Don't ask any question.`,
         sender: EntityType.Assistant,
@@ -132,7 +132,7 @@ export const assistantProsocialScript = [
         Following is the recent conversation between ${name} and ${bot1Name}:  
         ${contextText}  
         ---  
-        Based on the information above, respond to ${bot1Name}'s latest message by sharing what kinds of tasks ${name} doesn't like on CloudResearch.  
+        Based on the information above, respond to ${bot1Name}'s latest message in the first person by sharing what kinds of tasks ${name} doesn't like on CloudResearch.  
         Focus on providing an informative and relevant reply.  
         Do not mimic ${name}'s tone or speaking style. Return only the response content. Don't ask any question.`,
         sender: EntityType.Assistant,
@@ -182,7 +182,7 @@ export const assistantProsocialScript = [
         Following is the recent conversation between ${name} and ${bot1Name}:  
         ${contextText}  
         ---  
-        Based on the information above, respond to ${bot1Name}'s latest message.  
+        Based on the information above, respond to ${bot1Name}'s latest message in the first person.  
         Focus on providing an informative and relevant reply.  
         Do not mimic ${name}'s tone or speaking style. Return only the response content. Don't ask any question.`,
         sender: EntityType.Assistant,
@@ -214,7 +214,7 @@ export const assistantProsocialScript = [
         Following is the recent conversation between ${name} and ${bot1Name}:  
         ${contextText}  
         ---  
-        Based on the information above, respond to ${bot1Name}'s latest message.  
+        Based on the information above, respond to ${bot1Name}'s latest message in the first person.
         Focus on providing an informative and relevant reply.  
         Do not mimic ${name}'s tone or speaking style. Return only the response content. Don't ask any question.`,
         sender: EntityType.Assistant,
@@ -282,7 +282,7 @@ export const assistantProsocialScript = [
         Following is the recent conversation between ${name} and ${bot1Name}:  
         ${contextText}  
         ---  
-        Based on the information above, respond to ${bot1Name}'s latest message.  
+        Based on the information above, respond to ${bot1Name}'s latest message in the first person.  
         Focus on providing an informative and relevant reply.  
         Do not mimic ${name}'s tone or speaking style. Return only the response content. Don't ask any question.`,
         sender: EntityType.Assistant,
@@ -321,7 +321,7 @@ export const assistantProsocialScript = [
         Following is the recent conversation between ${name} and ${bot1Name}:  
         ${contextText}  
         ---  
-        Based on the information above, respond to ${bot1Name}'s latest message.  
+        Based on the information above, respond to ${bot1Name}'s latest message in the first person. 
         Focus on providing an informative and relevant reply.  
         Do not mimic ${name}'s tone or speaking style. Return only the response content. Don't ask any question.`,
         sender: EntityType.Assistant,
@@ -401,7 +401,7 @@ export const assistantProsocialScript = [
         The following is a recent conversation between ${name} and ${bot1Name}:  
         ${contextText}  
         ---  
-        Based on the information above — especially ${name}'s response to “When a friend shares something bad that happened to them, how do you usually give emotional support?” — reply to ${bot1Name}'s latest message.  
+        Based on the information above — especially ${name}'s response to “When a friend shares something bad that happened to them, how do you usually give emotional support?” — reply to ${bot1Name}'s latest message in the first person.  
         Your response should be relevant, informative, and based on ${name}'s preferences.  
         Do not imitate ${name}'s tone or style. Do not ask any questions. Return only the reply content.`,
         sender: EntityType.Assistant,
@@ -432,7 +432,7 @@ export const assistantProsocialScript = [
         The following is a recent conversation between ${name} and ${bot1Name}:  
         ${contextText}  
         ---  
-        Based on the information above — especially ${name}'s response to “Have you ever had a hard time at work? How did you feel during that time?” — reply to ${bot1Name}'s latest message.  
+        Based on the information above — especially ${name}'s response to “Have you ever had a hard time at work? How did you feel during that time?” — reply to ${bot1Name}'s latest message in the first person.  
         Your response should be relevant, informative, and based on ${name}'s preferences.  
         Do not imitate ${name}'s tone or style. Do not ask any questions. Return only the reply content.`,
         sender: EntityType.Assistant,
@@ -481,7 +481,7 @@ export const assistantProsocialScript = [
         The following is a recent conversation between ${name} and ${bot1Name}:  
         ${contextText}  
         ---  
-        Based on the information above — especially ${name}'s response to “When someone feels bad about something, how do you usually help them think about it in a more positive or different way?” — reply to ${bot1Name}'s latest message.  
+        Based on the information above — especially ${name}'s response to “When someone feels bad about something, how do you usually help them think about it in a more positive or different way?” — reply to ${bot1Name}'s latest message in the first person.  
         Your response should be relevant, informative, and based on ${name}'s preferences.  
         Do not imitate ${name}'s tone or style. Do not ask any questions. Return only the reply content.`,
         sender: EntityType.Assistant,
@@ -530,7 +530,7 @@ export const assistantProsocialScript = [
         The following is a recent conversation between ${name} and ${bot1Name}:  
         ${contextText}  
         ---  
-        Based on the information above — especially ${name}'s response to “Do you have any tips or helpful resouces for finding a job?” — reply to ${bot1Name}'s latest message.  
+        Based on the information above — especially ${name}'s response to “Do you have any tips or helpful resouces for finding a job?” — reply to ${bot1Name}'s latest message in the first person.  
         Your response should be relevant, informative, and based on ${name}'s preferences.  
         Do not imitate ${name}'s tone or style. Do not ask any questions. Return only the reply content.`,
         sender: EntityType.Assistant,
@@ -561,7 +561,7 @@ export const assistantProsocialScript = [
         The following is a recent conversation between ${name} and ${bot1Name}:  
         ${contextText}  
         ---  
-        Based on the information above — especially ${name}'s response to “What do you usually do when you're feeling down or not happy?” — reply to ${bot1Name}'s latest message.  
+        Based on the information above — especially ${name}'s response to “What do you usually do when you're feeling down or not happy?” — reply to ${bot1Name}'s latest message in the first person.  
         Your response should be relevant, informative, and based on ${name}'s preferences.  
         Do not imitate ${name}'s tone or style. Do not ask any questions. Return only the reply content.`,
         sender: EntityType.Assistant,
