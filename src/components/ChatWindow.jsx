@@ -45,6 +45,7 @@ function ChatWindow(props) {
   const [lastHostMessage, setLastHostMessage] = useState(""); // 上一条Host消息
   const [name, setName] = useState(props.name); // 用户昵称
   const [isTwin, setIsTwin] = useState(props.isTwin); // 是否孪生组flag
+  const [prosocialStatus, setProsocialStatus] = useState(props.prosocialStatus); // 是否亲社会组
   const [avatar, setAvatar] = useState(props.avatar); // 用户头像
   const [isReplayMode, setIsReplayMode] = useState(props.isReplayMode); // 是否是Stage 2回放模式
 
@@ -70,7 +71,7 @@ function ChatWindow(props) {
     // 只有页面/组件首次挂载时会运行一次
     if (!isReplayMode) {
       const fetchKeyAndAvatar = async () => {
-        await saveUserProfileToDatabase(name, avatar, isTwin);
+        await saveUserProfileToDatabase(name, avatar, isTwin, prosocialStatus);
 
         // 若 avatar 是 undefined，则尝试从 Firebase Storage 获取
         if (!avatar && isTwin) {
@@ -112,7 +113,12 @@ function ChatWindow(props) {
   }
 
   // 上传/更新用户名与头像
-  async function saveUserProfileToDatabase(name, avatarFile, isTwin) {
+  async function saveUserProfileToDatabase(
+    name,
+    avatarFile,
+    isTwin,
+    prosocialStatus
+  ) {
     try {
       let avatarUrl = "";
 
@@ -126,6 +132,7 @@ function ChatWindow(props) {
           name: name,
           avatar: avatarFile ? avatarUrl : null,
           isTwin: isTwin,
+          prosocialStatus: prosocialStatus,
         },
         { merge: true }
       );

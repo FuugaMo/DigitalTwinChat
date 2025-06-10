@@ -1,7 +1,8 @@
 import MessageType from "./enums/MessageTypes.js";
 import EntityType from "./enums/EntityTypes.js";
 const bot1Name = "FuugaMo";
-export const twinInterviewTemplate = [
+
+export const twinWithoutScript = [
   {
     step: 1,
     messages: [

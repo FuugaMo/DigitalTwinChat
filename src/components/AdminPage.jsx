@@ -16,8 +16,12 @@ import MessageType from "../enums/MessageTypes.js";
 import EntityType from "../enums/EntityTypes.js";
 
 // 模板
-import { twinInterviewTemplate } from "../twinInterviewTemplate";
-import { assistantInterviewTemplate } from "../assistantInterviewTemplate";
+import { twinProsocialScript } from "../twinProsocialScript.js";
+import { twinNonProsocialScript } from "../twinNonProsocialScript copy.js";
+import { twinWithoutScript } from "../twinWithoutScript.js";
+import { assistantProsocialScript } from "../assistantProsocialScript.js";
+import { assistantNonProsocialScript } from "../assistantNonProsocialScript.js";
+import { assistantWithoutScript } from "../assistantWithoutScript copy.js";
 
 // 初始化 Firebase
 const app = initializeApp(firebaseConfig);
@@ -127,53 +131,28 @@ const getAllUserData = async () => {
 /**
  * 选择对应模板
  */
-const selectTemplate = (isTwin) => {
-  return isTwin ? twinInterviewTemplate : assistantInterviewTemplate;
-};
-
-/**
- * 注入变量：将 history 拼接成语料字符串，注入模板函数字段
- */
-const injectVariables = (template, user) => {
-  const { name, history, isTwin } = user;
-
-  // 拼接所有 message 字段为一段语料（字符串）
-  const joinedHistory = (history || [])
-    .map((entry) => entry.message)
-    .filter(Boolean)
-    .join(" / "); // 可换为 '\n' 或其它分隔符
-
-  console.log(`Joined history: ${joinedHistory}`);
-
-  return template.map((group) => ({
-    step: group.step,
-    messages: group.messages.map((msg) => {
-      const filled = {
-        id: msg.id,
-        step: group.step,
-        sender: msg.sender,
-        senderName: msg.senderName,
-        type: msg.type,
-        delay: msg.delay,
-      };
-
-      if (msg.prompt) {
-        filled.prompt =
-          typeof msg.prompt === "function"
-            ? msg.prompt(joinedHistory || "（无语料）")
-            : msg.prompt;
-      }
-
-      if (msg.content) {
-        filled.content =
-          typeof msg.content === "function"
-            ? msg.content(name || "用户")
-            : msg.content;
-      }
-
-      return filled;
-    }),
-  }));
+const selectTemplate = (isTwin, prosocialStatus) => {
+  if (isTwin) {
+    switch (prosocialStatus) {
+      case 1:
+        return twinProsocialScript;
+      case -1:
+        return twinNonProsocialScript;
+      case 0:
+      default:
+        return twinWithoutScript;
+    }
+  } else {
+    switch (prosocialStatus) {
+      case 1:
+        return assistantProsocialScript;
+      case -1:
+        return assistantNonProsocialScript;
+      case 0:
+      default:
+        return assistantWithoutScript;
+    }
+  }
 };
 
 /**
@@ -271,7 +250,10 @@ const AdminPage = () => {
     let processed = 0;
 
     for (const [userId, userInfo] of Object.entries(users)) {
-      const template = selectTemplate(userInfo.isTwin); // 获取对话启动模板
+      const template = selectTemplate(
+        userInfo.isTwin,
+        userInfo.prosocialStatus
+      ); // 获取对话启动模板
       const filledMessages = await stepwiseGPTConversation(template, userInfo);
       await saveChatToDB(userId, filledMessages);
       processed++;

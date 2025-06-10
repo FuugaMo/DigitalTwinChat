@@ -27,9 +27,14 @@ import {
 
 import {
   firebaseConfig,
-  TWIN_CODE,
-  ASSISTANT_CODE,
+  TWIN_CODE_NON,
+  TWIN_CODE_WITHOUT,
+  TWIN_CODE_PROSOCIAL,
+  ASSISTANT_CODE_PROSOCIAL,
+  ASSISTANT_CODE_NON,
+  ASSISTANT_CODE_WITHOUT,
   API_BASE,
+  TWIN_CODE_PROSOCIAL,
 } from "./config/config";
 // Firebase 初始化
 import { initializeApp } from "firebase/app";
@@ -102,6 +107,7 @@ export default function App() {
   const [avatar, setAvatar] = useState(null); // 头像文件 or URL
   const [code, setCode] = useState(-1); // 以password输入code, 用于分类是Twin组还是Assistant组
   const [isTwin, setIsTwin] = useState(0); // 1 = Twin / 0 = Assistant / -1 = Admin
+  const [prosocialStatus, setProsocialStatus] = useState(0); // 1 = Prosocial, 0 = Without, -1 = Non-prosocial
   const [isReplayMode, setIsReplayMode] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -148,11 +154,35 @@ export default function App() {
 
       const userData = userDoc.data();
       const isTwinUser = userData.isTwin === 1;
+      const isProsocialUser =
+        userData.prosocialStatus === 1
+          ? 1
+          : userData.prosocialStatus === -1
+          ? -1
+          : 0;
 
-      if (
-        (isTwinUser && enteredCode !== TWIN_CODE) ||
-        (!isTwinUser && enteredCode !== ASSISTANT_CODE)
-      ) {
+      // 校验 code 是否正确
+      let expectedCode = null;
+
+      if (isTwinUser) {
+        if (isProsocialUser === 1) {
+          expectedCode = TWIN_CODE_PROSOCIAL;
+        } else if (isProsocialUser === -1) {
+          expectedCode = TWIN_CODE_NON;
+        } else {
+          expectedCode = TWIN_CODE_WITHOUT;
+        }
+      } else {
+        if (isProsocialUser === 1) {
+          expectedCode = ASSISTANT_CODE_PROSOCIAL;
+        } else if (isProsocialUser === -1) {
+          expectedCode = ASSISTANT_CODE_NON;
+        } else {
+          expectedCode = ASSISTANT_CODE_WITHOUT;
+        }
+      }
+
+      if (enteredCode !== expectedCode) {
         alert("Wrong password.");
         return;
       }
@@ -160,6 +190,7 @@ export default function App() {
       setConnectId(id);
       setIsReplayMode(true);
       setIsTwin(isTwinUser ? 1 : 0);
+      setProsocialStatus(isProsocialUser);
 
       if (userData.name && userData.avatar) {
         setName(userData.name);
@@ -182,17 +213,38 @@ export default function App() {
       const userData = userDoc.data();
       // 先检查数据库里的 isTwin
       const isTwinUser = userData.isTwin === 1;
+      const isProsocialUser =
+        userData.prosocialStatus === 1
+          ? 1
+          : userData.prosocialStatus === -1
+          ? -1
+          : 0;
 
-      // 根据数据库用户类别校验密码
-      if (
-        (isTwinUser && enteredCode !== TWIN_CODE) ||
-        (!isTwinUser && enteredCode !== ASSISTANT_CODE)
-      ) {
+      // 判断密码是否匹配
+      let expectedCode = null;
+      if (isTwinUser) {
+        expectedCode =
+          isProsocialUser === 1
+            ? TWIN_CODE_PROSOCIAL
+            : isProsocialUser === -1
+            ? TWIN_CODE_NON
+            : TWIN_CODE_WITHOUT;
+      } else {
+        expectedCode =
+          isProsocialUser === 1
+            ? ASSISTANT_CODE_PROSOCIAL
+            : isProsocialUser === -1
+            ? ASSISTANT_CODE_NON
+            : ASSISTANT_CODE_WITHOUT;
+      }
+
+      if (enteredCode !== expectedCode) {
         alert("Wrong password.");
         return;
       }
 
       setIsTwin(isTwinUser ? 1 : 0);
+      setProsocialStatus(isProsocialUser);
 
       if (userData.name) {
         setName(userData.name);
@@ -203,10 +255,24 @@ export default function App() {
       }
     } else {
       // 用户不存在，按输入密码确定组别，允许新建
-      if (enteredCode === TWIN_CODE) {
+      if (enteredCode === TWIN_CODE_NON) {
         setIsTwin(1);
-      } else if (enteredCode === ASSISTANT_CODE) {
+        setProsocialStatus(-1);
+      } else if (enteredCode === TWIN_CODE_PROSOCIAL) {
+        setIsTwin(1);
+        setProsocialStatus(1);
+      } else if (enteredCode === TWIN_CODE_WITHOUT) {
+        setIsTwin(1);
+        setProsocialStatus(0);
+      } else if (enteredCode === ASSISTANT_CODE_PROSOCIAL) {
         setIsTwin(0);
+        setProsocialStatus(1);
+      } else if (enteredCode === ASSISTANT_CODE_NON) {
+        setIsTwin(0);
+        setProsocialStatus(-1);
+      } else if (enteredCode === ASSISTANT_CODE_WITHOUT) {
+        setIsTwin(0);
+        setProsocialStatus(0);
       } else {
         alert("Wrong password. Please check again.");
         return;
@@ -214,7 +280,6 @@ export default function App() {
       setName("");
       setAvatar(null);
     }
-
     setConnectId(id);
     setCode(enteredCode);
   }
@@ -257,6 +322,7 @@ export default function App() {
                 setAvatar(null);
                 setCode(-1);
                 setIsTwin(0);
+                setProsocialStatus(0); // 无所谓
               }}
             />
           ) : connectId.endsWith("-A") ? (
@@ -272,6 +338,7 @@ export default function App() {
                 setName("");
                 setAvatar(null);
                 setCode(-1);
+                setIsTwin(0);
                 setIsTwin(0);
                 setIsReplayMode(false);
               }}
@@ -294,6 +361,7 @@ export default function App() {
                 setAvatar(null);
                 setCode(-1);
                 setIsTwin(0);
+                setProsocialStatus(0);
                 setIsReplayMode(false);
               }}
             />

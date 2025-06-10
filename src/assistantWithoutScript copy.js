@@ -2,7 +2,7 @@ import MessageType from "./enums/MessageTypes.js";
 import EntityType from "./enums/EntityTypes.js";
 const bot1Name = "Participant";
 
-export const assistantInterviewTemplate = [
+export const assistantWithoutScript = [
   {
     step: 1,
     messages: [
