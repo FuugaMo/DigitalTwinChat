@@ -260,7 +260,7 @@ function ChatWindow(props) {
     // 基本参数设置
     const minDelay = 1000; // 最小延迟时间，防止过短内容没有延迟
     const maxDelay = 7000; // 最大延迟时间，防止过长内容延迟太久
-    const delayPerChar = 20; // 每字符增加的基础延迟时间(毫秒)
+    const delayPerChar = 10; // 每字符增加的基础延迟时间(毫秒)
     const randomFactor = 0.3; // 随机波动因子，使打字速度更自然
 
     // 计算内容长度
