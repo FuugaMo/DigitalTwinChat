@@ -282,7 +282,7 @@ export const assistantProsocialScript = [
         Following is the recent conversation between ${name} and ${bot1Name}:  
         ${contextText}  
         ---  
-        Based on the information above, respond to ${bot1Name}'s latest message in the first person.  
+        Based on the information above — especially ${name}'s response to “What are your favorite TV shows?” — reply to ${bot1Name}'s latest message in the first person.  
         Focus on providing an informative and relevant reply.  
         Do not mimic ${name}'s tone or speaking style. Return only the response content. Don't ask any question.`,
         sender: EntityType.Assistant,
