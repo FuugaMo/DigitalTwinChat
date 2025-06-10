@@ -12,7 +12,7 @@ export const assistantProsocialScript = [
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
-        delay: 3000,
+        delay: 2000,
       },
       {
         id: 1,
@@ -20,7 +20,7 @@ export const assistantProsocialScript = [
         sender: EntityType.Assistant,
         senderName: "Assistant",
         type: MessageType.Message,
-        delay: 3000,
+        delay: 2000,
       },
       {
         id: 2,
@@ -28,7 +28,7 @@ export const assistantProsocialScript = [
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
-        delay: 3000,
+        delay: 2000,
       },
       {
         id: 3,
@@ -45,7 +45,7 @@ export const assistantProsocialScript = [
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
-        delay: 3000,
+        delay: 2000,
       },
       {
         id: 5,
@@ -63,7 +63,7 @@ export const assistantProsocialScript = [
         sender: EntityType.Assistant,
         senderName: "Assistant",
         type: MessageType.GPT,
-        delay: 5000,
+        delay: 2000,
       },
       {
         id: 6,
@@ -80,7 +80,7 @@ export const assistantProsocialScript = [
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
-        delay: 4000,
+        delay: 2000,
       },
       {
         id: 8,
@@ -98,7 +98,7 @@ export const assistantProsocialScript = [
         sender: EntityType.Assistant,
         senderName: "Assistant",
         type: MessageType.GPT,
-        delay: 5000,
+        delay: 2000,
       },
       {
         id: 9,
@@ -111,7 +111,7 @@ export const assistantProsocialScript = [
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.GPT,
-        delay: 3000,
+        delay: 2000,
       },
       {
         id: 10,
@@ -120,7 +120,7 @@ export const assistantProsocialScript = [
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
-        delay: 4000,
+        delay: 2000,
       },
       {
         id: 11,
@@ -138,7 +138,7 @@ export const assistantProsocialScript = [
         sender: EntityType.Assistant,
         senderName: "Assistant",
         type: MessageType.GPT,
-        delay: 3000,
+        delay: 2000,
       },
 
       // Music
@@ -153,7 +153,7 @@ export const assistantProsocialScript = [
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.GPT,
-        delay: 3000,
+        delay: 2000,
       },
       {
         id: 13,
@@ -162,7 +162,7 @@ export const assistantProsocialScript = [
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
-        delay: 3000,
+        delay: 2000,
       },
       {
         id: 14,
@@ -170,7 +170,7 @@ export const assistantProsocialScript = [
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
-        delay: 3000,
+        delay: 2000,
       },
       {
         id: 15,
@@ -188,7 +188,7 @@ export const assistantProsocialScript = [
         sender: EntityType.Assistant,
         senderName: "Assistant",
         type: MessageType.GPT,
-        delay: 3000,
+        delay: 2000,
       },
       {
         id: 16,
@@ -202,7 +202,7 @@ export const assistantProsocialScript = [
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.GPT,
-        delay: 3000,
+        delay: 2000,
       },
       {
         id: 17,
@@ -220,7 +220,7 @@ export const assistantProsocialScript = [
         sender: EntityType.Assistant,
         senderName: "Assistant",
         type: MessageType.GPT,
-        delay: 3000,
+        delay: 2000,
       },
       {
         id: 18,
@@ -251,7 +251,7 @@ export const assistantProsocialScript = [
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
-        delay: 3000,
+        delay: 2000,
       },
       {
         id: 21,
@@ -260,7 +260,7 @@ export const assistantProsocialScript = [
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
-        delay: 3000,
+        delay: 2000,
       },
       {
         id: 22,
@@ -288,7 +288,7 @@ export const assistantProsocialScript = [
         sender: EntityType.Assistant,
         senderName: "Assistant",
         type: MessageType.GPT,
-        delay: 3000,
+        delay: 2000,
       },
       {
         id: 24,
@@ -327,7 +327,7 @@ export const assistantProsocialScript = [
         sender: EntityType.Assistant,
         senderName: "Assistant",
         type: MessageType.GPT,
-        delay: 3000,
+        delay: 2000,
       },
       {
         id: 27,
@@ -345,7 +345,7 @@ export const assistantProsocialScript = [
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
-        delay: 3000,
+        delay: 2000,
       },
 
       // Prosocial
@@ -380,7 +380,7 @@ export const assistantProsocialScript = [
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
-        delay: 3000,
+        delay: 2000,
       },
       {
         id: 33,
@@ -389,7 +389,7 @@ export const assistantProsocialScript = [
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
-        delay: 3000,
+        delay: 2000,
       },
       {
         id: 34,
@@ -407,7 +407,7 @@ export const assistantProsocialScript = [
         sender: EntityType.Assistant,
         senderName: "Assistant",
         type: MessageType.GPT,
-        delay: 3000,
+        delay: 2000,
       },
       {
         id: 35,
@@ -438,7 +438,7 @@ export const assistantProsocialScript = [
         sender: EntityType.Assistant,
         senderName: "Assistant",
         type: MessageType.GPT,
-        delay: 3000,
+        delay: 2000,
       },
       {
         id: 37,
@@ -460,7 +460,7 @@ export const assistantProsocialScript = [
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
-        delay: 3000,
+        delay: 2000,
       },
       {
         id: 39,
@@ -469,7 +469,7 @@ export const assistantProsocialScript = [
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
-        delay: 3000,
+        delay: 2000,
       },
       {
         id: 40,
@@ -487,7 +487,7 @@ export const assistantProsocialScript = [
         sender: EntityType.Assistant,
         senderName: "Assistant",
         type: MessageType.GPT,
-        delay: 3000,
+        delay: 2000,
       },
       {
         id: 41,
@@ -509,7 +509,7 @@ export const assistantProsocialScript = [
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
-        delay: 3000,
+        delay: 2000,
       },
       {
         id: 43,
@@ -518,7 +518,7 @@ export const assistantProsocialScript = [
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
-        delay: 3000,
+        delay: 2000,
       },
       {
         id: 44,
@@ -536,7 +536,7 @@ export const assistantProsocialScript = [
         sender: EntityType.Assistant,
         senderName: "Assistant",
         type: MessageType.GPT,
-        delay: 3000,
+        delay: 2000,
       },
       {
         id: 45,
@@ -567,7 +567,7 @@ export const assistantProsocialScript = [
         sender: EntityType.Assistant,
         senderName: "Assistant",
         type: MessageType.GPT,
-        delay: 3000,
+        delay: 2000,
       },
       {
         id: 47,
@@ -589,7 +589,7 @@ export const assistantProsocialScript = [
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
-        delay: 3000,
+        delay: 2000,
       },
       {
         id: 48,
@@ -598,7 +598,7 @@ export const assistantProsocialScript = [
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
-        delay: 3000,
+        delay: 2000,
       },
       //
       {
@@ -608,7 +608,7 @@ export const assistantProsocialScript = [
         sender: EntityType.Assistant,
         senderName: "Assistant",
         type: MessageType.Message,
-        delay: 3000,
+        delay: 2000,
       },
     ],
   },

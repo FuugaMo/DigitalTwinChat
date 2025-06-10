@@ -12,7 +12,7 @@ export const assistantWithoutScript = [
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
-        delay: 3000,
+        delay: 2000,
       },
       {
         id: 1,
@@ -20,7 +20,7 @@ export const assistantWithoutScript = [
         sender: EntityType.Assistant,
         senderName: "Assistant",
         type: MessageType.Message,
-        delay: 3000,
+        delay: 2000,
       },
       {
         id: 2,
@@ -28,7 +28,7 @@ export const assistantWithoutScript = [
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
-        delay: 3000,
+        delay: 2000,
       },
       {
         id: 3,
@@ -45,7 +45,7 @@ export const assistantWithoutScript = [
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
-        delay: 3000,
+        delay: 2000,
       },
       {
         id: 5,
@@ -63,7 +63,7 @@ export const assistantWithoutScript = [
         sender: EntityType.Assistant,
         senderName: "Assistant",
         type: MessageType.GPT,
-        delay: 5000,
+        delay: 2000,
       },
       {
         id: 6,
@@ -80,7 +80,7 @@ export const assistantWithoutScript = [
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
-        delay: 4000,
+        delay: 2000,
       },
       {
         id: 8,
@@ -98,7 +98,7 @@ export const assistantWithoutScript = [
         sender: EntityType.Assistant,
         senderName: "Assistant",
         type: MessageType.GPT,
-        delay: 5000,
+        delay: 2000,
       },
       {
         id: 9,
@@ -111,7 +111,7 @@ export const assistantWithoutScript = [
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.GPT,
-        delay: 3000,
+        delay: 2000,
       },
       {
         id: 10,
@@ -120,7 +120,7 @@ export const assistantWithoutScript = [
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
-        delay: 4000,
+        delay: 2000,
       },
       {
         id: 11,
@@ -138,7 +138,7 @@ export const assistantWithoutScript = [
         sender: EntityType.Assistant,
         senderName: "Assistant",
         type: MessageType.GPT,
-        delay: 3000,
+        delay: 2000,
       },
 
       // Music
@@ -153,7 +153,7 @@ export const assistantWithoutScript = [
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.GPT,
-        delay: 3000,
+        delay: 2000,
       },
       {
         id: 13,
@@ -162,7 +162,7 @@ export const assistantWithoutScript = [
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
-        delay: 3000,
+        delay: 2000,
       },
       {
         id: 14,
@@ -170,7 +170,7 @@ export const assistantWithoutScript = [
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
-        delay: 3000,
+        delay: 2000,
       },
       {
         id: 15,
@@ -188,7 +188,7 @@ export const assistantWithoutScript = [
         sender: EntityType.Assistant,
         senderName: "Assistant",
         type: MessageType.GPT,
-        delay: 3000,
+        delay: 2000,
       },
       {
         id: 16,
@@ -202,7 +202,7 @@ export const assistantWithoutScript = [
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.GPT,
-        delay: 3000,
+        delay: 2000,
       },
       {
         id: 17,
@@ -220,7 +220,7 @@ export const assistantWithoutScript = [
         sender: EntityType.Assistant,
         senderName: "Assistant",
         type: MessageType.GPT,
-        delay: 3000,
+        delay: 2000,
       },
       {
         id: 18,
@@ -251,7 +251,7 @@ export const assistantWithoutScript = [
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
-        delay: 3000,
+        delay: 2000,
       },
       {
         id: 21,
@@ -260,7 +260,7 @@ export const assistantWithoutScript = [
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
-        delay: 3000,
+        delay: 2000,
       },
       {
         id: 22,
@@ -288,7 +288,7 @@ export const assistantWithoutScript = [
         sender: EntityType.Assistant,
         senderName: "Assistant",
         type: MessageType.GPT,
-        delay: 3000,
+        delay: 2000,
       },
       {
         id: 24,
@@ -327,7 +327,7 @@ export const assistantWithoutScript = [
         sender: EntityType.Assistant,
         senderName: "Assistant",
         type: MessageType.GPT,
-        delay: 3000,
+        delay: 2000,
       },
       {
         id: 27,
@@ -345,7 +345,7 @@ export const assistantWithoutScript = [
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
-        delay: 3000,
+        delay: 2000,
       },
 
       // Ending
@@ -355,7 +355,7 @@ export const assistantWithoutScript = [
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
-        delay: 3000,
+        delay: 2000,
       },
       {
         id: 48,
@@ -364,7 +364,7 @@ export const assistantWithoutScript = [
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
-        delay: 3000,
+        delay: 2000,
       },
       //
       {
@@ -374,7 +374,7 @@ export const assistantWithoutScript = [
         sender: EntityType.Assistant,
         senderName: "Assistant",
         type: MessageType.Message,
-        delay: 3000,
+        delay: 2000,
       },
     ],
   },
