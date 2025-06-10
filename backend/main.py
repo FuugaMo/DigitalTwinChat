@@ -40,11 +40,9 @@ async def chat(request: Request):
     data = await request.json()
     prompt = data.get("prompt", "")
 
-    # phase 1 回应用户消息用
     userMessage = data.get("userMessage", "")  
     lastHostMessage = data.get("lastHostMessage", "")
     print("🔵 Incoming request data:")
-
     print(f"Prompt: {prompt}")
     print(f"Last Host message: {lastHostMessage}")
     print(f"User message: {userMessage}")
@@ -52,10 +50,8 @@ async def chat(request: Request):
     messages = []
     if prompt:
         messages.append({"role": "system", "content": prompt})
-        
     if lastHostMessage:
         messages.append({"role": "assistant", "content": lastHostMessage})
- 
     if userMessage:
         messages.append({"role": "user", "content": userMessage})
 
@@ -72,16 +68,33 @@ async def chat(request: Request):
         "temperature": 0.01,
     }
 
-    async with httpx.AsyncClient() as client:
-        response = await client.post("https://api.openai.com/v1/chat/completions", headers=headers, json=body)
-        response.raise_for_status()
-        result = response.json()
+    try:
+        async with httpx.AsyncClient() as client:
+            response = await client.post(
+                "https://api.openai.com/v1/chat/completions",
+                headers=headers,
+                json=body
+            )
+            response.raise_for_status()
+            result = response.json()
+            print("🟢 OpenAI response:", result["choices"][0]["message"]["content"])
+            return {
+                "reply": result["choices"][0]["message"]["content"]
+            }
 
-    print(result["choices"][0]["message"]["content"])
+    except httpx.HTTPStatusError as http_err:
+        print("🔴 HTTP error occurred:", http_err)
+        print("Response content:", http_err.response.text)
+        return {"error": "Failed to fetch from OpenAI: HTTP error"}
 
-    return {
-        "reply": result["choices"][0]["message"]["content"]
-    }
+    except httpx.RequestError as req_err:
+        print("🔴 Request error occurred:", req_err)
+        return {"error": "Failed to fetch from OpenAI: Request error"}
+
+    except Exception as e:
+        print("🔴 Unexpected error occurred:", str(e))
+        traceback.print_exc()
+        return {"error": "An unexpected error occurred"}
 
 @app.post("/api/verify-admin")
 async def verify_admin(request: Request):
