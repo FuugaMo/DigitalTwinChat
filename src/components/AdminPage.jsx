@@ -17,7 +17,7 @@ import EntityType from "../enums/EntityTypes.js";
 
 // 模板
 import { twinProsocialScript } from "../twinProsocialScript.js";
-import { twinNonProsocialScript } from "../twinNonProsocialScript copy.js";
+import { twinNonProsocialScript } from "../twinNonProsocialScript.js";
 import { twinWithoutScript } from "../twinWithoutScript.js";
 import { assistantProsocialScript } from "../assistantProsocialScript.js";
 import { assistantNonProsocialScript } from "../assistantNonProsocialScript.js";
