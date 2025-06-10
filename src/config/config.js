@@ -10,11 +10,11 @@ export const firebaseConfig = {
 };
 
 export const TWIN_CODE_PROSOCIAL = "1231";
-export const TWIN_CODE_NON = "1232"
-export const TWIN_CODE_WITHOUT = "1233"
-export const ASSISTANT_CODE_PROSOCIAL = "321";
-export const ASSISTANT_CODE_NON = "1232";
-export const ASSISTANT_CODE_WITHOUT = "1233";
+export const TWIN_CODE_NON = "1232";
+export const TWIN_CODE_WITHOUT = "1233";
+export const ASSISTANT_CODE_PROSOCIAL = "3211";
+export const ASSISTANT_CODE_NON = "3212";
+export const ASSISTANT_CODE_WITHOUT = "3213";
 
 // src/config.js 或者你其他配置文件
 export const API_BASE = import.meta.env.VITE_API_BASE;
