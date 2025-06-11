@@ -401,7 +401,7 @@ export const assistantProsocialScript = [
         The following is a recent conversation between ${name} and ${bot1Name}:  
         ${contextText}  
         ---  
-        Based on the information above — especially ${name}'s response to “When a friend shares something bad that happened to them, how do you usually give emotional support?” — reply to ${bot1Name}'s latest message in the first person.  
+        Based on the information above — especially ${name}'s response to “When a friend shares something bad that happened to them, how do you usually give emotional support?” — reply to ${bot1Name}'s latest message and give emothinal support in the first person.  
         Your response should be relevant, informative, and based on ${name}'s preferences.  
         Do not mimic ${name}'s tone or style. Do not ask any questions. Return only the reply content.`,
         sender: EntityType.Assistant,
@@ -514,7 +514,7 @@ export const assistantProsocialScript = [
       {
         id: 43,
         content: (name) =>
-          `I'm open to aqnything really, just trying to get some momentum going again.`,
+          `I'm open to anything really, just trying to get some momentum going again.`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
