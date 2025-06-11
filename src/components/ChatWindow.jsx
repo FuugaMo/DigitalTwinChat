@@ -242,7 +242,8 @@ function ChatWindow(props) {
 
   // 存储用户在某步骤的消息
   async function storeUserMessageInDatabase(step, message) {
-    await setDoc(doc(db, "users", userId, "messages", step.toString()), {
+    const stepId = step.toString().padStart(3, "0"); // "001", "002", ..., "010", ...
+    await setDoc(doc(db, "users", userId, "messages", stepId), {
       message: message,
     });
   }
