@@ -403,7 +403,7 @@ export const assistantProsocialScript = [
         ---  
         Based on the information above — especially ${name}'s response to “When a friend shares something bad that happened to them, how do you usually give emotional support?” — reply to ${bot1Name}'s latest message in the first person.  
         Your response should be relevant, informative, and based on ${name}'s preferences.  
-        Do not imitate ${name}'s tone or style. Do not ask any questions. Return only the reply content.`,
+        Do not mimic ${name}'s tone or style. Do not ask any questions. Return only the reply content.`,
         sender: EntityType.Assistant,
         senderName: "Assistant",
         type: MessageType.GPT,
@@ -434,7 +434,7 @@ export const assistantProsocialScript = [
         ---  
         Based on the information above — especially ${name}'s response to “Have you ever had a hard time at work? How did you feel during that time?” — reply to ${bot1Name}'s latest message in the first person.  
         Your response should be relevant, informative, and based on ${name}'s preferences.  
-        Do not imitate ${name}'s tone or style. Do not ask any questions. Return only the reply content.`,
+        Do not mimic ${name}'s tone or style. Do not ask any questions. Return only the reply content.`,
         sender: EntityType.Assistant,
         senderName: "Assistant",
         type: MessageType.GPT,
@@ -483,7 +483,7 @@ export const assistantProsocialScript = [
         ---  
         Based on the information above — especially ${name}'s response to “When someone feels bad about something, how do you usually help them think about it in a more positive or different way?” — reply to ${bot1Name}'s latest message in the first person.  
         Your response should be relevant, informative, and based on ${name}'s preferences.  
-        Do not imitate ${name}'s tone or style. Do not ask any questions. Return only the reply content.`,
+        Do not mimic ${name}'s tone or style. Do not ask any questions. Return only the reply content.`,
         sender: EntityType.Assistant,
         senderName: "Assistant",
         type: MessageType.GPT,
@@ -532,7 +532,7 @@ export const assistantProsocialScript = [
         ---  
         Based on the information above — especially ${name}'s response to “Do you have any tips or helpful resouces for finding a job?” — reply to ${bot1Name}'s latest message in the first person.  
         Your response should be relevant, informative, and based on ${name}'s preferences.  
-        Do not imitate ${name}'s tone or style. Do not ask any questions. Return only the reply content.`,
+        Do not mimic ${name}'s tone or style. Do not ask any questions. Return only the reply content.`,
         sender: EntityType.Assistant,
         senderName: "Assistant",
         type: MessageType.GPT,
@@ -563,7 +563,7 @@ export const assistantProsocialScript = [
         ---  
         Based on the information above — especially ${name}'s response to “What do you usually do when you're feeling down or not happy?” — reply to ${bot1Name}'s latest message in the first person.  
         Your response should be relevant, informative, and based on ${name}'s preferences.  
-        Do not imitate ${name}'s tone or style. Do not ask any questions. Return only the reply content.`,
+        Do not mimic ${name}'s tone or style. Do not ask any questions. Return only the reply content.`,
         sender: EntityType.Assistant,
         senderName: "Assistant",
         type: MessageType.GPT,
