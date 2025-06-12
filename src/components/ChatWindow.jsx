@@ -4,7 +4,7 @@ import MessageScreen from "./MessageScreen";
 import MessageInput from "./MessageInput";
 import MessageType from "../enums/MessageTypes";
 import EntityType from "../enums/EntityTypes";
-import { messageGroupsAllBots } from "../messages";
+import { messageGroupsAllBots } from "../messages"; // Phase 1 - Info Collect Script
 import "../styles/ChatWindow.css";
 
 // Firebase 初始化
@@ -62,7 +62,7 @@ function ChatWindow(props) {
   const docRef = doc(db, "users", userId);
 
   // 获取对应 bot 的消息组
-  const messageGroups = messageGroupsAllBots[0]; // 设置默认为1
+  const messageGroups = messageGroupsAllBots[0]; // 设置默认为1, 即messages1Bot.jsx - Phase 1信息收集脚本
 
   const hasInitialized = useRef(false); // 防止开发Strict模式下init两次的问题
 

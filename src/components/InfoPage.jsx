@@ -19,7 +19,7 @@ import {
   BACKGROUND_COLOR,
 } from "../constants/colorScheme";
 
-import { TWIN_CODE } from "../config/config";
+// import { TWIN_CODE } from "../config/config";
 
 export default function InfoPage({ handleInfoSubmit, isTwin }) {
   const theme = useTheme();
