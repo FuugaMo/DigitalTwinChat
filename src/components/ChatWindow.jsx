@@ -17,6 +17,7 @@ import {
   setDoc,
   getDocs,
   collection,
+  getDocFromServer,
 } from "firebase/firestore";
 
 // Firebase Storage 初始化，用户存储用户头像文件
@@ -28,14 +29,11 @@ import { AuthContext } from "../contexts/contexts";
 // UI 组件
 import Button from "@mui/material/Button";
 
-// OpenAI API 客户端（在 useRef 中初始化）
-import OpenAI from "openai";
-
 // ChatWindow 主组件
 function ChatWindow(props) {
   // 会话相关状态
   const [messages, setMessages] = useState([]); // 聊天消息数组
-  const [conversationStep, setConversationStep] = useState(1); // 当前对话步骤
+  const [conversationStep, setConversationStep] = useState(0); // 当前对话步骤
   const [blockUserMessages, setBlockUserMessages] = useState(false); // 是否禁止用户输入
   const [isDisplayTyping, setIsDisplayTyping] = useState(false); // 是否显示机器人“正在输入”
   const [typingByUser, setTypingByUser] = useState(false); // 回放专用，用户输入消息时设置为true，以在右侧进行渲染。
@@ -48,6 +46,7 @@ function ChatWindow(props) {
   const [prosocialStatus, setProsocialStatus] = useState(props.prosocialStatus); // 是否亲社会组
   const [avatar, setAvatar] = useState(props.avatar); // 用户头像
   const [isReplayMode, setIsReplayMode] = useState(props.isReplayMode); // 是否是Stage 2回放模式
+  // const [isReadyForNextStep, setIsReadyForNextStep] = useState(true); // 用于判断 step 2 用户是否输入 I am ready.
 
   // openai 客户端和计时器
   const openai = useRef(null);
@@ -61,28 +60,29 @@ function ChatWindow(props) {
   const userId = useContext(AuthContext);
   const docRef = doc(db, "users", userId);
 
+  console.log(prosocialStatus);
   // 获取对应 bot 的消息组
-  const messageGroups = messageGroupsAllBots[0]; // 设置默认为1, 即messages1Bot.jsx - Phase 1信息收集脚本
+  const messageGroups =
+    prosocialStatus == 0 ? messageGroupsAllBots[1] : messageGroupsAllBots[0]; // 设置默认为1, 即messages1Bot.jsx - Phase 1信息收集脚本
 
   const hasInitialized = useRef(false); // 防止开发Strict模式下init两次的问题
 
   // 页面首次加载：初始化 OpenAI 实例，并更新用户头像和姓名
-  useEffect(() => {
-    // 只有页面/组件首次挂载时会运行一次
-    if (!isReplayMode) {
-      const fetchKeyAndAvatar = async () => {
-        await saveUserProfileToDatabase(name, avatar, isTwin, prosocialStatus);
+  // useEffect(() => {
+  //   // 只有页面/组件首次挂载时会运行一次
+  //   if (!isReplayMode) {
+  //     const fetchKeyAndAvatar = async () => {
+  //       await saveUserProfileToDatabase(name, avatar, isTwin, prosocialStatus);
 
-        // 若 avatar 是 undefined，则尝试从 Firebase Storage 获取
-        if (!avatar && isTwin) {
-          const url = await fetchAvatarFromStorage(userId);
-          setAvatar(url || "/nodebox/static/icons/bot1logo.png");
-        }
-      };
-
-      fetchKeyAndAvatar();
-    }
-  }, []);
+  //       // 若 avatar 是 undefined，则尝试从 Firebase Storage 获取
+  //       if (!avatar && isTwin) {
+  //         const url = await fetchAvatarFromStorage(userId);
+  //         setAvatar(url || "/nodebox/static/icons/bot1logo.png");
+  //       }
+  //     };
+  //     fetchKeyAndAvatar();
+  //   }
+  // }, []);
 
   async function uploadAvatarAndGetURL(file, userId) {
     const storage = getStorage(app);
@@ -119,7 +119,7 @@ function ChatWindow(props) {
     isTwin,
     prosocialStatus
   ) {
-    console.log(name, avatar, isTwin, prosocialStatus);
+    // console.log(name, avatar, isTwin, prosocialStatus);
     try {
       let avatarUrl = "";
 
@@ -144,21 +144,6 @@ function ChatWindow(props) {
 
   // 调用 GPT API 获取机器人回复
   async function getGPTMessage(prompt, userMessage, lastHostMessage) {
-    // try {
-    //   const req = {
-    //     model: "gpt-4-1106-preview",
-    //     messages: [
-    //       { role: "system", content: prompt },
-    //       { role: "user", content: userMessage.toString() },
-    //     ],
-    //     temperature: 0.01,
-    //     max_tokens: 200,
-    //   };
-    //   const response = await openai.current.chat.completions.create(req);
-    //   return response.choices[0].message.content;
-    // } catch (e) {
-    //   console.log(e);
-    // }
     try {
       const response = await fetch(`${API_BASE}/chat`, {
         method: "POST",
@@ -190,49 +175,37 @@ function ChatWindow(props) {
     }
   }
 
-  // 用 GPT 从用户介绍中提取姓名
-  // async function gptParseName(message) {
-  //   try {
-  //     const req = {
-  //       model: "gpt-4-1106-preview",
-  //       messages: [
-  //         {
-  //           role: "system",
-  //           content: `The message below is the user introducing themself. Return just the user's name, with no other words.`,
-  //         },
-  //         { role: "user", content: message },
-  //       ],
-  //       temperature: 0.0,
-  //       max_tokens: 200,
-  //     };
-  //     const response = await openai.current.chat.completions.create(req);
-  //     return response.choices[0].message.content;
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  // }
-
-  // 从数据库加载历史对话与当前步骤
-
   async function getUserDataFromDatabase() {
     setLoading(true);
     try {
-      const docSnap = await getDoc(docRef);
+      const docSnap = await getDocFromServer(docRef);
+      const data = docSnap.data();
+      console.log("Raw data:", data);
+      console.log(
+        "Has step:",
+        Object.prototype.hasOwnProperty.call(data, "step")
+      );
       if (!docSnap.exists() || !docSnap.data().step) {
         setLoading(false);
-        return;
+        console.log("First return.");
+        return false; // ✅ 没有消息
       }
 
       const messageHistory = await getDocs(
         collection(db, "users", userId, "messages")
       );
 
+      console.log(messageHistory);
+
       populateInitialMessages(docSnap.data().step, messageHistory.docs);
       setConversationStep(docSnap.data().step);
+      setLoading(false);
+      return messageHistory.docs.length > 0; // ✅ 判断是否有历史消息
     } catch (e) {
       console.log(e);
+      setLoading(false);
+      return false;
     }
-    setLoading(false);
   }
 
   // 更新数据库中用户的对话步骤
@@ -243,9 +216,13 @@ function ChatWindow(props) {
   // 存储用户在某步骤的消息
   async function storeUserMessageInDatabase(step, message) {
     const stepId = step.toString().padStart(3, "0"); // "001", "002", ..., "010", ...
-    await setDoc(doc(db, "users", userId, "messages", stepId), {
-      message: message,
-    });
+    await setDoc(
+      doc(db, "users", userId, "messages", stepId),
+      {
+        message: message,
+      },
+      { merge: true }
+    );
   }
 
   // 存储用户与机器人对话的总耗时
@@ -315,7 +292,6 @@ function ChatWindow(props) {
       }
       setIsDisplayTyping(false);
     }
-
     // setBlockUserMessages(false); // 播放完毕可再次输入
   }
 
@@ -348,15 +324,7 @@ function ChatWindow(props) {
 
       if (docSnap.exists()) {
         const data = docSnap.data();
-        // console.log("generatedAt:", data.generatedAt);
-        // console.log("messages array:", data.messages);
-
         const allMessages = data.messages || [];
-        // 你可以对 allMessages 进一步处理，比如：
-        // allMessages.forEach((msg, index) => {
-        //   console.log(`msg[${index}]:`, msg);
-        // });
-        // console.log("开始回放 messages:", allMessages);
         await replayMessagesSequentially(allMessages);
       } else {
         console.log("No such document!");
@@ -369,26 +337,48 @@ function ChatWindow(props) {
 
   // 页面挂载时加载历史数据
   useEffect(() => {
-    // console.log(avatar);
     if (hasInitialized.current) return;
     hasInitialized.current = true;
+
+    setBlockUserMessages(true);
+
     const init = async () => {
-      // console.log("init called");
+      if (!isReplayMode) {
+        // 保存用户基本信息
+        await saveUserProfileToDatabase(name, avatar, isTwin, prosocialStatus);
+
+        // 尝试从 Storage 获取 avatar
+        if (!avatar && isTwin) {
+          const url = await fetchAvatarFromStorage(userId);
+          setAvatar(url || "/nodebox/static/icons/bot1logo.png");
+        }
+      }
+
       if (isReplayMode && userId.endsWith("-A")) {
         const baseUserId = userId.slice(0, -2);
         await loadReplayUserData(baseUserId);
       } else {
-        getUserDataFromDatabase();
+        const hasMessages = await getUserDataFromDatabase();
+        if (!hasMessages) {
+          console.log("No previous messages.");
+          addBotMessages(conversationStep, "");
+          setConversationStep(1);
+        } else {
+          setBlockUserMessages(false);
+          console.log("Has previous message.");
+        }
       }
     };
 
     init();
-    return () => setMessages([]); // 在页面离开或组建卸载时清理掉Messages数组。
+
+    // 清理 messages
+    return () => setMessages([]);
   }, []);
 
   // 测试用：重置用户状态
   async function test_reset() {
-    await setDoc(doc(db, "users", userId), { step: 1 });
+    await setDoc(doc(db, "users", userId), { step: 0 });
     setMessages([]);
     setConversationStep(1);
   }
@@ -398,7 +388,27 @@ function ChatWindow(props) {
     addUserMessage(message, id);
     saveElapsedTimeToDatabase();
 
+    if (conversationStep == 1 && message != "I am ready.") {
+      const notReadyMessage = {
+        id: crypto.randomUUID(),
+        content: (name) =>
+          `Please enter "I am ready." when you are ready to take the test.`,
+        sender: EntityType.Host,
+        senderName: "Host",
+        type: MessageType.Message,
+        delay: 100,
+      };
+      setMessages((prevMessages) => [...prevMessages, notReadyMessage]);
+      return;
+    }
+
+    // addBotMessages(conversationStep, message);
+    // print(
+    //   `conversation step: ${conversationStep}, isReadyForNextStep ${isReadyForNextStep}`
+    // );
+
     if (!blockUserMessages) {
+      console.log(`A1 Current step: ${conversationStep}`);
       storeUserMessageInDatabase(conversationStep, message);
       addBotMessages(conversationStep, message);
       updateStepInDatabase(conversationStep + 1);
@@ -422,6 +432,26 @@ function ChatWindow(props) {
   // 显示 bot 的消息组，并执行 GPT 请求（如有）
   async function addBotMessages(step, lastUserMessage) {
     setBlockUserMessages(true); // 防止用户多次快速发言
+    // setIsReadyForNextStep(false);
+
+    // if (step == 2 && lastUserMessage != "I am ready.") {
+    //   setIsDisplayTyping(true);
+    //   const notReadyMessage = {
+    //     id: crypto.randomUUID(),
+    //     content: (name) =>
+    //       `Please enter "I am ready." when you are ready to take the test.`,
+    //     sender: EntityType.Host,
+    //     senderName: "Host",
+    //     type: MessageType.Message,
+    //     delay: 100,
+    //   };
+    //   // 添加消息 return
+    //   setIsDisplayTyping(false);
+    //   setMessages((prevMessages) => [...prevMessages, notReadyMessage]);
+    //   setBlockUserMessages(false);
+    //   setIsReadyForNextStep(false);
+    //   return;
+    // }
 
     if (messageGroups.filter((g) => g.step == step).length === 0) return;
 
@@ -451,7 +481,7 @@ function ChatWindow(props) {
       setIsDisplayTyping(false);
       setMessages((prevMessages) => [...prevMessages, message]);
     }
-
+    // setIsReadyForNextStep(true);
     setBlockUserMessages(false);
   }
 
@@ -459,16 +489,18 @@ function ChatWindow(props) {
   function populateInitialMessages(step, userMessages) {
     let msgs = [];
 
-    for (let i = 1; i < step; i++) {
-      // 添加用户消息
-      msgs.push({
-        content: userMessages[i - 1].data().message,
-        sender: EntityType.User,
-      });
-
+    for (let i = 0; i < step; i++) {
       // 添加机器人消息
-      if (i - 1 < messageGroups.length) {
-        msgs = msgs.concat(messageGroups[i - 1].messages);
+      if (i < messageGroups.length) {
+        msgs = msgs.concat(messageGroups[i].messages);
+      }
+
+      // 添加用户消息，确保 userMessages[i] 存在
+      if (userMessages[i]) {
+        msgs.push({
+          content: userMessages[i].data().message,
+          sender: EntityType.User,
+        });
       }
     }
 
@@ -503,23 +535,13 @@ function ChatWindow(props) {
       <div className="chatWindow">
         <h3
           style={{
-            fontSize: "1.2rem",
+            fontSize: "1rem",
             fontWeight: "400",
             marginBottom: "1rem",
             color: "#555",
           }}
         >
-          💬 Enter{" "}
-          <code
-            style={{
-              background: "#eee",
-              padding: "2px 6px",
-              borderRadius: "4px",
-            }}
-          >
-            "start"
-          </code>{" "}
-          in the input box to initiate the conversation.
+          Loading the chat window may take a few seconds.
         </h3>
 
         <MessageScreen

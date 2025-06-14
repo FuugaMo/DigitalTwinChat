@@ -1,29 +1,34 @@
 import MessageType from "./enums/MessageTypes";
 import EntityType from "./enums/EntityTypes";
-import {
-  bot1Name,
-  bot2Name,
-  bot3Name,
-  bot4Name,
-  bot5Name,
-} from "./constants/botNames";
-import Message from "./components/Message";
 
-// 这是信息收集script
-
-export const message1BotGroups = [
+// Info Collection Script (Group WITHOUT)
+export const infoCollectionWithout = [
   {
-    step: 1,
+    step: 0,
     messages: [
       {
         id: 0,
         content: (name) =>
-          `Hello, ${name}! Welcome. It’s so nice to have you here. Please allow me to ask you a few questions to collect some basic information about you.`,
+          `(WITHOUT GROUP - TESTING). Hello, ${name}! Welcome. It’s so nice to have you here. Please allow me to ask you a few questions to collect some basic information about you. `,
         sender: EntityType.Host,
         senderName: "Host",
         type: MessageType.Message,
         delay: 4.0,
       },
+      {
+        id: 52,
+        content: (name) =>
+          `This experiment takes about 12 minutes. Try to complete it in one go—leaving for too long or refreshing the page could affect the data. Unless you really have to, avoid stepping away in the middle. When you're ready, just type "I am ready.""`,
+        sender: EntityType.Host,
+        senderName: "Host",
+        type: MessageType.Message,
+        delay: 4.0,
+      },
+    ],
+  },
+  {
+    step: 1,
+    messages: [
       {
         id: 1,
         content: (name) =>
@@ -378,7 +383,7 @@ export const message1BotGroups = [
       },
     ],
   },
-  
+
   {
     step: 17,
     messages: [

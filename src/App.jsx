@@ -34,6 +34,7 @@ import {
   ASSISTANT_CODE_NON,
   ASSISTANT_CODE_WITHOUT,
   API_BASE,
+  CONNECT_ID_LENGTH,
 } from "./config/config";
 // Firebase 初始化
 import { initializeApp } from "firebase/app";
@@ -201,7 +202,7 @@ export default function App() {
       return;
     }
 
-    if (id.length !== 6) {
+    if (id.length !== CONNECT_ID_LENGTH) {
       alert("Please input a valid connect ID");
       return;
     }

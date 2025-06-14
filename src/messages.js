@@ -8,12 +8,12 @@ import {
   bot5Name,
 } from "./constants/botNames";
 
-import { message1BotGroups } from "./messages1Bot";
-import { message3BotGroups } from "./messages3Bots";
+import { infoCollection } from "./InfoCollection";
+import { infoCollectionWithout } from "./infoCollectionWithout";
 import { message5BotGroups } from "./messages5bots";
 
 export const messageGroupsAllBots = [
-  message1BotGroups,
-  message3BotGroups,
+  infoCollection,
+  infoCollectionWithout,
   message5BotGroups,
 ];
