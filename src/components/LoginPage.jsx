@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Container, Typography, TextField, Button } from "@mui/material";
+import { MAX_CONNECT_ID_LENGTH } from "../config/config";
 
 function LoginPage(props) {
   const [connectId, setConnectId] = useState("");
@@ -40,7 +41,7 @@ function LoginPage(props) {
           value={connectId}
           onChange={(e) => setConnectId(e.target.value)}
           sx={{ marginBottom: 4 }}
-          inputProps={{ maxLength: 8 }}
+          inputProps={{ maxLength: MAX_CONNECT_ID_LENGTH }}
         />
 
         <TextField
