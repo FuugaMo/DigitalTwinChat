@@ -20,5 +20,5 @@ export const ASSISTANT_CODE_WITHOUT = "3213";
 export const API_BASE = import.meta.env.VITE_API_BASE;
 
 // connect id 长度
-export const CONNECT_ID_LENGTH = 2;
+export const CONNECT_ID_LENGTH = 32;
 export const MAX_CONNECT_ID_LENGTH = 34; // + '-A'
