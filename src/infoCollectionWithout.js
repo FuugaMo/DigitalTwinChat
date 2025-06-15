@@ -18,7 +18,7 @@ export const infoCollectionWithout = [
       {
         id: 52,
         content: (name) =>
-          `This experiment takes about 12 minutes. Try to complete it in one go—leaving for too long or refreshing the page could affect the data. Unless you really have to, avoid stepping away in the middle. When you're ready, just type "I am ready.""`,
+          `This experiment takes about 12 minutes. Try to complete it in one go—leaving for too long or refreshing the page could affect the data. Unless you really have to, avoid stepping away in the middle. When you're ready, just type "I am ready."`,
         sender: EntityType.Host,
         senderName: "Host",
         type: MessageType.Message,
@@ -318,99 +318,6 @@ export const infoCollectionWithout = [
     step: 14,
     messages: [
       {
-        id: 42,
-        prompt: (name) =>
-          `Give a reply of around 20 words of user's answer. Don't ask questions.`,
-        sender: EntityType.Host,
-        senderName: "Host",
-        type: MessageType.GPT,
-        delay: 3,
-      },
-      {
-        id: 14,
-        content: (name) =>
-          `When a friend shares something bad that happened to them, how do you usually give emotional support? You can describe what you say or how you act.`,
-        sender: EntityType.Host,
-        senderName: "Host",
-        type: MessageType.Message,
-        delay: 3.0,
-      },
-    ],
-  },
-  {
-    step: 15,
-    messages: [
-      {
-        id: 43,
-        prompt: (name) =>
-          `Give a reply of around 20 words of user's answer. Don't ask questions.`,
-        sender: EntityType.Host,
-        senderName: "Host",
-        type: MessageType.GPT,
-        delay: 3,
-      },
-      {
-        id: 15,
-        content: (name) =>
-          `When someone feels bad about something, how do you usually help them think about it in a more positive or different way?`,
-        sender: EntityType.Host,
-        senderName: "Host",
-        type: MessageType.Message,
-        delay: 3.0,
-      },
-    ],
-  },
-  {
-    step: 16,
-    messages: [
-      {
-        id: 44,
-        prompt: (name) =>
-          `Give a reply of around 20 words of user's answer. Don't ask questions.`,
-        sender: EntityType.Host,
-        senderName: "Host",
-        type: MessageType.GPT,
-        delay: 3,
-      },
-      {
-        id: 16,
-        content: (name) =>
-          `Have you ever faced a major challenge at work or while looking for a job? What happened? How did you feel during that time?`,
-        sender: EntityType.Host,
-        senderName: "Host",
-        type: MessageType.Message,
-        delay: 3.0,
-      },
-    ],
-  },
-
-  {
-    step: 17,
-    messages: [
-      {
-        id: 46,
-        prompt: (name) =>
-          `Give a reply of around 20 words of user's answer. Don't ask questions.`,
-        sender: EntityType.Host,
-        senderName: "Host",
-        type: MessageType.GPT,
-        delay: 3,
-      },
-      {
-        id: 18,
-        content: (name) =>
-          `Do you have any tips or helpful resources for finding a job or dealing with challenges at work?`,
-        sender: EntityType.Host,
-        senderName: "Host",
-        type: MessageType.Message,
-        delay: 3.0,
-      },
-    ],
-  },
-  {
-    step: 18,
-    messages: [
-      {
         id: 47,
         prompt: (name) =>
           `Give a reply of around 20 words of user's answer. Don't ask questions.`,
@@ -431,7 +338,7 @@ export const infoCollectionWithout = [
     ],
   },
   {
-    step: 19,
+    step: 15,
     messages: [
       {
         id: 48,
@@ -453,7 +360,7 @@ export const infoCollectionWithout = [
     ],
   },
   {
-    step: 20,
+    step: 16,
     messages: [
       {
         id: 49,
@@ -476,7 +383,7 @@ export const infoCollectionWithout = [
     ],
   },
   {
-    step: 21,
+    step: 17,
     messages: [
       {
         id: 50,
@@ -499,7 +406,7 @@ export const infoCollectionWithout = [
     ],
   },
   {
-    step: 22,
+    step: 18,
     messages: [
       {
         id: 51,

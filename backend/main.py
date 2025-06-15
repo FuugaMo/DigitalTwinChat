@@ -6,6 +6,7 @@ import os
 import openai
 import httpx  # 代替 fetch
 import asyncio
+from httpx import RequestError, HTTPStatusError
 
 
 load_dotenv()
@@ -36,7 +37,7 @@ def read_root():
     return {"message": "Backend is up and running!"}
 
 
-MAX_RETRIES = 3
+MAX_RETRIES = 10
 RETRY_DELAY = 2  # 每次失败后等待秒数，可做指数退避
 
 @app.post("/api/chat")
@@ -72,7 +73,9 @@ async def chat(request: Request):
         "temperature": 0.01,
     }
 
-    # 自动重试逻辑
+    MAX_RETRIES = 3
+    RETRY_DELAY = 2  # 秒
+
     for attempt in range(1, MAX_RETRIES + 1):
         try:
             async with httpx.AsyncClient() as client:
@@ -80,7 +83,7 @@ async def chat(request: Request):
                     "https://api.openai.com/v1/chat/completions",
                     headers=headers,
                     json=body,
-                    timeout=20  # 设置超时时间，防止长时间卡住
+                    timeout=20
                 )
                 response.raise_for_status()
                 result = response.json()
@@ -90,8 +93,8 @@ async def chat(request: Request):
                     "reply": result["choices"][0]["message"]["content"]
                 }
 
-        except httpx.RequestError as req_err:
-            print(f"🔴 Attempt {attempt} failed: {req_err}")
+        except (RequestError, HTTPStatusError) as err:
+            print(f"🔴 Attempt {attempt} failed: {err}")
             traceback.print_exc()
             if attempt < MAX_RETRIES:
                 print(f"⏳ Retrying in {RETRY_DELAY} seconds...")
@@ -100,7 +103,6 @@ async def chat(request: Request):
                 return {
                     "error": "Failed to fetch from OpenAI after multiple attempts."
                 }
-
 
 @app.post("/api/verify-admin")
 async def verify_admin(request: Request):
