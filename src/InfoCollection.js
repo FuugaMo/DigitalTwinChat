@@ -26,7 +26,7 @@ export const infoCollection = [
       {
         id: 52,
         content: (name) =>
-          `This experiment takes about 12 minutes. Try to complete it in one go—leaving for too long or refreshing the page could affect the data. Unless you really have to, avoid stepping away in the middle. When you're ready, just type "I am ready.""`,
+          `This experiment takes about 12 minutes. Try to complete it in one go—leaving for too long or refreshing the page could affect the data. Unless you really have to, avoid stepping away in the middle. When you're ready, just type "I am ready."`,
         sender: EntityType.Host,
         senderName: "Host",
         type: MessageType.Message,

@@ -28,7 +28,7 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 // phase 1 questions
-const questions = [
+const questions_standard = [
   // Crowdsource Task
   "How long have you been using CloudResearch and about how many studies have you done on CloudResearch?",
   "What kinds of tasks on CloudResearch do you like? Please provide some examples.",
@@ -63,6 +63,45 @@ const questions = [
   // Work
   "Have you ever faced a major challenge at work or while looking for a job? What happened? How did you feel during that time?",
   "Do you have any tips or helpful resources for finding a job or dealing with challenges at work?",
+
+  // Goal
+  "What is something you’ve always wanted to do but haven’t yet? Why?",
+  "What does success mean to you?",
+
+  // Value
+  "What value or principle is most important to you in life?",
+  "Has your most important value changed over time? If so, how and why?",
+];
+
+const questions_without = [
+  // Crowdsource Task
+  "How long have you been using CloudResearch and about how many studies have you done on CloudResearch?",
+  "What kinds of tasks on CloudResearch do you like? Please provide some examples.",
+  "Are there any tasks you don’t like on CloudResearch? Please provide some examples.",
+
+  // City
+  "What city do you live in? What do you think about it?",
+
+  // 影视剧
+  "What are your favorite TV shows or movies? Why do you like them?",
+  "Do you have any favorite actors or actresses? Why do you like them?",
+
+  // Food
+  "What’s your favorite food, and why do you like it?",
+
+  // 音乐
+  "What kind of music do you like? Why do you like it?",
+  "Do you have any favorite singers or bands? Why are they your favorite?",
+
+  // Hobby
+  "What are your hobbies?",
+  "What do you usually do when you’re feeling down or not happy?",
+
+  // High Point
+  "Can you describe a time in your life that was especially positive or meaningful? What happened, when and where did it happen, who was there, and how did you feel?",
+
+  // Interpersonal
+  "Have you ever experienced a major challenge in a relationship with someone? What happened?",
 
   // Goal
   "What is something you’ve always wanted to do but haven’t yet? Why?",
@@ -158,16 +197,19 @@ const selectTemplate = (isTwin, prosocialStatus) => {
 /**
  * 多轮推进 GPT 消息对话（返回完整 messageGroups）
  */
-const stepwiseGPTConversation = async (template, user) => {
-  const { name, history } = user;
+const stepwiseGPTConversation = async (template, userInfo) => {
+  const { name, history, prosocialStatus } = userInfo;
 
-  // const joinedHistory = (history || [])
-  //   .map((entry) => entry.message)
-  //   .filter(Boolean)
-  //   .join(" / ");
+  const questions =
+    prosocialStatus == 0 ? questions_without : questions_standard;
 
-  const joinedHistory = (history || []).slice(1).map((entry, index) => {
-    // 跳过第一个 'start' 回复。
+  const historyEntries = (history || []).slice(1); // 跳过 start
+
+  // 只保留有对应问题的部分
+  const validLength = Math.min(historyEntries.length, questions.length);
+  const trimmedHistory = historyEntries.slice(0, validLength);
+
+  const joinedHistory = trimmedHistory.map((entry, index) => {
     const question = questions[index] || "";
     return `Question: ${question} ${name} : ${entry.message}`;
   });
