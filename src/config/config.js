@@ -16,9 +16,8 @@ export const ASSISTANT_CODE_PROSOCIAL = "3211";
 export const ASSISTANT_CODE_NON = "3212";
 export const ASSISTANT_CODE_WITHOUT = "3213";
 
-// src/config.js 或者你其他配置文件
 export const API_BASE = import.meta.env.VITE_API_BASE;
 
-// connect id 长度
+// connect id Length
 export const CONNECT_ID_LENGTH = 32;
 export const MAX_CONNECT_ID_LENGTH = 34; // + '-A'
