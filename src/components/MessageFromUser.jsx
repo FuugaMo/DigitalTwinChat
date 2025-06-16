@@ -1,4 +1,5 @@
 import "../styles/Message.css";
+import assistantLogo from "../../static/icons/assistantlogo.png";
 
 function MessageFromUser(props) {
   const avatarURL =
@@ -19,7 +20,7 @@ function MessageFromUser(props) {
         <div>{props.message.content}</div>
       </div>
 
-      {/* 用户头像，仅当 Twin 模式时显示 */}
+      {/* 用户头像，仅当 Twin 模式时显示
       {!!props.isTwin && (
         <div>
           <img
@@ -35,7 +36,22 @@ function MessageFromUser(props) {
             }}
           />
         </div>
-      )}
+      )} */}
+
+      <div>
+        <img
+          src={props.isTwin == 1 ? avatarURL : assistantLogo}
+          alt="User Avatar"
+          className="avatar"
+          style={{
+            width: 40,
+            height: 40,
+            borderRadius: "50%",
+            objectFit: "cover",
+            marginLeft: 10,
+          }}
+        />
+      </div>
     </div>
   );
 }

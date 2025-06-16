@@ -27,12 +27,8 @@ import {
 
 import {
   firebaseConfig,
-  TWIN_CODE_NON,
-  TWIN_CODE_WITHOUT,
-  TWIN_CODE_PROSOCIAL,
-  ASSISTANT_CODE_PROSOCIAL,
-  ASSISTANT_CODE_NON,
-  ASSISTANT_CODE_WITHOUT,
+  PROSOCIAL_CODE,
+  NON_PROSOCIAL_CODE,
   API_BASE,
   CONNECT_ID_LENGTH,
 } from "./config/config";
@@ -106,8 +102,8 @@ export default function App() {
   const [name, setName] = useState(""); // 昵称
   const [avatar, setAvatar] = useState(null); // 头像文件 or URL
   const [code, setCode] = useState(-1); // 以password输入code, 用于分类是Twin组还是Assistant组
-  const [isTwin, setIsTwin] = useState(0); // 1 = Twin / 0 = Assistant / -1 = Admin
-  const [prosocialStatus, setProsocialStatus] = useState(0); // 1 = Prosocial, 0 = Without, -1 = Non-prosocial
+  const [isTwin, setIsTwin] = useState(1); // 1 = Twin / 0 = Assistant / -1 = Admin
+  const [prosocialStatus, setProsocialStatus] = useState(1); // 1 = Prosocial, 0 = Without, -1 = Anti-prosocial
   const [isReplayMode, setIsReplayMode] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -164,23 +160,13 @@ export default function App() {
       // 校验 code 是否正确
       let expectedCode = null;
 
-      if (isTwinUser) {
-        if (isProsocialUser === 1) {
-          expectedCode = TWIN_CODE_PROSOCIAL;
-        } else if (isProsocialUser === -1) {
-          expectedCode = TWIN_CODE_NON;
-        } else {
-          expectedCode = TWIN_CODE_WITHOUT;
-        }
+      if (isProsocialUser === 1) {
+        expectedCode = PROSOCIAL_CODE;
       } else {
-        if (isProsocialUser === 1) {
-          expectedCode = ASSISTANT_CODE_PROSOCIAL;
-        } else if (isProsocialUser === -1) {
-          expectedCode = ASSISTANT_CODE_NON;
-        } else {
-          expectedCode = ASSISTANT_CODE_WITHOUT;
-        }
+        expectedCode = NON_PROSOCIAL_CODE;
       }
+
+      // isTwin needs to be fetched from firebase
 
       if (enteredCode !== expectedCode) {
         alert("Wrong password.");
@@ -220,22 +206,12 @@ export default function App() {
           ? -1
           : 0;
 
-      // 判断密码是否匹配
+      // 判断密码是否匹配(不再区分isTwin)
       let expectedCode = null;
-      if (isTwinUser) {
-        expectedCode =
-          isProsocialUser === 1
-            ? TWIN_CODE_PROSOCIAL
-            : isProsocialUser === -1
-            ? TWIN_CODE_NON
-            : TWIN_CODE_WITHOUT;
+      if (isProsocialUser === 1) {
+        expectedCode = PROSOCIAL_CODE;
       } else {
-        expectedCode =
-          isProsocialUser === 1
-            ? ASSISTANT_CODE_PROSOCIAL
-            : isProsocialUser === -1
-            ? ASSISTANT_CODE_NON
-            : ASSISTANT_CODE_WITHOUT;
+        expectedCode = NON_PROSOCIAL_CODE;
       }
 
       if (enteredCode !== expectedCode) {
@@ -243,7 +219,7 @@ export default function App() {
         return;
       }
 
-      setIsTwin(isTwinUser ? 1 : 0);
+      setIsTwin(1);
       setProsocialStatus(isProsocialUser);
 
       if (userData.name) {
@@ -255,28 +231,12 @@ export default function App() {
       }
     } else {
       // 用户不存在，按输入密码确定组别，允许新建
-      if (enteredCode === TWIN_CODE_NON) {
-        setIsTwin(1);
-        setProsocialStatus(-1);
-      } else if (enteredCode === TWIN_CODE_PROSOCIAL) {
-        setIsTwin(1);
+      if (enteredCode === PROSOCIAL_CODE) {
         setProsocialStatus(1);
-      } else if (enteredCode === TWIN_CODE_WITHOUT) {
-        setIsTwin(1);
-        setProsocialStatus(0);
-      } else if (enteredCode === ASSISTANT_CODE_PROSOCIAL) {
-        setIsTwin(0);
-        setProsocialStatus(1);
-      } else if (enteredCode === ASSISTANT_CODE_NON) {
-        setIsTwin(0);
-        setProsocialStatus(-1);
-      } else if (enteredCode === ASSISTANT_CODE_WITHOUT) {
-        setIsTwin(0);
-        setProsocialStatus(0);
       } else {
-        alert("Wrong password. Please check again.");
-        return;
+        setProsocialStatus(-1);
       }
+      setIsTwin(1);
       setName("");
       setAvatar(null);
     }
@@ -338,8 +298,8 @@ export default function App() {
                 setName("");
                 setAvatar(null);
                 setCode(-1);
-                setIsTwin(0);
-                setIsTwin(0);
+                setIsTwin(1);
+                setProsocialStatus(1);
                 setIsReplayMode(false);
               }}
             />
@@ -361,8 +321,8 @@ export default function App() {
                 setName("");
                 setAvatar(null);
                 setCode(-1);
-                setIsTwin(0);
-                setProsocialStatus(0);
+                setIsTwin(1);
+                setProsocialStatus(1);
                 setIsReplayMode(false);
               }}
             />
