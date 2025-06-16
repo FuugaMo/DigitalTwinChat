@@ -6,6 +6,7 @@ import os
 import openai
 import httpx  # 代替 fetch
 import asyncio
+import json
 from httpx import RequestError, HTTPStatusError
 
 
@@ -48,9 +49,9 @@ async def chat(request: Request):
     lastHostMessage = data.get("lastHostMessage", "")
 
     print("🔵 Incoming request data:")
-    print(f"Prompt: {prompt}")
-    print(f"Last Host message: {lastHostMessage}")
-    print(f"User message: {userMessage}")
+    print("Prompt:", repr(prompt))
+    print("Last Host message:", repr(lastHostMessage))
+    print("User message:", repr(userMessage))
 
     messages = []
     if prompt:
@@ -60,7 +61,7 @@ async def chat(request: Request):
     if userMessage:
         messages.append({"role": "user", "content": userMessage})
 
-    print(f"Messages: {messages}")
+    print("Messages:", json.dumps(messages, ensure_ascii=False))
 
     headers = {
         "Content-Type": "application/json",
