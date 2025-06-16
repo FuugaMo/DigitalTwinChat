@@ -60,10 +60,10 @@ function ChatWindow(props) {
   const userId = useContext(AuthContext);
   const docRef = doc(db, "users", userId);
 
-  console.log(prosocialStatus);
+  // console.log(prosocialStatus);
   // 获取对应 bot 的消息组
   const messageGroups =
-    prosocialStatus == 0 ? messageGroupsAllBots[1] : messageGroupsAllBots[0]; // 设置默认为1, 即messages1Bot.jsx - Phase 1信息收集脚本
+    prosocialStatus == 1 ? messageGroupsAllBots[0] : messageGroupsAllBots[1]; // 设置默认为0, 即messages1Bot.jsx - Phase 1信息收集脚本, without和anti都使用non脚本
 
   const hasInitialized = useRef(false); // 防止开发Strict模式下init两次的问题
 
@@ -121,22 +121,40 @@ function ChatWindow(props) {
   ) {
     // console.log(name, avatar, isTwin, prosocialStatus);
     try {
-      let avatarUrl = "";
+      const userRef = doc(db, "users", userId);
+      const existingDoc = await getDoc(userRef);
 
+      let avatarUrl = "";
       if (avatarFile) {
         avatarUrl = await uploadAvatarAndGetURL(avatarFile, userId);
       }
-      // console.log(`avatarUrl ${avatarUrl == ""}`);
-      await setDoc(
-        doc(db, "users", userId),
-        {
-          name: name,
-          avatar: avatarFile ? avatarUrl : null,
-          isTwin: isTwin,
-          prosocialStatus: prosocialStatus,
-        },
-        { merge: true }
-      );
+
+      const updateData = {};
+
+      if (!existingDoc.exists()) {
+        // 文档不存在：写入所有字段
+        updateData.name = name;
+        updateData.avatar = avatarFile ? avatarUrl : null;
+        updateData.isTwin = isTwin;
+        updateData.prosocialStatus = prosocialStatus;
+      } else {
+        const data = existingDoc.data();
+
+        // 仅在字段缺失时添加
+        if (!data.name && name) updateData.name = name;
+        if (!data.avatar && avatarFile) updateData.avatar = avatarUrl;
+        if (data.isTwin === undefined) updateData.isTwin = isTwin;
+        if (data.prosocialStatus === undefined)
+          updateData.prosocialStatus = prosocialStatus;
+      }
+
+      if (Object.keys(updateData).length > 0) {
+        await setDoc(userRef, updateData, { merge: true });
+      } else {
+        console.log(
+          "✅ All user profile fields already exist. No update needed."
+        );
+      }
     } catch (e) {
       console.error("Error saving user profile:", e);
     }
@@ -180,14 +198,14 @@ function ChatWindow(props) {
     try {
       const docSnap = await getDocFromServer(docRef);
       const data = docSnap.data();
-      console.log("Raw data:", data);
-      console.log(
-        "Has step:",
-        Object.prototype.hasOwnProperty.call(data, "step")
-      );
+      // console.log("Raw data:", data);
+      // console.log(
+      //   "Has step:",
+      //   Object.prototype.hasOwnProperty.call(data, "step")
+      // );
       if (!docSnap.exists() || !docSnap.data().step) {
         setLoading(false);
-        console.log("First return.");
+        // console.log("First return.");
         return false; // ✅ 没有消息
       }
 
@@ -195,7 +213,7 @@ function ChatWindow(props) {
         collection(db, "users", userId, "messages")
       );
 
-      console.log(messageHistory);
+      // console.log(messageHistory);
 
       populateInitialMessages(docSnap.data().step, messageHistory.docs);
       setConversationStep(docSnap.data().step);
@@ -360,12 +378,12 @@ function ChatWindow(props) {
       } else {
         const hasMessages = await getUserDataFromDatabase();
         if (!hasMessages) {
-          console.log("No previous messages.");
+          // console.log("No previous messages.");
           addBotMessages(conversationStep, "");
           setConversationStep(1);
         } else {
           setBlockUserMessages(false);
-          console.log("Has previous message.");
+          // console.log("Has previous message.");
         }
       }
     };
@@ -408,7 +426,7 @@ function ChatWindow(props) {
     // );
 
     if (!blockUserMessages) {
-      console.log(`A1 Current step: ${conversationStep}`);
+      // console.log(`A1 Current step: ${conversationStep}`);
       storeUserMessageInDatabase(conversationStep, message);
       addBotMessages(conversationStep, message);
       updateStepInDatabase(conversationStep + 1);
@@ -506,8 +524,6 @@ function ChatWindow(props) {
 
     setMessages(msgs);
   }
-  // console.log(`Chat Window name${name}`);
-  // console.log("ChatWindow Avatar:", avatar); // log了一个File
 
   // UI 渲染部分
   return (

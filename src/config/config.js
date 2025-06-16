@@ -9,15 +9,18 @@ export const firebaseConfig = {
   measurementId: "G-VG7VWKBF3Y",
 };
 
-export const TWIN_CODE_PROSOCIAL = "1231";
-export const TWIN_CODE_NON = "1232";
-export const TWIN_CODE_WITHOUT = "1233";
-export const ASSISTANT_CODE_PROSOCIAL = "3211";
-export const ASSISTANT_CODE_NON = "3212";
-export const ASSISTANT_CODE_WITHOUT = "3213";
+// export const TWIN_CODE_PROSOCIAL = "1231";
+// export const TWIN_CODE_NON = "1232";
+// export const TWIN_CODE_WITHOUT = "1233";
+// export const ASSISTANT_CODE_PROSOCIAL = "3211";
+// export const ASSISTANT_CODE_NON = "3212";
+// export const ASSISTANT_CODE_WITHOUT = "3213";
+
+export const PROSOCIAL_CODE = "123";
+export const NON_PROSOCIAL_CODE = "321";
 
 export const API_BASE = import.meta.env.VITE_API_BASE;
 
 // connect id Length
-export const CONNECT_ID_LENGTH = 32;
+export const CONNECT_ID_LENGTH = 3;
 export const MAX_CONNECT_ID_LENGTH = 34; // + '-A'
