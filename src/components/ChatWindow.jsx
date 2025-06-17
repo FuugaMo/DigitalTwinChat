@@ -406,11 +406,16 @@ function ChatWindow(props) {
     addUserMessage(message, id);
     saveElapsedTimeToDatabase();
 
-    if (conversationStep == 1 && message != "I am ready.") {
+    if (
+      conversationStep == 1 &&
+      message != "I'm ready" &&
+      message != "i'm ready" &&
+      message != "I’m ready" &&
+      message != "i’m ready"
+    ) {
       const notReadyMessage = {
         id: crypto.randomUUID(),
-        content: (name) =>
-          `Please enter "I am ready." when you are ready to take the test.`,
+        content: (name) => `Please type “I’m ready” when you’re good to start.`,
         sender: EntityType.Host,
         senderName: "Host",
         type: MessageType.Message,
@@ -545,7 +550,7 @@ function ChatWindow(props) {
           // paddingBottom: "0.5rem",
         }}
       >
-        🧭 Conversation Page
+        Chat
       </h2>
 
       <div className="chatWindow">
@@ -553,11 +558,12 @@ function ChatWindow(props) {
           style={{
             fontSize: "1rem",
             fontWeight: "400",
+            marginTop: "0.25rem",
             marginBottom: "1rem",
             color: "#555",
           }}
         >
-          Loading the chat window may take a few seconds.
+          Loading the chat window may take a few seconds
         </h3>
 
         <MessageScreen
