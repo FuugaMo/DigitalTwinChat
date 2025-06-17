@@ -233,9 +233,13 @@ export default function App() {
       // 用户不存在，按输入密码确定组别，允许新建
       if (enteredCode === PROSOCIAL_CODE) {
         setProsocialStatus(1);
-      } else {
+      } else if (enteredCode === NON_PROSOCIAL_CODE) {
         setProsocialStatus(-1);
+      } else {
+        alert("Wrong password.");
+        return;
       }
+
       setIsTwin(1);
       setName("");
       setAvatar(null);
