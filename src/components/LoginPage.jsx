@@ -30,8 +30,13 @@ function LoginPage(props) {
           padding: 4,
         }}
       >
-        <Typography variant="h2" align="center" sx={{ marginBottom: 4 }}>
-          Please input your connect ID and password
+        <Typography
+          variant="h2"
+          align="center"
+          sx={{ marginBottom: 4, fontSize: "1rem" }}
+        >
+          Please enter your Connect ID and the password provided on the survey
+          page
         </Typography>
 
         <TextField

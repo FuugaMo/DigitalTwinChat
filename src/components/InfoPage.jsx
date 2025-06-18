@@ -108,8 +108,18 @@ export default function InfoPage({ handleInfoSubmit, isTwin }) {
               alignItems: "center",
             }}
           >
-            <Typography variant="h2" align="center" sx={{ mb: 4 }}>
-              Upload your info
+            <Typography variant="h2" align="center" sx={{ mb: 2 }}>
+              Profile Setup
+            </Typography>
+
+            <Typography
+              variant="body2"
+              color="textSecondary"
+              align="center"
+              sx={{ mb: 4, px: 2 }}
+            >
+              Please upload the profile picture and name you use on messenging
+              apps (e.g., WhatsApp). We will keep your information confidential.
             </Typography>
 
             {!!isTwin && (
@@ -135,7 +145,7 @@ export default function InfoPage({ handleInfoSubmit, isTwin }) {
                     sx={{ width: 80, height: 80, mb: 2 }}
                   />
                   <Typography variant="body2" color="textSecondary">
-                    Click to upload your avatar
+                    Click to upload your profile picture
                   </Typography>
                 </label>
                 {errorMsg && (
