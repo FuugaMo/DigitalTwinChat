@@ -411,7 +411,11 @@ function ChatWindow(props) {
       message != "I'm ready" &&
       message != "i'm ready" &&
       message != "I’m ready" &&
-      message != "i’m ready"
+      message != "i’m ready" &&
+      message != "I'm ready." &&
+      message != "i'm ready." &&
+      message != "I’m ready." &&
+      message != "i’m ready."
     ) {
       const notReadyMessage = {
         id: crypto.randomUUID(),

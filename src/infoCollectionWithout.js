@@ -9,14 +9,14 @@ export const infoCollectionWithout = [
       {
         id: 0,
         content: (name) =>
-          `(WITHOUT GROUP - TESTING). Hello, ${name}! It’s so nice to have you here. In what follows, I’ll ask you some questions to collect some basic info about you. `,
+          `Hello, ${name}! It’s so nice to have you here. In what follows, I’ll ask you some questions to collect some basic info about you. `,
         sender: EntityType.Host,
         senderName: "ConvoAI",
         type: MessageType.Message,
         delay: 4.0,
       },
       {
-        id: 0,
+        id: 52,
         content: (name) =>
           `Before we start, just a couple of things to keep in mind. `,
         sender: EntityType.Host,
@@ -25,7 +25,7 @@ export const infoCollectionWithout = [
         delay: 4.0,
       },
       {
-        id: 0,
+        id: 53,
         content: (name) =>
           `First, try to answer each question with as much detail as you can. It’ll help us build a better AI agent for you.`,
         sender: EntityType.Host,
@@ -34,7 +34,7 @@ export const infoCollectionWithout = [
         delay: 4.0,
       },
       {
-        id: 0,
+        id: 54,
         content: (name) =>
           `Second, try to complete everything in one go. Leaving the page for too long or refreshing it might mess with the data.`,
         sender: EntityType.Host,
@@ -43,7 +43,7 @@ export const infoCollectionWithout = [
         delay: 4.0,
       },
       {
-        id: 52,
+        id: 55,
         content: (name) =>
           `Make sure you’re good with the two points above. When you’re ready, just type “I'm ready”`,
         sender: EntityType.Host,
@@ -454,7 +454,7 @@ export const infoCollectionWithout = [
         delay: 3.0,
       },
       {
-        id: 23,
+        id: 24,
         content: (name) =>
           `Please go back to the survey page and enter the following password to continue: NPR11
 
