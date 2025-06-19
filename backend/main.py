@@ -50,8 +50,8 @@ async def chat(request: Request):
 
     print("🔵 Incoming request data:")
     print("Prompt:", repr(prompt))
-    print("Last Host message:", repr(lastHostMessage))
-    print("User message:", repr(userMessage))
+    print("Last Host message:", lastHostMessage) # Should be empty when in replaying mode?
+    print("User message:", userMessage) # Should be empty when in replaying mode?
 
     messages = []
     if prompt:
