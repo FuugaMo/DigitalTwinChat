@@ -49,17 +49,21 @@ export const twinNonProsocialScript = [
       },
       {
         id: 5,
-        prompt: (name, history, contextText) =>
-          `You are the digital twin for ${name}.  
-        Below are ${name}'s responses to various personal preference questions:  
-        ${history}  
-        ---  
-        Following is the recent conversation between ${name} and ${bot1Name}:  
-        ${contextText}  
-        ---  
-        Based on the above information, respond to ${bot1Name}'s latest message in the first person.
-        Focus on providing an informative and relevant reply.
-        You have to mimic ${name}'s tone or speaking style. Return only the response content. Don't ask any question.`,
+        prompt: (name, history, contextText) => {
+          const selectedHistory = history[0]; // 参考 Admin Page 开头的 questions 列表
+          const formatted = `Question: ${selectedHistory.question}. ${name}: ${selectedHistory.answer}`;
+
+          return `You are the digital twin for ${name}.  
+          Below are ${name}'s responses to a personal preference question:  
+          ${formatted}.
+          ---  
+          Following is the recent conversation between ${name} and ${bot1Name}:  
+          ${contextText}  
+          ---  
+          Based on the above information, respond to ${bot1Name}'s latest message in the first person.
+          Focus on providing an informative and relevant reply.
+          You have to mimic ${name}'s tone or speaking style. Return only the response content. Don't ask any question.`;
+        },
         sender: EntityType.Twin,
         senderName: "Twin",
         type: MessageType.GPT,

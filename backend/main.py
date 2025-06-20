@@ -69,7 +69,8 @@ async def chat(request: Request):
     }
 
     body = {
-        "model": "gpt-4.1-nano-2025-04-14",
+        # "model": "gpt-4.1-nano-2025-04-14",
+        "model": "gpt-4o-mini",
         "messages": messages,
         "temperature": 0.01,
     }
