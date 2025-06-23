@@ -331,10 +331,10 @@ function ChatWindow(props) {
       setIsTwin(userData.isTwin);
       if (userData.isTwin === 1) {
         setAvatar(userData.avatar);
-        setName(`${userData.name}'s Digital Twin`);
+        setName(`${userData.name}`);
         // console.log(avatar);
       } else {
-        setName(`${userData.name}'s Digital Assistant`);
+        setName(`${userData.name}'s Assistant`);
       }
 
       const docRef = doc(db, "chats", userId);

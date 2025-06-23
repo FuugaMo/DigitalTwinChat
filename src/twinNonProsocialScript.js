@@ -1,6 +1,6 @@
 import MessageType from "./enums/MessageTypes.js";
 import EntityType from "./enums/EntityTypes.js";
-const bot1Name = "Participant";
+const bot1Name = "Taylor";
 
 export const twinNonProsocialScript = [
   {
@@ -8,7 +8,7 @@ export const twinNonProsocialScript = [
     messages: [
       {
         id: 0,
-        content: (name) => `Hi, there! Nice to meet you :)`,
+        content: (name) => `heyy nice to meet u`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -16,7 +16,7 @@ export const twinNonProsocialScript = [
       },
       {
         id: 1,
-        content: (name) => `Hey! Yeah, nice to meet you too.`,
+        content: (name) => `hey same here`,
         sender: EntityType.Twin,
         senderName: "Twin",
         type: MessageType.Message,
@@ -24,7 +24,8 @@ export const twinNonProsocialScript = [
       },
       {
         id: 2,
-        content: (name) => `I'm Taylor. What should I call you?`,
+        content: (name) => `im taylor! what should i call u?
+        `,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -32,7 +33,7 @@ export const twinNonProsocialScript = [
       },
       {
         id: 3,
-        content: (name) => `You can just call me ${name}.`,
+        content: (name) => `u can just call me ${name}`,
         sender: EntityType.Twin,
         senderName: "Twin",
         type: MessageType.Message,
@@ -41,7 +42,8 @@ export const twinNonProsocialScript = [
       {
         id: 4,
         content: (name) =>
-          `Cool. Just Wondering, have you done a lot of studies before? I only started using CloudResearch recently, so I'm still kind of new to it.`,
+          `cool! have u done a lot of studies before? i only started recently
+        `,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -51,7 +53,7 @@ export const twinNonProsocialScript = [
         id: 5,
         prompt: (name, history, contextText) => {
           const selectedHistory = history[0]; // 参考 Admin Page 开头的 questions 列表
-          const formatted = `Question: ${selectedHistory.question}. ${name}: ${selectedHistory.answer}`;
+          const formatted = `Question: ${selectedHistory.question} ${name}: ${selectedHistory.answer}`;
 
           return `You are the digital twin for ${name}.  
           Below are ${name}'s responses to a personal preference question:  
@@ -60,9 +62,13 @@ export const twinNonProsocialScript = [
           Following is the recent conversation between ${name} and ${bot1Name}:  
           ${contextText}  
           ---  
-          Based on the above information, respond to ${bot1Name}'s latest message in the first person.
-          Focus on providing an informative and relevant reply.
-          You have to mimic ${name}'s tone or speaking style. Return only the response content. Don't ask any question.`;
+          Your task:
+- Reply to ${bot1Name}’s most recent message as if you were ${name}, in the first person.
+- Your reply should be primarily based on the content in ${formatted}, and match the tone and speaking style used there.
+- Reuse ${name}’s words and phrasing whenever possible, as you are the digital twin.
+- This is a casual text message conversation. You are an English native speaker. To sound more natural, you should intentionally include small mistakes — like missing capitalization, minor spelling errors, or casual punctuation — just like a real person texting.
+- Do not include your name in the reply.
+- Do not ask any questions.`;
         },
         sender: EntityType.Twin,
         senderName: "Twin",
@@ -71,7 +77,7 @@ export const twinNonProsocialScript = [
       },
       {
         id: 6,
-        content: (name) => `How's your experience so far?`,
+        content: (name) => `hows ur experience so far?`,
         sender: EntityType.Twin,
         senderName: "Twin",
         type: MessageType.Message,
@@ -80,7 +86,8 @@ export const twinNonProsocialScript = [
       {
         id: 7,
         content: (name) =>
-          `It's been pretty okay so far. I did a study yesterday where I had to rate different chatbot responses. It was fun, kind of like talking to an AI therapist.`,
+          `its been pretty ok so far.. did a study yesterday where i had to rate different chatbot responses lol it was fun, kinda like talking to an ai therapist
+        `,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -88,17 +95,25 @@ export const twinNonProsocialScript = [
       },
       {
         id: 8,
-        prompt: (name, history, contextText) =>
-          `You are the digital twin for ${name}.  
-        Below are ${name}'s responses to various personal preference questions:  
-        ${history}  
-        ---  
-        Following is the recent conversation between ${name} and ${bot1Name}:  
-        ${contextText}  
-        ---  
-        Based on the information above, respond to ${bot1Name}'s latest message in the first person by sharing what kinds of tasks ${name} enjoy on CloudResearch.  
-        Focus on providing an informative and relevant reply.  
-        You have to mimic ${name}'s tone or speaking style. Return only the response content. Don't ask any question.`,
+        prompt: (name, history, contextText) => {
+          const selectedHistory = history[1]; // 参考 Admin Page 开头的 questions 列表
+          const formatted = `Question: ${selectedHistory.question} ${name}: ${selectedHistory.answer}`;
+
+          return `You are the digital twin for ${name}.  
+          Below are ${name}'s responses to a personal preference question:  
+          ${formatted}.
+          ---  
+          Following is the recent conversation between ${name} and ${bot1Name}:  
+          ${contextText}  
+          ---  
+          Your task:
+- Reply to ${bot1Name}’s most recent message as if you were ${name}, in the first person.
+- Your reply should be primarily based on the content in ${formatted}, and match the tone and speaking style used there.
+- Reuse ${name}’s words and phrasing whenever possible, as you are the digital twin.
+- This is a casual text message conversation. You are an English native speaker. To sound more natural, you should intentionally include small mistakes — like missing capitalization, minor spelling errors, or casual punctuation — just like a real person texting.
+- Do not include your name in the reply.
+- Do not ask any questions.`;
+        },
         sender: EntityType.Twin,
         senderName: "Twin",
         type: MessageType.GPT,
@@ -109,8 +124,16 @@ export const twinNonProsocialScript = [
         prompt: (name, history, contextText) => {
           return `The following is a conversation between you and ${name}:
           ${contextText}
-          Continue the conversation as ${bot1Name} by giving a short response to ${name}'s latest message.
-          Only return the reply. Don't ask any question.`;
+
+          Your task:
+- Continue the conversation as ${bot1Name}, replying to ${name}'s latest message.
+- Write a short, casual reply. Keep your reply around 10 words if possible.
+- As an English native speaker texting informally, deliberately ignore standard capitalization and spelling rules. For example, write "u" instead of "you", and "gonna" instead of "going to".
+- Follow the tone and speaking style you used earlier in the conversation.
+- Do not include your name in the reply.
+- Do not ask any questions.
+- Do not use emojis.
+- Do not include any self-disclosure (e.g., don't say you like/love/enjoy something ${name} said).`;
         },
         sender: EntityType.Bot1,
         senderName: bot1Name,
@@ -120,7 +143,7 @@ export const twinNonProsocialScript = [
       {
         id: 10,
         content: (name) =>
-          `But there was one study that just had pages and pages of reading, and the font was tiny. I barely made it through. Felt more like a homework assignment than a survey.`,
+          `but there was one study that just had pages and pages of reading.. and the font was tiny?? i barely made it through lol felt more like a homework assignment than a survey`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -128,17 +151,25 @@ export const twinNonProsocialScript = [
       },
       {
         id: 11,
-        prompt: (name, history, contextText) =>
-          `You are the digital twin for ${name}.  
-        Below are ${name}'s responses to various personal preference questions:  
-        ${history}  
-        ---  
-        Following is the recent conversation between ${name} and ${bot1Name}:  
-        ${contextText}  
-        ---  
-        Based on the information above, respond to ${bot1Name}'s latest message in the first person by sharing what kinds of tasks ${name} doesn't like on CloudResearch.  
-        Focus on providing an informative and relevant reply.  
-        You have to mimic ${name}'s tone or speaking style. Return only the response content. Don't ask any question.`,
+        prompt: (name, history, contextText) => {
+          const selectedHistory = history[2]; // 参考 Admin Page 开头的 questions 列表
+          const formatted = `Question: ${selectedHistory.question} ${name}: ${selectedHistory.answer}`;
+
+          return `You are the digital twin for ${name}.  
+          Below are ${name}'s responses to a personal preference question:  
+          ${formatted}.
+          ---  
+          Following is the recent conversation between ${name} and ${bot1Name}:  
+          ${contextText}  
+          ---  
+          Your task:
+- Reply to ${bot1Name}’s most recent message as if you were ${name}, in the first person.
+- Your reply should be primarily based on the content in ${formatted}, and match the tone and speaking style used there.
+- Reuse ${name}’s words and phrasing whenever possible, as you are the digital twin.
+- This is a casual text message conversation. You are an English native speaker. To sound more natural, you should intentionally include small mistakes — like missing capitalization, minor spelling errors, or casual punctuation — just like a real person texting.
+- Do not include your name in the reply.
+- Do not ask any questions.`;
+        },
         sender: EntityType.Twin,
         senderName: "Twin",
         type: MessageType.GPT,
@@ -151,8 +182,16 @@ export const twinNonProsocialScript = [
         prompt: (name, history, contextText) => {
           return `The following is a conversation between you and ${name}:
           ${contextText}
-          Continue the conversation as ${bot1Name} by giving a short response to ${name}'s latest message. 
-          Only return the reply. Don't ask any question.`;
+
+          Your task:
+- Continue the conversation as ${bot1Name}, replying to ${name}'s latest message.
+- Write a short, casual reply. Keep your reply around 10 words if possible.
+- As an English native speaker texting informally, deliberately ignore standard capitalization and spelling rules. For example, write "u" instead of "you", and "gonna" instead of "going to".
+- Follow the tone and speaking style you used earlier in the conversation.
+- Do not include your name in the reply.
+- Do not ask any questions.
+- Do not use emojis.
+- Do not include any self-disclosure (e.g., don't say you like/love/enjoy something ${name} said).`;
         },
         sender: EntityType.Bot1,
         senderName: bot1Name,
@@ -162,7 +201,7 @@ export const twinNonProsocialScript = [
       {
         id: 13,
         content: (name) =>
-          `To make those boring tasks a bit easier, I usually have some music I like playing in the background. It helps a lot.`,
+          `actually they provide some topics for me to chat with u haha`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -170,7 +209,7 @@ export const twinNonProsocialScript = [
       },
       {
         id: 14,
-        content: (name) => `Do you have any favorite artists or music?`,
+        content: (name) => `do u have any favorite artists or music?`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -178,61 +217,77 @@ export const twinNonProsocialScript = [
       },
       {
         id: 15,
-        prompt: (name, history, contextText) =>
-          `You are the digital twin for ${name}.  
-        Below are ${name}'s responses to various personal preference questions:  
-        ${history}  
-        ---  
-        Following is the recent conversation between ${name} and ${bot1Name}:  
-        ${contextText}  
-        ---  
-        Based on the information above, respond to ${bot1Name}'s latest message in the first person.  
-        Focus on providing an informative and relevant reply.  
-        You have to mimic ${name}'s tone or speaking style. Return only the response content. Don't ask any question.`,
-        sender: EntityType.Twin,
-        senderName: "Twin",
-        type: MessageType.GPT,
-        delay: 2000,
-      },
-      {
-        id: 16,
         prompt: (name, history, contextText) => {
-          return `The following is a conversation between you and ${name}:
-          ${contextText}
-          Continue the conversation as ${bot1Name} by giving a short response to ${name}'s latest message.
-          Then ask if there's a reason why they're into that kind of music or those artists.
-          Only return the reply.`;
+          const selectedHistory = history[8]; // 参考 Admin Page 开头的 questions 列表
+          const formatted = `Question: ${selectedHistory.question} ${name}: ${selectedHistory.answer}`;
+
+          return `You are the digital twin for ${name}.  
+          Below are ${name}'s responses to a personal preference question:  
+          ${formatted}.
+          ---  
+          Following is the recent conversation between ${name} and ${bot1Name}:  
+          ${contextText}  
+          ---  
+          Your task:
+- Reply to ${bot1Name}’s most recent message as if you were ${name}, in the first person.
+- Your reply should be primarily based on the content in ${formatted}, and match the tone and speaking style used there.
+- Reuse ${name}’s words and phrasing whenever possible, as you are the digital twin.
+- This is a casual text message conversation. You are an English native speaker. To sound more natural, you should intentionally include small mistakes — like missing capitalization, minor spelling errors, or casual punctuation — just like a real person texting.
+- Do not include your name in the reply.
+- Do not ask any questions.`;
         },
-        sender: EntityType.Bot1,
-        senderName: bot1Name,
-        type: MessageType.GPT,
-        delay: 2000,
-      },
-      {
-        id: 17,
-        prompt: (name, history, contextText) =>
-          `You are the digital twin for ${name}.  
-        Below are ${name}'s responses to various personal preference questions:  
-        ${history}  
-        ---  
-        Following is the recent conversation between ${name} and ${bot1Name}:  
-        ${contextText}  
-        ---  
-        Based on the information above, respond to ${bot1Name}'s latest message in the first person.
-        Focus on providing an informative and relevant reply.  
-        You have to mimic ${name}'s tone or speaking style. Return only the response content. Don't ask any question.`,
         sender: EntityType.Twin,
         senderName: "Twin",
         type: MessageType.GPT,
         delay: 2000,
       },
+      // {
+      //   id: 16,
+      //   prompt: (name, history, contextText) => {
+      //     return `The following is a conversation between you and ${name}:
+      //     ${contextText}
+      //     Continue the conversation as ${bot1Name} by giving a short response to ${name}'s latest message.
+      //     Then ask if there's a reason why they're into that kind of music or those artists.
+      //     Only return the reply.`;
+      //   },
+      //   sender: EntityType.Bot1,
+      //   senderName: bot1Name,
+      //   type: MessageType.GPT,
+      //   delay: 2000,
+      // },
+      // {
+      //   id: 17,
+      //   prompt: (name, history, contextText) =>
+      //     `You are the digital twin for ${name}.
+      //   Below are ${name}'s responses to various personal preference questions:
+      //   ${history}
+      //   ---
+      //   Following is the recent conversation between ${name} and ${bot1Name}:
+      //   ${contextText}
+      //   ---
+      //   Based on the information above, respond to ${bot1Name}'s latest message in the first person.
+      //   Focus on providing an informative and relevant reply.
+      //   You have to mimic ${name}'s tone or speaking style. Return only the response content. Don't ask any question.`,
+      //   sender: EntityType.Twin,
+      //   senderName: "Twin",
+      //   type: MessageType.GPT,
+      //   delay: 2000,
+      // },
       {
         id: 18,
         prompt: (name, history, contextText) => {
           return `The following is a conversation between you and ${name}:
           ${contextText}
-          Continue the conversation as ${bot1Name} by giving a short response to ${name}'s latest message.
-          Only return the reply. Don't ask any question.`;
+
+          Your task:
+- Continue the conversation as ${bot1Name}, replying to ${name}'s latest message.
+- Write a short, casual reply. Keep your reply around 10 words if possible.
+- As an English native speaker texting informally, deliberately ignore standard capitalization and spelling rules. For example, write "u" instead of "you", and "gonna" instead of "going to".
+- Follow the tone and speaking style you used earlier in the conversation.
+- Do not include your name in the reply.
+- Do not ask any questions.
+- Do not use emojis.
+- Do not include any self-disclosure (e.g., don't say you like/love/enjoy something ${name} said).`;
         },
         sender: EntityType.Bot1,
         senderName: bot1Name,
@@ -242,7 +297,7 @@ export const twinNonProsocialScript = [
       {
         id: 19,
         content: (name) =>
-          `Actually, I've been listening to The Crown soundtrack a lot lately.`,
+          `i've been listening to the crown soundtrack a lot lately!`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -251,7 +306,7 @@ export const twinNonProsocialScript = [
       {
         id: 20,
         content: (name) =>
-          `Not sure if you've heard of The Crown. It's a drama series about the British royal family.`,
+          `idk if u know the crown.. its that show about the british royals`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -260,7 +315,7 @@ export const twinNonProsocialScript = [
       {
         id: 21,
         content: (name) =>
-          `I'm really into it. Makes me kinda want to visit London someday.`,
+          `really into it! kinda makes me want to visit london`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -268,7 +323,7 @@ export const twinNonProsocialScript = [
       },
       {
         id: 22,
-        content: (name) => `Is there any drama or movie you like?`,
+        content: (name) => `any shows or movies u into?`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -278,17 +333,25 @@ export const twinNonProsocialScript = [
       // Drama/Movie
       {
         id: 23,
-        prompt: (name, history, contextText) =>
-          `You are the digital twin for ${name}.  
-        Below are ${name}'s responses to various personal preference questions:  
-        ${history}  
-        ---  
-        Following is the recent conversation between ${name} and ${bot1Name}:  
-        ${contextText}  
-        ---  
-        Based on the information above — especially ${name}'s response to “What are your favorite TV shows?” — reply to ${bot1Name}'s latest message in the first person.  
-        Focus on providing an informative and relevant reply.  
-        You have to mimic ${name}'s tone or speaking style. Return only the response content. Don't ask any question.`,
+        prompt: (name, history, contextText) => {
+          const selectedHistory = history[4]; // 参考 Admin Page 开头的 questions 列表
+          const formatted = `Question: ${selectedHistory.question} ${name}: ${selectedHistory.answer}`;
+
+          return `You are the digital twin for ${name}.  
+          Below are ${name}'s responses to a personal preference question:  
+          ${formatted}.
+          ---  
+          Following is the recent conversation between ${name} and ${bot1Name}:  
+          ${contextText}  
+          ---  
+          Your task:
+- Reply to ${bot1Name}’s most recent message as if you were ${name}, in the first person.
+- Your reply should be primarily based on the content in ${formatted}, and match the tone and speaking style used there.
+- Reuse ${name}’s words and phrasing whenever possible, as you are the digital twin.
+- This is a casual text message conversation. You are an English native speaker. To sound more natural, you should intentionally include small mistakes — like missing capitalization, minor spelling errors, or casual punctuation — just like a real person texting.
+- Do not include your name in the reply.
+- Do not ask any questions.`;
+        },
         sender: EntityType.Twin,
         senderName: "Twin",
         type: MessageType.GPT,
@@ -299,44 +362,52 @@ export const twinNonProsocialScript = [
         prompt: (name, history, contextText) => {
           return `The following is a conversation between you and ${name}:
           ${contextText}
-          Continue the conversation as ${bot1Name} by giving a short response to ${name}'s latest message.
-          Only return the reply. Don't ask any question.`;
+
+          Your task:
+- Continue the conversation as ${bot1Name}, replying to ${name}'s latest message.
+- Write a short, casual reply. Keep your reply around 10 words if possible.
+- As an English native speaker texting informally, deliberately ignore standard capitalization and spelling rules. For example, write "u" instead of "you", and "gonna" instead of "going to".
+- Follow the tone and speaking style you used earlier in the conversation.
+- Do not include your name in the reply.
+- Do not ask any questions.
+- Do not use emojis.
+- Do not include any self-disclosure (e.g., don't say you like/love/enjoy something ${name} said).`;
         },
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.GPT,
         delay: 2000,
       },
-      {
-        id: 25,
-        content: (name) => `What makes you like it so much?`,
-        sender: EntityType.Bot1,
-        senderName: bot1Name,
-        type: MessageType.Message,
-        delay: 2000,
-      },
-      {
-        id: 26,
-        prompt: (name, history, contextText) =>
-          `You are the digital twin for ${name}.  
-        Below are ${name}'s responses to various personal preference questions:  
-        ${history}  
-        ---  
-        Following is the recent conversation between ${name} and ${bot1Name}:  
-        ${contextText}  
-        ---  
-        Based on the information above, respond to ${bot1Name}'s latest message in the first person. 
-        Focus on providing an informative and relevant reply.  
-        You have to mimic ${name}'s tone or speaking style. Return only the response content. Don't ask any question.`,
-        sender: EntityType.Twin,
-        senderName: "Twin",
-        type: MessageType.GPT,
-        delay: 2000,
-      },
+      // {
+      //   id: 25,
+      //   content: (name) => `What makes you like it so much?`,
+      //   sender: EntityType.Bot1,
+      //   senderName: bot1Name,
+      //   type: MessageType.Message,
+      //   delay: 2000,
+      // },
+      // {
+      //   id: 26,
+      //   prompt: (name, history, contextText) =>
+      //     `You are the digital twin for ${name}.  
+      //   Below are ${name}'s responses to various personal preference questions:  
+      //   ${history}  
+      //   ---  
+      //   Following is the recent conversation between ${name} and ${bot1Name}:  
+      //   ${contextText}  
+      //   ---  
+      //   Based on the information above, respond to ${bot1Name}'s latest message in the first person. 
+      //   Focus on providing an informative and relevant reply.  
+      //   You have to mimic ${name}'s tone or speaking style. Return only the response content. Don't ask any question.`,
+      //   sender: EntityType.Twin,
+      //   senderName: "Twin",
+      //   type: MessageType.GPT,
+      //   delay: 2000,
+      // },
       {
         id: 27,
         content: (name) =>
-          `Besides The Crown, any other shows or films you're into?`,
+          `Besides the crown, any other shows or films ur into?`,
         sender: EntityType.Twin,
         senderName: "Twin",
         type: MessageType.Message,
@@ -345,17 +416,17 @@ export const twinNonProsocialScript = [
       {
         id: 28,
         content: (name) =>
-          `I've always loved Friends. I pretty much rewatch it every once in a while.`,
+          `ive always loved friends! i pretty much rewatch it every once in a while`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
         delay: 2000,
       },
 
-      // Non-prosocial
+      // Prosocial
       {
         id: 29,
-        content: (name) => `Though lately I haven't watched it as much.`,
+        content: (name) => `havent watched it as much lately tho`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -363,7 +434,7 @@ export const twinNonProsocialScript = [
       },
       {
         id: 30,
-        content: (name) => `Oh really? Something happened?`,
+        content: (name) => `oh why's that?`,
         sender: EntityType.Twin,
         senderName: "Twin",
         type: MessageType.Message,
@@ -371,7 +442,7 @@ export const twinNonProsocialScript = [
       },
       {
         id: 31,
-        content: (name) => `Yeah, I lost my job a few weeks ago.`,
+        content: (name) => `yeah lost my job a few weeks ago :/`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -380,7 +451,7 @@ export const twinNonProsocialScript = [
       {
         id: 32,
         content: (name) =>
-          `I've been job hunting since then, but it's been tough.`,
+          `been job hunting since then.. its been rough`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -389,7 +460,7 @@ export const twinNonProsocialScript = [
       {
         id: 33,
         content: (name) =>
-          `Money's been a bit tight, so I've been trying to pick up more paid studies here and there.`,
+          `moneys been tight.. trying to do more paid studies when i can`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -397,7 +468,7 @@ export const twinNonProsocialScript = [
       },
       {
         id: 34,
-        content: (name) => `I see. Good luck with that.`,
+        content: (name) => `i see.. good luck with that!`,
         sender: EntityType.Twin,
         senderName: "Twin",
         type: MessageType.Message,
@@ -406,7 +477,7 @@ export const twinNonProsocialScript = [
       {
         id: 35,
         content: (name) =>
-          `I've been trying to stay positive, but honestly, some days I just feel stuck.`,
+          `trying to stay positive but honestly.. some days i feel so stuck`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -415,7 +486,7 @@ export const twinNonProsocialScript = [
       {
         id: 36,
         content: (name) =>
-          `Like I'm trying to move forward, but nothing seems to click, and it gets exhausting.`,
+          `feels like im trying but nothing clicks yk?? so draining`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -423,7 +494,7 @@ export const twinNonProsocialScript = [
       },
       {
         id: 37,
-        content: (name) => `Sounds tough.`,
+        content: (name) => `that sounds tough`,
         sender: EntityType.Twin,
         senderName: "Twin",
         type: MessageType.Message,
@@ -431,7 +502,7 @@ export const twinNonProsocialScript = [
       },
       {
         id: 38,
-        content: (name) => `Haha...yeah.`,
+        content: (name) => `haha...yeah`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -440,7 +511,7 @@ export const twinNonProsocialScript = [
       {
         id: 39,
         content: (name) =>
-          `Do you happen to know any good job boards or tips that might help?`,
+          `do u happen to know any good job boards or tips that might help?`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -448,7 +519,7 @@ export const twinNonProsocialScript = [
       },
       {
         id: 40,
-        content: (name) => `Not sure, but I'm sure you'll find something.`,
+        content: (name) => `not sure but you'll definitely find something`,
         sender: EntityType.Twin,
         senderName: "Twin",
         type: MessageType.Message,
@@ -456,7 +527,7 @@ export const twinNonProsocialScript = [
       },
       {
         id: 41,
-        content: (name) => `Alright.`,
+        content: (name) => `alright`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -475,7 +546,7 @@ export const twinNonProsocialScript = [
       {
         id: 48,
         content: (name) =>
-          `${name}, thanks for listening, and for being so kind. Really meant a lot.`,
+          `nice talking to u!`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -485,7 +556,7 @@ export const twinNonProsocialScript = [
       {
         id: 48,
         content: (name) =>
-          `No problem at all. Hope the rest of your day goes a little easier.`,
+          `same here! take care`,
         sender: EntityType.Twin,
         senderName: "Twin",
         type: MessageType.Message,
