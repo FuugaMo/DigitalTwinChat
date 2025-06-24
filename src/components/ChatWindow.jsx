@@ -137,6 +137,7 @@ function ChatWindow(props) {
         updateData.avatar = avatarFile ? avatarUrl : null;
         updateData.isTwin = isTwin;
         updateData.prosocialStatus = prosocialStatus;
+        updateData.isAssignCompleted = false;
       } else {
         const data = existingDoc.data();
 
@@ -146,6 +147,8 @@ function ChatWindow(props) {
         if (data.isTwin === undefined) updateData.isTwin = isTwin;
         if (data.prosocialStatus === undefined)
           updateData.prosocialStatus = prosocialStatus;
+        if (data.isAssignCompleted === undefined)
+          updated.isAssignCompleted = false;
       }
 
       if (Object.keys(updateData).length > 0) {
@@ -377,13 +380,13 @@ function ChatWindow(props) {
         // 尝试从 Storage 获取 avatar
         if (!avatar && isTwin) {
           const url = await fetchAvatarFromStorage(userId);
+          console.log(url);
           setAvatar(url || "/nodebox/static/icons/bot1logo.png");
         }
       }
 
-      if (isReplayMode && userId.endsWith("-A")) {
-        const baseUserId = userId.slice(0, -2);
-        await loadReplayUserData(baseUserId);
+      if (isReplayMode) {
+        await loadReplayUserData(userId);
       } else {
         const hasMessages = await getUserDataFromDatabase();
         if (!hasMessages) {
@@ -405,9 +408,23 @@ function ChatWindow(props) {
 
   // 测试用：重置用户状态
   async function test_reset() {
-    await setDoc(doc(db, "users", userId), { step: 0 });
+    await setDoc(doc(db, "users", userId), { step: 0 }, { merge: true });
     setMessages([]);
     setConversationStep(1);
+  }
+
+  async function resetIsAssignCompleted() {
+    if (!userId) {
+      console.error("❌ resetIsAssignCompleted 缺少 userId");
+      return;
+    }
+
+    await setDoc(
+      doc(db, "users", userId),
+      { isAssignCompleted: false },
+      { merge: true }
+    );
+    console.log(`✅ 已重置 ${userId} 的 isAssignCompleted = false`);
   }
 
   // 用户提交消息的逻辑
@@ -603,6 +620,13 @@ function ChatWindow(props) {
             onClick={props.logoutHandler}
           >
             Logout
+          </Button>
+          <Button
+            variant="outlined"
+            color="secondary"
+            onClick={resetIsAssignCompleted}
+          >
+            Reset isAssignCompleted
           </Button>
         </div>
       </div>

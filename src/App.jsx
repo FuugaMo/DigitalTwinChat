@@ -139,54 +139,54 @@ export default function App() {
       setLoading(false);
     }
 
-    if (id.endsWith("-A")) {
-      const baseId = id.slice(0, -2);
+    // if (id.endsWith("-A")) {
+    //   const baseId = id.slice(0, -2);
 
-      const userDoc = await getDoc(doc(db, "users", baseId));
-      if (!userDoc.exists()) {
-        alert(`Can't find user ${baseId}`);
-        return;
-      }
+    //   const userDoc = await getDoc(doc(db, "users", baseId));
+    //   if (!userDoc.exists()) {
+    //     alert(`Can't find user ${baseId}`);
+    //     return;
+    //   }
 
-      const userData = userDoc.data();
-      const isTwinUser = userData.isTwin === 1;
-      const isProsocialUser =
-        userData.prosocialStatus === 1
-          ? 1
-          : userData.prosocialStatus === -1
-          ? -1
-          : 0;
+    //   const userData = userDoc.data();
+    //   const isTwinUser = userData.isTwin === 1;
+    //   const isProsocialUser =
+    //     userData.prosocialStatus === 1
+    //       ? 1
+    //       : userData.prosocialStatus === -1
+    //       ? -1
+    //       : 0;
 
-      // 校验 code 是否正确
-      let expectedCode = null;
+    //   // 校验 code 是否正确
+    //   let expectedCode = null;
 
-      if (isProsocialUser === 1) {
-        expectedCode = PROSOCIAL_CODE;
-      } else {
-        expectedCode = NON_PROSOCIAL_CODE;
-      }
+    //   if (isProsocialUser === 1) {
+    //     expectedCode = PROSOCIAL_CODE;
+    //   } else {
+    //     expectedCode = NON_PROSOCIAL_CODE;
+    //   }
 
-      // isTwin needs to be fetched from firebase
+    //   // isTwin needs to be fetched from firebase
 
-      if (enteredCode !== expectedCode) {
-        alert("Wrong password.");
-        return;
-      }
+    //   if (enteredCode !== expectedCode) {
+    //     alert("Wrong password.");
+    //     return;
+    //   }
 
-      setConnectId(id);
-      setIsReplayMode(true);
-      setIsTwin(isTwinUser ? 1 : 0);
-      setProsocialStatus(isProsocialUser);
+    //   setConnectId(id);
+    //   setIsReplayMode(true);
+    //   setIsTwin(isTwinUser ? 1 : 0);
+    //   setProsocialStatus(isProsocialUser);
 
-      if (userData.name && userData.avatar) {
-        setName(userData.name);
-        setAvatar(userData.avatar);
-      } else {
-        setName("");
-        setAvatar(null);
-      }
-      return;
-    }
+    //   if (userData.name && userData.avatar) {
+    //     setName(userData.name);
+    //     setAvatar(userData.avatar);
+    //   } else {
+    //     setName("");
+    //     setAvatar(null);
+    //   }
+    //   return;
+    // }
 
     if (id.length !== CONNECT_ID_LENGTH) {
       alert("Please input a valid connect ID");
@@ -229,6 +229,13 @@ export default function App() {
         setName("");
         setAvatar(null);
       }
+
+      // 判断是否进入 Replay 模式（回放）
+      if (userData.isAssignCompleted === true) {
+        setIsReplayMode(true);
+      } else {
+        setIsReplayMode(false);
+      }
     } else {
       // 用户不存在，按输入密码确定组别，允许新建
       if (enteredCode === PROSOCIAL_CODE) {
@@ -243,6 +250,7 @@ export default function App() {
       setIsTwin(1);
       setName("");
       setAvatar(null);
+      setIsReplayMode(false);
     }
     setConnectId(id);
     setCode(enteredCode);
@@ -287,24 +295,6 @@ export default function App() {
                 setCode(-1);
                 setIsTwin(0);
                 setProsocialStatus(0); // 无所谓
-              }}
-            />
-          ) : connectId.endsWith("-A") ? (
-            <ChatWindow
-              userId={connectId}
-              name={name}
-              avatar={avatar}
-              code={code}
-              isTwin={isTwin}
-              isReplayMode={isReplayMode}
-              logoutHandler={() => {
-                setConnectId("");
-                setName("");
-                setAvatar(null);
-                setCode(-1);
-                setIsTwin(1);
-                setProsocialStatus(1);
-                setIsReplayMode(false);
               }}
             />
           ) : connectId === "" ? (

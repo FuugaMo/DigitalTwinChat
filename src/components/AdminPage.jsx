@@ -150,6 +150,7 @@ const handleProcess = async (resumeFromUserId = null) => {
       );
       const filledMessages = await stepwiseGPTConversation(template, userInfo);
       await saveChatToDB(userId, filledMessages);
+      await markAssignCompleted(userId); // ✅ 标记为已完成
       await setLastProcessedUser(userId);
       setStatus(`✅ 已处理 ${i + 1}/${userIds.length} 个用户：${userId}`);
     } catch (err) {
@@ -350,17 +351,22 @@ const stepwiseGPTConversation = async (template, userInfo) => {
 };
 
 /**
- * 将 messageGroups 写入 Firestore：chats/{userId}-A
+ * 将 messageGroups 写入 Firestore：chats/{userId}
  */
 const saveChatToDB = async (userId, messages) => {
-  await setDoc(doc(db, "chats", `${userId}-A`), {
+  await setDoc(doc(db, "chats", `${userId}`), {
     messages: messages,
     generatedAt: new Date().toISOString(),
   });
 };
 
+const markAssignCompleted = async (userId) => {
+  const userRef = doc(db, "users", userId);
+  await setDoc(userRef, { isAssignCompleted: true }, { merge: true });
+};
+
 /**
- * 管理员主界面：点击生成全部 -A 对话
+ * 管理员主界面：点击生成全部对话
  */
 const AdminPage = () => {
   const [status, setStatus] = useState("Waiting to start...");
@@ -382,6 +388,7 @@ const AdminPage = () => {
       );
       const filledMessages = await stepwiseGPTConversation(template, userInfo);
       await saveChatToDB(singleId, filledMessages);
+      await markAssignCompleted(singleId); // ✅ 标记为已完成
       setStatus(`✅ Single user processed, ID: ${singleId}`);
     } catch (err) {
       setStatus(`❌ Error: ${err.message}`);
@@ -400,6 +407,7 @@ const AdminPage = () => {
       ); // 获取对话启动模板
       const filledMessages = await stepwiseGPTConversation(template, userInfo);
       await saveChatToDB(userId, filledMessages);
+      await markAssignCompleted(userId); // ✅ 标记为已完成
       processed++;
       setStatus(`✅ 已处理 ${processed} 个用户：${userId}`);
     }
@@ -409,7 +417,7 @@ const AdminPage = () => {
 
   return (
     <div style={{ padding: 40 }}>
-      <h2>管理员面板：批量或单个生成 -A 脚本</h2>
+      <h2>管理员面板：批量或单个生成脚本</h2>
       <div style={{ marginBottom: 20 }}>
         <input
           type="text"
