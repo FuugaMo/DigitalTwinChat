@@ -256,7 +256,7 @@ function ChatWindow(props) {
     // 基本参数设置
     const minDelay = 1000; // 最小延迟时间，防止过短内容没有延迟
     const maxDelay = 7000; // 最大延迟时间，防止过长内容延迟太久
-    const delayPerChar = 10; // 每字符增加的基础延迟时间(毫秒)
+    const delayPerChar = 20; // 每字符增加的基础延迟时间(毫秒)
     const randomFactor = 0.3; // 随机波动因子，使打字速度更自然
 
     // 计算内容长度
@@ -283,7 +283,14 @@ function ChatWindow(props) {
     const timer = (ms) => new Promise((res) => setTimeout(res, ms));
 
     for (let i = 0; i < allMessages.length; i++) {
-      const { content, sender, delay = 0, id, senderName } = allMessages[i];
+      const {
+        content,
+        sender,
+        delay = 0,
+        id,
+        senderName,
+        type,
+      } = allMessages[i];
 
       // 计算基于内容长度的动态延迟
       const dynamicDelay = calculateTypingDelay(content, delay);
@@ -301,10 +308,12 @@ function ChatWindow(props) {
         setMessages((prev) => [
           ...prev,
           {
-            sender: EntityType.Bot,
+            sender: EntityType.Bot1,
             content: content,
             id: id,
             senderName: senderName,
+            delay: delay,
+            type: type,
           },
         ]);
       }
@@ -581,6 +590,7 @@ function ChatWindow(props) {
           addMessage={handleAddUserMessage}
           blockUserMessages={blockUserMessages}
           displayTyping={isDisplayTyping}
+          isReplayMode={isReplayMode}
         />
         <br />
         <div style={{ display: "flex", gap: "1rem" }}>
