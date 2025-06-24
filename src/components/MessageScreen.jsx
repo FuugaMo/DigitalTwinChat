@@ -17,11 +17,12 @@ function MessageScreen(props) {
   };
 
   useEffect(() => {
-    scrollToBottom();
+    if (!props.isReplayMode) {
+      scrollToBottom();
+    }
   });
 
   // console.log(`MessageScreen ${props.name}`);
-
   return (
     <div
       style={{
@@ -34,7 +35,7 @@ function MessageScreen(props) {
       {/* <div className="messageImage">
         <img src={`/images/${imagePath}`} width="250" height="325" />
       </div> */}
-      <div style={{ width: "90%", maxWidth: 2000, minWidth: 600 }}>
+      <div style={{ width: "90%", maxWidth: 2000, mainWidth: 600 }}>
         <div className="messageScreen">
           <SimpleBar
             style={{

@@ -5,6 +5,7 @@ import bot3logo from "../../static/icons/bot3logo.png";
 import bot4logo from "../../static/icons/bot4logo.png";
 import bot5logo from "../../static/icons/bot5logo.png";
 import hostlogo from "../../static/icons/hostlogo.png";
+// import assistantlogo from "../../static/icons/assistantlogo.png";
 import EntityType from "../enums/EntityTypes";
 import MessageType from "../enums/MessageTypes";
 
@@ -24,9 +25,9 @@ function MessageFromBot(props) {
               ? bot4logo
               : props.message.sender === EntityType.Bot5
               ? bot5logo
-              : props.message.sender === EntityType.Assistant
-              ? hostlogo // to-do：替换成助理头像吧
-              : hostlogo
+              : // : props.message.sender === EntityType.Assistant
+                // ? assistantlogo // to-do：替换成助理头像吧
+                hostlogo
           }
           alt={
             props.message.sender === EntityType.Bot1 ? "Chatbot 1" : "Chatbot 2"
