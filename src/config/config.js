@@ -23,4 +23,4 @@ export const API_BASE = import.meta.env.VITE_API_BASE;
 
 // connect id Length
 export const CONNECT_ID_LENGTH = 3;
-export const MAX_CONNECT_ID_LENGTH = 34; // + '-A'
+export const MAX_CONNECT_ID_LENGTH = 32;
