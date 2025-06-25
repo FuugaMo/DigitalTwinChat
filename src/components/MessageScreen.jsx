@@ -16,7 +16,7 @@ function MessageScreen(props) {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" }); // 让最后一条消息出现在可视区域内
   };
 
-  const simpleBarRef = useRef(null); // 获取 simpleBar 组件实例
+  const simpleBarRef = useRef(null); // 获取 simpleBar 组件实例。用于监听窗口是否在底部
   const [atBottom, setAtBottom] = useState(true);
 
   const handleScroll = () => {
