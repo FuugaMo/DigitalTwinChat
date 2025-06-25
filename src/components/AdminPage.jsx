@@ -182,6 +182,30 @@ const getAllUserData = async () => {
   return userData;
 };
 
+const rootCollections = ["users", "chats", "meta"];
+
+const exportAllRootCollections = async () => {
+  const result = {};
+
+  for (const colName of rootCollections) {
+    const colRef = collection(db, colName);
+    const snapshot = await getDocs(colRef);
+
+    result[colName] = {};
+
+    for (const docSnap of snapshot.docs) {
+      const docId = docSnap.id;
+      const data = docSnap.data();
+
+      // 如果需要递归导出子集合，可以在这里加递归函数（下方示例）
+
+      result[colName][docId] = data;
+    }
+  }
+
+  return result;
+};
+
 const getUserDataById = async (userId) => {
   const docRef = doc(db, "users", userId);
   const docSnap = await getDoc(docRef);
@@ -410,25 +434,75 @@ const AdminPage = () => {
     setStatus("🎉 所有可处理用户处理完毕！");
   };
 
-  // const handleProcess = async () => {
-  //   setStatus("读取用户数据中...");
-  //   const users = await getAllUserData();
-  //   let processed = 0;
+  const handleExportData = async () => {
+    setStatus("📦 正在导出所有用户数据...");
+    try {
+      const userData = await exportAllRootCollections();
 
-  //   for (const [userId, userInfo] of Object.entries(users)) {
-  //     const template = selectTemplate(
-  //       userInfo.isTwin,
-  //       userInfo.prosocialStatus
-  //     ); // 获取对话启动模板
-  //     const filledMessages = await stepwiseGPTConversation(template, userInfo);
-  //     await saveChatToDB(userId, filledMessages);
-  //     await markAssignCompleted(userId); // ✅ 标记为已完成
-  //     processed++;
-  //     setStatus(`✅ 已处理 ${processed} 个用户：${userId}`);
-  //   }
+      // 转成 JSON 字符串
+      const jsonStr = JSON.stringify(userData, null, 2);
 
-  //   setStatus("🎉 全部用户处理完成！");
-  // };
+      // 生成 Blob 并触发浏览器下载
+      const blob = new Blob([jsonStr], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "firestore_users_backup.json";
+      a.click();
+
+      URL.revokeObjectURL(url); // 清理 URL 对象
+      setStatus("✅ 数据已成功导出为 JSON 文件！");
+      console.log("📦 导出的数据：", userData);
+    } catch (err) {
+      console.error("导出失败：", err);
+      setStatus(`❌ 导出失败：${err.message}`);
+    }
+  };
+
+  const handleFileUpload = async (event) => {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    setStatus("📂 正在读取上传的文件...");
+    try {
+      const text = await file.text();
+      const parsedData = JSON.parse(text);
+
+      setStatus("✅ 文件解析成功，正在写入 Firestore...");
+      await writeDataToFirestore(parsedData);
+      setStatus("✅ 数据已成功上传并写入！");
+    } catch (err) {
+      console.error("上传失败：", err);
+      setStatus(`❌ 上传失败：${err.message}`);
+    }
+  };
+
+  const writeDataToFirestore = async (data) => {
+    for (const [userId, userData] of Object.entries(data)) {
+      const userRef = doc(db, "users", userId);
+
+      // 拆分 user 主数据 和 messages 子集合
+      const { history, ...userInfo } = userData;
+
+      // 写入主文档（覆盖）
+      await setDoc(userRef, userInfo);
+
+      // 清空并重新写 messages 子集合（不做 merge）
+      const messagesColRef = collection(db, "users", userId, "messages");
+
+      // 先获取已有消息并删除（如果你想真正“覆盖”）
+      const existing = await getDocs(messagesColRef);
+      const deletePromises = existing.docs.map((d) => deleteDoc(d.ref));
+      await Promise.all(deletePromises);
+
+      // 再插入新的 history
+      const writePromises = (history || []).map((msgData, index) =>
+        setDoc(doc(messagesColRef, `${index}`), msgData)
+      );
+      await Promise.all(writePromises);
+    }
+  };
 
   return (
     <div style={{ padding: 40 }}>
@@ -456,6 +530,12 @@ const AdminPage = () => {
       >
         ⏩ 从上次中断处继续
       </button>
+      <button onClick={handleExportData}>📁 导出所有用户数据为 JSON</button>
+      <input
+        type="file"
+        accept="application/json"
+        onChange={handleFileUpload}
+      />
       <p>{status}</p>
     </div>
   );
