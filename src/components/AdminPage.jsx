@@ -182,25 +182,50 @@ const getAllUserData = async () => {
   return userData;
 };
 
-const rootCollections = ["users", "chats", "meta"];
-
-const exportAllRootCollections = async () => {
+// 用于递归导出任意集合
+const exportCollection = async (colRef) => {
+  const snapshot = await getDocs(colRef);
   const result = {};
 
-  for (const colName of rootCollections) {
-    const colRef = collection(db, colName);
-    const snapshot = await getDocs(colRef);
+  for (const docSnap of snapshot.docs) {
+    const docId = docSnap.id;
+    const docData = docSnap.data();
+    const docResult = { ...docData };
 
-    result[colName] = {};
+    // 递归导出子集合（如有）
+    const subcollections = await getDocs(collection(colRef, docId));
+    const subCollectionList = await colRef.firestore.listCollections?.(); // fallback if above fails
 
-    for (const docSnap of snapshot.docs) {
-      const docId = docSnap.id;
-      const data = docSnap.data();
+    const subColRefs = (await colRef.firestore.listCollections)
+      ? await colRef.firestore
+          .collection(colRef.path + "/" + docId)
+          .listCollections()
+      : [];
 
-      // 如果需要递归导出子集合，可以在这里加递归函数（下方示例）
-
-      result[colName][docId] = data;
+    if (subColRefs.length > 0) {
+      docResult["__subcollections__"] = {};
+      for (const subCol of subColRefs) {
+        docResult["__subcollections__"][subCol.id] = await exportCollection(
+          subCol
+        );
+      }
     }
+
+    result[docId] = docResult;
+  }
+
+  return result;
+};
+
+// 导出所有根集合
+const exportAllFirestoreData = async () => {
+  const db = getFirestore();
+  const rootCollections = await db.listCollections();
+
+  const result = {};
+
+  for (const col of rootCollections) {
+    result[col.id] = await exportCollection(col);
   }
 
   return result;
@@ -435,25 +460,20 @@ const AdminPage = () => {
   };
 
   const handleExportData = async () => {
-    setStatus("📦 正在导出所有用户数据...");
+    setStatus("📦 正在递归导出所有集合...");
     try {
-      const userData = await exportAllRootCollections();
-
-      // 转成 JSON 字符串
-      const jsonStr = JSON.stringify(userData, null, 2);
-
-      // 生成 Blob 并触发浏览器下载
+      const data = await exportAllFirestoreData();
+      const jsonStr = JSON.stringify(data, null, 2);
       const blob = new Blob([jsonStr], { type: "application/json" });
       const url = URL.createObjectURL(blob);
 
       const a = document.createElement("a");
       a.href = url;
-      a.download = "firestore_users_backup.json";
+      a.download = "firestore_full_backup.json";
       a.click();
+      URL.revokeObjectURL(url);
 
-      URL.revokeObjectURL(url); // 清理 URL 对象
-      setStatus("✅ 数据已成功导出为 JSON 文件！");
-      console.log("📦 导出的数据：", userData);
+      setStatus("✅ 全部数据导出完成！");
     } catch (err) {
       console.error("导出失败：", err);
       setStatus(`❌ 导出失败：${err.message}`);
@@ -478,29 +498,32 @@ const AdminPage = () => {
     }
   };
 
-  const writeDataToFirestore = async (data) => {
-    for (const [userId, userData] of Object.entries(data)) {
-      const userRef = doc(db, "users", userId);
+  const writeDataToFirestore = async (data, parentPath = "") => {
+    for (const [collectionName, docs] of Object.entries(data)) {
+      for (const [docId, docData] of Object.entries(docs)) {
+        const fullPath = parentPath
+          ? `${parentPath}/${collectionName}/${docId}`
+          : `${collectionName}/${docId}`;
+        const docRef = doc(
+          db,
+          collectionName,
+          ...parentPath.split("/").filter(Boolean),
+          docId
+        );
 
-      // 拆分 user 主数据 和 messages 子集合
-      const { history, ...userInfo } = userData;
+        const { __subcollections__, ...pureDocData } = docData;
 
-      // 写入主文档（覆盖）
-      await setDoc(userRef, userInfo);
+        // 写入当前文档（覆盖）
+        await setDoc(docRef, pureDocData);
 
-      // 清空并重新写 messages 子集合（不做 merge）
-      const messagesColRef = collection(db, "users", userId, "messages");
-
-      // 先获取已有消息并删除（如果你想真正“覆盖”）
-      const existing = await getDocs(messagesColRef);
-      const deletePromises = existing.docs.map((d) => deleteDoc(d.ref));
-      await Promise.all(deletePromises);
-
-      // 再插入新的 history
-      const writePromises = (history || []).map((msgData, index) =>
-        setDoc(doc(messagesColRef, `${index}`), msgData)
-      );
-      await Promise.all(writePromises);
+        // 递归写入子集合
+        if (__subcollections__) {
+          await writeDataToFirestore(
+            __subcollections__,
+            `${parentPath ? parentPath + "/" : ""}${collectionName}/${docId}`
+          );
+        }
+      }
     }
   };
 
