@@ -308,10 +308,11 @@ function ChatWindow(props) {
         setTypingByUser(false);
         setIsDisplayTyping(true);
         await timer(dynamicDelay); // 使用动态计算的延迟
+        // console.log(`Chat Window sender: ${sender}`);
         setMessages((prev) => [
           ...prev,
           {
-            sender: EntityType.Bot1,
+            sender: sender,
             content: content,
             id: id,
             senderName: senderName,

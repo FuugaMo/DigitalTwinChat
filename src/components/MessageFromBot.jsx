@@ -10,20 +10,25 @@ import EntityType from "../enums/EntityTypes";
 import MessageType from "../enums/MessageTypes";
 
 function MessageFromBot(props) {
+  // console.log(
+  //   `MessageFromBot ${props.message.sender}, ${EntityType.Bot1} ${
+  //     props.message.sender == EntityType.Bot1
+  //   }`
+  // );
   return (
     <div className="message messageReceived">
       <div className="messageReceivedAvatarWrapper">
         <img
           src={
-            props.message.sender === EntityType.Bot1
+            props.message.sender === "Bot1"
               ? bot1logo
-              : props.message.sender === EntityType.Bot2
+              : props.message.sender === "Bot2"
               ? bot2logo
-              : props.message.sender === EntityType.Bot3
+              : props.message.sender === "Bot3"
               ? bot3logo
-              : props.message.sender === EntityType.Bot4
+              : props.message.sender === "Bot4"
               ? bot4logo
-              : props.message.sender === EntityType.Bot5
+              : props.message.sender === "Bot5"
               ? bot5logo
               : // : props.message.sender === EntityType.Assistant
                 // ? assistantlogo // to-do：替换成助理头像吧
