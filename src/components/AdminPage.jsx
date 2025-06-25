@@ -463,11 +463,25 @@ const AdminPage = () => {
     setStatus("📦 正在导出数据...");
     try {
       const data = await exportAllRootCollections();
-      setStatus("✅ 导出成功！");
-      console.log("导出数据", data);
-      // 这里可以做下载等操作
-    } catch (error) {
-      setStatus(`❌ 导出失败：${error.message}`);
+
+      // ⬇️ 将数据转为 JSON 字符串
+      const jsonStr = JSON.stringify(data, null, 2);
+
+      // ⬇️ 创建 Blob 对象
+      const blob = new Blob([jsonStr], { type: "application/json" });
+
+      // ⬇️ 创建下载链接并自动点击
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "firestore_backup.json";
+      a.click();
+      URL.revokeObjectURL(url); // 清理内存
+
+      setStatus("✅ 数据已成功导出并下载！");
+    } catch (err) {
+      console.error("导出失败：", err);
+      setStatus(`❌ 导出失败：${err.message}`);
     }
   };
 
