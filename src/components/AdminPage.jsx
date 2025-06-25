@@ -459,6 +459,18 @@ const AdminPage = () => {
     setStatus("🎉 所有可处理用户处理完毕！");
   };
 
+  const handleExport = async () => {
+    setStatus("📦 正在导出数据...");
+    try {
+      const data = await exportAllRootCollections();
+      setStatus("✅ 导出成功！");
+      console.log("导出数据", data);
+      // 这里可以做下载等操作
+    } catch (error) {
+      setStatus(`❌ 导出失败：${error.message}`);
+    }
+  };
+
   const exportAllRootCollections = async () => {
     const result = {};
 
@@ -578,9 +590,7 @@ const AdminPage = () => {
       >
         ⏩ 从上次中断处继续
       </button>
-      <button onClick={exportAllRootCollections}>
-        📁 导出所有用户数据为 JSON
-      </button>
+      <button onClick={handleExport}>📁 导出所有用户数据为 JSON</button>
       <input
         type="file"
         accept="application/json"
