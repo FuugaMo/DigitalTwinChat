@@ -11,16 +11,39 @@ import "../styles/MessageScreen.css";
 function MessageScreen(props) {
   let [imagePath, setImagePath] = useState("placeholder.png");
 
-  const messagesEndRef = useRef(null);
+  const messagesEndRef = useRef(null); // 创建了一个引用，指向了最后一条消息的 DOM 节点
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" }); // 让最后一条消息出现在可视区域内
+  };
+
+  const simpleBarRef = useRef(null); // 获取 simpleBar 组件实例。用于监听窗口是否在底部
+  const [atBottom, setAtBottom] = useState(true);
+
+  const handleScroll = () => {
+    // 监听滚动事件是否在底部
+    const scrollEl = simpleBarRef.current?.getScrollElement?.();
+    if (!scrollEl) return;
+
+    const isBottom =
+      scrollEl.scrollHeight - scrollEl.clientHeight - scrollEl.scrollTop < 10;
+
+    setAtBottom(isBottom);
   };
 
   useEffect(() => {
     if (!props.isReplayMode) {
-      scrollToBottom();
+      scrollToBottom(); // 正常聊天始终自动滚动
+      return;
     }
-  });
+
+    const scrollEl = simpleBarRef.current?.getScrollElement?.();
+    if (!scrollEl || !atBottom) return;
+
+    scrollEl.scrollTo({
+      top: scrollEl.scrollHeight,
+      behavior: "smooth",
+    });
+  }, [props.messages.length]);
 
   // console.log(`MessageScreen ${props.name}`);
   return (
@@ -41,6 +64,8 @@ function MessageScreen(props) {
             style={{
               height: 400,
             }}
+            onScrollCapture={handleScroll}
+            ref={simpleBarRef}
           >
             <div className={"messageListWrapper"}>
               {props.loading ? (
