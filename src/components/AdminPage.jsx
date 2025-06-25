@@ -127,40 +127,6 @@ const setLastProcessedUser = async (userId) => {
   await setDoc(docRef, { getLastProcessedUser: userId }, { merge: true });
 };
 
-const handleProcess = async (resumeFromUserId = null) => {
-  setStatus("Reading data from users...");
-  const users = await getAllUserData();
-
-  const userIds = Object.keys(users);
-  let startIndex = 0;
-
-  if (resumeFromUserId) {
-    const idx = userIds.indexOf(resumeFromUserId);
-    startIndex = idx >= 0 ? idx : 0;
-  }
-
-  for (let i = startIndex; i < userIds.length; i++) {
-    const userId = userIds[i];
-    const userInfo = users[userId];
-
-    try {
-      const template = selectTemplate(
-        userInfo.isTwin,
-        userInfo.prosocialStatus
-      );
-      const filledMessages = await stepwiseGPTConversation(template, userInfo);
-      await saveChatToDB(userId, filledMessages);
-      await markAssignCompleted(userId); // ✅ 标记为已完成
-      await setLastProcessedUser(userId);
-      setStatus(`✅ 已处理 ${i + 1}/${userIds.length} 个用户：${userId}`);
-    } catch (err) {
-      setStatus(`❌ 处理用户 ${userId} 时出错：${err.message}`);
-      break; // 中断处理
-    }
-  }
-  setStatus("🎉 所有可处理用户处理完毕！");
-};
-
 const callChatGPT = async (prompt) => {
   try {
     const response = await fetch(`${API_BASE}/chat`, {
@@ -173,19 +139,19 @@ const callChatGPT = async (prompt) => {
 
     if (!response.ok) {
       const err = await response.text();
-      console.error("❌ GPT API Error:", err);
-      return `（API Error: ${err.slice(0, 100)}）`;
+      throw new Error(err);
     }
 
     const data = await response.json();
-
     console.log(data.reply);
-
-    // 这里用 data.reply 而不是 data.choices
-    return data.reply || "（无返回内容）";
+    return data.reply || null;
   } catch (error) {
-    console.error("❌ 网络异常:", error);
-    return `（异常：${error.message}）`;
+    console.error(`❌ GPT 请求失败（第 ${retryCount + 1} 次）:`, error.message);
+    if (retryCount < 2) {
+      return await callChatGPT(prompt, retryCount + 1);
+    } else {
+      return null;
+    }
   }
 };
 
@@ -331,7 +297,11 @@ const stepwiseGPTConversation = async (template, userInfo) => {
 
         console.log(`🟡 Prompt:\n${prompt}`);
 
-        const aiResponse = await callChatGPT(prompt); // 不传 gptHistory 了
+        const aiResponse = await callChatGPT(prompt);
+        if (aiResponse === null) {
+          console.warn(`⚠️ GPT消息生成失败，终止本用户处理`);
+          return null; // 返回 null 表示失败
+        }
         console.log(`🟢 AI Response:\n${aiResponse}`);
 
         filled.prompt = prompt;
@@ -395,25 +365,70 @@ const AdminPage = () => {
     }
   };
 
-  const handleProcess = async () => {
-    setStatus("读取用户数据中...");
+  const handleProcess = async (resumeFromUserId = null) => {
+    setStatus("Reading data from users...");
     const users = await getAllUserData();
-    let processed = 0;
 
-    for (const [userId, userInfo] of Object.entries(users)) {
-      const template = selectTemplate(
-        userInfo.isTwin,
-        userInfo.prosocialStatus
-      ); // 获取对话启动模板
-      const filledMessages = await stepwiseGPTConversation(template, userInfo);
-      await saveChatToDB(userId, filledMessages);
-      await markAssignCompleted(userId); // ✅ 标记为已完成
-      processed++;
-      setStatus(`✅ 已处理 ${processed} 个用户：${userId}`);
+    const userIds = Object.keys(users);
+    let startIndex = 0;
+
+    if (resumeFromUserId) {
+      const idx = userIds.indexOf(resumeFromUserId);
+      startIndex = idx >= 0 ? idx : 0;
     }
 
-    setStatus("🎉 全部用户处理完成！");
+    for (let i = startIndex; i < userIds.length; i++) {
+      const userId = userIds[i];
+      const userInfo = users[userId];
+      console.log(`Processing ${userId}`);
+
+      try {
+        const template = selectTemplate(
+          userInfo.isTwin,
+          userInfo.prosocialStatus
+        );
+        const filledMessages = await stepwiseGPTConversation(
+          template,
+          userInfo
+        );
+
+        if (!filledMessages) {
+          // 💥 GPT 对话失败，写入失败标记后终止
+          await setLastProcessedUser(userId);
+          setStatus(`❌ 处理用户 ${userId} 时 GPT 生成失败，已记录中断位置。`);
+          break;
+        }
+        await saveChatToDB(userId, filledMessages);
+        await markAssignCompleted(userId); // ✅ 标记为已完成
+        await setLastProcessedUser(userId);
+        setStatus(`✅ 已处理 ${i + 1}/${userIds.length} 个用户：${userId}`);
+      } catch (err) {
+        setStatus(`❌ 处理用户 ${userId} 时出错：${err.message}`);
+        break; // 中断处理
+      }
+    }
+    setStatus("🎉 所有可处理用户处理完毕！");
   };
+
+  // const handleProcess = async () => {
+  //   setStatus("读取用户数据中...");
+  //   const users = await getAllUserData();
+  //   let processed = 0;
+
+  //   for (const [userId, userInfo] of Object.entries(users)) {
+  //     const template = selectTemplate(
+  //       userInfo.isTwin,
+  //       userInfo.prosocialStatus
+  //     ); // 获取对话启动模板
+  //     const filledMessages = await stepwiseGPTConversation(template, userInfo);
+  //     await saveChatToDB(userId, filledMessages);
+  //     await markAssignCompleted(userId); // ✅ 标记为已完成
+  //     processed++;
+  //     setStatus(`✅ 已处理 ${processed} 个用户：${userId}`);
+  //   }
+
+  //   setStatus("🎉 全部用户处理完成！");
+  // };
 
   return (
     <div style={{ padding: 40 }}>
