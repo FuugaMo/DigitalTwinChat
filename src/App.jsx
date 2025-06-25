@@ -206,20 +206,22 @@ export default function App() {
           ? -1
           : 0;
 
-      // 判断密码是否匹配(不再区分isTwin)
-      let expectedCode = null;
-      if (isProsocialUser === 1) {
-        expectedCode = PROSOCIAL_CODE;
-      } else {
-        expectedCode = NON_PROSOCIAL_CODE;
+      // 如果还没生成聊天记录，则还未进入 phase 2, 就判断密码是否匹配(不再区分isTwin)
+      if (userData.isAssignCompleted === false) {
+        let expectedCode = null;
+        if (isProsocialUser === 1) {
+          expectedCode = PROSOCIAL_CODE;
+        } else {
+          expectedCode = NON_PROSOCIAL_CODE;
+        }
+
+        if (enteredCode !== expectedCode) {
+          alert("Wrong password.");
+          return;
+        }
       }
 
-      if (enteredCode !== expectedCode) {
-        alert("Wrong password.");
-        return;
-      }
-
-      setIsTwin(1);
+      setIsTwin(isTwinUser);
       setProsocialStatus(isProsocialUser);
 
       if (userData.name) {
