@@ -8,7 +8,7 @@ import {
   bot5Name,
 } from "./constants/botNames";
 
-import { infoCollection } from "./InfoCollection";
+import { infoCollection } from "./infoCollection";
 import { infoCollectionWithout } from "./infoCollectionWithout";
 import { message5BotGroups } from "./messages5bots";
 
