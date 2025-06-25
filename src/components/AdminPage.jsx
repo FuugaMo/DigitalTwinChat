@@ -459,25 +459,49 @@ const AdminPage = () => {
     setStatus("🎉 所有可处理用户处理完毕！");
   };
 
-  const handleExportData = async () => {
-    setStatus("📦 正在递归导出所有集合...");
-    try {
-      const data = await exportAllFirestoreData();
-      const jsonStr = JSON.stringify(data, null, 2);
-      const blob = new Blob([jsonStr], { type: "application/json" });
-      const url = URL.createObjectURL(blob);
+  const exportAllRootCollections = async () => {
+    const result = {};
 
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = "firestore_full_backup.json";
-      a.click();
-      URL.revokeObjectURL(url);
+    // 导出 users 集合，附带 messages 子集合
+    const usersCol = collection(db, "users");
+    const userSnapshots = await getDocs(usersCol);
+    result["users"] = {};
 
-      setStatus("✅ 全部数据导出完成！");
-    } catch (err) {
-      console.error("导出失败：", err);
-      setStatus(`❌ 导出失败：${err.message}`);
+    for (const docSnap of userSnapshots.docs) {
+      const userId = docSnap.id;
+      const userData = docSnap.data();
+
+      const messagesCol = collection(db, "users", userId, "messages");
+      const messageSnapshots = await getDocs(messagesCol);
+
+      const messages = {};
+      for (const msgDoc of messageSnapshots.docs) {
+        messages[msgDoc.id] = msgDoc.data();
+      }
+
+      result["users"][userId] = {
+        ...userData,
+        messages,
+      };
     }
+
+    // 导出 chats 集合
+    const chatsCol = collection(db, "chats");
+    const chatSnapshots = await getDocs(chatsCol);
+    result["chats"] = {};
+    for (const docSnap of chatSnapshots.docs) {
+      result["chats"][docSnap.id] = docSnap.data();
+    }
+
+    // 导出 meta 集合
+    const metaCol = collection(db, "meta");
+    const metaSnapshots = await getDocs(metaCol);
+    result["meta"] = {};
+    for (const docSnap of metaSnapshots.docs) {
+      result["meta"][docSnap.id] = docSnap.data();
+    }
+
+    return result;
   };
 
   const handleFileUpload = async (event) => {
@@ -498,30 +522,31 @@ const AdminPage = () => {
     }
   };
 
-  const writeDataToFirestore = async (data, parentPath = "") => {
+  const writeDataToFirestore = async (data) => {
     for (const [collectionName, docs] of Object.entries(data)) {
       for (const [docId, docData] of Object.entries(docs)) {
-        const fullPath = parentPath
-          ? `${parentPath}/${collectionName}/${docId}`
-          : `${collectionName}/${docId}`;
-        const docRef = doc(
-          db,
-          collectionName,
-          ...parentPath.split("/").filter(Boolean),
-          docId
-        );
+        const docRef = doc(db, collectionName, docId);
 
-        const { __subcollections__, ...pureDocData } = docData;
+        // 特殊处理 users → messages
+        if (collectionName === "users" && docData.messages) {
+          const { messages, ...userInfo } = docData;
 
-        // 写入当前文档（覆盖）
-        await setDoc(docRef, pureDocData);
+          // 覆盖写入用户主文档
+          await setDoc(docRef, userInfo);
 
-        // 递归写入子集合
-        if (__subcollections__) {
-          await writeDataToFirestore(
-            __subcollections__,
-            `${parentPath ? parentPath + "/" : ""}${collectionName}/${docId}`
+          // 删除原有子集合
+          const messagesColRef = collection(db, "users", docId, "messages");
+          const existingMsgs = await getDocs(messagesColRef);
+          await Promise.all(existingMsgs.docs.map((d) => deleteDoc(d.ref)));
+
+          // 写入新 messages
+          const writeMsgPromises = Object.entries(messages).map(
+            ([msgId, msgData]) => setDoc(doc(messagesColRef, msgId), msgData)
           );
+          await Promise.all(writeMsgPromises);
+        } else {
+          // 其他集合直接覆盖写入
+          await setDoc(docRef, docData);
         }
       }
     }
@@ -553,7 +578,9 @@ const AdminPage = () => {
       >
         ⏩ 从上次中断处继续
       </button>
-      <button onClick={handleExportData}>📁 导出所有用户数据为 JSON</button>
+      <button onClick={exportAllRootCollections}>
+        📁 导出所有用户数据为 JSON
+      </button>
       <input
         type="file"
         accept="application/json"
