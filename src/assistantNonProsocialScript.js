@@ -533,7 +533,7 @@ export const assistantNonProsocialScript = [
         delay: 2000,
       },
       {
-        id: 48,
+        id: 49,
         content: (name) =>
           `nice talking to u!`,
         sender: EntityType.Bot1,
@@ -543,13 +543,30 @@ export const assistantNonProsocialScript = [
       },
       //
       {
-        id: 48,
+        id: 50,
         content: (name) =>
           `I feel the same. Wishing you all the best.`,
         sender: EntityType.Assistant,
         senderName: "Assistant",
         type: MessageType.Message,
         delay: 2000,
+      },
+      {
+        id: 51,
+        content: (name) => `====== END OF CONVERSATION ======`,
+        sender: EntityType.Host,
+        senderName: "ConvoAI",
+        type: MessageType.Message,
+        delay: 3.0,
+      },
+      {
+        id: 52,
+        content: (name) =>
+          `This is the complete conversation between your AI agent and another participant. Please return to the survey page and enter this password to continue: 9F3K2`,
+        sender: EntityType.Host,
+        senderName: "ConvoAI",
+        type: MessageType.Message,
+        delay: 3.0,
       },
     ],
   },

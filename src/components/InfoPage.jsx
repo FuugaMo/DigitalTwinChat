@@ -119,7 +119,8 @@ export default function InfoPage({ handleInfoSubmit, isTwin }) {
               sx={{ mb: 4, px: 2 }}
             >
               Please upload the profile picture and name you use on messenging
-              apps (e.g., WhatsApp). We will keep your information confidential.
+              apps (e.g., WhatsApp). We will use your information only for
+              research purposes.
             </Typography>
 
             {!!isTwin && (

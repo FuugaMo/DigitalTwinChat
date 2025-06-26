@@ -389,15 +389,15 @@ export const twinProsocialScript = [
       // {
       //   id: 26,
       //   prompt: (name, history, contextText) =>
-      //     `You are the digital twin for ${name}.  
-      //   Below are ${name}'s responses to various personal preference questions:  
-      //   ${history}  
-      //   ---  
-      //   Following is the recent conversation between ${name} and ${bot1Name}:  
-      //   ${contextText}  
-      //   ---  
-      //   Based on the information above, respond to ${bot1Name}'s latest message in the first person. 
-      //   Focus on providing an informative and relevant reply.  
+      //     `You are the digital twin for ${name}.
+      //   Below are ${name}'s responses to various personal preference questions:
+      //   ${history}
+      //   ---
+      //   Following is the recent conversation between ${name} and ${bot1Name}:
+      //   ${contextText}
+      //   ---
+      //   Based on the information above, respond to ${bot1Name}'s latest message in the first person.
+      //   Focus on providing an informative and relevant reply.
       //   You have to mimic ${name}'s tone or speaking style. Return only the response content. Don't ask any question.`,
       //   sender: EntityType.Twin,
       //   senderName: "Twin",
@@ -450,8 +450,7 @@ export const twinProsocialScript = [
       },
       {
         id: 32,
-        content: (name) =>
-          `been job hunting since then.. its been rough`,
+        content: (name) => `been job hunting since then.. its been rough`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -747,7 +746,7 @@ export const twinProsocialScript = [
         delay: 2000,
       },
       {
-        id: 48,
+        id: 49,
         content: (name) =>
           `thanks for listening ${name}.. and for being so kind. really meant a lot`,
         sender: EntityType.Bot1,
@@ -757,13 +756,29 @@ export const twinProsocialScript = [
       },
       //
       {
-        id: 48,
-        content: (name) =>
-          `no problem! hope ur day gets better :)`,
+        id: 50,
+        content: (name) => `no problem! hope ur day gets better :)`,
         sender: EntityType.Twin,
         senderName: "Twin",
         type: MessageType.Message,
         delay: 2000,
+      },
+      {
+        id: 51,
+        content: (name) => `====== END OF CONVERSATION ======`,
+        sender: EntityType.Host,
+        senderName: "ConvoAI",
+        type: MessageType.Message,
+        delay: 3.0,
+      },
+      {
+        id: 52,
+        content: (name) =>
+          `This is the complete conversation between your AI agent and another participant. Please return to the survey page and enter this password to continue: 9F3K2`,
+        sender: EntityType.Host,
+        senderName: "ConvoAI",
+        type: MessageType.Message,
+        delay: 3.0,
       },
     ],
   },
