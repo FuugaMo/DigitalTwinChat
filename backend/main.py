@@ -8,7 +8,7 @@ import httpx  # 代替 fetch
 import asyncio
 import json
 from httpx import RequestError, HTTPStatusError
-
+import traceback
 
 load_dotenv()
 api_key = os.getenv("OPENAI_API_KEY")
@@ -98,13 +98,26 @@ async def chat(request: Request):
         except (RequestError, HTTPStatusError) as err:
             print(f"🔴 Attempt {attempt} failed: {err}")
             traceback.print_exc()
-            if attempt < MAX_RETRIES:
+
+            if err.response.status_code == 429:
+                retry_after = err.response.headers.get("Retry-After")
+                wait = int(retry_after) if retry_after else RETRY_DELAY
+                print(f"⏳ 429 received, retrying in {wait} seconds...")
+                await asyncio.sleep(wait)
+            elif attempt < MAX_RETRIES:
                 print(f"⏳ Retrying in {RETRY_DELAY} seconds...")
                 await asyncio.sleep(RETRY_DELAY)
             else:
                 return {
                     "error": "Failed to fetch from OpenAI after multiple attempts."
                 }
+                
+        except Exception as e:
+            print(f"🛑 Unexpected error: {e}")
+            traceback.print_exc()
+            return {
+                "error": f"Unexpected error: {str(e)}"
+            }
 
 @app.post("/api/verify-admin")
 async def verify_admin(request: Request):
