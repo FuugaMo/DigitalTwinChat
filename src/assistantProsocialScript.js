@@ -726,7 +726,7 @@ export const assistantProsocialScript = [
         delay: 2000,
       },
       {
-        id: 48,
+        id: 49,
         content: (name) =>
           `thanks for listening.. and for being so kind. really meant a lot`,
         sender: EntityType.Bot1,
@@ -736,13 +736,30 @@ export const assistantProsocialScript = [
       },
       //
       {
-        id: 48,
+        id: 50,
         content: (name) =>
           `Understood. I wish you a better remainder of your day.`,
         sender: EntityType.Assistant,
         senderName: "Assistant",
         type: MessageType.Message,
         delay: 2000,
+      },
+      {
+        id: 51,
+        content: (name) => `====== END OF CONVERSATION ======`,
+        sender: EntityType.Host,
+        senderName: "ConvoAI",
+        type: MessageType.Message,
+        delay: 3.0,
+      },
+      {
+        id: 52,
+        content: (name) =>
+          `This is the complete conversation between your AI agent and another participant. Please return to the survey page and enter this password to continue: 9F3K2`,
+        sender: EntityType.Host,
+        senderName: "ConvoAI",
+        type: MessageType.Message,
+        delay: 3.0,
       },
     ],
   },

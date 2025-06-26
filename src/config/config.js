@@ -16,8 +16,8 @@ export const firebaseConfig = {
 // export const ASSISTANT_CODE_NON = "3212";
 // export const ASSISTANT_CODE_WITHOUT = "3213";
 
-export const PROSOCIAL_CODE = "123";
-export const NON_PROSOCIAL_CODE = "321";
+export const PROSOCIAL_CODE = "YPR34";
+export const NON_PROSOCIAL_CODE = "NPR56";
 
 export const API_BASE = import.meta.env.VITE_API_BASE;
 
