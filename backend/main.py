@@ -37,10 +37,6 @@ app.add_middleware(
 def read_root():
     return {"message": "Backend is up and running!"}
 
-
-MAX_RETRIES = 10
-RETRY_DELAY = 2  # 每次失败后等待秒数，可做指数退避
-
 @app.post("/api/chat")
 async def chat(request: Request):
     data = await request.json()
@@ -75,7 +71,7 @@ async def chat(request: Request):
         "temperature": 0.01,
     }
 
-    MAX_RETRIES = 3
+    MAX_RETRIES = 5
     RETRY_DELAY = 2  # 秒
 
     for attempt in range(1, MAX_RETRIES + 1):
@@ -95,29 +91,34 @@ async def chat(request: Request):
                     "reply": result["choices"][0]["message"]["content"]
                 }
 
-        except (RequestError, HTTPStatusError) as err:
-            print(f"🔴 Attempt {attempt} failed: {err}")
-            traceback.print_exc()
-
+        except httpx.HTTPStatusError as err:
             if err.response.status_code == 429:
-                retry_after = err.response.headers.get("Retry-After")
-                wait = int(retry_after) if retry_after else RETRY_DELAY
-                print(f"⏳ 429 received, retrying in {wait} seconds...")
-                await asyncio.sleep(wait)
-            elif attempt < MAX_RETRIES:
-                print(f"⏳ Retrying in {RETRY_DELAY} seconds...")
-                await asyncio.sleep(RETRY_DELAY)
+                retry_after = int(err.response.headers.get("Retry-After", "5"))
+                print(f"⚠️ Rate limit hit. Retrying after {retry_after} seconds.")
+                await asyncio.sleep(retry_after)
             else:
-                return {
-                    "error": "Failed to fetch from OpenAI after multiple attempts."
-                }
-                
-        except Exception as e:
-            print(f"🛑 Unexpected error: {e}")
+                print(f"🛑 HTTPStatusError: {err.response.status_code}")
+                traceback.print_exc()
+                await asyncio.sleep(RETRY_DELAY)
+
+        except httpx.ReadTimeout:
+            print(f"🛑 ReadTimeout on attempt {attempt}, retrying in {RETRY_DELAY}s...")
             traceback.print_exc()
-            return {
-                "error": f"Unexpected error: {str(e)}"
-            }
+            await asyncio.sleep(RETRY_DELAY)
+
+        except httpx.RequestError as err:
+            print(f"🛑 Network error on attempt {attempt}, retrying in {RETRY_DELAY}s...")
+            traceback.print_exc()
+            await asyncio.sleep(RETRY_DELAY)
+
+        except Exception as err:
+            print(f"❌ Unexpected error on attempt {attempt}, retrying in {RETRY_DELAY}s...")
+            traceback.print_exc()
+            await asyncio.sleep(RETRY_DELAY)
+
+    # 如果所有尝试都失败
+    return { "error": f"Request failed after {MAX_RETRIES} attempts." }
+
 
 @app.post("/api/verify-admin")
 async def verify_admin(request: Request):
