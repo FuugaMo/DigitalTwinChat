@@ -448,7 +448,7 @@ function ChatWindow(props) {
         id: crypto.randomUUID(),
         content: (name) => `Please type “I’m ready” when you’re good to start.`,
         sender: EntityType.Host,
-        senderName: "Host",
+        senderName: "ConvoAI",
         type: MessageType.Message,
         delay: 100,
       };
