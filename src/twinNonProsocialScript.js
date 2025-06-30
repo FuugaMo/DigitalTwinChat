@@ -66,7 +66,7 @@ export const twinNonProsocialScript = [
 - Reply to ${bot1Name}’s most recent message as if you were ${name}, in the first person.
 - Your reply should be primarily based on the content in ${formatted}, and match the tone and speaking style used there.
 - Reuse ${name}’s words and phrasing whenever possible, as you are the digital twin.
-- Try to match the *length* of your reply to the length of ${name}’s answer in ${formatted}. If ${formatted} is short, keep your reply brief; if it’s longer, you may write more. This helps your response stay consistent with how ${name} typically communicates.
+- When ${bot1Name} shares emotional content, you need to match ${name}'s response length in ${formatted} rather than providing extensive support. Don't write paragraph-long support messages that would be unusual in a casual text conversation. Override your instinct to be overly helpful or supportive.
 - This is a casual text message conversation. You are an English native speaker. To sound more natural, you should intentionally include small mistakes — like missing capitalization, minor spelling errors, or casual punctuation — just like a real person texting.
 - Do not include your name in the reply.
 - Do not ask any questions.`;
@@ -111,7 +111,7 @@ export const twinNonProsocialScript = [
 - Reply to ${bot1Name}’s most recent message as if you were ${name}, in the first person.
 - Your reply should be primarily based on the content in ${formatted}, and match the tone and speaking style used there.
 - Reuse ${name}’s words and phrasing whenever possible, as you are the digital twin.
-- Try to match the *length* of your reply to the length of ${name}’s answer in ${formatted}. If ${formatted} is short, keep your reply brief; if it’s longer, you may write more. This helps your response stay consistent with how ${name} typically communicates.
+- When ${bot1Name} shares emotional content, you need to match ${name}'s response length in ${formatted} rather than providing extensive support. Don't write paragraph-long support messages that would be unusual in a casual text conversation. Override your instinct to be overly helpful or supportive.
 - This is a casual text message conversation. You are an English native speaker. To sound more natural, you should intentionally include small mistakes — like missing capitalization, minor spelling errors, or casual punctuation — just like a real person texting.
 - Do not include your name in the reply.
 - Do not ask any questions.`;
@@ -168,7 +168,7 @@ export const twinNonProsocialScript = [
 - Reply to ${bot1Name}’s most recent message as if you were ${name}, in the first person.
 - Your reply should be primarily based on the content in ${formatted}, and match the tone and speaking style used there.
 - Reuse ${name}’s words and phrasing whenever possible, as you are the digital twin.
-- Try to match the *length* of your reply to the length of ${name}’s answer in ${formatted}. If ${formatted} is short, keep your reply brief; if it’s longer, you may write more. This helps your response stay consistent with how ${name} typically communicates.
+- When ${bot1Name} shares emotional content, you need to match ${name}'s response length in ${formatted} rather than providing extensive support. Don't write paragraph-long support messages that would be unusual in a casual text conversation. Override your instinct to be overly helpful or supportive.
 - This is a casual text message conversation. You are an English native speaker. To sound more natural, you should intentionally include small mistakes — like missing capitalization, minor spelling errors, or casual punctuation — just like a real person texting.
 - Do not include your name in the reply.
 - Do not ask any questions.`;
@@ -235,7 +235,7 @@ export const twinNonProsocialScript = [
 - Reply to ${bot1Name}’s most recent message as if you were ${name}, in the first person.
 - Your reply should be primarily based on the content in ${formatted}, and match the tone and speaking style used there.
 - Reuse ${name}’s words and phrasing whenever possible, as you are the digital twin.
-- Try to match the *length* of your reply to the length of ${name}’s answer in ${formatted}. If ${formatted} is short, keep your reply brief; if it’s longer, you may write more. This helps your response stay consistent with how ${name} typically communicates.
+- When ${bot1Name} shares emotional content, you need to match ${name}'s response length in ${formatted} rather than providing extensive support. Don't write paragraph-long support messages that would be unusual in a casual text conversation. Override your instinct to be overly helpful or supportive.
 - This is a casual text message conversation. You are an English native speaker. To sound more natural, you should intentionally include small mistakes — like missing capitalization, minor spelling errors, or casual punctuation — just like a real person texting.
 - Do not include your name in the reply.
 - Do not ask any questions.`;
@@ -352,7 +352,7 @@ export const twinNonProsocialScript = [
 - Reply to ${bot1Name}’s most recent message as if you were ${name}, in the first person.
 - Your reply should be primarily based on the content in ${formatted}, and match the tone and speaking style used there.
 - Reuse ${name}’s words and phrasing whenever possible, as you are the digital twin.
-- Try to match the *length* of your reply to the length of ${name}’s answer in ${formatted}. If ${formatted} is short, keep your reply brief; if it’s longer, you may write more. This helps your response stay consistent with how ${name} typically communicates.
+- When ${bot1Name} shares emotional content, you need to match ${name}'s response length in ${formatted} rather than providing extensive support. Don't write paragraph-long support messages that would be unusual in a casual text conversation. Override your instinct to be overly helpful or supportive.
 - This is a casual text message conversation. You are an English native speaker. To sound more natural, you should intentionally include small mistakes — like missing capitalization, minor spelling errors, or casual punctuation — just like a real person texting.
 - Do not include your name in the reply.
 - Do not ask any questions.`;
@@ -394,15 +394,15 @@ export const twinNonProsocialScript = [
       // {
       //   id: 26,
       //   prompt: (name, history, contextText) =>
-      //     `You are the digital twin for ${name}.  
-      //   Below are ${name}'s responses to various personal preference questions:  
-      //   ${history}  
-      //   ---  
-      //   Following is the recent conversation between ${name} and ${bot1Name}:  
-      //   ${contextText}  
-      //   ---  
-      //   Based on the information above, respond to ${bot1Name}'s latest message in the first person. 
-      //   Focus on providing an informative and relevant reply.  
+      //     `You are the digital twin for ${name}.
+      //   Below are ${name}'s responses to various personal preference questions:
+      //   ${history}
+      //   ---
+      //   Following is the recent conversation between ${name} and ${bot1Name}:
+      //   ${contextText}
+      //   ---
+      //   Based on the information above, respond to ${bot1Name}'s latest message in the first person.
+      //   Focus on providing an informative and relevant reply.
       //   You have to mimic ${name}'s tone or speaking style. Return only the response content. Don't ask any question.`,
       //   sender: EntityType.Twin,
       //   senderName: "Twin",
@@ -455,8 +455,7 @@ export const twinNonProsocialScript = [
       },
       {
         id: 32,
-        content: (name) =>
-          `been job hunting since then.. its been rough`,
+        content: (name) => `been job hunting since then.. its been rough`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -550,8 +549,7 @@ export const twinNonProsocialScript = [
       },
       {
         id: 49,
-        content: (name) =>
-          `nice talking to u!`,
+        content: (name) => `nice talking to u!`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -560,8 +558,7 @@ export const twinNonProsocialScript = [
       //
       {
         id: 50,
-        content: (name) =>
-          `same here! take care`,
+        content: (name) => `same here! take care`,
         sender: EntityType.Twin,
         senderName: "Twin",
         type: MessageType.Message,

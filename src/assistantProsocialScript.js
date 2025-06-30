@@ -195,7 +195,7 @@ export const assistantProsocialScript = [
       {
         id: 13,
         content: (name) =>
-          `actually they provide some topics for me to chat with ${name} haha`,
+          `actually they provide some topics for me to chat with u haha`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
