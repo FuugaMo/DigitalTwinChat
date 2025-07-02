@@ -364,7 +364,7 @@ export const infoCollection = [
       {
         id: 14,
         content: (name) =>
-          `When a friend shares something bad that happened to them, how do you usually give emotional support? You can describe what you say or how you act.`,
+          `When someone shares something bad that happened to them, what would you say to them.`,
         sender: EntityType.Host,
         senderName: "ConvoAI",
         type: MessageType.Message,
@@ -387,7 +387,7 @@ export const infoCollection = [
       {
         id: 15,
         content: (name) =>
-          `When someone feels bad about something, how do you usually help them think about it in a more positive or different way?`,
+          `When someone feels bad about something, what would you say to help them think about it in a more positive or different way?`,
         sender: EntityType.Host,
         senderName: "ConvoAI",
         type: MessageType.Message,
@@ -410,7 +410,7 @@ export const infoCollection = [
       {
         id: 16,
         content: (name) =>
-          `Have you ever faced a major challenge at work or while looking for a job? What happened? How did you feel during that time?`,
+          `Have you ever faced a challenge at work or while looking for a job? What happened? How did you feel during that time?`,
         sender: EntityType.Host,
         senderName: "ConvoAI",
         type: MessageType.Message,
