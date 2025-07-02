@@ -59,11 +59,11 @@ const questions_standard = [
 
   // Interpersonal
   "Have you ever experienced a major challenge in a relationship with someone? What happened?",
-  "When a friend shares something bad that happened to them, how do you usually give emotional support? You can describe what you say or how you act",
-  "When someone feels bad about something, how do you usually help them think about it in a more positive or different way?",
+  "When someone shares something bad that happened to them, what would you say to them",
+  "When someone feels bad about something, what would you say to help them think about it in a more positive or different way?",
 
   // Work
-  "Have you ever faced a major challenge at work or while looking for a job? What happened? How did you feel during that time?",
+  "Have you ever faced a challenge at work or while looking for a job? What happened? How did you feel during that time?",
   "Do you have any tips or helpful resources for finding a job or dealing with challenges at work?",
 
   // Goal

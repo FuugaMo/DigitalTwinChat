@@ -439,7 +439,7 @@ export const twinNonProsocialScript = [
       },
       {
         id: 30,
-        content: (name) => `oh why's that?`,
+        content: (name) => `why's that?`,
         sender: EntityType.Twin,
         senderName: "Twin",
         type: MessageType.Message,
