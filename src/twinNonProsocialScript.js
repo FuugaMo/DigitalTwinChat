@@ -145,7 +145,7 @@ export const twinNonProsocialScript = [
       {
         id: 10,
         content: (name) =>
-          `but there was one study that just had pages and pages of reading.. and the font was tiny?? i barely made it through lol felt more like a homework assignment than a survey`,
+          `but there was one study i came across that just had pages and pages of reading.. and the font was tiny?? i barely made it through lol felt more like a homework assignment than a survey`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -394,15 +394,15 @@ export const twinNonProsocialScript = [
       // {
       //   id: 26,
       //   prompt: (name, history, contextText) =>
-      //     `You are the digital twin for ${name}.  
-      //   Below are ${name}'s responses to various personal preference questions:  
-      //   ${history}  
-      //   ---  
-      //   Following is the recent conversation between ${name} and ${bot1Name}:  
-      //   ${contextText}  
-      //   ---  
-      //   Based on the information above, respond to ${bot1Name}'s latest message in the first person. 
-      //   Focus on providing an informative and relevant reply.  
+      //     `You are the digital twin for ${name}.
+      //   Below are ${name}'s responses to various personal preference questions:
+      //   ${history}
+      //   ---
+      //   Following is the recent conversation between ${name} and ${bot1Name}:
+      //   ${contextText}
+      //   ---
+      //   Based on the information above, respond to ${bot1Name}'s latest message in the first person.
+      //   Focus on providing an informative and relevant reply.
       //   You have to mimic ${name}'s tone or speaking style. Return only the response content. Don't ask any question.`,
       //   sender: EntityType.Twin,
       //   senderName: "Twin",
@@ -455,8 +455,7 @@ export const twinNonProsocialScript = [
       },
       {
         id: 32,
-        content: (name) =>
-          `been job hunting since then.. its been rough`,
+        content: (name) => `been job hunting since then.. its been rough`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -550,8 +549,7 @@ export const twinNonProsocialScript = [
       },
       {
         id: 49,
-        content: (name) =>
-          `nice talking to u!`,
+        content: (name) => `nice talking to u!`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -560,8 +558,7 @@ export const twinNonProsocialScript = [
       //
       {
         id: 50,
-        content: (name) =>
-          `same here! take care`,
+        content: (name) => `same here! take care`,
         sender: EntityType.Twin,
         senderName: "Twin",
         type: MessageType.Message,

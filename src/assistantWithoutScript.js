@@ -139,7 +139,7 @@ export const assistantWithoutScript = [
       {
         id: 10,
         content: (name) =>
-          `but there was one study that just had pages and pages of reading.. and the font was tiny?? i barely made it through lol felt more like a homework assignment than a survey`,
+          `but there was one study i came across that just had pages and pages of reading.. and the font was tiny?? i barely made it through lol felt more like a homework assignment than a survey`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -477,8 +477,7 @@ export const assistantWithoutScript = [
       },
       {
         id: 33,
-        content: (name) =>
-          `does ${name} have any hobbies btw?`,
+        content: (name) => `does ${name} have any hobbies btw?`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -531,8 +530,7 @@ export const assistantWithoutScript = [
       },
       {
         id: 36,
-        content: (name) =>
-          `i like going for runs sometimes`,
+        content: (name) => `i like going for runs sometimes`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -540,8 +538,7 @@ export const assistantWithoutScript = [
       },
       {
         id: 37,
-        content: (name) =>
-          `not super consistent tho lol`,
+        content: (name) => `not super consistent tho lol`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -557,8 +554,7 @@ export const assistantWithoutScript = [
       },
       {
         id: 49,
-        content: (name) =>
-          `nice talking to u!`,
+        content: (name) => `nice talking to u!`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
