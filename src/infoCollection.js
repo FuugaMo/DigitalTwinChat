@@ -410,7 +410,7 @@ export const infoCollection = [
       {
         id: 16,
         content: (name) =>
-          `Have you ever faced a major challenge at work or while looking for a job? What happened? How did you feel during that time?`,
+          `Have you ever faced a challenge at work or while looking for a job? What happened? How did you feel during that time?`,
         sender: EntityType.Host,
         senderName: "ConvoAI",
         type: MessageType.Message,
