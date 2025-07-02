@@ -139,7 +139,7 @@ export const assistantProsocialScript = [
       {
         id: 10,
         content: (name) =>
-          `but there was one study that just had pages and pages of reading.. and the font was tiny?? i barely made it through lol felt more like a homework assignment than a survey`,
+          `but there was one study i came across that just had pages and pages of reading.. and the font was tiny?? i barely made it through lol felt more like a homework assignment than a survey`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,

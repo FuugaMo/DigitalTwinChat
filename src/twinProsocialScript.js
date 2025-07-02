@@ -63,10 +63,12 @@ export const twinProsocialScript = [
           ${contextText}  
           ---  
           Your task:
-- Reply to ${bot1Name}'s most recent message as if you were ${name}, in the first person. Do not ask any questions.
-- Use content from ${name}'s responses to the personal preference question to craft your response to ${bot1Name}. Reuse ${name}'s exact words and phrases where applicable, but ensure responses flow naturally in the conversation.
-- When ${bot1Name} shares emotional content, you need to match ${name}'s response length in ${name}'s responses to the personal preference question. Don't write paragraph-long support messages that would be unusual in a casual text conversation. 
-- This is a casual text message conversation. You are an English native speaker. To sound more natural, you should intentionally include small mistakes — like missing capitalization, minor spelling errors, or casual punctuation — just like a real person texting.
+- Reply as ${name} to ${bot1Name}'s most recent message.
+- First priority: Try to use ${name}'s personal preference answer as directly as possible. If it can work as a response with minimal adaptation, use it nearly verbatim.
+- Only if the personal preference answer doesn't fit the current context, adapt it naturally while still incorporating their words, topics, and style.
+- Match the personal preference answer's length.
+- This is a casual text message. Include natural imperfections like missing caps or casual punctuation.
+- IMPORTANT: Do not ask any questions.
 - Do not include your name in the reply.`;
         },
         sender: EntityType.Twin,
@@ -106,10 +108,12 @@ export const twinProsocialScript = [
           ${contextText}  
           ---  
           Your task:
-- Reply to ${bot1Name}'s most recent message as if you were ${name}, in the first person. Do not ask any questions.
-- Use content from ${name}'s responses to the personal preference question to craft your response to ${bot1Name}. Reuse ${name}'s exact words and phrases where applicable, but ensure responses flow naturally in the conversation.
-- When ${bot1Name} shares emotional content, you need to match ${name}'s response length in ${name}'s responses to the personal preference question. Don't write paragraph-long support messages that would be unusual in a casual text conversation. 
-- This is a casual text message conversation. You are an English native speaker. To sound more natural, you should intentionally include small mistakes — like missing capitalization, minor spelling errors, or casual punctuation — just like a real person texting.
+- Reply as ${name} to ${bot1Name}'s most recent message.
+- First priority: Try to use ${name}'s personal preference answer as directly as possible. If it can work as a response with minimal adaptation, use it nearly verbatim.
+- Only if the personal preference answer doesn't fit the current context, adapt it naturally while still incorporating their words, topics, and style.
+- Match the personal preference answer's length.
+- This is a casual text message. Include natural imperfections like missing caps or casual punctuation.
+- IMPORTANT: Do not ask any questions.
 - Do not include your name in the reply.`;
         },
         sender: EntityType.Twin,
@@ -141,7 +145,7 @@ export const twinProsocialScript = [
       {
         id: 10,
         content: (name) =>
-          `but there was one study that just had pages and pages of reading.. and the font was tiny?? i barely made it through lol felt more like a homework assignment than a survey`,
+          `but there was one study i came across that just had pages and pages of reading.. and the font was tiny?? i barely made it through lol felt more like a homework assignment than a survey`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -161,10 +165,12 @@ export const twinProsocialScript = [
           ${contextText}  
           ---  
           Your task:
-- Reply to ${bot1Name}'s most recent message as if you were ${name}, in the first person. Do not ask any questions.
-- Use content from ${name}'s responses to the personal preference question to craft your response to ${bot1Name}. Reuse ${name}'s exact words and phrases where applicable, but ensure responses flow naturally in the conversation.
-- When ${bot1Name} shares emotional content, you need to match ${name}'s response length in ${name}'s responses to the personal preference question. Don't write paragraph-long support messages that would be unusual in a casual text conversation. 
-- This is a casual text message conversation. You are an English native speaker. To sound more natural, you should intentionally include small mistakes — like missing capitalization, minor spelling errors, or casual punctuation — just like a real person texting.
+- Reply as ${name} to ${bot1Name}'s most recent message.
+- First priority: Try to use ${name}'s personal preference answer as directly as possible. If it can work as a response with minimal adaptation, use it nearly verbatim.
+- Only if the personal preference answer doesn't fit the current context, adapt it naturally while still incorporating their words, topics, and style.
+- Match the personal preference answer's length.
+- This is a casual text message. Include natural imperfections like missing caps or casual punctuation.
+- IMPORTANT: Do not ask any questions.
 - Do not include your name in the reply.`;
         },
         sender: EntityType.Twin,
@@ -226,10 +232,12 @@ export const twinProsocialScript = [
           ${contextText}  
           ---  
           Your task:
-- Reply to ${bot1Name}'s most recent message as if you were ${name}, in the first person. Do not ask any questions.
-- Use content from ${name}'s responses to the personal preference question to craft your response to ${bot1Name}. Reuse ${name}'s exact words and phrases where applicable, but ensure responses flow naturally in the conversation.
-- When ${bot1Name} shares emotional content, you need to match ${name}'s response length in ${name}'s responses to the personal preference question. Don't write paragraph-long support messages that would be unusual in a casual text conversation. 
-- This is a casual text message conversation. You are an English native speaker. To sound more natural, you should intentionally include small mistakes — like missing capitalization, minor spelling errors, or casual punctuation — just like a real person texting.
+- Reply as ${name} to ${bot1Name}'s most recent message.
+- First priority: Try to use ${name}'s personal preference answer as directly as possible. If it can work as a response with minimal adaptation, use it nearly verbatim.
+- Only if the personal preference answer doesn't fit the current context, adapt it naturally while still incorporating their words, topics, and style.
+- Match the personal preference answer's length.
+- This is a casual text message. Include natural imperfections like missing caps or casual punctuation.
+- IMPORTANT: Do not ask any questions.
 - Do not include your name in the reply.`;
         },
         sender: EntityType.Twin,
@@ -341,10 +349,12 @@ export const twinProsocialScript = [
           ${contextText}  
           ---  
           Your task:
-- Reply to ${bot1Name}'s most recent message as if you were ${name}, in the first person. Do not ask any questions.
-- Use content from ${name}'s responses to the personal preference question to craft your response to ${bot1Name}. Reuse ${name}'s exact words and phrases where applicable, but ensure responses flow naturally in the conversation.
-- When ${bot1Name} shares emotional content, you need to match ${name}'s response length in ${name}'s responses to the personal preference question. Don't write paragraph-long support messages that would be unusual in a casual text conversation. 
-- This is a casual text message conversation. You are an English native speaker. To sound more natural, you should intentionally include small mistakes — like missing capitalization, minor spelling errors, or casual punctuation — just like a real person texting.
+- Reply as ${name} to ${bot1Name}'s most recent message.
+- First priority: Try to use ${name}'s personal preference answer as directly as possible. If it can work as a response with minimal adaptation, use it nearly verbatim.
+- Only if the personal preference answer doesn't fit the current context, adapt it naturally while still incorporating their words, topics, and style.
+- Match the personal preference answer's length.
+- This is a casual text message. Include natural imperfections like missing caps or casual punctuation.
+- IMPORTANT: Do not ask any questions.
 - Do not include your name in the reply.`;
         },
         sender: EntityType.Twin,
@@ -474,11 +484,11 @@ export const twinProsocialScript = [
           ${contextText}  
           ---  
           Your task:
-- Reply to ${bot1Name}'s most recent message as if you were ${name}, in the first person. Do not ask any questions.
-- Use content from ${name}'s responses to the personal preference question to craft your response to ${bot1Name}. Reuse ${name}'s exact words and phrases where applicable, but ensure responses flow naturally in the conversation.
-- When ${bot1Name} shares emotional content, you need to match ${name}'s response length in ${name}'s responses to the personal preference question. Don't write paragraph-long support messages that would be unusual in a casual text conversation. 
-- This is a casual text message conversation. You are an English native speaker. To sound more natural, you should intentionally include small mistakes — like missing capitalization, minor spelling errors, or casual punctuation — just like a real person texting.
-- Do not include your name in the reply.`;
+          - Reply as ${name} to ${bot1Name}'s most recent message.
+          - The personal preference answer above describes ${name}'s approach of comforting others. Apply this same comforting approach in your response.
+          - This is a casual text message, so keep the reply not too long. Include natural imperfections like missing caps or casual punctuation.
+          - IMPORTANT: Do not ask any questions.
+          - Do not include your name in the reply.`;
         },
         sender: EntityType.Twin,
         senderName: "Twin",
@@ -520,11 +530,13 @@ export const twinProsocialScript = [
           ${contextText}  
           ---  
           Your task:
-- Reply to ${bot1Name}'s most recent message as if you were ${name}, in the first person. Do not ask any questions.
-- Use content from ${name}'s responses to the personal preference question to craft your response to ${bot1Name}. Reuse ${name}'s exact words and phrases where applicable, but ensure responses flow naturally in the conversation.
-- When ${bot1Name} shares emotional content, you need to match ${name}'s response length in ${name}'s responses to the personal preference question. Don't write paragraph-long support messages that would be unusual in a casual text conversation. 
-- This is a casual text message conversation. You are an English native speaker. To sound more natural, you should intentionally include small mistakes — like missing capitalization, minor spelling errors, or casual punctuation — just like a real person texting.
-- Do not include your name in the reply.`;
+          - Reply as ${name} to ${bot1Name}'s most recent message.
+          - First priority: Try to use ${name}'s personal preference answer as directly as possible. If it can work as a response with minimal adaptation, use it nearly verbatim.
+          - Only if the personal preference answer doesn't fit the current context, adapt it naturally while still incorporating their words, topics, and style.
+          - Match the personal preference answer's length.
+          - This is a casual text message. Include natural imperfections like missing caps or casual punctuation.
+          - IMPORTANT: Do not ask any questions.
+          - Do not include your name in the reply.`;
         },
         sender: EntityType.Twin,
         senderName: "Twin",
@@ -584,11 +596,11 @@ export const twinProsocialScript = [
           ${contextText}  
           ---  
           Your task:
-- Reply to ${bot1Name}'s most recent message as if you were ${name}, in the first person. Do not ask any questions.
-- Use content from ${name}'s responses to the personal preference question to craft your response to ${bot1Name}. Reuse ${name}'s exact words and phrases where applicable, but ensure responses flow naturally in the conversation.
-- When ${bot1Name} shares emotional content, you need to match ${name}'s response length in ${name}'s responses to the personal preference question. Don't write paragraph-long support messages that would be unusual in a casual text conversation. 
-- This is a casual text message conversation. You are an English native speaker. To sound more natural, you should intentionally include small mistakes — like missing capitalization, minor spelling errors, or casual punctuation — just like a real person texting.
-- Do not include your name in the reply.`;
+          - Reply as ${name} to ${bot1Name}'s most recent message.
+          - The personal preference answer above describes ${name}'s approach of comforting others. Apply this same comforting approach in your response.
+          - This is a casual text message, so keep the reply not too long. Include natural imperfections like missing caps or casual punctuation.
+          - IMPORTANT: Do not ask any questions.
+          - Do not include your name in the reply.`;
         },
         sender: EntityType.Twin,
         senderName: "Twin",
@@ -648,10 +660,12 @@ export const twinProsocialScript = [
           ${contextText}  
           ---  
           Your task:
-- Reply to ${bot1Name}'s most recent message as if you were ${name}, in the first person. Do not ask any questions.
-- Use content from ${name}'s responses to the personal preference question to craft your response to ${bot1Name}. Reuse ${name}'s exact words and phrases where applicable, but ensure responses flow naturally in the conversation.
-- When ${bot1Name} shares emotional content, you need to match ${name}'s response length in ${name}'s responses to the personal preference question. Don't write paragraph-long support messages that would be unusual in a casual text conversation. 
-- This is a casual text message conversation. You are an English native speaker. To sound more natural, you should intentionally include small mistakes — like missing capitalization, minor spelling errors, or casual punctuation — just like a real person texting.
+- Reply as ${name} to ${bot1Name}'s most recent message.
+- First priority: Try to use ${name}'s personal preference answer as directly as possible. If it can work as a response with minimal adaptation, use it nearly verbatim.
+- Only if the personal preference answer doesn't fit the current context, adapt it naturally while still incorporating their words, topics, and style.
+- Match the personal preference answer's length.
+- This is a casual text message. Include natural imperfections like missing caps or casual punctuation.
+- IMPORTANT: Do not ask any questions.
 - Do not include your name in the reply.`;
         },
         sender: EntityType.Twin,
@@ -694,10 +708,12 @@ export const twinProsocialScript = [
           ${contextText}  
           ---  
           Your task:
-- Reply to ${bot1Name}'s most recent message as if you were ${name}, in the first person. Do not ask any questions.
-- Use content from ${name}'s responses to the personal preference question to craft your response to ${bot1Name}. Reuse ${name}'s exact words and phrases where applicable, but ensure responses flow naturally in the conversation.
-- When ${bot1Name} shares emotional content, you need to match ${name}'s response length in ${name}'s responses to the personal preference question. Don't write paragraph-long support messages that would be unusual in a casual text conversation. 
-- This is a casual text message conversation. You are an English native speaker. To sound more natural, you should intentionally include small mistakes — like missing capitalization, minor spelling errors, or casual punctuation — just like a real person texting.
+- Reply as ${name} to ${bot1Name}'s most recent message.
+- First priority: Try to use ${name}'s personal preference answer as directly as possible. If it can work as a response with minimal adaptation, use it nearly verbatim.
+- Only if the personal preference answer doesn't fit the current context, adapt it naturally while still incorporating their words, topics, and style.
+- Match the personal preference answer's length.
+- This is a casual text message. Include natural imperfections like missing caps or casual punctuation.
+- IMPORTANT: Do not ask any questions.
 - Do not include your name in the reply.`;
         },
         sender: EntityType.Twin,

@@ -139,7 +139,7 @@ export const assistantNonProsocialScript = [
       {
         id: 10,
         content: (name) =>
-          `but there was one study that just had pages and pages of reading.. and the font was tiny?? i barely made it through lol felt more like a homework assignment than a survey`,
+          `but there was one study i came across that just had pages and pages of reading.. and the font was tiny?? i barely made it through lol felt more like a homework assignment than a survey`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -534,8 +534,7 @@ export const assistantNonProsocialScript = [
       },
       {
         id: 49,
-        content: (name) =>
-          `nice talking to u!`,
+        content: (name) => `nice talking to u!`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -544,8 +543,7 @@ export const assistantNonProsocialScript = [
       //
       {
         id: 50,
-        content: (name) =>
-          `I feel the same. Wishing you all the best.`,
+        content: (name) => `I feel the same. Wishing you all the best.`,
         sender: EntityType.Assistant,
         senderName: "Assistant",
         type: MessageType.Message,
