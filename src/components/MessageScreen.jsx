@@ -43,7 +43,7 @@ function MessageScreen(props) {
       top: scrollEl.scrollHeight,
       behavior: "smooth",
     });
-  }, [props.messages.length]);
+  }, [props.messages.length, props.typingByUser, props.displayTyping]);
 
   // console.log(`MessageScreen ${props.name}`);
   return (
