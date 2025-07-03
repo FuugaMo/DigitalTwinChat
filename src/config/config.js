@@ -22,5 +22,5 @@ export const NON_PROSOCIAL_CODE = "NPR56";
 export const API_BASE = import.meta.env.VITE_API_BASE;
 
 // connect id Length
-export const CONNECT_ID_LENGTH = 3;
+export const CONNECT_ID_LENGTH = 32;
 export const MAX_CONNECT_ID_LENGTH = 32;

@@ -154,9 +154,9 @@ function ChatWindow(props) {
       if (Object.keys(updateData).length > 0) {
         await setDoc(userRef, updateData, { merge: true });
       } else {
-        console.log(
-          "✅ All user profile fields already exist. No update needed."
-        );
+        // console.log(
+        // "✅ All user profile fields already exist. No update needed."
+        // );
       }
     } catch (e) {
       console.error("Error saving user profile:", e);
@@ -186,7 +186,7 @@ function ChatWindow(props) {
 
       const data = await response.json();
 
-      console.log(data.reply);
+      // console.log(data.reply);
 
       // 这里用 data.reply 而不是 data.choices
       return data.reply || "（无返回内容）";
@@ -208,7 +208,6 @@ function ChatWindow(props) {
       // );
       if (!docSnap.exists() || !docSnap.data().step) {
         setLoading(false);
-        // console.log("First return.");
         return false; // ✅ 没有消息
       }
 
@@ -381,7 +380,7 @@ function ChatWindow(props) {
         // 尝试从 Storage 获取 avatar
         if (!avatar && isTwin) {
           const url = await fetchAvatarFromStorage(userId);
-          console.log(url);
+          // console.log(url);
           setAvatar(url || "/nodebox/static/icons/bot1logo.png");
         }
       }
@@ -611,7 +610,7 @@ function ChatWindow(props) {
           isReplayMode={isReplayMode}
         />
         <br />
-        <div style={{ display: "flex", gap: "1rem" }}>
+        {/* <div style={{ display: "flex", gap: "1rem" }}>
           <Button variant="outlined" color="primary" onClick={test_reset}>
             Reset
           </Button>
@@ -629,7 +628,7 @@ function ChatWindow(props) {
           >
             Reset isAssignCompleted
           </Button>
-        </div>
+        </div> */}
       </div>
     </div>
   );
