@@ -498,7 +498,7 @@ export const twinNonProsocialScript = [
       },
       {
         id: 37,
-        content: (name) => `that sounds tough`,
+        content: (name) => `that sounds really tough`,
         sender: EntityType.Twin,
         senderName: "Twin",
         type: MessageType.Message,
@@ -514,8 +514,7 @@ export const twinNonProsocialScript = [
       },
       {
         id: 39,
-        content: (name) =>
-          `do u happen to know any good job boards or tips that might help?`,
+        content: (name) => `got any tips for dealing with work stuff?`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -523,7 +522,8 @@ export const twinNonProsocialScript = [
       },
       {
         id: 40,
-        content: (name) => `not sure but you'll definitely find something`,
+        content: (name) =>
+          `im not really sure tbh but you'll definitely find something!`,
         sender: EntityType.Twin,
         senderName: "Twin",
         type: MessageType.Message,

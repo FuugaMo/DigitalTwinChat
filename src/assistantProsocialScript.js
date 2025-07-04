@@ -479,51 +479,51 @@ export const assistantProsocialScript = [
         type: MessageType.GPT,
         delay: 2000,
       },
-      {
-        id: 35,
-        prompt: (name, history, contextText) => {
-          return `The following is a conversation between you and ${name}:
-          ${contextText}
+      //       {
+      //         id: 35,
+      //         prompt: (name, history, contextText) => {
+      //           return `The following is a conversation between you and ${name}:
+      //           ${contextText}
 
-          Your task:
-- Continue the conversation as ${bot1Name}, replying to ${name}'s latest message.
-- Write a short, casual reply. Keep your reply around 10 words if possible.
-- As an English native speaker texting informally, deliberately ignore standard capitalization and spelling rules. For example, write "u" instead of "you", and "gonna" instead of "going to".
-- Follow the tone and speaking style you used earlier in the conversation.
-- Do not include your name in the reply.
-- Do not ask any questions.
-- Do not use emojis.
-- Do not include any self-disclosure (e.g., don't say you like/love/enjoy something ${name}'s assistant said).`;
-        },
-        sender: EntityType.Bot1,
-        senderName: bot1Name,
-        type: MessageType.GPT,
-        delay: 2000,
-      },
-      {
-        id: 36,
-        prompt: (name, history, contextText) => {
-          const selectedHistory = history[15]; // 参考 Admin Page 开头的 questions 列表
-          const formatted = `Question: ${selectedHistory.question} ${name}: ${selectedHistory.answer}`;
+      //           Your task:
+      // - Continue the conversation as ${bot1Name}, replying to ${name}'s latest message.
+      // - Write a short, casual reply. Keep your reply around 10 words if possible.
+      // - As an English native speaker texting informally, deliberately ignore standard capitalization and spelling rules. For example, write "u" instead of "you", and "gonna" instead of "going to".
+      // - Follow the tone and speaking style you used earlier in the conversation.
+      // - Do not include your name in the reply.
+      // - Do not ask any questions.
+      // - Do not use emojis.
+      // - Do not include any self-disclosure (e.g., don't say you like/love/enjoy something ${name}'s assistant said).`;
+      //         },
+      //         sender: EntityType.Bot1,
+      //         senderName: bot1Name,
+      //         type: MessageType.GPT,
+      //         delay: 2000,
+      //       },
+      //       {
+      //         id: 36,
+      //         prompt: (name, history, contextText) => {
+      //           const selectedHistory = history[15]; // 参考 Admin Page 开头的 questions 列表
+      //           const formatted = `Question: ${selectedHistory.question} ${name}: ${selectedHistory.answer}`;
 
-          return `You are the digital assistant for ${name}.  
-          Below are ${name}'s responses to a personal preference question:  
-          ${formatted}.
-          ---  
-          Following is the recent conversation between ${name} and ${bot1Name}:  
-          ${contextText}  
-          ---  
-          Your task:
-- As ${name}’s assistant, write a message in response to ${bot1Name}’s most recent text.
-- The reply should reflect the content in ${formatted}.
-- You are not speaking as ${name}, but assisting them by replying to ${bot1Name}.
-- Do not ask any questions.`;
-        },
-        sender: EntityType.Assistant,
-        senderName: "Assistant",
-        type: MessageType.GPT,
-        delay: 2000,
-      },
+      //           return `You are the digital assistant for ${name}.
+      //           Below are ${name}'s responses to a personal preference question:
+      //           ${formatted}.
+      //           ---
+      //           Following is the recent conversation between ${name} and ${bot1Name}:
+      //           ${contextText}
+      //           ---
+      //           Your task:
+      // - As ${name}’s assistant, write a message in response to ${bot1Name}’s most recent text.
+      // - The reply should reflect the content in ${formatted}.
+      // - You are not speaking as ${name}, but assisting them by replying to ${bot1Name}.
+      // - Do not ask any questions.`;
+      //         },
+      //         sender: EntityType.Assistant,
+      //         senderName: "Assistant",
+      //         type: MessageType.GPT,
+      //         delay: 2000,
+      //       },
       {
         id: 37,
         prompt: (name, history, contextText) => {
@@ -547,8 +547,7 @@ export const assistantProsocialScript = [
       },
       {
         id: 38,
-        content: (name) =>
-          `trying to stay positive but honestly.. some days i feel so stuck`,
+        content: (name) => `but honestly.. some days i feel so stuck`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -566,7 +565,7 @@ export const assistantProsocialScript = [
       {
         id: 40,
         prompt: (name, history, contextText) => {
-          const selectedHistory = history[14]; // 参考 Admin Page 开头的 questions 列表
+          const selectedHistory = history[15]; // 参考 Admin Page 开头的 questions 列表
           const formatted = `Question: ${selectedHistory.question} ${name}: ${selectedHistory.answer}`;
 
           return `You are the digital assistant for ${name}.  
@@ -611,7 +610,7 @@ export const assistantProsocialScript = [
       {
         id: 42,
         content: (name) =>
-          `does ${name} happen to know any good job boards or tips that might help?`,
+          `got any tips for dealing with work stuff?`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
