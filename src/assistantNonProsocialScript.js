@@ -499,8 +499,7 @@ export const assistantNonProsocialScript = [
       },
       {
         id: 39,
-        content: (name) =>
-          `does ${name} happen to know any good job boards or tips that might help?`,
+        content: (name) => `got any tips for dealing with work stuff?`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -508,7 +507,8 @@ export const assistantNonProsocialScript = [
       },
       {
         id: 40,
-        content: (name) => `Not sure, but I'm sure you'll find something.`,
+        content: (name) =>
+          `I'm not entirely sure, but I'm confident you'll find something`,
         sender: EntityType.Assistant,
         senderName: "Assistant",
         type: MessageType.Message,
