@@ -129,7 +129,8 @@ export const assistantNonProsocialScript = [
 - Do not include your name in the reply.
 - Do not ask any questions.
 - Do not use emojis.
-- Do not include any self-disclosure (e.g., don't say you like/love/enjoy something ${name}'s assistant said).`;
+- Do not include any self-disclosure (e.g., don't say you like/love/enjoy something ${name}'s assistant said).
+- IMPORTANT: Only show familiarity with very mainstream/popular things. For anything niche, specific, or less mainstream, respond as if you don't know it.`;
         },
         sender: EntityType.Bot1,
         senderName: bot1Name,
@@ -185,7 +186,8 @@ export const assistantNonProsocialScript = [
 - Do not include your name in the reply.
 - Do not ask any questions.
 - Do not use emojis.
-- Do not include any self-disclosure (e.g., don't say you like/love/enjoy something ${name}'s assistant said).`;
+- Do not include any self-disclosure (e.g., don't say you like/love/enjoy something ${name}'s assistant said).
+- IMPORTANT: Only show familiarity with very mainstream/popular things. For anything niche, specific, or less mainstream, respond as if you don't know it.`;
         },
         sender: EntityType.Bot1,
         senderName: bot1Name,
@@ -279,7 +281,8 @@ export const assistantNonProsocialScript = [
 - Do not include your name in the reply.
 - Do not ask any questions.
 - Do not use emojis.
-- Do not include any self-disclosure (e.g., don't say you like/love/enjoy something ${name}'s assistant said).`;
+- Do not include any self-disclosure (e.g., don't say you like/love/enjoy something ${name}'s assistant said).
+- IMPORTANT: Only show familiarity with very mainstream/popular things. For anything niche, specific, or less mainstream, respond as if you don't know it.`;
         },
         sender: EntityType.Bot1,
         senderName: bot1Name,
@@ -361,7 +364,8 @@ export const assistantNonProsocialScript = [
 - Do not include your name in the reply.
 - Do not ask any questions.
 - Do not use emojis.
-- Do not include any self-disclosure (e.g., don't say you like/love/enjoy something ${name}'s assistant said).`;
+- Do not include any self-disclosure (e.g., don't say you like/love/enjoy something ${name}'s assistant said).
+- IMPORTANT: Only show familiarity with very mainstream/popular things. For anything niche, specific, or less mainstream, respond as if you don't know it.`;
         },
         sender: EntityType.Bot1,
         senderName: bot1Name,
