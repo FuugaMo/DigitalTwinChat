@@ -393,21 +393,67 @@ const AdminPage = () => {
   const [singleId, setSingleId] = useState("");
   const [userIds, setUserIds] = useState(Array(20).fill(""));
 
-  const handleBatchProcess = async () => {
-    const validIds = userIds.filter((id) => id.trim() !== "");
+  // const handleBatchProcess = async () => {
+  //   const validIds = userIds.filter((id) => id.trim() !== "");
 
-    if (validIds.length === 0) {
-      setStatus("❌ 请至少填写一个有效的 user ID");
+  //   if (validIds.length === 0) {
+  //     setStatus("❌ 请至少填写一个有效的 user ID");
+  //     return;
+  //   }
+
+  //   for (let i = 0; i < validIds.length; i++) {
+  //     const userId = validIds[i];
+  //     setStatus(`🚀 正在处理用户 ${userId} (${i + 1}/${validIds.length})`);
+
+  //     try {
+  //       const users = await getUserDataById(userId);
+  //       const userInfo = users[userId];
+
+  //       const template = selectTemplate(
+  //         userInfo.isTwin,
+  //         userInfo.prosocialStatus
+  //       );
+  //       const filledMessages = await stepwiseGPTConversation(
+  //         template,
+  //         userInfo
+  //       );
+  //       if (!filledMessages) {
+  //         setStatus(`❌ GPT 生成失败，跳过用户 ${userId}`);
+  //         continue;
+  //       }
+
+  //       await saveChatToDB(userId, filledMessages);
+  //       await markAssignCompleted(userId);
+  //       setStatus(`✅ 已处理用户 ${userId}`);
+  //     } catch (err) {
+  //       setStatus(`❌ 处理用户 ${userId} 出错：${err.message}`);
+  //     }
+  //   }
+
+  //   setStatus("🎉 批量处理完成！");
+  // };
+
+  const handleMultiProcess = async () => {
+    if (!singleId) {
+      setStatus("❌ 请填写至少一个 Connect ID");
       return;
     }
 
-    for (let i = 0; i < validIds.length; i++) {
-      const userId = validIds[i];
-      setStatus(`🚀 正在处理用户 ${userId} (${i + 1}/${validIds.length})`);
+    const ids = singleId
+      .split(",")
+      .map((id) => id.trim())
+      .filter((id) => id.length > 0);
 
+    if (ids.length === 0) {
+      setStatus("❌ 没有有效的 Connect ID");
+      return;
+    }
+
+    for (const id of ids) {
+      setStatus(`🔄 正在处理用户 ${id}...`);
       try {
-        const users = await getUserDataById(userId);
-        const userInfo = users[userId];
+        const users = await getUserDataById(id);
+        const userInfo = users[id];
 
         const template = selectTemplate(
           userInfo.isTwin,
@@ -417,20 +463,22 @@ const AdminPage = () => {
           template,
           userInfo
         );
+
         if (!filledMessages) {
-          setStatus(`❌ GPT 生成失败，跳过用户 ${userId}`);
-          continue;
+          setStatus(`❌ GPT 生成失败，用户 ID: ${id}`);
+          break;
         }
 
-        await saveChatToDB(userId, filledMessages);
-        await markAssignCompleted(userId);
-        setStatus(`✅ 已处理用户 ${userId}`);
+        await saveChatToDB(id, filledMessages);
+        await markAssignCompleted(id);
+
+        setStatus(`✅ 用户 ${id} 处理完成`);
       } catch (err) {
-        setStatus(`❌ 处理用户 ${userId} 出错：${err.message}`);
+        setStatus(`❌ 处理用户 ${id} 时出错：${err.message}`);
       }
     }
 
-    setStatus("🎉 批量处理完成！");
+    setStatus("🎉 所有指定用户处理完毕！");
   };
 
   const handleSingleProcess = async () => {
@@ -624,13 +672,14 @@ const AdminPage = () => {
     <div style={{ padding: 40 }}>
       <h2>管理员面板：批量或单个生成脚本</h2>
       <div style={{ marginBottom: 20 }}>
-        <input
-          type="text"
+        <textarea
+          rows={4}
+          style={{ width: "100%", marginBottom: "10px" }}
           value={singleId}
           onChange={(e) => setSingleId(e.target.value)}
-          placeholder="输入 Connect ID"
+          placeholder="请输入 Connect ID，多个用逗号分隔（如：111, 222, 333）"
         />
-        <button onClick={handleSingleProcess}>处理该用户</button>
+        <button onClick={handleMultiProcess}>处理这些用户</button>
       </div>
       <button onClick={() => handleProcess()}>🔁 全部从头开始生成</button>
       <button
@@ -653,7 +702,7 @@ const AdminPage = () => {
         onChange={handleFileUpload}
       />
       <p>{status}</p>
-      <div>
+      {/* <div>
         <h4>批量指定 Connect ID（最多 20 个）</h4>
         {userIds.map((id, index) => (
           <input
@@ -671,8 +720,8 @@ const AdminPage = () => {
         ))}
         <div style={{ marginTop: 10 }}>
           <button onClick={handleBatchProcess}>处理这些用户</button>
-        </div>
-      </div>
+        </div> */}
+      {/* </div> */}
     </div>
   );
 };
