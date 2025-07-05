@@ -391,6 +391,47 @@ const markAssignCompleted = async (userId) => {
 const AdminPage = () => {
   const [status, setStatus] = useState("Waiting to start...");
   const [singleId, setSingleId] = useState("");
+  const [userIds, setUserIds] = useState(Array(20).fill(""));
+
+  const handleBatchProcess = async () => {
+    const validIds = userIds.filter((id) => id.trim() !== "");
+
+    if (validIds.length === 0) {
+      setStatus("❌ 请至少填写一个有效的 user ID");
+      return;
+    }
+
+    for (let i = 0; i < validIds.length; i++) {
+      const userId = validIds[i];
+      setStatus(`🚀 正在处理用户 ${userId} (${i + 1}/${validIds.length})`);
+
+      try {
+        const users = await getUserDataById(userId);
+        const userInfo = users[userId];
+
+        const template = selectTemplate(
+          userInfo.isTwin,
+          userInfo.prosocialStatus
+        );
+        const filledMessages = await stepwiseGPTConversation(
+          template,
+          userInfo
+        );
+        if (!filledMessages) {
+          setStatus(`❌ GPT 生成失败，跳过用户 ${userId}`);
+          continue;
+        }
+
+        await saveChatToDB(userId, filledMessages);
+        await markAssignCompleted(userId);
+        setStatus(`✅ 已处理用户 ${userId}`);
+      } catch (err) {
+        setStatus(`❌ 处理用户 ${userId} 出错：${err.message}`);
+      }
+    }
+
+    setStatus("🎉 批量处理完成！");
+  };
 
   const handleSingleProcess = async () => {
     if (!singleId) {
@@ -612,6 +653,26 @@ const AdminPage = () => {
         onChange={handleFileUpload}
       />
       <p>{status}</p>
+      <div>
+        <h4>批量指定 Connect ID（最多 20 个）</h4>
+        {userIds.map((id, index) => (
+          <input
+            key={index}
+            type="text"
+            value={id}
+            onChange={(e) => {
+              const newIds = [...userIds];
+              newIds[index] = e.target.value;
+              setUserIds(newIds);
+            }}
+            placeholder={`User ID ${index + 1}`}
+            style={{ margin: "4px" }}
+          />
+        ))}
+        <div style={{ marginTop: 10 }}>
+          <button onClick={handleBatchProcess}>处理这些用户</button>
+        </div>
+      </div>
     </div>
   );
 };
