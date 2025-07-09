@@ -24,7 +24,7 @@ export const assistantProsocialScript = [
       },
       {
         id: 2,
-        content: (name) => `im taylor! what should i call u?
+        content: (name) => `im taylor! what should i call you?
         `,
         sender: EntityType.Bot1,
         senderName: bot1Name,
@@ -218,7 +218,7 @@ export const assistantProsocialScript = [
       {
         id: 20,
         content: (name) =>
-          `idk if u know the crown.. its that show about the british royals`,
+          `idk if you know the crown.. its that show about the british royals`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
