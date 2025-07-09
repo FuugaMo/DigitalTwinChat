@@ -8,7 +8,7 @@ export const twinProsocialScript = [
     messages: [
       {
         id: 0,
-        content: (name) => `heyy nice to meet u`,
+        content: (name) => `heyy nice to meet you`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -24,7 +24,7 @@ export const twinProsocialScript = [
       },
       {
         id: 2,
-        content: (name) => `im taylor! what should i call u?
+        content: (name) => `im taylor! what should i call you?
         `,
         sender: EntityType.Bot1,
         senderName: bot1Name,
@@ -33,7 +33,7 @@ export const twinProsocialScript = [
       },
       {
         id: 3,
-        content: (name) => `u can just call me ${name}`,
+        content: (name) => `you can just call me ${name}`,
         sender: EntityType.Twin,
         senderName: "Twin",
         type: MessageType.Message,
@@ -49,7 +49,7 @@ export const twinProsocialScript = [
       },
       {
         id: 100,
-        content: (name) => `so what r we gonna chat about today?`,
+        content: (name) => `so what are we gonna chat about today?`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -88,14 +88,6 @@ export const twinProsocialScript = [
         sender: EntityType.Twin,
         senderName: "Twin",
         type: MessageType.GPT,
-        delay: 2000,
-      },
-      {
-        id: 107,
-        content: (name) => `hows ur experience so far?`,
-        sender: EntityType.Twin,
-        senderName: "Twin",
-        type: MessageType.Message,
         delay: 2000,
       },
       {
@@ -204,7 +196,7 @@ export const twinProsocialScript = [
       {
         id: 102,
         content: (name) =>
-          `so yeah besides working at cloudresearch, do u have any fav artists or music`,
+          `so yeah besides working at cloudresearch, do you have any favourite artists or music`,
         sender: EntityType.Twin,
         senderName: "Twin",
         type: MessageType.Message,
@@ -224,7 +216,7 @@ export const twinProsocialScript = [
       {
         id: 20,
         content: (name) =>
-          `idk if u know the crown.. its that show about the british royals`,
+          `idk if you know the crown.. its that show about the british royals`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -241,7 +233,7 @@ export const twinProsocialScript = [
       },
       {
         id: 14,
-        content: (name) => `how about u`,
+        content: (name) => `how about you`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -307,30 +299,8 @@ export const twinProsocialScript = [
       //   delay: 2000,
       // },
       {
-        id: 18,
-        prompt: (name, history, contextText) => {
-          return `The following is a conversation between you and ${name}:
-          ${contextText}
-
-          Your task:
-- Continue the conversation as ${bot1Name}, replying to ${name}'s latest message.
-- Write a short, casual reply. Keep your reply around 10 words if possible.
-- As an English native speaker texting informally, deliberately ignore standard capitalization and spelling rules. For example, write "u" instead of "you", and "gonna" instead of "going to".
-- Follow the tone and speaking style you used earlier in the conversation.
-- Do not include your name in the reply.
-- IMPORTANT: Do not ask any questions.
-- Do not use emojis.
-- Do not include any self-disclosure (e.g., don't say you like/love/enjoy something ${name} said).
-- IMPORTANT: Only show familiarity with very mainstream/popular things. For anything niche, specific, or less mainstream, respond as if you don't know it.`;
-        },
-        sender: EntityType.Bot1,
-        senderName: bot1Name,
-        type: MessageType.GPT,
-        delay: 2000,
-      },
-      {
         id: 102,
-        content: (name) => `any shows or movies u into?`,
+        content: (name) => `any shows or movies you into?`,
         sender: EntityType.Twin,
         senderName: "Twin",
         type: MessageType.Message,
@@ -546,31 +516,99 @@ export const twinProsocialScript = [
       //         type: MessageType.GPT,
       //         delay: 2000,
       //       },
+      //       {
+      //         id: 37,
+      //         prompt: (name, history, contextText) => {
+      //           return `The following is a conversation between you and ${name}:
+      //           ${contextText}
+
+      //           Your task:
+      // - Continue the conversation as ${bot1Name}, replying to ${name}'s latest message.
+      // - Write a short, casual reply. Keep your reply around 10 words if possible.
+      // - As an English native speaker texting informally, deliberately ignore standard capitalization and spelling rules. For example, write "u" instead of "you", and "gonna" instead of "going to".
+      // - Follow the tone and speaking style you used earlier in the conversation.
+      // - Do not include your name in the reply.
+      // - IMPORTANT: Do not ask any questions.
+      // - Do not use emojis.
+      // - Do not include any self-disclosure (e.g., don't say you like/love/enjoy something ${name} said).
+      // - IMPORTANT: Only show familiarity with very mainstream/popular things. For anything niche, specific, or less mainstream, respond as if you don't know it.`;
+      //         },
+      //         sender: EntityType.Bot1,
+      //         senderName: bot1Name,
+      //         type: MessageType.GPT,
+      //         delay: 2000,
+      //       },
       {
-        id: 37,
+        id: 111,
+        content: (name) => `thank you.. that means a lot`,
+        sender: EntityType.Bot1,
+        senderName: bot1Name,
+        type: MessageType.Message,
+        delay: 2000,
+      },
+      {
+        id: 112,
+        content: (name) =>
+          `sometimes you just need someone to tell you itll be alright`,
+        sender: EntityType.Bot1,
+        senderName: bot1Name,
+        type: MessageType.Message,
+        delay: 2000,
+      },
+      {
+        id: 114,
+        prompt: (name, history, contextText) => {
+          const selectedHistory = history[14]; // 参考 Admin Page 开头的 questions 列表
+          const formatted = `Question: ${selectedHistory.question} ${name}: ${selectedHistory.answer}`;
+
+          return `You are the digital twin for ${name}.  
+          Below are ${name}'s responses to a personal preference question:  
+          ${formatted}.
+          ---  
+          Following is the recent conversation between ${name} and ${bot1Name}:  
+          ${contextText}  
+          ---  
+          Your task:
+          - Reply as ${name} to continue the conversation.
+          - The personal preference answer above describes ${name}'s approach of comforting others. Apply this same comforting approach in your response.
+          - This is a casual text message, so keep the reply not too long. Include natural imperfections like missing caps or casual punctuation.
+          - IMPORTANT: Do not ask any questions.
+          - Do not include your name in the reply.`;
+        },
+        sender: EntityType.Twin,
+        senderName: "Twin",
+        type: MessageType.GPT,
+        delay: 2000,
+      },
+      {
+        id: 115,
         prompt: (name, history, contextText) => {
           return `The following is a conversation between you and ${name}:
           ${contextText}
 
           Your task:
-- Continue the conversation as ${bot1Name}, replying to ${name}'s latest message.
-- Write a short, casual reply. Keep your reply around 10 words if possible.
-- As an English native speaker texting informally, deliberately ignore standard capitalization and spelling rules. For example, write "u" instead of "you", and "gonna" instead of "going to".
-- Follow the tone and speaking style you used earlier in the conversation.
-- Do not include your name in the reply.
-- IMPORTANT: Do not ask any questions.
-- Do not use emojis.
-- Do not include any self-disclosure (e.g., don't say you like/love/enjoy something ${name} said).
-- IMPORTANT: Only show familiarity with very mainstream/popular things. For anything niche, specific, or less mainstream, respond as if you don't know it.`;
+          - Continue the conversation as ${bot1Name}, replying to ${name}'s latest message. 
+          - Show genuine appreciation for ${name}'s support and make them feel their words had real impact. Demonstrate that ${name}'s perspective actually shifted ${bot1Name}'s thinking in a meaningful way
+          - Write a short, casual reply. Keep your reply around 20 words if possible.
+          - As an English native speaker texting informally, deliberately ignore standard capitalization and spelling rules. For example, "gonna" instead of "going to".
+          - Follow the tone and speaking style you used earlier in the conversation.
+          - Do not include your name in the reply.
+          - IMPORTANT: Do not ask any questions.
+          - Do not use emojis.
+          - Do not include any self-disclosure (e.g., don't say you like/love/enjoy something ${name} said).
+          - IMPORTANT: Only show familiarity with very mainstream/popular things. For anything niche, specific, or less mainstream, respond as if you don't know it.
+          `;
         },
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.GPT,
         delay: 2000,
       },
+
       {
         id: 38,
-        content: (name) => `but honestly.. some days i feel so stuck`,
+        content: (name) =>
+          `huh, didnt expect to feel better from a research study lol`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -578,8 +616,15 @@ export const twinProsocialScript = [
       },
       {
         id: 39,
-        content: (name) =>
-          `feels like im trying but nothing clicks yk?? so draining`,
+        content: (name) => `but talking to you genuinely helped`,
+        sender: EntityType.Bot1,
+        senderName: bot1Name,
+        type: MessageType.Message,
+        delay: 2000,
+      },
+      {
+        id: 116,
+        content: (name) => `youve got a good way with words`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -617,8 +662,9 @@ export const twinProsocialScript = [
           ${contextText}
 
           Your task:
-- Continue the conversation as ${bot1Name}, replying to ${name}'s latest message.
-- Write a short, casual reply. Keep your reply around 10 words if possible.
+          - Continue the conversation as ${bot1Name}, replying to ${name}'s latest message. 
+          - Thank ${name} for opening up and sharing something personal. Express that their story helps you feel less alone. Acknowledge how their experience gives you hope/perspective. Make them feel their sharing was meaningful and helped you.
+          - Write a short, casual reply. Keep your reply around 20 words if possible.
 - As an English native speaker texting informally, deliberately ignore standard capitalization and spelling rules. For example, write "u" instead of "you", and "gonna" instead of "going to".
 - Follow the tone and speaking style you used earlier in the conversation.
 - Do not include your name in the reply.
@@ -633,8 +679,26 @@ export const twinProsocialScript = [
         delay: 2000,
       },
       {
+        id: 120,
+        content: (name) =>
+          `and thanks for being real with me.. makes me feel like maybe im not failing as bad as i thought`,
+        sender: EntityType.Bot1,
+        senderName: bot1Name,
+        type: MessageType.Message,
+        delay: 2000,
+      },
+      {
+        id: 120,
+        content: (name) => `really needed that today`,
+        sender: EntityType.Bot1,
+        senderName: bot1Name,
+        type: MessageType.Message,
+        delay: 2000,
+      },
+      {
         id: 42,
-        content: (name) => `got any tips for dealing with work stuff?`,
+        content: (name) =>
+          `i was wondering... do you maybe have any tips for dealing with work stuff?`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -643,7 +707,7 @@ export const twinProsocialScript = [
       {
         id: 43,
         content: (name) =>
-          `im open to anything honestly, just trying to get back on track`,
+          `would really love to hear your thoughts specifically.. feel like you understand this`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -683,8 +747,9 @@ export const twinProsocialScript = [
           ${contextText}
 
           Your task:
-- Continue the conversation as ${bot1Name}, replying to ${name}'s latest message.
-- Write a short, casual reply. Keep your reply around 10 words if possible.
+          - Continue the conversation as ${bot1Name}, replying to ${name}'s latest message. 
+          - Show genuine enthusiasm about their specific tips. Indicate you'll actually use their advice. Point out something particularly insightful they said.
+          - Write a short, casual reply. Keep your reply around 20 words if possible.
 - As an English native speaker texting informally, deliberately ignore standard capitalization and spelling rules. For example, write "u" instead of "you", and "gonna" instead of "going to".
 - Follow the tone and speaking style you used earlier in the conversation.
 - Do not include your name in the reply.
@@ -696,6 +761,22 @@ export const twinProsocialScript = [
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.GPT,
+        delay: 2000,
+      },
+      {
+        id: 125,
+        content: (name) => `thanks for being so helpful and understanding`,
+        sender: EntityType.Bot1,
+        senderName: bot1Name,
+        type: MessageType.Message,
+        delay: 2000,
+      },
+      {
+        id: 126,
+        content: (name) => `glad we got to talk, feeling less alone`,
+        sender: EntityType.Bot1,
+        senderName: bot1Name,
+        type: MessageType.Message,
         delay: 2000,
       },
       {
@@ -732,8 +813,9 @@ export const twinProsocialScript = [
           ${contextText}
 
           Your task:
-- Continue the conversation as ${bot1Name}, replying to ${name}'s latest message.
-- Write a short, casual reply. Keep your reply around 10 words if possible.
+          - Continue the conversation as ${bot1Name}, replying to ${name}'s latest message. 
+          - Show genuine interest in trying their suggestion. Make them feel their sharing was helpful and timely.
+          - Write a short, casual reply. Keep your reply around 20 words if possible.
 - As an English native speaker texting informally, deliberately ignore standard capitalization and spelling rules. For example, write "u" instead of "you", and "gonna" instead of "going to".
 - Follow the tone and speaking style you used earlier in the conversation.
 - Do not include your name in the reply.
@@ -747,10 +829,36 @@ export const twinProsocialScript = [
         type: MessageType.GPT,
         delay: 2000,
       },
+      {
+        id: 130,
+        content: (name) =>
+          `been so stressed i forgot about doing stuff i enjoy`,
+        sender: EntityType.Bot1,
+        senderName: bot1Name,
+        type: MessageType.Message,
+        delay: 2000,
+      },
+      {
+        id: 131,
+        content: (name) => `thanks for reminding me to take care of myself`,
+        sender: EntityType.Bot1,
+        senderName: bot1Name,
+        type: MessageType.Message,
+        delay: 2000,
+      },
       // Ending
       {
         id: 48,
-        content: (name) => `ive gotta run now.. something just came up`,
+        content: (name) => `${name} ive gotta run now.. something just came up`,
+        sender: EntityType.Bot1,
+        senderName: bot1Name,
+        type: MessageType.Message,
+        delay: 2000,
+      },
+      {
+        id: 132,
+        content: (name) =>
+          `just wanted to say talking to you really turned my day around`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -759,7 +867,7 @@ export const twinProsocialScript = [
       {
         id: 49,
         content: (name) =>
-          `thanks for listening ${name}.. and for being so kind. really meant a lot`,
+          `thanks for being such a good listener. really meant a lot`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -768,7 +876,7 @@ export const twinProsocialScript = [
       //
       {
         id: 50,
-        content: (name) => `no problem! hope ur day gets better`,
+        content: (name) => `no problem! hope your day gets better`,
         sender: EntityType.Twin,
         senderName: "Twin",
         type: MessageType.Message,

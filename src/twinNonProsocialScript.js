@@ -24,7 +24,7 @@ export const twinNonProsocialScript = [
       },
       {
         id: 2,
-        content: (name) => `im taylor! what should i call u?
+        content: (name) => `im taylor! what should i call you?
         `,
         sender: EntityType.Bot1,
         senderName: bot1Name,
@@ -204,7 +204,7 @@ export const twinNonProsocialScript = [
       {
         id: 102,
         content: (name) =>
-          `so yeah besides working at cloudresearch, do u have any fav artists or music`,
+          `so yeah besides working at cloudresearch, do you have any favourite artists or music`,
         sender: EntityType.Twin,
         senderName: "Twin",
         type: MessageType.Message,
@@ -224,7 +224,7 @@ export const twinNonProsocialScript = [
       {
         id: 20,
         content: (name) =>
-          `idk if u know the crown.. its that show about the british royals`,
+          `idk if you know the crown.. its that show about the british royals`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -241,7 +241,7 @@ export const twinNonProsocialScript = [
       },
       {
         id: 14,
-        content: (name) => `how about u`,
+        content: (name) => `how about you`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -330,7 +330,7 @@ export const twinNonProsocialScript = [
       },
       {
         id: 102,
-        content: (name) => `any shows or movies u into?`,
+        content: (name) => `any shows or movies you into?`,
         sender: EntityType.Twin,
         senderName: "Twin",
         type: MessageType.Message,
