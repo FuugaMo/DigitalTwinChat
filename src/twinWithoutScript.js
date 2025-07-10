@@ -8,7 +8,7 @@ export const twinWithoutScript = [
     messages: [
       {
         id: 0,
-        content: (name) => `heyy nice to meet u`,
+        content: (name) => `heyy nice to meet you`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,

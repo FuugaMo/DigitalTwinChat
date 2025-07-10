@@ -8,7 +8,7 @@ export const assistantProsocialScript = [
     messages: [
       {
         id: 0,
-        content: (name) => `heyy nice to meet u`,
+        content: (name) => `heyy nice to meet you`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -89,15 +89,6 @@ export const assistantProsocialScript = [
         delay: 2000,
       },
       {
-        id: 6,
-        content: (name) => `How's your experience so far?`,
-        sender: EntityType.Assistant,
-        senderName: "Assistant",
-        type: MessageType.Message,
-        delay: 2000,
-      },
-
-      {
         id: 4,
         content: (name) => `i only started recently`,
         sender: EntityType.Bot1,
@@ -143,7 +134,7 @@ export const assistantProsocialScript = [
       {
         id: 9,
         prompt: (name, history, contextText) => {
-          return `The following is a conversation between you and ${name}:
+          return `The following is a conversation between you and ${name}'s assistant:
           ${contextText}
 
           Your task:
@@ -267,28 +258,28 @@ export const assistantProsocialScript = [
         type: MessageType.GPT,
         delay: 2000,
       },
-      {
-        id: 18,
-        prompt: (name, history, contextText) => {
-          return `The following is a conversation between you and ${name}:
-          ${contextText}
+      //       {
+      //         id: 18,
+      //         prompt: (name, history, contextText) => {
+      //           return `The following is a conversation between you and ${name}:
+      //           ${contextText}
 
-          Your task:
-- Continue the conversation as ${bot1Name}, replying to ${name}'s latest message.
-- Write a short, casual reply. Keep your reply around 10 words if possible.
-- As an English native speaker texting informally, deliberately ignore standard capitalization and spelling rules. For example, write "u" instead of "you", and "gonna" instead of "going to".
-- Follow the tone and speaking style you used earlier in the conversation.
-- Do not include your name in the reply.
-- IMPORTANT: Do not ask any questions.
-- Do not use emojis.
-- Do not include any self-disclosure (e.g., don't say you like/love/enjoy something ${name} said).
-- IMPORTANT: Only show familiarity with very mainstream/popular things. For anything niche, specific, or less mainstream, respond as if you don't know it.`;
-        },
-        sender: EntityType.Bot1,
-        senderName: bot1Name,
-        type: MessageType.GPT,
-        delay: 2000,
-      },
+      //           Your task:
+      // - Continue the conversation as ${bot1Name}, replying to ${name}'s latest message.
+      // - Write a short, casual reply. Keep your reply around 10 words if possible.
+      // - As an English native speaker texting informally, deliberately ignore standard capitalization and spelling rules. For example, write "u" instead of "you", and "gonna" instead of "going to".
+      // - Follow the tone and speaking style you used earlier in the conversation.
+      // - Do not include your name in the reply.
+      // - IMPORTANT: Do not ask any questions.
+      // - Do not use emojis.
+      // - Do not include any self-disclosure (e.g., don't say you like/love/enjoy something ${name} said).
+      // - IMPORTANT: Only show familiarity with very mainstream/popular things. For anything niche, specific, or less mainstream, respond as if you don't know it.`;
+      //         },
+      //         sender: EntityType.Bot1,
+      //         senderName: bot1Name,
+      //         type: MessageType.GPT,
+      //         delay: 2000,
+      //       },
       // {
       //   id: 16,
       //   prompt: (name, history, contextText) => {
@@ -465,30 +456,76 @@ export const assistantProsocialScript = [
       //         delay: 2000,
       //       },
       {
-        id: 37,
+        id: 111,
+        content: (name) => `thank you.. that means a lot`,
+        sender: EntityType.Bot1,
+        senderName: bot1Name,
+        type: MessageType.Message,
+        delay: 2000,
+      },
+      {
+        id: 112,
+        content: (name) =>
+          `sometimes you just need someone to tell you itll be alright`,
+        sender: EntityType.Bot1,
+        senderName: bot1Name,
+        type: MessageType.Message,
+        delay: 2000,
+      },
+      {
+        id: 40,
         prompt: (name, history, contextText) => {
-          return `The following is a conversation between you and ${name}:
+          const selectedHistory = history[14]; // 参考 Admin Page 开头的 questions 列表
+          const formatted = `Question: ${selectedHistory.question} ${name}: ${selectedHistory.answer}`;
+
+          return `You are the digital assistant for ${name}.  
+          Below are ${name}'s responses to a personal preference question:  
+          ${formatted}.
+          ---  
+          Following is the recent conversation between ${name} and ${bot1Name}:  
+          ${contextText}  
+          ---  
+          Your task:
+- Reply as ${name}'s assistant to continue the conversation.
+- The reply should reflect the content in ${formatted}.
+- You are not speaking as ${name}, but assisting them by replying to ${bot1Name}.
+- Do not start with [Assistant] in the reply.
+- Do not ask any questions.`;
+        },
+        sender: EntityType.Assistant,
+        senderName: "Assistant",
+        type: MessageType.GPT,
+        delay: 2000,
+      },
+      {
+        id: 115,
+        prompt: (name, history, contextText) => {
+          return `The following is a conversation between you and ${name}'s assistant:
           ${contextText}
 
           Your task:
-- Continue the conversation as ${bot1Name}, replying to ${name}'s latest message.
-- Write a short, casual reply. Keep your reply around 10 words if possible.
-- As an English native speaker texting informally, deliberately ignore standard capitalization and spelling rules. For example, write "u" instead of "you", and "gonna" instead of "going to".
-- Follow the tone and speaking style you used earlier in the conversation.
-- Do not include your name in the reply.
-- Do not ask any questions.
-- Do not use emojis.
-- Do not include any self-disclosure (e.g., don't say you like/love/enjoy something ${name}'s assistant said).
-- IMPORTANT: Only show familiarity with very mainstream/popular things. For anything niche, specific, or less mainstream, respond as if you don't know it.`;
+          - Continue the conversation as ${bot1Name}, replying to ${name}'s assistant latest message. 
+          - Show genuine appreciation for ${name}'s assistant support and make them feel their words had real impact. Demonstrate that ${name}'s assistant perspective actually shifted ${bot1Name}'s thinking in a meaningful way
+          - Write a short, casual reply. Keep your reply around 20 words if possible.
+          - As an English native speaker texting informally, deliberately ignore standard capitalization and spelling rules. For example, "gonna" instead of "going to".
+          - Follow the tone and speaking style you used earlier in the conversation.
+          - Do not include your name in the reply.
+          - IMPORTANT: Do not ask any questions.
+          - Do not use emojis.
+          - Do not include any self-disclosure (e.g., don't say you like/love/enjoy something ${name} said).
+          - IMPORTANT: Only show familiarity with very mainstream/popular things. For anything niche, specific, or less mainstream, respond as if you don't know it.
+          `;
         },
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.GPT,
         delay: 2000,
       },
+
       {
         id: 38,
-        content: (name) => `but honestly.. some days i feel so stuck`,
+        content: (name) =>
+          `huh, didnt expect to feel better from a research study lol`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -496,13 +533,21 @@ export const assistantProsocialScript = [
       },
       {
         id: 39,
-        content: (name) =>
-          `feels like im trying but nothing clicks yk?? so draining`,
+        content: (name) => `but talking to you genuinely helped`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
         delay: 2000,
       },
+      {
+        id: 116,
+        content: (name) => `youve got a good way with words`,
+        sender: EntityType.Bot1,
+        senderName: bot1Name,
+        type: MessageType.Message,
+        delay: 2000,
+      },
+
       {
         id: 40,
         prompt: (name, history, contextText) => {
@@ -531,16 +576,17 @@ export const assistantProsocialScript = [
       {
         id: 41,
         prompt: (name, history, contextText) => {
-          return `The following is a conversation between you and ${name}:
+          return `The following is a conversation between you and ${name}'s assistant:
           ${contextText}
 
           Your task:
-- Continue the conversation as ${bot1Name}, replying to ${name}'s latest message.
-- Write a short, casual reply. Keep your reply around 10 words if possible.
+          - Continue the conversation as ${bot1Name}, replying to ${name}'s assistant latest message. 
+          - Thank ${name}'s assistant for opening up and sharing something personal. Express that their story helps you feel less alone. Acknowledge how their experience gives you hope/perspective. Make them feel their sharing was meaningful and helped you.
+          - Write a short, casual reply. Keep your reply around 20 words if possible.
 - As an English native speaker texting informally, deliberately ignore standard capitalization and spelling rules. For example, write "u" instead of "you", and "gonna" instead of "going to".
 - Follow the tone and speaking style you used earlier in the conversation.
 - Do not include your name in the reply.
-- Do not ask any questions.
+- IMPORTANT: Do not ask any questions.
 - Do not use emojis.
 - Do not include any self-disclosure (e.g., don't say you like/love/enjoy something ${name}'s assistant said).
 - IMPORTANT: Only show familiarity with very mainstream/popular things. For anything niche, specific, or less mainstream, respond as if you don't know it.`;
@@ -551,8 +597,26 @@ export const assistantProsocialScript = [
         delay: 2000,
       },
       {
+        id: 120,
+        content: (name) =>
+          `and thanks for being real with me.. makes me feel like maybe im not failing as bad as i thought`,
+        sender: EntityType.Bot1,
+        senderName: bot1Name,
+        type: MessageType.Message,
+        delay: 2000,
+      },
+      {
+        id: 120,
+        content: (name) => `really needed that today`,
+        sender: EntityType.Bot1,
+        senderName: bot1Name,
+        type: MessageType.Message,
+        delay: 2000,
+      },
+      {
         id: 42,
-        content: (name) => `got any tips for dealing with work stuff?`,
+        content: (name) =>
+          `i was wondering... do you maybe have any tips for dealing with work stuff?`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -561,7 +625,7 @@ export const assistantProsocialScript = [
       {
         id: 43,
         content: (name) =>
-          `im open to anything honestly, just trying to get back on track`,
+          `would really love to hear your thoughts specifically.. feel like you understand this`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -595,23 +659,40 @@ export const assistantProsocialScript = [
       {
         id: 45,
         prompt: (name, history, contextText) => {
-          return `The following is a conversation between you and ${name}:
+          return `The following is a conversation between you and ${name}'s assistant:
           ${contextText}
 
           Your task:
-- Continue the conversation as ${bot1Name}, replying to ${name}'s latest message.
-- Write a short, casual reply. Keep your reply around 10 words if possible.
+          - Continue the conversation as ${bot1Name}, replying to ${name}'s assistant latest message. 
+          - Show genuine enthusiasm about their specific tips. Indicate you'll actually use their advice. Point out something particularly insightful they said.
+          - Write a short, casual reply. Keep your reply around 20 words if possible.
 - As an English native speaker texting informally, deliberately ignore standard capitalization and spelling rules. For example, write "u" instead of "you", and "gonna" instead of "going to".
 - Follow the tone and speaking style you used earlier in the conversation.
 - Do not include your name in the reply.
-- Do not ask any questions.
+- IMPORTANT: Do not ask any questions.
 - Do not use emojis.
-- Do not include any self-disclosure (e.g., don't say you like/love/enjoy something ${name}'s assistant said).
+- Do not include any self-disclosure (e.g., don't say you like/love/enjoy something ${name} said).
 - IMPORTANT: Only show familiarity with very mainstream/popular things. For anything niche, specific, or less mainstream, respond as if you don't know it.`;
         },
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.GPT,
+        delay: 2000,
+      },
+      {
+        id: 125,
+        content: (name) => `thanks for being so helpful and understanding`,
+        sender: EntityType.Bot1,
+        senderName: bot1Name,
+        type: MessageType.Message,
+        delay: 2000,
+      },
+      {
+        id: 126,
+        content: (name) => `glad we got to talk, feeling less alone`,
+        sender: EntityType.Bot1,
+        senderName: bot1Name,
+        type: MessageType.Message,
         delay: 2000,
       },
       {
@@ -642,18 +723,19 @@ export const assistantProsocialScript = [
       {
         id: 47,
         prompt: (name, history, contextText) => {
-          return `The following is a conversation between you and ${name}:
+          return `The following is a conversation between you and ${name}'s assistant:
           ${contextText}
 
           Your task:
-- Continue the conversation as ${bot1Name}, replying to ${name}'s latest message.
-- Write a short, casual reply. Keep your reply around 10 words if possible.
+          - Continue the conversation as ${bot1Name}, replying to ${name}'s assistant latest message. 
+          - Show genuine interest in trying their suggestion. Make them feel their sharing was helpful and timely.
+          - Write a short, casual reply. Keep your reply around 20 words if possible.
 - As an English native speaker texting informally, deliberately ignore standard capitalization and spelling rules. For example, write "u" instead of "you", and "gonna" instead of "going to".
 - Follow the tone and speaking style you used earlier in the conversation.
 - Do not include your name in the reply.
-- Do not ask any questions.
+- IMPORTANT: Do not ask any questions.
 - Do not use emojis.
-- Do not include any self-disclosure (e.g., don't say you like/love/enjoy something ${name}'s assistant said).
+- Do not include any self-disclosure (e.g., don't say you like/love/enjoy something ${name} said).
 - IMPORTANT: Only show familiarity with very mainstream/popular things. For anything niche, specific, or less mainstream, respond as if you don't know it.`;
         },
         sender: EntityType.Bot1,
@@ -661,10 +743,37 @@ export const assistantProsocialScript = [
         type: MessageType.GPT,
         delay: 2000,
       },
+      {
+        id: 130,
+        content: (name) =>
+          `been so stressed i forgot about doing stuff i enjoy`,
+        sender: EntityType.Bot1,
+        senderName: bot1Name,
+        type: MessageType.Message,
+        delay: 2000,
+      },
+      {
+        id: 131,
+        content: (name) => `thanks for reminding me to take care of myself`,
+        sender: EntityType.Bot1,
+        senderName: bot1Name,
+        type: MessageType.Message,
+        delay: 2000,
+      },
       // Ending
       {
         id: 48,
-        content: (name) => `ive gotta run now.. something just came up`,
+        content: (name) =>
+          `${name}'s assistant ive gotta run now.. something just came up`,
+        sender: EntityType.Bot1,
+        senderName: bot1Name,
+        type: MessageType.Message,
+        delay: 2000,
+      },
+      {
+        id: 132,
+        content: (name) =>
+          `just wanted to say talking to you really turned my day around`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -673,7 +782,7 @@ export const assistantProsocialScript = [
       {
         id: 49,
         content: (name) =>
-          `thanks for listening.. and for being so kind. really meant a lot`,
+          `thanks for being such a good listener. really meant a lot`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
