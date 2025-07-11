@@ -57,7 +57,7 @@ export const assistantProsocialScript = [
       },
       {
         id: 6,
-        content: (name) => `How about we start by introducing ourselves a bit?`,
+        content: (name) => `Maybe we can start with a quick intro?`,
         sender: EntityType.Assistant,
         senderName: "Assistant",
         type: MessageType.Message,
@@ -79,7 +79,7 @@ export const assistantProsocialScript = [
           Your task:
 - Reply as ${name}'s assistant to continue the conversation.
 - The reply should reflect the content in ${formatted}.
-- You are not speaking as ${name}, but assisting them by replying to ${bot1Name}.
+- You are not speaking as ${name}'s assistant, but assisting them by replying to ${bot1Name}.
 - Do not start with [Assistant] in the reply.
 - IMPORTANT: Do not ask any questions.`;
         },
@@ -122,7 +122,7 @@ export const assistantProsocialScript = [
           Your task:
 - Reply as ${name}'s assistant to continue the conversation.
 - The reply should reflect the content in ${formatted}.
-- You are not speaking as ${name}, but assisting them by replying to ${bot1Name}.
+- You are not speaking as ${name}'s assistant, but assisting them by replying to ${bot1Name}.
 - Do not start with [Assistant] in the reply.
 - IMPORTANT: Do not ask any questions.`;
         },
@@ -178,7 +178,7 @@ export const assistantProsocialScript = [
           Your task:
 - Reply as ${name}'s assistant to continue the conversation.
 - The reply should reflect the content in ${formatted}.
-- You are not speaking as ${name}, but assisting them by replying to ${bot1Name}.
+- You are not speaking as ${name}'s assistant, but assisting them by replying to ${bot1Name}.
 - Do not start with [Assistant] in the reply.
 - IMPORTANT: Do not ask any questions.`;
         },
@@ -249,7 +249,7 @@ export const assistantProsocialScript = [
           Your task:
 - Reply as ${name}'s assistant to continue the conversation.
 - The reply should reflect the content in ${formatted}.
-- You are not speaking as ${name}, but assisting them by replying to ${bot1Name}.
+- You are not speaking as ${name}'s assistant, but assisting them by replying to ${bot1Name}.
 - Do not start with [Assistant] in the reply.
 - IMPORTANT: Do not ask any questions.`;
         },
