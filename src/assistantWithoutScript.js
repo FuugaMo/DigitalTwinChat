@@ -57,7 +57,7 @@ export const assistantWithoutScript = [
       },
       {
         id: 6,
-        content: (name) => `How about we start by introducing ourselves a bit?`,
+        content: (name) => `Maybe we can start with a quick intro?`,
         sender: EntityType.Assistant,
         senderName: "Assistant",
         type: MessageType.Message,
@@ -345,6 +345,14 @@ export const assistantWithoutScript = [
       {
         id: 29,
         content: (name) => `love jennifer aniston so much`,
+        sender: EntityType.Bot1,
+        senderName: bot1Name,
+        type: MessageType.Message,
+        delay: 2000,
+      },
+      {
+        id: 29,
+        content: (name) => `what about ${name}`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,

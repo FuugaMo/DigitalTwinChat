@@ -33,7 +33,7 @@ export const twinWithoutScript = [
       },
       {
         id: 3,
-        content: (name) => `u can just call me ${name}`,
+        content: (name) => `you can just call me ${name}`,
         sender: EntityType.Twin,
         senderName: "Twin",
         type: MessageType.Message,
@@ -88,14 +88,6 @@ export const twinWithoutScript = [
         sender: EntityType.Twin,
         senderName: "Twin",
         type: MessageType.GPT,
-        delay: 2000,
-      },
-      {
-        id: 107,
-        content: (name) => `hows ur experience so far?`,
-        sender: EntityType.Twin,
-        senderName: "Twin",
-        type: MessageType.Message,
         delay: 2000,
       },
       {
@@ -306,28 +298,28 @@ export const twinWithoutScript = [
       //   type: MessageType.GPT,
       //   delay: 2000,
       // },
-      {
-        id: 18,
-        prompt: (name, history, contextText) => {
-          return `The following is a conversation between you and ${name}:
-          ${contextText}
+//       {
+//         id: 18,
+//         prompt: (name, history, contextText) => {
+//           return `The following is a conversation between you and ${name}:
+//           ${contextText}
 
-          Your task:
-- Continue the conversation as ${bot1Name}, replying to ${name}'s latest message.
-- Write a short, casual reply. Keep your reply around 10 words if possible.
-- As an English native speaker texting informally, deliberately ignore standard capitalization and spelling rules. For example, write "u" instead of "you", and "gonna" instead of "going to".
-- Follow the tone and speaking style you used earlier in the conversation.
-- Do not include your name in the reply.
-- IMPORTANT: Do not ask any questions.
-- Do not use emojis.
-- Do not include any self-disclosure (e.g., don't say you like/love/enjoy something ${name} said).
-- IMPORTANT: Only show familiarity with very mainstream/popular things. For anything niche, specific, or less mainstream, respond as if you don't know it.`;
-        },
-        sender: EntityType.Bot1,
-        senderName: bot1Name,
-        type: MessageType.GPT,
-        delay: 2000,
-      },
+//           Your task:
+// - Continue the conversation as ${bot1Name}, replying to ${name}'s latest message.
+// - Write a short, casual reply. Keep your reply around 10 words if possible.
+// - As an English native speaker texting informally, deliberately ignore standard capitalization and spelling rules. For example, write "u" instead of "you", and "gonna" instead of "going to".
+// - Follow the tone and speaking style you used earlier in the conversation.
+// - Do not include your name in the reply.
+// - IMPORTANT: Do not ask any questions.
+// - Do not use emojis.
+// - Do not include any self-disclosure (e.g., don't say you like/love/enjoy something ${name} said).
+// - IMPORTANT: Only show familiarity with very mainstream/popular things. For anything niche, specific, or less mainstream, respond as if you don't know it.`;
+//         },
+//         sender: EntityType.Bot1,
+//         senderName: bot1Name,
+//         type: MessageType.GPT,
+//         delay: 2000,
+//       },
       {
         id: 102,
         content: (name) => `any shows or movies you into?`,
@@ -427,6 +419,14 @@ export const twinWithoutScript = [
       {
         id: 29,
         content: (name) => `love jennifer aniston so much`,
+        sender: EntityType.Bot1,
+        senderName: bot1Name,
+        type: MessageType.Message,
+        delay: 2000,
+      },
+      {
+        id: 29,
+        content: (name) => `what about you?`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,

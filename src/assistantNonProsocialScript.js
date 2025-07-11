@@ -57,7 +57,7 @@ export const assistantNonProsocialScript = [
       },
       {
         id: 6,
-        content: (name) => `How about we start by introducing ourselves a bit?`,
+        content: (name) => `Maybe we can start with a quick intro?`,
         sender: EntityType.Assistant,
         senderName: "Assistant",
         type: MessageType.Message,
@@ -79,7 +79,7 @@ export const assistantNonProsocialScript = [
           Your task:
 - Reply as ${name}'s assistant to continue the conversation.
 - The reply should reflect the content in ${formatted}.
-- You are not speaking as ${name}, but assisting them by replying to ${bot1Name}.
+- You are not speaking as ${name}'s assistant, but assisting them by replying to ${bot1Name}.
 - Do not start with [Assistant] in the reply.
 - IMPORTANT: Do not ask any questions.`;
         },
@@ -131,7 +131,7 @@ export const assistantNonProsocialScript = [
           Your task:
 - Reply as ${name}'s assistant to continue the conversation.
 - The reply should reflect the content in ${formatted}.
-- You are not speaking as ${name}, but assisting them by replying to ${bot1Name}.
+- You are not speaking as ${name}'s assistant, but assisting them by replying to ${bot1Name}.
 - Do not start with [Assistant] in the reply.
 - IMPORTANT: Do not ask any questions.`;
         },
@@ -187,7 +187,7 @@ export const assistantNonProsocialScript = [
           Your task:
 - Reply as ${name}'s assistant to continue the conversation.
 - The reply should reflect the content in ${formatted}.
-- You are not speaking as ${name}, but assisting them by replying to ${bot1Name}.
+- You are not speaking as ${name}'s assistant, but assisting them by replying to ${bot1Name}.
 - Do not start with [Assistant] in the reply.
 - IMPORTANT: Do not ask any questions.`;
         },
@@ -258,7 +258,7 @@ export const assistantNonProsocialScript = [
           Your task:
 - Reply as ${name}'s assistant to continue the conversation.
 - The reply should reflect the content in ${formatted}.
-- You are not speaking as ${name}, but assisting them by replying to ${bot1Name}.
+- You are not speaking as ${name}'s assistant, but assisting them by replying to ${bot1Name}.
 - Do not start with [Assistant] in the reply.
 - IMPORTANT: Do not ask any questions.`;
         },
@@ -412,6 +412,14 @@ export const assistantNonProsocialScript = [
         delay: 2000,
       },
       {
+        id: 34,
+        content: (name) => `Stuck how?`,
+        sender: EntityType.Assistant,
+        senderName: "Assistant",
+        type: MessageType.Message,
+        delay: 2000,
+      },
+      {
         id: 36,
         content: (name) =>
           `feels like im trying but nothing clicks yk?? so draining`,
@@ -447,7 +455,7 @@ export const assistantNonProsocialScript = [
       {
         id: 40,
         content: (name) =>
-          `I'm not entirely sure, but I'm confident you'll find something`,
+          `I'm not entirely sure, but I guess you’ll come across something at some point.`,
         sender: EntityType.Assistant,
         senderName: "Assistant",
         type: MessageType.Message,
@@ -471,18 +479,10 @@ export const assistantNonProsocialScript = [
         type: MessageType.Message,
         delay: 2000,
       },
-      {
-        id: 49,
-        content: (name) => `nice talking to u!`,
-        sender: EntityType.Bot1,
-        senderName: bot1Name,
-        type: MessageType.Message,
-        delay: 2000,
-      },
       //
       {
         id: 50,
-        content: (name) => `I feel the same. Wishing you all the best.`,
+        content: (name) => `Take care!`,
         sender: EntityType.Assistant,
         senderName: "Assistant",
         type: MessageType.Message,
