@@ -79,7 +79,7 @@ export const assistantNonProsocialScript = [
           Your task:
 - Reply as ${name}'s assistant to continue the conversation.
 - The reply should reflect the content in ${formatted}.
-- You are not speaking as ${name}'s assistant, but assisting them by replying to ${bot1Name}.
+- You are not speaking as ${name}, but assisting them by replying to ${bot1Name}.
 - Do not start with [Assistant] in the reply.
 - IMPORTANT: Do not ask any questions.`;
         },
@@ -131,7 +131,7 @@ export const assistantNonProsocialScript = [
           Your task:
 - Reply as ${name}'s assistant to continue the conversation.
 - The reply should reflect the content in ${formatted}.
-- You are not speaking as ${name}'s assistant, but assisting them by replying to ${bot1Name}.
+- You are not speaking as ${name}, but assisting them by replying to ${bot1Name}.
 - Do not start with [Assistant] in the reply.
 - IMPORTANT: Do not ask any questions.`;
         },
@@ -187,7 +187,7 @@ export const assistantNonProsocialScript = [
           Your task:
 - Reply as ${name}'s assistant to continue the conversation.
 - The reply should reflect the content in ${formatted}.
-- You are not speaking as ${name}'s assistant, but assisting them by replying to ${bot1Name}.
+- You are not speaking as ${name}, but assisting them by replying to ${bot1Name}.
 - Do not start with [Assistant] in the reply.
 - IMPORTANT: Do not ask any questions.`;
         },
@@ -258,7 +258,7 @@ export const assistantNonProsocialScript = [
           Your task:
 - Reply as ${name}'s assistant to continue the conversation.
 - The reply should reflect the content in ${formatted}.
-- You are not speaking as ${name}'s assistant, but assisting them by replying to ${bot1Name}.
+- You are not speaking as ${name}, but assisting them by replying to ${bot1Name}.
 - Do not start with [Assistant] in the reply.
 - IMPORTANT: Do not ask any questions.`;
         },
