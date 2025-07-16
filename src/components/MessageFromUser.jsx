@@ -12,7 +12,7 @@ function MessageFromUser(props) {
       <div className="messageText messageTextSent">
         <div
           className={`messageSenderName ${
-            props.isTwin ? "messageSenderNameTwin" : "messageSenderNameUser"
+            props.isFPV ? "messageSenderNameFPV" : "messageSenderNameTPV"
           }`}
         >
           {props.name}
@@ -40,7 +40,7 @@ function MessageFromUser(props) {
 
       <div>
         <img
-          src={props.isTwin == 1 ? avatarURL : assistantLogo}
+          src={props.isFPV == 1 ? avatarURL : assistantLogo}
           alt="User Avatar"
           className="avatar"
           style={{

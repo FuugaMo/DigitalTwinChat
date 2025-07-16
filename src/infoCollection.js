@@ -17,7 +17,7 @@ export const infoCollection = [
       {
         id: 0,
         content: (name) =>
-          `Hello, ${name}! It’s so nice to have you here. In what follows, I’ll ask you some questions to collect some basic info about you. `,
+          `Hello, ${name}! It’s so nice to have you here. In what follows, I’ll ask you some questions to collect some basic info about you.`,
         sender: EntityType.Host,
         senderName: "ConvoAI",
         type: MessageType.Message,
@@ -67,7 +67,7 @@ export const infoCollection = [
       {
         id: 1,
         content: (name) =>
-          `Great! The first question is: How long have you been using CloudResearch, and about how many studies have you done on CloudResearch?`,
+          `Great! The first question is: How long have you been using CloudResearch and about how many studies have you done on CloudResearch?`,
         sender: EntityType.Host,
         senderName: "ConvoAI",
         type: MessageType.Message,
@@ -136,7 +136,7 @@ export const infoCollection = [
       {
         id: 4,
         content: (name) =>
-          `What city do you live in? What do you think about it?`,
+          `What are your favorite TV shows or movies? Why do you like them?`,
         sender: EntityType.Host,
         senderName: "ConvoAI",
         type: MessageType.Message,
@@ -159,7 +159,7 @@ export const infoCollection = [
       {
         id: 5,
         content: (name) =>
-          `What are your favorite TV shows or movies? Why do you like them?`,
+          `Do you have any favorite actors or actresses? What do you like about them?`,
         sender: EntityType.Host,
         senderName: "ConvoAI",
         type: MessageType.Message,
@@ -182,7 +182,7 @@ export const infoCollection = [
       {
         id: 6,
         content: (name) =>
-          `Do you have any favorite actors or actresses? Why do you like them?`,
+          `What kind of music do you like? Why do you like it?`,
         sender: EntityType.Host,
         senderName: "ConvoAI",
         type: MessageType.Message,
@@ -204,7 +204,7 @@ export const infoCollection = [
       },
       {
         id: 7,
-        content: (name) => `What’s your favorite food, and why do you like it?`,
+        content: (name) => `Do you have any hobbies?`,
         sender: EntityType.Host,
         senderName: "ConvoAI",
         type: MessageType.Message,
@@ -227,7 +227,7 @@ export const infoCollection = [
       {
         id: 8,
         content: (name) =>
-          `What kind of music do you like? Why do you like it?`,
+          `What is your current or most recent job?`,
         sender: EntityType.Host,
         senderName: "ConvoAI",
         type: MessageType.Message,
@@ -250,7 +250,7 @@ export const infoCollection = [
       {
         id: 9,
         content: (name) =>
-          `Do you have any favorite singers or bands? Why are they your favorite?`,
+          `Please briefly describe what you do (or did) in this job.`,
         sender: EntityType.Host,
         senderName: "ConvoAI",
         type: MessageType.Message,
@@ -272,7 +272,7 @@ export const infoCollection = [
       },
       {
         id: 10,
-        content: (name) => `What are your hobbies?`,
+        content: (name) => `How did you get into it?`,
         sender: EntityType.Host,
         senderName: "ConvoAI",
         type: MessageType.Message,
@@ -295,7 +295,7 @@ export const infoCollection = [
       {
         id: 11,
         content: (name) =>
-          `What do you usually do when you’re feeling down or not happy?`,
+          `What do you like or find meaningful about this job?`,
         sender: EntityType.Host,
         senderName: "ConvoAI",
         type: MessageType.Message,
@@ -318,7 +318,7 @@ export const infoCollection = [
       {
         id: 12,
         content: (name) =>
-          `Can you describe a time in your life that was especially positive or meaningful? What happened?`,
+          `What do you find most challenging or frustrating about this job?`,
         sender: EntityType.Host,
         senderName: "ConvoAI",
         type: MessageType.Message,
@@ -341,7 +341,7 @@ export const infoCollection = [
       {
         id: 13,
         content: (name) =>
-          `Have you ever experienced a major challenge in a relationship with someone? What happened?`,
+          `If someone wanted to enter this field, what advice would you give them?`,
         sender: EntityType.Host,
         senderName: "ConvoAI",
         type: MessageType.Message,
@@ -364,7 +364,7 @@ export const infoCollection = [
       {
         id: 14,
         content: (name) =>
-          `When someone shares something bad that happened to them, what would you say to them.`,
+          `Which city do you currently live in?`,
         sender: EntityType.Host,
         senderName: "ConvoAI",
         type: MessageType.Message,
@@ -387,7 +387,7 @@ export const infoCollection = [
       {
         id: 15,
         content: (name) =>
-          `When someone feels bad about something, what would you say to help them think about it in a more positive or different way?`,
+          `How long have you lived there?`,
         sender: EntityType.Host,
         senderName: "ConvoAI",
         type: MessageType.Message,
@@ -410,7 +410,7 @@ export const infoCollection = [
       {
         id: 16,
         content: (name) =>
-          `Have you ever faced a challenge at work or while looking for a job? What happened? How did you feel during that time?`,
+          `What do you like about living there?`,
         sender: EntityType.Host,
         senderName: "ConvoAI",
         type: MessageType.Message,
@@ -434,7 +434,7 @@ export const infoCollection = [
       {
         id: 18,
         content: (name) =>
-          `Do you have any tips or helpful resources for finding a job or dealing with challenges at work?`,
+          `Is there anything you don’t like about living there?`,
         sender: EntityType.Host,
         senderName: "ConvoAI",
         type: MessageType.Message,
@@ -457,7 +457,7 @@ export const infoCollection = [
       {
         id: 19,
         content: (name) =>
-          `What is something you’ve always wanted to do but haven’t yet? Why?`,
+          `If a friend were visiting your city, what’s one place or activity you would recommend?`,
         sender: EntityType.Host,
         senderName: "ConvoAI",
         type: MessageType.Message,
@@ -479,7 +479,7 @@ export const infoCollection = [
       },
       {
         id: 20,
-        content: (name) => `What does success mean to you?`,
+        content: (name) => `Do you consider yourself more introverted or extroverted? Why?`,
         sender: EntityType.Host,
         senderName: "ConvoAI",
         type: MessageType.Message,
@@ -502,7 +502,7 @@ export const infoCollection = [
       {
         id: 21,
         content: (name) =>
-          `What value or principle is most important to you in life?`,
+          `In social situations, do you tend to lead or follow?`,
         sender: EntityType.Host,
         senderName: "ConvoAI",
         type: MessageType.Message,
@@ -525,7 +525,51 @@ export const infoCollection = [
       {
         id: 22,
         content: (name) =>
-          `Has your most important value changed over time? If so, how and why?`,
+          `How do you usually respond to stressful situations?`,
+        sender: EntityType.Host,
+        senderName: "ConvoAI",
+        type: MessageType.Message,
+        delay: 3.0,
+      },
+    ],
+  }, {
+    step: 22,
+    messages: [
+      {
+        id: 51,
+        prompt: (name) =>
+          `Give a reply of around 10 words of user's answer. Don't ask questions.`,
+        sender: EntityType.Host,
+        senderName: "ConvoAI",
+        type: MessageType.GPT,
+        delay: 3,
+      },
+      {
+        id: 52,
+        content: (name) =>
+          `Are you more of a planner or do you prefer to go with the flow?`,
+        sender: EntityType.Host,
+        senderName: "ConvoAI",
+        type: MessageType.Message,
+        delay: 3.0,
+      },
+    ],
+  }, {
+    step: 23,
+    messages: [
+      {
+        id: 51,
+        prompt: (name) =>
+          `Give a reply of around 10 words of user's answer. Don't ask questions.`,
+        sender: EntityType.Host,
+        senderName: "ConvoAI",
+        type: MessageType.GPT,
+        delay: 3,
+      },
+      {
+        id: 52,
+        content: (name) =>
+          `When making decisions, do you rely more on logic or intuition?`,
         sender: EntityType.Host,
         senderName: "ConvoAI",
         type: MessageType.Message,
@@ -534,7 +578,7 @@ export const infoCollection = [
     ],
   },
   {
-    step: 22,
+    step: 24,
     messages: [
       {
         id: 51,
@@ -556,11 +600,9 @@ export const infoCollection = [
         delay: 3.0,
       },
       {
-        id: 23,
+        id: 24,
         content: (name) =>
-          `Please go back to the survey page and enter the following password to continue: YPR11
-
-        `,
+          `Please go back to the survey page and enter the following password to continue: YPR11`,
         sender: EntityType.Host,
         senderName: "ConvoAI",
         type: MessageType.Message,

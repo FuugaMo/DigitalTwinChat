@@ -3,7 +3,7 @@ import ChatWindow from "./components/ChatWindow";
 import LoginPage from "./components/LoginPage";
 import InfoPage from "./components/InfoPage";
 import AdminPage from "./components/AdminPage";
-import { useState } from "react";
+import React, { useState } from "react";
 import { AuthContext } from "./contexts/contexts";
 import {
   createTheme,
@@ -102,8 +102,17 @@ export default function App() {
   const [name, setName] = useState(""); // 昵称
   const [avatar, setAvatar] = useState(null); // 头像文件 or URL
   const [code, setCode] = useState(-1); // 以password输入code, 用于分类是Twin组还是Assistant组
-  const [isTwin, setIsTwin] = useState(1); // 1 = Twin / 0 = Assistant / -1 = Admin
-  const [prosocialStatus, setProsocialStatus] = useState(1); // 1 = Prosocial, 0 = Without, -1 = Anti-prosocial
+  // v1 variable
+  // const [isTwin, setIsTwin] = useState(1); // 1 = Twin / 0 = Assistant / -1 = Admin
+  // const [prosocialStatus, setProsocialStatus] = useState(1); // 1 = Prosocial, 0 = Without, -1 = Anti-prosocial
+
+  // v2 variable
+  const [isHelp, setIsHelp] = useState(true);
+  const [isAlign, setIsAlign] = useState(true);
+  const [isVerbatim, setIsVerbatim] = useState(true);
+  const [isFPV, setIsFPV] = useState(true);
+  const [isAdmin, setIsAdmin] = useState(false);
+
   const [isReplayMode, setIsReplayMode] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -129,7 +138,8 @@ export default function App() {
         // 管理员直接登录，无需密码
         // console.log(`admin id ${id}`);
         setConnectId(id);
-        setIsTwin(-1);
+        setIsAdmin(true);
+        // setIsTwin(-1);
         return;
       }
     } catch (e) {
@@ -138,55 +148,6 @@ export default function App() {
     } finally {
       setLoading(false);
     }
-
-    // if (id.endsWith("-A")) {
-    //   const baseId = id.slice(0, -2);
-
-    //   const userDoc = await getDoc(doc(db, "users", baseId));
-    //   if (!userDoc.exists()) {
-    //     alert(`Can't find user ${baseId}`);
-    //     return;
-    //   }
-
-    //   const userData = userDoc.data();
-    //   const isTwinUser = userData.isTwin === 1;
-    //   const isProsocialUser =
-    //     userData.prosocialStatus === 1
-    //       ? 1
-    //       : userData.prosocialStatus === -1
-    //       ? -1
-    //       : 0;
-
-    //   // 校验 code 是否正确
-    //   let expectedCode = null;
-
-    //   if (isProsocialUser === 1) {
-    //     expectedCode = PROSOCIAL_CODE;
-    //   } else {
-    //     expectedCode = NON_PROSOCIAL_CODE;
-    //   }
-
-    //   // isTwin needs to be fetched from firebase
-
-    //   if (enteredCode !== expectedCode) {
-    //     alert("Wrong password.");
-    //     return;
-    //   }
-
-    //   setConnectId(id);
-    //   setIsReplayMode(true);
-    //   setIsTwin(isTwinUser ? 1 : 0);
-    //   setProsocialStatus(isProsocialUser);
-
-    //   if (userData.name && userData.avatar) {
-    //     setName(userData.name);
-    //     setAvatar(userData.avatar);
-    //   } else {
-    //     setName("");
-    //     setAvatar(null);
-    //   }
-    //   return;
-    // }
 
     if (id.length !== CONNECT_ID_LENGTH) {
       alert("Please input a valid connect ID");
@@ -197,19 +158,19 @@ export default function App() {
 
     if (userDoc.exists()) {
       const userData = userDoc.data();
-      // 先检查数据库里的 isTwin
-      const isTwinUser = userData.isTwin === 1;
-      const isProsocialUser =
-        userData.prosocialStatus === 1
-          ? 1
-          : userData.prosocialStatus === -1
-          ? -1
-          : 0;
+      // 先检查数据库里的 isTwin, version 1
+      // const isTwinUser = userData.isTwin === 1;
+      // const isProsocialUser =
+      //   userData.prosocialStatus === 1
+      //     ? 1
+      //     : userData.prosocialStatus === -1
+      //     ? -1
+      //     : 0;
 
       // 如果还没生成聊天记录，则还未进入 phase 2, 就判断密码是否匹配(不再区分isTwin)
       if (userData.isAssignCompleted === false) {
         let expectedCode = null;
-        if (isProsocialUser === 1) {
+        if (userData.isHelp == true) {
           expectedCode = PROSOCIAL_CODE;
         } else {
           expectedCode = NON_PROSOCIAL_CODE;
@@ -221,8 +182,12 @@ export default function App() {
         }
       }
 
-      setIsTwin(isTwinUser);
-      setProsocialStatus(isProsocialUser);
+      // setIsTwin(isTwinUser);
+      // setProsocialStatus(isProsocialUser);
+      setIsHelp(userData.isHelp);
+      setIsAlign(userData.isAlign);
+      setIsVerbatim(userData.isVerbatim);
+      setIsFPV(userData.isFPV);
 
       if (userData.name) {
         setName(userData.name);
@@ -241,15 +206,20 @@ export default function App() {
     } else {
       // 用户不存在，按输入密码确定组别，允许新建
       if (enteredCode === PROSOCIAL_CODE) {
-        setProsocialStatus(1);
+        // setProsocialStatus(1);
       } else if (enteredCode === NON_PROSOCIAL_CODE) {
-        setProsocialStatus(-1);
+        // setProsocialStatus(-1);
       } else {
         alert("Wrong password.");
         return;
       }
 
-      setIsTwin(1);
+      // setIsTwin(1);
+      setIsHelp(true);
+      setIsAlign(true);
+      setIsVerbatim(true);
+      setIsFPV(true);
+
       setName("");
       setAvatar(null);
       setIsReplayMode(false);
@@ -288,37 +258,51 @@ export default function App() {
                 This may take up to 1 minute.
               </Typography>
             </Box>
-          ) : isTwin === -1 ? (
+          ) : isAdmin ? (
             <AdminPage
               logoutHandler={() => {
                 setConnectId("");
                 setName("");
                 setAvatar(null);
                 setCode(-1);
-                setIsTwin(0);
-                setProsocialStatus(0); // 无所谓
+                setIsAlign(true);
+                setIsFPV(true);
+                setIsHelp(true);
+                setIsVerbatim(true);
+                setIsAdmin(false);
+                // setIsTwin(0);
+                // setProsocialStatus(0); // 无所谓
               }}
             />
           ) : connectId === "" ? (
             <LoginPage handleLogin={handleLogin} />
           ) : name === "" ? (
-            <InfoPage handleInfoSubmit={handleInfoSubmit} isTwin={isTwin} />
+            <InfoPage handleInfoSubmit={handleInfoSubmit} />
           ) : (
             <ChatWindow
               userId={connectId}
               name={name}
               avatar={avatar}
               code={code}
-              isTwin={isTwin}
+              // isTwin={isTwin}
+              // prosocialStatus={prosocialStatus}
+              isAlign={isAlign}
+              isHelp={isHelp}
+              isFPV={isFPV}
+              isVerbatim={isVerbatim}
               isReplayMode={isReplayMode}
-              prosocialStatus={prosocialStatus}
               logoutHandler={() => {
                 setConnectId("");
                 setName("");
                 setAvatar(null);
                 setCode(-1);
-                setIsTwin(1);
-                setProsocialStatus(1);
+                setIsAlign(true);
+                setIsFPV(true);
+                setIsHelp(true);
+                setIsVerbatim(true);
+                setIsAdmin(false);
+                // setIsTwin(1);
+                // setProsocialStatus(1);
                 setIsReplayMode(false);
               }}
             />

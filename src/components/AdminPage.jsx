@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import { v4 as uuidv4 } from 'uuid';
 // Firebase 初始化
 import { firebaseConfig, API_BASE } from "../config/config.js";
 import { initializeApp } from "firebase/app";
@@ -18,100 +18,87 @@ import MessageType from "../enums/MessageTypes.js";
 import EntityType from "../enums/EntityTypes.js";
 
 // 模板
-import { twinProsocialScript } from "../twinProsocialScript.js";
-import { twinNonProsocialScript } from "../twinNonProsocialScript.js";
-import { twinWithoutScript } from "../twinWithoutScript.js";
-import { assistantProsocialScript } from "../assistantProsocialScript.js";
-import { assistantNonProsocialScript } from "../assistantNonProsocialScript.js";
-import { assistantWithoutScript } from "../assistantWithoutScript.js";
+// import { twinProsocialScript } from "../twinProsocialScript.js";
+// import { twinNonProsocialScript } from "../twinNonProsocialScript.js";
+// import { twinWithoutScript } from "../twinWithoutScript.js";
+// import { assistantProsocialScript } from "../assistantProsocialScript.js";
+// import { assistantNonProsocialScript } from "../assistantNonProsocialScript.js";
+// import { assistantWithoutScript } from "../assistantWithoutScript.js";
+import { help_align_verbatim_first } from "../help_align_verbatim_first.js";
+import { help_align_verbatim_third } from "../help_align_verbatim_third.js";
+import { help_align_warmer_first } from "../help_align_warmer_first.js";
+import { help_align_warmer_third } from "../help_align_warmer_third.js";
+import { help_noalign_verbatim_first } from "../help_noalign_verbatim_first.js";
+import { help_noalign_verbatim_third } from "../help_noalign_verbatim_third.js";
+import { help_noalign_warmer_first } from "../help_noalign_warmer_first.js";
+import { help_noalign_warmer_third } from "../help_noalign_warmer_third.js";
+
+import { nohelp_align_verbatim_first } from "../nohelp_align_verbatim_first.js";
+import { nohelp_align_verbatim_third } from "../nohelp_align_verbatim_third.js";
+import { nohelp_align_warmer_first } from "../nohelp_align_warmer_first.js";
+import { nohelp_align_warmer_third } from "../nohelp_align_warmer_third.js";
+import { nohelp_noalign_verbatim_first } from "../nohelp_noalign_verbatim_first.js";
+import { nohelp_noalign_verbatim_third } from "../nohelp_noalign_verbatim_third.js";
+import { nohelp_noalign_warmer_first } from "../nohelp_noalign_warmer_first.js";
+import { nohelp_noalign_warmer_third } from "../nohelp_noalign_warmer_third.js";
+
+const scriptMap = {
+  help_align_verbatim_first,
+  help_align_verbatim_third,
+  help_align_warmer_first,
+  help_align_warmer_third,
+  help_noalign_verbatim_first,
+  help_noalign_verbatim_third,
+  help_noalign_warmer_first,
+  help_noalign_warmer_third,
+  nohelp_align_verbatim_first,
+  nohelp_align_verbatim_third,
+  nohelp_align_warmer_first,
+  nohelp_align_warmer_third,
+  nohelp_noalign_verbatim_first,
+  nohelp_noalign_verbatim_third,
+  nohelp_noalign_warmer_first,
+  nohelp_noalign_warmer_third,
+};
 
 // 初始化 Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 // phase 1 questions
-const questions_standard = [
+const phase_1_questions = [
   // Crowdsource Task
+  // small talk 0-6
   "How long have you been using CloudResearch and about how many studies have you done on CloudResearch?",
   "What kinds of tasks on CloudResearch do you like? Please provide some examples.",
   "Are there any tasks you don’t like on CloudResearch? Please provide some examples.",
-
-  // City
-  "What city do you live in? What do you think about it?",
-
-  // 影视剧
   "What are your favorite TV shows or movies? Why do you like them?",
-  "Do you have any favorite actors or actresses? Why do you like them?",
-
-  // Food
-  "What’s your favorite food, and why do you like it?",
-
-  // 音乐
+  "Do you have any favorite actors or actresses? What do you like about them?",
   "What kind of music do you like? Why do you like it?",
-  "Do you have any favorite singers or bands? Why are they your favorite?",
+  "Do you have any hobbies?",
 
-  // Hobby
-  "What are your hobbies?",
-  "What do you usually do when you’re feeling down or not happy?",
+  // work 7-12
+  "What is your current or most recent job?",
+  "Please briefly describe what you do (or did) in this job.",
+  "How did you get into it?",
+  "What do you like or find meaningful about this job?",
+  "What do you find most challenging or frustrating about this job?",
+  "If someone wanted to enter this field, what advice would you give them?",
 
-  // High Point
-  "Can you describe a time in your life that was especially positive or meaningful? What happened, when and where did it happen, who was there, and how did you feel?",
+  // city
+  "Which city do you currently live in?",
+  "How long have you lived there?",
+  "What do you like about living there?",
+  "Is there anything you don’t like about living there?",
+  "If a friend were visiting your city, what’s one place or activity you would recommend?",
 
-  // Interpersonal
-  "Have you ever experienced a major challenge in a relationship with someone? What happened?",
-  "When someone shares something bad that happened to them, what would you say to them",
-  "When someone feels bad about something, what would you say to help them think about it in a more positive or different way?",
+  // personality
+  "Do you consider yourself more introverted or extroverted? Why?",
+  "In social situations, do you tend to lead or follow?",
+  "How do you usually respond to stressful situations?",
+  "Are you more of a planner or do you prefer to go with the flow?",
+  "When making decisions, do you rely more on logic or intuition?"
 
-  // Work
-  "Have you ever faced a challenge at work or while looking for a job? What happened? How did you feel during that time?",
-  "Do you have any tips or helpful resources for finding a job or dealing with challenges at work?",
-
-  // Goal
-  "What is something you’ve always wanted to do but haven’t yet? Why?",
-  "What does success mean to you?",
-
-  // Value
-  "What value or principle is most important to you in life?",
-  "Has your most important value changed over time? If so, how and why?",
-];
-
-const questions_without = [
-  // Crowdsource Task
-  "How long have you been using CloudResearch and about how many studies have you done on CloudResearch?",
-  "What kinds of tasks on CloudResearch do you like? Please provide some examples.",
-  "Are there any tasks you don’t like on CloudResearch? Please provide some examples.",
-
-  // City
-  "What city do you live in? What do you think about it?",
-
-  // 影视剧
-  "What are your favorite TV shows or movies? Why do you like them?",
-  "Do you have any favorite actors or actresses? Why do you like them?",
-
-  // Food
-  "What’s your favorite food, and why do you like it?",
-
-  // 音乐
-  "What kind of music do you like? Why do you like it?",
-  "Do you have any favorite singers or bands? Why are they your favorite?",
-
-  // Hobby
-  "What are your hobbies?",
-  "What do you usually do when you’re feeling down or not happy?",
-
-  // High Point
-  "Can you describe a time in your life that was especially positive or meaningful? What happened, when and where did it happen, who was there, and how did you feel?",
-
-  // Interpersonal
-  "Have you ever experienced a major challenge in a relationship with someone? What happened?",
-
-  // Goal
-  "What is something you’ve always wanted to do but haven’t yet? Why?",
-  "What does success mean to you?",
-
-  // Value
-  "What value or principle is most important to you in life?",
-  "Has your most important value changed over time? If so, how and why?",
 ];
 
 const getLastProcessedUser = async () => {
@@ -199,8 +186,8 @@ const exportCollection = async (colRef) => {
 
     const subColRefs = (await colRef.firestore.listCollections)
       ? await colRef.firestore
-          .collection(colRef.path + "/" + docId)
-          .listCollections()
+        .collection(colRef.path + "/" + docId)
+        .listCollections()
       : [];
 
     if (subColRefs.length > 0) {
@@ -256,49 +243,37 @@ const getUserDataById = async (userId) => {
 /**
  * 选择对应模板
  */
-const selectTemplate = (isTwin, prosocialStatus) => {
-  if (isTwin) {
-    switch (prosocialStatus) {
-      case 1:
-        return twinProsocialScript;
-      case -1:
-        return twinNonProsocialScript;
-      case 0:
-      default:
-        return twinWithoutScript;
-    }
-  } else {
-    switch (prosocialStatus) {
-      case 1:
-        return assistantProsocialScript;
-      case -1:
-        return assistantNonProsocialScript;
-      case 0:
-      default:
-        return assistantWithoutScript;
-    }
+const selectTemplate = (isHelp, isAlign, isVerbatim, isFPV) => {
+  const helpKey = isHelp ? "help" : "nohelp";
+  const alignKey = isAlign ? "align" : "noalign";
+  const styleKey = isVerbatim ? "verbatim" : "warmer";
+  const povKey = isFPV ? "first" : "third";
+
+  const key = `${helpKey}_${alignKey}_${styleKey}_${povKey}`;
+
+  const template = scriptMap[key];
+
+  if (!template) {
+    console.error(`No script found for key: ${key}`);
+    return null;
   }
+
+  return template;
 };
 
 /**
  * 多轮推进 GPT 消息对话（返回完整 messageGroups）
  */
 const stepwiseGPTConversation = async (template, userInfo) => {
-  const { name, history, prosocialStatus } = userInfo;
+  const { name, history, isHelp, isAlign, isFPV, isVerbatim } = userInfo;
 
-  const questions =
-    prosocialStatus == 0 ? questions_without : questions_standard;
+  const questions = phase_1_questions;
 
   const historyEntries = (history || []).slice(1); // 跳过 start
 
   // 只保留有对应问题的部分
   const validLength = Math.min(historyEntries.length, questions.length);
   const trimmedHistory = historyEntries.slice(0, validLength);
-
-  // const joinedHistory = trimmedHistory.map((entry, index) => {
-  //   const question = questions[index] || "";
-  //   return `Question: ${question} ${name} : ${entry.message}`;
-  // });
 
   const pairedHistory = trimmedHistory.map((entry, index) => ({
     question: questions[index],
@@ -326,8 +301,7 @@ const stepwiseGPTConversation = async (template, userInfo) => {
 
         filled.content = content;
         priorDialogText.push(
-          `[${
-            filled.senderName === "Twin" ? name : filled.senderName // 如果是Twin则在给AI看的对话记录中显示为本人姓名
+          `[${filled.senderName === "Twin" ? name : filled.senderName // 如果是Twin则在给AI看的对话记录中显示为本人姓名
           }] ${content}`
         );
         stepMsgs.push(filled);
@@ -357,8 +331,7 @@ const stepwiseGPTConversation = async (template, userInfo) => {
         filled.prompt = prompt;
         filled.content = aiResponse;
         priorDialogText.push(
-          `[${
-            filled.senderName === "Twin" ? name : filled.senderName
+          `[${filled.senderName === "Twin" ? name : filled.senderName
           }] ${aiResponse}`
         );
 
@@ -456,8 +429,16 @@ const AdminPage = () => {
         const userInfo = users[id];
 
         const template = selectTemplate(
-          userInfo.isTwin,
-          userInfo.prosocialStatus
+          userInfo.isHelp,
+          userInfo.isAlign,
+          userInfo.isVerbatim,
+          userInfo.isFPV
+        );
+        console.log(
+          userInfo.isHelp,
+          userInfo.isAlign,
+          userInfo.isVerbatim,
+          userInfo.isFPV
         );
         const filledMessages = await stepwiseGPTConversation(
           template,
@@ -492,8 +473,10 @@ const AdminPage = () => {
       const userInfo = users[singleId];
 
       const template = selectTemplate(
-        userInfo.isTwin,
-        userInfo.prosocialStatus
+        userInfo.isHelp,
+        userInfo.isAlign,
+        userInfo.isVerbatim,
+        userInfo.isFPV
       );
       const filledMessages = await stepwiseGPTConversation(template, userInfo);
       await saveChatToDB(singleId, filledMessages);
@@ -523,8 +506,10 @@ const AdminPage = () => {
 
       try {
         const template = selectTemplate(
-          userInfo.isTwin,
-          userInfo.prosocialStatus
+          userInfo.isHelp,
+          userInfo.isAlign,
+          userInfo.isVerbatim,
+          userInfo.isFPV
         );
         const filledMessages = await stepwiseGPTConversation(
           template,
