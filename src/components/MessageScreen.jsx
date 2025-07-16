@@ -77,7 +77,7 @@ function MessageScreen(props) {
                     key={msg.id}
                     name={props.name}
                     avatar={props.avatar}
-                    isTwin={props.isTwin}
+                    isFPV={props.isFPV}
                     handleSubmitRating={props.handleSubmitRating}
                     displayImage={(path) => setImagePath(path)}
                   />
@@ -97,7 +97,7 @@ function MessageScreen(props) {
                       marginRight: "15px",
                     }}
                   >
-                    {props.isTwin ? (
+                    {props.isFPV ? (
                       <Skeleton
                         animation="wave"
                         sx={{

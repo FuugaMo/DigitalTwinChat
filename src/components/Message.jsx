@@ -17,7 +17,7 @@ function Message(props) {
         message={props.message}
         avatar={props.avatar}
         name={props.name}
-        isTwin={props.isTwin}
+        isFPV={props.isFPV}
         sender={props.sender}
       />
     );

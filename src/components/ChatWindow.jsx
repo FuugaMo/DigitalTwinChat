@@ -42,8 +42,16 @@ function ChatWindow(props) {
   const [lastUserMessage, setLastUserMessage] = useState(""); // 上一条用户消息
   const [lastHostMessage, setLastHostMessage] = useState(""); // 上一条Host消息
   const [name, setName] = useState(props.name); // 用户昵称
-  const [isTwin, setIsTwin] = useState(props.isTwin); // 是否孪生组flag
-  const [prosocialStatus, setProsocialStatus] = useState(props.prosocialStatus); // 是否亲社会组
+  // v1 variable
+  // const [isTwin, setIsTwin] = useState(props.isTwin); // 是否孪生组flag
+  // const [prosocialStatus, setProsocialStatus] = useState(props.prosocialStatus); // 是否亲社会组
+
+  // v2 variable
+  const [isHelp, setIsHelp] = useState(props.isHelp);
+  const [isAlign, setIsAlign] = useState(props.isAlign);
+  const [isVerbatim, setIsVerbatim] = useState(props.isVerbatim);
+  const [isFPV, setIsFPV] = useState(props.isFPV);
+
   const [avatar, setAvatar] = useState(props.avatar); // 用户头像
   const [isReplayMode, setIsReplayMode] = useState(props.isReplayMode); // 是否是Stage 2回放模式
   // const [isReadyForNextStep, setIsReadyForNextStep] = useState(true); // 用于判断 step 2 用户是否输入 I am ready.
@@ -60,10 +68,9 @@ function ChatWindow(props) {
   const userId = useContext(AuthContext);
   const docRef = doc(db, "users", userId);
 
-  // console.log(prosocialStatus);
   // 获取对应 bot 的消息组
-  const messageGroups =
-    prosocialStatus == 1 ? messageGroupsAllBots[0] : messageGroupsAllBots[1]; // 设置默认为0, 即messages1Bot.jsx - Phase 1信息收集脚本, without和anti都使用non脚本
+  // const messageGroups = prosocialStatus == 1 ? messageGroupsAllBots[0] : messageGroupsAllBots[1]; // v 1设置默认为0, 即messages1Bot.jsx - Phase 1信息收集脚本, without和anti都使用non脚本
+  const messageGroups = messageGroupsAllBots[0]; // v2, phase 1 通用信息收集脚本
 
   const hasInitialized = useRef(false); // 防止开发Strict模式下init两次的问题
 
@@ -116,8 +123,12 @@ function ChatWindow(props) {
   async function saveUserProfileToDatabase(
     name,
     avatarFile,
-    isTwin,
-    prosocialStatus
+    isHelp,
+    isAlign,
+    isFPV,
+    isVerbatim
+    // isTwin,
+    // prosocialStatus
   ) {
     // console.log(name, avatar, isTwin, prosocialStatus);
     try {
@@ -135,18 +146,27 @@ function ChatWindow(props) {
         // 文档不存在：写入所有字段
         updateData.name = name;
         updateData.avatar = avatarFile ? avatarUrl : null;
-        updateData.isTwin = isTwin;
-        updateData.prosocialStatus = prosocialStatus;
-        updateData.isAssignCompleted = false;
+        // updateData.isTwin = isTwin;
+        // updateData.prosocialStatus = prosocialStatus;
+        (updateData.isHelp = isHelp),
+          (updateData.isAlign = isAlign),
+          (updateData.isFPV = isFPV),
+          (updateData.isVerbatim = isVerbatim),
+          (updateData.isAssignCompleted = false);
       } else {
         const data = existingDoc.data();
 
         // 仅在字段缺失时添加
         if (!data.name && name) updateData.name = name;
         if (!data.avatar && avatarFile) updateData.avatar = avatarUrl;
-        if (data.isTwin === undefined) updateData.isTwin = isTwin;
-        if (data.prosocialStatus === undefined)
-          updateData.prosocialStatus = prosocialStatus;
+        // if (data.isTwin === undefined) updateData.isTwin = isTwin;
+        // if (data.prosocialStatus === undefined)
+        //   updateData.prosocialStatus = prosocialStatus;
+        if (data.isHelp === undefined) updateData.isHelp = isHelp;
+        if (data.isAlign === undefined) updateData.isAlign = isAlign;
+        if (data.isFPV === undefined) updateData.isFPV = isFPV;
+        if (data.isVerbatim === undefined) updateData.isVerbatim = isVerbatim;
+
         if (data.isAssignCompleted === undefined)
           updated.isAssignCompleted = false;
       }
@@ -185,8 +205,6 @@ function ChatWindow(props) {
       }
 
       const data = await response.json();
-
-      // console.log(data.reply);
 
       // 这里用 data.reply 而不是 data.choices
       return data.reply || "（无返回内容）";
@@ -338,10 +356,11 @@ function ChatWindow(props) {
         return;
       }
       const userData = userSnap.data();
-      // console.log(userData);
 
-      setIsTwin(userData.isTwin);
-      if (userData.isTwin === 1) {
+      // setIsTwin(userData.isTwin);
+      setIsFPV(userData.isFPV);
+      // if (userData.isTwin === 1) {
+      if (userData.isFPV) {
         setAvatar(userData.avatar);
         setName(`${userData.name}`);
         // console.log(avatar);
@@ -375,10 +394,17 @@ function ChatWindow(props) {
     const init = async () => {
       if (!isReplayMode) {
         // 保存用户基本信息
-        await saveUserProfileToDatabase(name, avatar, isTwin, prosocialStatus);
+        await saveUserProfileToDatabase(
+          name,
+          avatar,
+          isHelp,
+          isAlign,
+          isFPV,
+          isVerbatim
+        );
 
         // 尝试从 Storage 获取 avatar
-        if (!avatar && isTwin) {
+        if (!avatar && isFPV) {
           const url = await fetchAvatarFromStorage(userId);
           // console.log(url);
           setAvatar(url || "/nodebox/static/icons/bot1logo.png");
@@ -455,11 +481,6 @@ function ChatWindow(props) {
       return;
     }
 
-    // addBotMessages(conversationStep, message);
-    // print(
-    //   `conversation step: ${conversationStep}, isReadyForNextStep ${isReadyForNextStep}`
-    // );
-
     if (!blockUserMessages) {
       // console.log(`A1 Current step: ${conversationStep}`);
       storeUserMessageInDatabase(conversationStep, message);
@@ -477,34 +498,9 @@ function ChatWindow(props) {
     ]);
   }
 
-  // 创建 GPT 对话（暂时未被调用）
-  function createConversation(fn, message) {
-    return fn(message, gptConversation);
-  }
-
   // 显示 bot 的消息组，并执行 GPT 请求（如有）
   async function addBotMessages(step, lastUserMessage) {
     setBlockUserMessages(true); // 防止用户多次快速发言
-    // setIsReadyForNextStep(false);
-
-    // if (step == 2 && lastUserMessage != "I am ready.") {
-    //   setIsDisplayTyping(true);
-    //   const notReadyMessage = {
-    //     id: crypto.randomUUID(),
-    //     content: (name) =>
-    //       `Please enter "I am ready." when you are ready to take the test.`,
-    //     sender: EntityType.Host,
-    //     senderName: "Host",
-    //     type: MessageType.Message,
-    //     delay: 100,
-    //   };
-    //   // 添加消息 return
-    //   setIsDisplayTyping(false);
-    //   setMessages((prevMessages) => [...prevMessages, notReadyMessage]);
-    //   setBlockUserMessages(false);
-    //   setIsReadyForNextStep(false);
-    //   return;
-    // }
 
     if (messageGroups.filter((g) => g.step == step).length === 0) return;
 
@@ -530,7 +526,6 @@ function ChatWindow(props) {
         // 是 host script 消息
         setLastHostMessage(message.content(props.name));
       }
-
       setIsDisplayTyping(false);
       setMessages((prevMessages) => [...prevMessages, message]);
     }
@@ -601,7 +596,11 @@ function ChatWindow(props) {
           loading={loading}
           name={name}
           avatar={avatar}
-          isTwin={isTwin}
+          // isTwin={isTwin}
+          isAlign={isAlign}
+          isHelp={isHelp}
+          isFPV={isFPV}
+          isVerbatim={isVerbatim}
           typingByUser={typingByUser}
           handleSubmitRating={handleAddUserMessage}
           addMessage={handleAddUserMessage}

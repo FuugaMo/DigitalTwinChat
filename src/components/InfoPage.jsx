@@ -21,7 +21,7 @@ import {
 
 // import { TWIN_CODE } from "../config/config";
 
-export default function InfoPage({ handleInfoSubmit, isTwin }) {
+export default function InfoPage({ handleInfoSubmit }) {
   const theme = useTheme();
 
   const [name, setName] = useState("");
@@ -57,7 +57,8 @@ export default function InfoPage({ handleInfoSubmit, isTwin }) {
       alert("Please enter name.");
       return;
     }
-    if (!!isTwin && !avatarFile) {
+    // if (!!isTwin && !avatarFile) {
+    if (!avatarFile) {
       setLoading(false);
       // 只有TWIN组需要上传头像
       alert("Please upload an avatar, and the size should not exceed 10MB.");
@@ -111,7 +112,6 @@ export default function InfoPage({ handleInfoSubmit, isTwin }) {
             <Typography variant="h2" align="center" sx={{ mb: 2 }}>
               Profile Setup
             </Typography>
-
             <Typography
               variant="body2"
               color="textSecondary"
@@ -122,41 +122,32 @@ export default function InfoPage({ handleInfoSubmit, isTwin }) {
               apps (e.g., WhatsApp). We will use your information only for
               research purposes.
             </Typography>
-
-            {!!isTwin && (
-              <>
-                <input
-                  accept="image/*"
-                  type="file"
-                  onChange={handleAvatarChange}
-                  id="avatar-upload"
-                  style={{ display: "none" }}
-                />
-                <label
-                  htmlFor="avatar-upload"
-                  style={{
-                    cursor: "pointer",
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                  }}
-                >
-                  <Avatar
-                    src={previewURL}
-                    sx={{ width: 80, height: 80, mb: 2 }}
-                  />
-                  <Typography variant="body2" color="textSecondary">
-                    Click to upload your profile picture
-                  </Typography>
-                </label>
-                {errorMsg && (
-                  <Typography variant="body2" color="error" sx={{ mb: 1 }}>
-                    {errorMsg}
-                  </Typography>
-                )}{" "}
-              </>
-            )}
-
+            <input
+              accept="image/*"
+              type="file"
+              onChange={handleAvatarChange}
+              id="avatar-upload"
+              style={{ display: "none" }}
+            />
+            <label
+              htmlFor="avatar-upload"
+              style={{
+                cursor: "pointer",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              <Avatar src={previewURL} sx={{ width: 80, height: 80, mb: 2 }} />
+              <Typography variant="body2" color="textSecondary">
+                Click to upload your profile picture
+              </Typography>
+            </label>
+            {errorMsg && (
+              <Typography variant="body2" color="error" sx={{ mb: 1 }}>
+                {errorMsg}
+              </Typography>
+            )}{" "}
             <TextField
               fullWidth
               label="Name"
@@ -165,12 +156,11 @@ export default function InfoPage({ handleInfoSubmit, isTwin }) {
               onChange={(e) => setName(e.target.value)}
               sx={{ my: 3 }}
             />
-
             <Button
               fullWidth
               variant="contained"
               onClick={handleSubmit}
-              disabled={!name || (isTwin && !avatarFile) || !!errorMsg}
+              disabled={!name || !avatarFile || !!errorMsg}
               sx={{ mt: 2 }}
             >
               Enter Chat Room
