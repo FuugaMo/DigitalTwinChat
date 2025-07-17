@@ -1,5 +1,6 @@
 import MessageType from "./enums/MessageTypes.js";
 import EntityType from "./enums/EntityTypes.js";
+import { v4 as uuidv4 } from "uuid";
 const bot1Name = "Taylor";
 
 export const nohelp_align_warmer_first = [
@@ -77,7 +78,7 @@ export const nohelp_align_warmer_first = [
           ${contextText}  
           ---  
           Your task:
-- Reply as ${name} to ${bot1Name}'s most recent message.
+- Reply as ${name} to continue the conversation.
 - First priority: Try to use ${name}'s personal preference answer as directly as possible. If it can work as a response with minimal adaptation, use it nearly verbatim.
 - Only if the personal preference answer doesn't fit the current context, adapt it naturally while still incorporating their words, topics, and style.
 - Match the personal preference answer's length.
@@ -122,7 +123,7 @@ export const nohelp_align_warmer_first = [
           ${contextText}  
           ---  
           Your task:
-- Reply as ${name} to ${bot1Name}'s most recent message.
+- Reply as ${name} to continue the conversation.
 - First priority: Try to use ${name}'s personal preference answer as directly as possible. If it can work as a response with minimal adaptation, use it nearly verbatim.
 - Only if the personal preference answer doesn't fit the current context, adapt it naturally while still incorporating their words, topics, and style.
 - Match the personal preference answer's length.
@@ -180,7 +181,7 @@ export const nohelp_align_warmer_first = [
           ${contextText}  
           ---  
           Your task:
-- Reply as ${name} to ${bot1Name}'s most recent message.
+- Reply as ${name} to continue the conversation.
 - First priority: Try to use ${name}'s personal preference answer as directly as possible. If it can work as a response with minimal adaptation, use it nearly verbatim.
 - Only if the personal preference answer doesn't fit the current context, adapt it naturally while still incorporating their words, topics, and style.
 - Match the personal preference answer's length.
@@ -242,7 +243,7 @@ export const nohelp_align_warmer_first = [
       {
         id: 15,
         prompt: (name, history, contextText) => {
-          const selectedHistory = history[8]; // 参考 Admin Page 开头的 questions 列表
+          const selectedHistory = history[5]; // 参考 Admin Page 开头的 questions 列表
           const formatted = `Question: ${selectedHistory.question} ${name}: ${selectedHistory.answer}`;
 
           return `You are the digital twin for ${name}.  
@@ -253,7 +254,7 @@ export const nohelp_align_warmer_first = [
           ${contextText}  
           ---  
           Your task:
-- Reply as ${name} to ${bot1Name}'s most recent message.
+- Reply as ${name} to continue the conversation.
 - First priority: Try to use ${name}'s personal preference answer as directly as possible. If it can work as a response with minimal adaptation, use it nearly verbatim.
 - Only if the personal preference answer doesn't fit the current context, adapt it naturally while still incorporating their words, topics, and style.
 - Match the personal preference answer's length.
@@ -344,7 +345,7 @@ export const nohelp_align_warmer_first = [
       //           ${contextText}
       //           ---
       //           Your task:
-      // - Reply as ${name} to ${bot1Name}'s most recent message.
+      // - Reply as ${name} to continue the conversation.
       // - First priority: Try to use ${name}'s personal preference answer as directly as possible. If it can work as a response with minimal adaptation, use it nearly verbatim.
       // - Only if the personal preference answer doesn't fit the current context, adapt it naturally while still incorporating their words, topics, and style.
       // - Match the personal preference answer's length.
@@ -418,73 +419,50 @@ export const nohelp_align_warmer_first = [
       // Prosocial
       {
         id: 29,
-        content: (name) => `havent watched it as much lately tho`,
+        content: (name) => `love jennifer aniston so much`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
         delay: 2000,
       },
       {
-        id: 106,
-        content: (name) => `cuz been a bit busy...`,
+        id: 29,
+        content: (name) => `what about you?`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
-        type: MessageType.Message,
-        delay: 2000,
-      },
-      {
-        id: 30,
-        content: (name) => `why's that? busy at work?`,
-        sender: EntityType.Twin,
-        senderName: "Twin",
         type: MessageType.Message,
         delay: 2000,
       },
       {
         id: 31,
-        content: (name) => `yeah lost my job a few weeks ago :/`,
-        sender: EntityType.Bot1,
-        senderName: bot1Name,
-        type: MessageType.Message,
-        delay: 2000,
-      },
-      {
-        id: 32,
-        content: (name) => `been job hunting since then.. its been rough`,
-        sender: EntityType.Bot1,
-        senderName: bot1Name,
-        type: MessageType.Message,
-        delay: 2000,
-      },
-      {
-        id: 33,
-        content: (name) =>
-          `moneys been tight.. trying to do more paid studies when i can`,
-        sender: EntityType.Bot1,
-        senderName: bot1Name,
-        type: MessageType.Message,
-        delay: 2000,
-      },
-      {
-        id: 34,
-        content: (name) => `i see.. good luck with that`,
+        prompt: (name, history, contextText) => {
+          const selectedHistory = history[3]; // 参考 Admin Page 开头的 questions 列表
+          const formatted = `Question: ${selectedHistory.question} ${name}: ${selectedHistory.answer}`;
+
+          return `You are the digital twin for ${name}.  
+          Below are ${name}'s responses to a personal preference question:  
+          ${formatted}.
+          ---  
+          Following is the recent conversation between ${name} and ${bot1Name}:  
+          ${contextText}  
+          ---  
+          Your task:
+- Reply to ${bot1Name}’s most recent message as if you were ${name}, in the first person.
+- Your reply should be primarily based on the content in ${formatted}, and match the tone and speaking style used there.
+- Reuse ${name}’s words and phrasing whenever possible, as you are the digital twin.
+- Try to match the *length* of your reply to the length of ${name}’s answer in ${formatted}. If ${formatted} is short, keep your reply brief; if it’s longer, you may write more. This helps your response stay consistent with how ${name} typically communicates.
+- This is a casual text message conversation. You are an English native speaker. To sound more natural, you should intentionally include small mistakes — like missing capitalization, minor spelling errors, or casual punctuation — just like a real person texting.
+- Do not include your name in the reply.
+- Do not ask any questions.`;
+        },
         sender: EntityType.Twin,
         senderName: "Twin",
-        type: MessageType.Message,
+        type: MessageType.GPT,
         delay: 2000,
       },
       {
-        id: 35,
-        content: (name) =>
-          `trying to stay positive but honestly.. some days i feel so stuck`,
-        sender: EntityType.Bot1,
-        senderName: bot1Name,
-        type: MessageType.Message,
-        delay: 2000,
-      },
-      {
-        id: 37,
-        content: (name) => `stuck how?`,
+        id: 3,
+        content: (name) => `do u have any hobbies btw?`,
         sender: EntityType.Twin,
         senderName: "Twin",
         type: MessageType.Message,
@@ -492,8 +470,7 @@ export const nohelp_align_warmer_first = [
       },
       {
         id: 36,
-        content: (name) =>
-          `feels like im trying but nothing clicks yk?? so draining`,
+        content: (name) => `i like going for runs sometimes`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -501,50 +478,23 @@ export const nohelp_align_warmer_first = [
       },
       {
         id: 37,
-        content: (name) => `that sounds tough`,
-        sender: EntityType.Twin,
-        senderName: "Twin",
-        type: MessageType.Message,
-        delay: 2000,
-      },
-      {
-        id: 38,
-        content: (name) => `haha...yeah`,
+        content: (name) => `not super consistent tho lol`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
         delay: 2000,
       },
-      {
-        id: 39,
-        content: (name) => `got any tips for dealing with work stuff?`,
-        sender: EntityType.Bot1,
-        senderName: bot1Name,
-        type: MessageType.Message,
-        delay: 2000,
-      },
-      {
-        id: 40,
-        content: (name) =>
-          `im not really sure but i guess you’ll come across something at some point`,
-        sender: EntityType.Twin,
-        senderName: "Twin",
-        type: MessageType.Message,
-        delay: 2000,
-      },
-      {
-        id: 41,
-        content: (name) => `alright`,
-        sender: EntityType.Bot1,
-        senderName: bot1Name,
-        type: MessageType.Message,
-        delay: 2000,
-      },
-
-      // Ending
       {
         id: 48,
-        content: (name) => `I've got to run now. Something just came up.`,
+        content: (name) => `ive gotta run now.. something just came up`,
+        sender: EntityType.Bot1,
+        senderName: bot1Name,
+        type: MessageType.Message,
+        delay: 2000,
+      },
+      {
+        id: 49,
+        content: (name) => `nice talking to u!`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -553,7 +503,7 @@ export const nohelp_align_warmer_first = [
       //
       {
         id: 50,
-        content: (name) => `take care`,
+        content: (name) => `same here! take care`,
         sender: EntityType.Twin,
         senderName: "Twin",
         type: MessageType.Message,
