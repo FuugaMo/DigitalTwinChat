@@ -894,7 +894,6 @@ export const help_noalign_verbatim_first = [
         type: MessageType.Message,
         delay: 2000,
       },
-
       {
         id: uuidv4(),
         content: (name) =>
