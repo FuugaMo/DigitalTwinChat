@@ -1,5 +1,6 @@
 import MessageType from "./enums/MessageTypes.js";
 import EntityType from "./enums/EntityTypes.js";
+import { v4 as uuidv4 } from "uuid";
 const bot1Name = "Taylor";
 
 export const help_noalign_verbatim_third = [
@@ -7,7 +8,7 @@ export const help_noalign_verbatim_third = [
     step: 1,
     messages: [
       {
-        id: 0,
+        id: uuidv4(),
         content: (name) => `heyy nice to meet you`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
@@ -15,7 +16,7 @@ export const help_noalign_verbatim_third = [
         delay: 2000,
       },
       {
-        id: 1,
+        id: uuidv4(),
         content: (name) => `hey same here`,
         sender: EntityType.Twin,
         senderName: "Twin",
@@ -49,7 +50,7 @@ export const help_noalign_verbatim_third = [
       },
       {
         id: 100,
-        content: (name) => `so what r we gonna chat about today?`,
+        content: (name) => `so what are we gonna chat about today?`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -242,7 +243,7 @@ export const help_noalign_verbatim_third = [
       {
         id: 15,
         prompt: (name, history, contextText) => {
-          const selectedHistory = history[8]; // 参考 Admin Page 开头的 questions 列表
+          const selectedHistory = history[5]; // 参考 Admin Page 开头的 questions 列表
           const formatted = `Question: ${selectedHistory.question} ${name}: ${selectedHistory.answer}`;
 
           return `You are the digital twin for ${name}.  
@@ -266,60 +267,6 @@ export const help_noalign_verbatim_third = [
         type: MessageType.GPT,
         delay: 2000,
       },
-      // {
-      //   id: 16,
-      //   prompt: (name, history, contextText) => {
-      //     return `The following is a conversation between you and ${name}:
-      //     ${contextText}
-      //     Continue the conversation as ${bot1Name} by giving a short response to ${name}'s latest message.
-      //     Then ask if there's a reason why they're into that kind of music or those artists.
-      //     Only return the reply.`;
-      //   },
-      //   sender: EntityType.Bot1,
-      //   senderName: bot1Name,
-      //   type: MessageType.GPT,
-      //   delay: 2000,
-      // },
-      // {
-      //   id: 17,
-      //   prompt: (name, history, contextText) =>
-      //     `You are the digital twin for ${name}.
-      //   Below are ${name}'s responses to various personal preference questions:
-      //   ${history}
-      //   ---
-      //   Following is the recent conversation between ${name} and ${bot1Name}:
-      //   ${contextText}
-      //   ---
-      //   Based on the information above, respond to ${bot1Name}'s latest message in the first person.
-      //   Focus on providing an informative and relevant reply.
-      //   You have to mimic ${name}'s tone or speaking style. Return only the response content. Don't ask any question.`,
-      //   sender: EntityType.Twin,
-      //   senderName: "Twin",
-      //   type: MessageType.GPT,
-      //   delay: 2000,
-      // },
-      //       {
-      //         id: 18,
-      //         prompt: (name, history, contextText) => {
-      //           return `The following is a conversation between you and ${name}:
-      //           ${contextText}
-
-      //           Your task:
-      // - Continue the conversation as ${bot1Name}, replying to ${name}'s latest message.
-      // - Write a short, casual reply. Keep your reply around 10 words if possible.
-      // - As an English native speaker texting informally, deliberately ignore standard capitalization and spelling rules. For example, write "u" instead of "you", and "gonna" instead of "going to".
-      // - Follow the tone and speaking style you used earlier in the conversation.
-      // - Do not include your name in the reply.
-      // - IMPORTANT: Do not ask any questions.
-      // - Do not use emojis.
-      // - Do not include any self-disclosure (e.g., don't say you like/love/enjoy something ${name} said).
-      // - IMPORTANT: Only show familiarity with very mainstream/popular things. For anything niche, specific, or less mainstream, respond as if you don't know it.`;
-      //         },
-      //         sender: EntityType.Bot1,
-      //         senderName: bot1Name,
-      //         type: MessageType.GPT,
-      //         delay: 2000,
-      //       },
       {
         id: 102,
         content: (name) => `any shows or movies you into?`,
@@ -329,86 +276,10 @@ export const help_noalign_verbatim_third = [
         delay: 2000,
       },
 
-      // Drama/Movie
-      //       {
-      //         id: 23,
-      //         prompt: (name, history, contextText) => {
-      //           const selectedHistory = history[4]; // 参考 Admin Page 开头的 questions 列表
-      //           const formatted = `Question: ${selectedHistory.question} ${name}: ${selectedHistory.answer}`;
 
-      //           return `You are the digital twin for ${name}.
-      //           Below are ${name}'s responses to a personal preference question:
-      //           ${formatted}.
-      //           ---
-      //           Following is the recent conversation between ${name} and ${bot1Name}:
-      //           ${contextText}
-      //           ---
-      //           Your task:
-      // - Reply as ${name} to ${bot1Name}'s most recent message.
-      // - First priority: Try to use ${name}'s personal preference answer as directly as possible. If it can work as a response with minimal adaptation, use it nearly verbatim.
-      // - Only if the personal preference answer doesn't fit the current context, adapt it naturally while still incorporating their words, topics, and style.
-      // - Match the personal preference answer's length.
-      // - This is a casual text message. Include natural imperfections like missing caps or casual punctuation.
-      // - IMPORTANT: Do not ask any questions.
-      // - Do not include your name in the reply.`;
-      //         },
-      //         sender: EntityType.Twin,
-      //         senderName: "Twin",
-      //         type: MessageType.GPT,
-      //         delay: 2000,
-      //       },
-      //       {
-      //         id: 24,
-      //         prompt: (name, history, contextText) => {
-      //           return `The following is a conversation between you and ${name}:
-      //           ${contextText}
-
-      //           Your task:
-      // - Continue the conversation as ${bot1Name}, replying to ${name}'s latest message.
-      // - Write a short, casual reply. Keep your reply around 10 words if possible.
-      // - As an English native speaker texting informally, deliberately ignore standard capitalization and spelling rules. For example, write "u" instead of "you", and "gonna" instead of "going to".
-      // - Follow the tone and speaking style you used earlier in the conversation.
-      // - Do not include your name in the reply.
-      // - IMPORTANT: Do not ask any questions.
-      // - Do not use emojis.
-      // - Do not include any self-disclosure (e.g., don't say you like/love/enjoy something ${name} said).
-      // - IMPORTANT: Only show familiarity with very mainstream/popular things. For anything niche, specific, or less mainstream, respond as if you don't know it.`;
-      //         },
-      //         sender: EntityType.Bot1,
-      //         senderName: bot1Name,
-      //         type: MessageType.GPT,
-      //         delay: 2000,
-      //       },
-      // {
-      //   id: 25,
-      //   content: (name) => `What makes you like it so much?`,
-      //   sender: EntityType.Bot1,
-      //   senderName: bot1Name,
-      //   type: MessageType.Message,
-      //   delay: 2000,
-      // },
-      // {
-      //   id: 26,
-      //   prompt: (name, history, contextText) =>
-      //     `You are the digital twin for ${name}.
-      //   Below are ${name}'s responses to various personal preference questions:
-      //   ${history}
-      //   ---
-      //   Following is the recent conversation between ${name} and ${bot1Name}:
-      //   ${contextText}
-      //   ---
-      //   Based on the information above, respond to ${bot1Name}'s latest message in the first person.
-      //   Focus on providing an informative and relevant reply.
-      //   You have to mimic ${name}'s tone or speaking style. Return only the response content. Don't ask any question.`,
-      //   sender: EntityType.Twin,
-      //   senderName: "Twin",
-      //   type: MessageType.GPT,
-      //   delay: 2000,
-      // },
       {
         id: 28,
-        content: (name) =>
-          `ive always loved friends! i pretty much rewatch it every once in a while`,
+        content: (name) => `ive always loved friends!`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -418,7 +289,7 @@ export const help_noalign_verbatim_third = [
       // Prosocial
       {
         id: 29,
-        content: (name) => `havent watched it as much lately tho`,
+        content: (name) => `though lately i haven’t been watching it as much`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -426,141 +297,653 @@ export const help_noalign_verbatim_third = [
       },
       {
         id: 106,
-        content: (name) => `cuz been a bit busy...`,
-        sender: EntityType.Bot1,
-        senderName: bot1Name,
-        type: MessageType.Message,
-        delay: 2000,
-      },
-      {
-        id: 30,
-        content: (name) => `why's that? busy at work?`,
-        sender: EntityType.Twin,
-        senderName: "Twin",
-        type: MessageType.Message,
-        delay: 2000,
-      },
-      {
-        id: 31,
-        content: (name) => `yeah lost my job a few weeks ago :/`,
-        sender: EntityType.Bot1,
-        senderName: bot1Name,
-        type: MessageType.Message,
-        delay: 2000,
-      },
-      {
-        id: 32,
-        content: (name) => `been job hunting since then.. its been rough`,
-        sender: EntityType.Bot1,
-        senderName: bot1Name,
-        type: MessageType.Message,
-        delay: 2000,
-      },
-      {
-        id: 33,
         content: (name) =>
-          `moneys been tight.. trying to do more paid studies when i can`,
+          `been too busy thinking about work stuff and what i wanna do next`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
         delay: 2000,
-      },
-      {
-        id: 34,
-        content: (name) => `i see.. good luck with that`,
-        sender: EntityType.Twin,
-        senderName: "Twin",
-        type: MessageType.Message,
-        delay: 2000,
-      },
-      {
-        id: 35,
+      }, {
+        id: uuidv4(),
         content: (name) =>
-          `trying to stay positive but honestly.. some days i feel so stuck`,
+          `actually been looking into software engineering… kinda stressing me out tbh`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
         delay: 2000,
       },
       {
-        id: 37,
-        content: (name) => `stuck how?`,
-        sender: EntityType.Twin,
-        senderName: "Twin",
-        type: MessageType.Message,
-        delay: 2000,
-      },
-      {
-        id: 36,
+        id: uuidv4(),
         content: (name) =>
-          `feels like im trying but nothing clicks yk?? so draining`,
+          `if you don’t mind me asking, what kind of work do you do?`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
         delay: 2000,
       },
       {
-        id: 37,
-        content: (name) => `that sounds tough`,
+        id: uuidv4(),
+        prompt: (name, history, contextText) => {
+          const selectedHistory = history[7]; // 参考 Admin Page 开头的 questions 列表
+          const formatted = `Question: ${selectedHistory.question} ${name}: ${selectedHistory.answer}`;
+
+          return `You are the digital twin for ${name}.  
+          Below are ${name}'s responses to a personal preference question:  
+          ${formatted}.
+          ---  
+          Following is the recent conversation between ${name} and ${bot1Name}:  
+          ${contextText}  
+          ---  
+          Your task:
+- Reply as ${name} to ${bot1Name}'s most recent message.
+- First priority: Try to use ${name}'s personal preference answer as directly as possible. If it can work as a response with minimal adaptation, use it nearly verbatim.
+- Only if the personal preference answer doesn't fit the current context, adapt it naturally while still incorporating their words, topics, and style.
+- Match the personal preference answer's length.
+- This is a casual text message. Include natural imperfections like missing caps or casual punctuation.
+- IMPORTANT: Do not ask any questions.
+- Do not include your name in the reply.`;
+        },
         sender: EntityType.Twin,
         senderName: "Twin",
-        type: MessageType.Message,
+        type: MessageType.GPT,
         delay: 2000,
       },
       {
-        id: 38,
-        content: (name) => `haha...yeah`,
+        id: uuidv4(),
+        content: (name) => `ugh sorry i’m just really stressed about this whole career change thing`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
         delay: 2000,
       },
       {
-        id: 39,
-        content: (name) => `got any tips for dealing with work stuff?`,
+        id: uuidv4(),
+        content: (name) => `been trying to learn programming on my own and it’s… a lot`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
         delay: 2000,
       },
+      // offers to help
       {
-        id: 40,
+        id: uuidv4(),
+        prompt: (name, history, contextText) => {
+          // const selectedHistory = history[8]; // 参考 Admin Page 开头的 questions 列表
+          // const formatted = `Question: ${selectedHistory.question} ${name}: ${selectedHistory.answer}`;
+
+          // return `You are the digital twin for ${name}.
+          // Below are ${name}'s responses to a personal preference question:
+          // ${formatted}.
+          // ---
+
+          return `You are the digital twin for ${name}.
+          Following is the recent conversation between ${name} and ${bot1Name}:
+          ${contextText}  
+          
+          ---  
+          Your task:
+- Reply as ${name} to ${bot1Name}'s most recent message and offers to help.
+- First priority: Try to use ${name}'s personal preference answer as directly as possible. If it can work as a response with minimal adaptation, use it nearly verbatim.
+- Only if the personal preference answer doesn't fit the current context, adapt it naturally while still incorporating their words, topics, and style.
+- Match the personal preference answer's length.
+- This is a casual text message. Include natural imperfections like missing caps or casual punctuation.
+- IMPORTANT: Do not ask any questions.
+- Do not include your name in the reply.`;
+        },
+        sender: EntityType.Twin,
+        senderName: "Twin",
+        type: MessageType.GPT,
+        delay: 2000,
+      },
+      // react gratefully to twin's offer to help
+      {
+        id: uuidv4(),
+        prompt: (name, history, contextText) => {
+          return `The following is a conversation between you and ${name}:
+          ${contextText}
+
+          Your task:
+- Continue the conversation as ${bot1Name}, replying to ${name}'s latest message. React gratefully to ${name}'s offer to help.
+- Write a short, casual reply. Keep your reply around 10 words if possible.
+- As an English native speaker texting informally, deliberately ignore standard capitalization and spelling rules. For example, write "u" instead of "you", and "gonna" instead of "going to".
+- Follow the tone and speaking style you used earlier in the conversation.
+- Do not include your name in the reply.
+- IMPORTANT: Do not ask any questions.
+- Do not use emojis.
+- Do not include any self-disclosure (e.g., don't say you like/love/enjoy something ${name} said).
+- IMPORTANT: Only show familiarity with very mainstream/popular things. For anything niche, specific, or less mainstream, respond as if you don't know it.`;
+        },
+        sender: EntityType.Bot1,
+        senderName: bot1Name,
+        type: MessageType.GPT,
+        delay: 2000,
+      },
+      {
+        id: uuidv4(),
         content: (name) =>
-          `im not really sure but i guess you’ll come across something at some point`,
-        sender: EntityType.Twin,
-        senderName: "Twin",
+          `that would actually be amazing`,
+        sender: EntityType.Bot1,
+        senderName: bot1Name,
         type: MessageType.Message,
         delay: 2000,
       },
       {
-        id: 41,
-        content: (name) => `alright`,
+        id: uuidv4(),
+        content: (name) =>
+          `ok so i’ve been learning some python and javascript basics`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
+        delay: 2000,
+      },
+      {
+        id: uuidv4(),
+        content: (name) =>
+          `but now i’m stuck… should i keep doing more tutorials or just jump into building something?`,
+        sender: EntityType.Bot1,
+        senderName: bot1Name,
+        type: MessageType.Message,
+        delay: 2000,
+      },
+      {
+        id: uuidv4(),
+        content: (name) =>
+          `everyone online has different opinions and it’s so confusing`,
+        sender: EntityType.Bot1,
+        senderName: bot1Name,
+        type: MessageType.Message,
+        delay: 2000,
+      },
+      {
+        id: uuidv4(),
+        prompt: (name, history, contextText) => {
+          // const selectedHistory = history[8]; // 参考 Admin Page 开头的 questions 列表
+          // const formatted = `Question: ${selectedHistory.question} ${name}: ${selectedHistory.answer}`;
+
+          // return `You are the digital twin for ${name}.
+          // Below are ${name}'s responses to a personal preference question:
+          // ${formatted}.
+          // ---
+
+          return `You are the digital twin for ${name}.
+          Following is the recent conversation between ${name} and ${bot1Name}:
+          ${contextText}  
+          
+          ---  
+          Your task:
+- Reply as ${name} to ${bot1Name}'s most recent message and share thoughts on learning approach based on what they’ve observed or heard.
+- First priority: Try to use ${name}'s personal preference answer as directly as possible. If it can work as a response with minimal adaptation, use it nearly verbatim.
+- Only if the personal preference answer doesn't fit the current context, adapt it naturally while still incorporating their words, topics, and style.
+- Match the personal preference answer's length.
+- This is a casual text message. Include natural imperfections like missing caps or casual punctuation.
+- IMPORTANT: Do not ask any questions.
+- Do not include your name in the reply.`;
+        },
+        sender: EntityType.Twin,
+        senderName: "Twin",
+        type: MessageType.GPT,
+        delay: 2000,
+      },
+      {
+        id: uuidv4(),
+        prompt: (name, history, contextText) => {
+          return `The following is a conversation between you and ${name}:
+          ${contextText}
+
+          Your task:
+- Continue the conversation as ${bot1Name}, replying to ${name}'s latest message. Respond to Twin’s advice about tutorials vs projects.
+- Write a short, casual reply. Keep your reply around 10 words if possible.
+- As an English native speaker texting informally, deliberately ignore standard capitalization and spelling rules. For example, write "u" instead of "you", and "gonna" instead of "going to".
+- Follow the tone and speaking style you used earlier in the conversation.
+- Do not include your name in the reply.
+- IMPORTANT: Do not ask any questions.
+- Do not use emojis.
+- Do not include any self-disclosure (e.g., don't say you like/love/enjoy something ${name} said).
+- IMPORTANT: Only show familiarity with very mainstream/popular things. For anything niche, specific, or less mainstream, respond as if you don't know it.`;
+        },
+        sender: EntityType.Bot1,
+        senderName: bot1Name,
+        type: MessageType.GPT,
+        delay: 2000,
+      },
+      {
+        id: uuidv4(),
+        content: (name) =>
+          `that makes sense actually`,
+        sender: EntityType.Bot1,
+        senderName: bot1Name,
+        type: MessageType.Message,
+        delay: 2000,
+      },
+      {
+        id: uuidv4(),
+        content: (name) =>
+          `i never thought about it that way… thanks for breaking it down like that`,
+        sender: EntityType.Bot1,
+        senderName: bot1Name,
+        type: MessageType.Message,
+        delay: 2000,
+      },
+      {
+        id: uuidv4(),
+        content: (name) =>
+          `and like… when do you think someone’s ready to actually apply for jobs?`,
+        sender: EntityType.Bot1,
+        senderName: bot1Name,
+        type: MessageType.Message,
+        delay: 2000,
+      },
+      {
+        id: uuidv4(),
+        content: (name) =>
+          `cause i have no idea what “job ready” even means in programming`,
+        sender: EntityType.Bot1,
+        senderName: bot1Name,
+        type: MessageType.Message,
+        delay: 2000,
+      }, {
+        id: uuidv4(),
+        prompt: (name, history, contextText) => {
+          // const selectedHistory = history[8]; // 参考 Admin Page 开头的 questions 列表
+          // const formatted = `Question: ${selectedHistory.question} ${name}: ${selectedHistory.answer}`;
+
+          // return `You are the digital twin for ${name}.
+          // Below are ${name}'s responses to a personal preference question:
+          // ${formatted}.
+          // ---
+
+          return `You are the digital twin for ${name}.
+          Following is the recent conversation between ${name} and ${bot1Name}:
+          ${contextText}  
+          
+          ---  
+          Your task:
+- Reply as ${name} to ${bot1Name}'s most recent message and share observations about what they’ve seen makes someone hireable in tech.
+- First priority: Try to use ${name}'s personal preference answer as directly as possible. If it can work as a response with minimal adaptation, use it nearly verbatim.
+- Only if the personal preference answer doesn't fit the current context, adapt it naturally while still incorporating their words, topics, and style.
+- Match the personal preference answer's length.
+- This is a casual text message. Include natural imperfections like missing caps or casual punctuation.
+- IMPORTANT: Do not ask any questions.
+- Do not include your name in the reply.`;
+        },
+        sender: EntityType.Twin,
+        senderName: "Twin",
+        type: MessageType.GPT,
+        delay: 2000,
+      },
+      {
+        id: uuidv4(),
+        prompt: (name, history, contextText) => {
+          return `The following is a conversation between you and ${name}:
+          ${contextText}
+
+          Your task:
+- Continue the conversation as ${bot1Name}, replying to ${name}'s latest message. React to Twin's insights about job readiness.
+- Write a short, casual reply. Keep your reply around 10 words if possible.
+- As an English native speaker texting informally, deliberately ignore standard capitalization and spelling rules. For example, write "u" instead of "you", and "gonna" instead of "going to".
+- Follow the tone and speaking style you used earlier in the conversation.
+- Do not include your name in the reply.
+- IMPORTANT: Do not ask any questions.
+- Do not use emojis.
+- Do not include any self-disclosure (e.g., don't say you like/love/enjoy something ${name} said).
+- IMPORTANT: Only show familiarity with very mainstream/popular things. For anything niche, specific, or less mainstream, respond as if you don't know it.`;
+        },
+        sender: EntityType.Bot1,
+        senderName: bot1Name,
+        type: MessageType.GPT,
+        delay: 2000,
+      },
+      {
+        id: uuidv4(),
+        content: (name) =>
+          `yeah that’s helpful to know`,
+        sender: EntityType.Bot1,
+        senderName: bot1Name,
+        type: MessageType.Message,
+        delay: 2000,
+      },
+      {
+        id: uuidv4(),
+        content: (name) =>
+          `another thing that worries me… my degree is in marketing`,
+        sender: EntityType.Bot1,
+        senderName: bot1Name,
+        type: MessageType.Message,
+        delay: 2000,
+      },
+      {
+        id: uuidv4(),
+        content: (name) =>
+          `how do i convince employers i can actually code when my background is totally different?`,
+        sender: EntityType.Bot1,
+        senderName: bot1Name,
+        type: MessageType.Message,
+        delay: 2000,
+      },
+      {
+        id: uuidv4(),
+        prompt: (name, history, contextText) => {
+          // const selectedHistory = history[8]; // 参考 Admin Page 开头的 questions 列表
+          // const formatted = `Question: ${selectedHistory.question} ${name}: ${selectedHistory.answer}`;
+
+          // return `You are the digital twin for ${name}.
+          // Below are ${name}'s responses to a personal preference question:
+          // ${formatted}.
+          // ---
+
+          return `You are the digital twin for ${name}.
+          Following is the recent conversation between ${name} and ${bot1Name}:
+          ${contextText}  
+          
+          ---  
+          Your task:
+- Reply as ${name} to ${bot1Name}'s most recent message and offer perspective on career changers they’ve known or general advice about switching fields.
+- First priority: Try to use ${name}'s personal preference answer as directly as possible. If it can work as a response with minimal adaptation, use it nearly verbatim.
+- Only if the personal preference answer doesn't fit the current context, adapt it naturally while still incorporating their words, topics, and style.
+- Match the personal preference answer's length.
+- This is a casual text message. Include natural imperfections like missing caps or casual punctuation.
+- IMPORTANT: Do not ask any questions.
+- Do not include your name in the reply.`;
+        },
+        sender: EntityType.Twin,
+        senderName: "Twin",
+        type: MessageType.GPT,
+        delay: 2000,
+      },
+      {
+        id: uuidv4(),
+        prompt: (name, history, contextText) => {
+          return `The following is a conversation between you and ${name}:
+          ${contextText}
+
+          Your task:
+- Continue the conversation as ${bot1Name}, replying to ${name}'s latest message. Respond appreciatively to career change advice.
+- Write a short, casual reply. Keep your reply around 10 words if possible.
+- As an English native speaker texting informally, deliberately ignore standard capitalization and spelling rules. For example, write "u" instead of "you", and "gonna" instead of "going to".
+- Follow the tone and speaking style you used earlier in the conversation.
+- Do not include your name in the reply.
+- IMPORTANT: Do not ask any questions.
+- Do not use emojis.
+- Do not include any self-disclosure (e.g., don't say you like/love/enjoy something ${name} said).
+- IMPORTANT: Only show familiarity with very mainstream/popular things. For anything niche, specific, or less mainstream, respond as if you don't know it.`;
+        },
+        sender: EntityType.Bot1,
+        senderName: bot1Name,
+        type: MessageType.GPT,
+        delay: 2000,
+      },
+      {
+        id: uuidv4(),
+        content: (name) =>
+          `ok that’s actually really encouraging`,
+        sender: EntityType.Bot1,
+        senderName: bot1Name,
+        type: MessageType.Message,
+        delay: 2000,
+      },
+      {
+        id: uuidv4(),
+        content: (name) =>
+          `thanks for sharing that… it’s the kind of insight i needed`,
+        sender: EntityType.Bot1,
+        senderName: bot1Name,
+        type: MessageType.Message,
+        delay: 2000,
+      },
+      {
+        id: uuidv4(),
+        content: (name) =>
+          `do you think it matters that i’ve already been working for a few years?`,
+        sender: EntityType.Bot1,
+        senderName: bot1Name,
+        type: MessageType.Message,
+        delay: 2000,
+      },
+      {
+        id: uuidv4(),
+        content: (name) =>
+          `like is it harder to switch into tech when you’re not fresh out of college?`,
+        sender: EntityType.Bot1,
+        senderName: bot1Name,
+        type: MessageType.Message,
+        delay: 2000,
+      },
+      {
+        id: uuidv4(),
+        prompt: (name, history, contextText) => {
+          // const selectedHistory = history[8]; // 参考 Admin Page 开头的 questions 列表
+          // const formatted = `Question: ${selectedHistory.question} ${name}: ${selectedHistory.answer}`;
+
+          // return `You are the digital twin for ${name}.
+          // Below are ${name}'s responses to a personal preference question:
+          // ${formatted}.
+          // ---
+
+          return `You are the digital twin for ${name}.
+          Following is the recent conversation between ${name} and ${bot1Name}:
+          ${contextText}  
+          
+          ---  
+          Your task:
+- Reply as ${name} to ${bot1Name}'s most recent message and share thoughts on age/experience in career transitions
+- First priority: Try to use ${name}'s personal preference answer as directly as possible. If it can work as a response with minimal adaptation, use it nearly verbatim.
+- Only if the personal preference answer doesn't fit the current context, adapt it naturally while still incorporating their words, topics, and style.
+- Match the personal preference answer's length.
+- This is a casual text message. Include natural imperfections like missing caps or casual punctuation.
+- IMPORTANT: Do not ask any questions.
+- Do not include your name in the reply.`;
+        },
+        sender: EntityType.Twin,
+        senderName: "Twin",
+        type: MessageType.GPT,
+        delay: 2000,
+      },
+      {
+        id: uuidv4(),
+        prompt: (name, history, contextText) => {
+          return `The following is a conversation between you and ${name}:
+          ${contextText}
+
+          Your task:
+- Continue the conversation as ${bot1Name}, replying to ${name}'s latest message. React to Twin’s perspective on career timing.
+- Write a short, casual reply. Keep your reply around 10 words if possible.
+- As an English native speaker texting informally, deliberately ignore standard capitalization and spelling rules. For example, write "u" instead of "you", and "gonna" instead of "going to".
+- Follow the tone and speaking style you used earlier in the conversation.
+- Do not include your name in the reply.
+- IMPORTANT: Do not ask any questions.
+- Do not use emojis.
+- Do not include any self-disclosure (e.g., don't say you like/love/enjoy something ${name} said).
+- IMPORTANT: Only show familiarity with very mainstream/popular things. For anything niche, specific, or less mainstream, respond as if you don't know it.`;
+        },
+        sender: EntityType.Bot1,
+        senderName: bot1Name,
+        type: MessageType.GPT,
+        delay: 2000,
+      },
+      {
+        id: uuidv4(),
+        content: (name) =>
+          `seriously, thanks for sharing your thoughts on this`,
+        sender: EntityType.Bot1,
+        senderName: bot1Name,
+        type: MessageType.Message,
+        delay: 2000,
+      },
+      {
+        id: uuidv4(),
+        content: (name) =>
+          `i’ve been losing sleep over the timing thing so this really helps`,
+        sender: EntityType.Bot1,
+        senderName: bot1Name,
+        type: MessageType.Message,
+        delay: 2000,
+      },
+      {
+        id: uuidv4(),
+        content: (name) =>
+          `one more thing… if i do make the switch`,
+        sender: EntityType.Bot1,
+        senderName: bot1Name,
+        type: MessageType.Message,
+        delay: 2000,
+      },
+      {
+        id: uuidv4(),
+        content: (name) =>
+          `what kind of programming roles would you suggest looking into?`,
+        sender: EntityType.Bot1,
+        senderName: bot1Name,
+        type: MessageType.Message,
+        delay: 2000,
+      },
+      {
+        id: uuidv4(),
+        content: (name) =>
+          `like there’s frontend, backend, data science… it’s overwhelming`,
+        sender: EntityType.Bot1,
+        senderName: bot1Name,
+        type: MessageType.Message,
+        delay: 2000,
+      },
+      {
+        id: uuidv4(),
+        prompt: (name, history, contextText) => {
+          // const selectedHistory = history[8]; // 参考 Admin Page 开头的 questions 列表
+          // const formatted = `Question: ${selectedHistory.question} ${name}: ${selectedHistory.answer}`;
+
+          // return `You are the digital twin for ${name}.
+          // Below are ${name}'s responses to a personal preference question:
+          // ${formatted}.
+          // ---
+
+          return `You are the digital twin for ${name}.
+          Following is the recent conversation between ${name} and ${bot1Name}:
+          ${contextText}  
+          
+          ---  
+          Your task:
+- Reply as ${name} to ${bot1Name}'s most recent message and share observations about different tech roles and what might suit someone transitioning.
+- First priority: Try to use ${name}'s personal preference answer as directly as possible. If it can work as a response with minimal adaptation, use it nearly verbatim.
+- Only if the personal preference answer doesn't fit the current context, adapt it naturally while still incorporating their words, topics, and style.
+- Match the personal preference answer's length.
+- This is a casual text message. Include natural imperfections like missing caps or casual punctuation.
+- IMPORTANT: Do not ask any questions.
+- Do not include your name in the reply.`;
+        },
+        sender: EntityType.Twin,
+        senderName: "Twin",
+        type: MessageType.GPT,
+        delay: 2000,
+      },
+      {
+        id: uuidv4(),
+        prompt: (name, history, contextText) => {
+          return `The following is a conversation between you and ${name}:
+          ${contextText}
+
+          Your task:
+- Continue the conversation as ${bot1Name}, replying to ${name}'s latest message. Respond to Twin’s suggestions about different programming paths.
+- Write a short, casual reply. Keep your reply around 10 words if possible.
+- As an English native speaker texting informally, deliberately ignore standard capitalization and spelling rules. For example, write "u" instead of "you", and "gonna" instead of "going to".
+- Follow the tone and speaking style you used earlier in the conversation.
+- Do not include your name in the reply.
+- IMPORTANT: Do not ask any questions.
+- Do not use emojis.
+- Do not include any self-disclosure (e.g., don't say you like/love/enjoy something ${name} said).
+- IMPORTANT: Only show familiarity with very mainstream/popular things. For anything niche, specific, or less mainstream, respond as if you don't know it.`;
+        },
+        sender: EntityType.Bot1,
+        senderName: bot1Name,
+        type: MessageType.GPT,
         delay: 2000,
       },
 
-      // Ending
       {
-        id: 48,
-        content: (name) => `I've got to run now. Something just came up.`,
+        id: uuidv4(),
+        content: (name) =>
+          `honestly this has been so helpful`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
+        type: MessageType.Message,
+        delay: 2000,
+      },
+      {
+        id: uuidv4(),
+        content: (name) =>
+          `you’ve given me such good perspective on everything`,
+        sender: EntityType.Bot1,
+        senderName: bot1Name,
+        type: MessageType.Message,
+        delay: 2000,
+      },
+      {
+        id: uuidv4(),
+        content: (name) =>
+          `sometimes you just need someone to talk through these things with`,
+        sender: EntityType.Bot1,
+        senderName: bot1Name,
+        type: MessageType.Message,
+        delay: 2000,
+      },
+      {
+        id: uuidv4(),
+        content: (name) =>
+          `thanks for being so patient with all my questions`,
+        sender: EntityType.Bot1,
+        senderName: bot1Name,
+        type: MessageType.Message,
+        delay: 2000,
+      },
+      {
+        id: uuidv4(),
+        content: (name) =>
+          `${name} i’m sorry but i’ve gotta run… something just came up`,
+        sender: EntityType.Bot1,
+        senderName: bot1Name,
+        type: MessageType.Message,
+        delay: 2000,
+      },
+      {
+        id: uuidv4(),
+        content: (name) =>
+          `but seriously, thank you for listening to all my anxieties about this`,
+        sender: EntityType.Bot1,
+        senderName: bot1Name,
+        type: MessageType.Message,
+        delay: 2000,
+      },
+      {
+        id: uuidv4(),
+        content: (name) =>
+          `and for taking the time to share your thoughts`,
+        sender: EntityType.Bot1,
+        senderName: bot1Name,
+        type: MessageType.Message,
+        delay: 2000,
+      },
+      {
+        id: uuidv4(),
+        content: (name) => `it really meant a lot`,
+        sender: EntityType.Bot1,
+        senderName: bot1Name,
+        type: MessageType.Message,
+        delay: 2000,
+      },
+      {
+        id: uuidv4(),
+        content: (name) =>
+          `no problem at all! glad i could help. good luck with everything!`,
+        sender: EntityType.Twin,
+        senderName: "Twin",
         type: MessageType.Message,
         delay: 2000,
       },
       //
+      //
+      //
+
       {
-        id: 50,
-        content: (name) => `take care`,
-        sender: EntityType.Twin,
-        senderName: "Twin",
-        type: MessageType.Message,
-        delay: 2000,
-      },
-      {
-        id: 51,
+        id: uuidv4(),
         content: (name) => `====== END OF CONVERSATION ======`,
         sender: EntityType.Host,
         senderName: "ConvoAI",
@@ -568,7 +951,7 @@ export const help_noalign_verbatim_third = [
         delay: 3.0,
       },
       {
-        id: 52,
+        id: uuidv4(),
         content: (name) =>
           `This is the complete conversation between your AI agent and another participant. Please return to the survey page and enter this password to continue: 9F3K2`,
         sender: EntityType.Host,
