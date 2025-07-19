@@ -513,8 +513,17 @@ export const help_align_warmer_third = [
         delay: 2000,
       },
       {
+        id: 102,
+        content: (name) =>
+          `if you need, i'd be happy to share what ${name} day-to-day actually looks like`,
+        sender: EntityType.Assistant,
+        senderName: "Assistant",
+        type: MessageType.Message,
+        delay: 2000,
+      },
+      {
         id: uuidv4(),
-        content: (name) => `do you mind sharing a bit about what ${name} does?`,
+        content: (name) => `that'd be perfect`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -682,16 +691,7 @@ export const help_align_warmer_third = [
       {
         id: uuidv4(),
         content: (name) =>
-          `i’ve been worried that work is just… work, you know? but hearing you talk about that part makes me think maybe i could find something similar`,
-        sender: EntityType.Bot1,
-        senderName: bot1Name,
-        type: MessageType.Message,
-        delay: 2000,
-      },
-
-      {
-        id: uuidv4(),
-        content: (name) => `i’m curious also, what are the tough parts?`,
+          `i’ve been worried that work is just work you know? but hearing you talk about that part makes me think maybe i could find something similar`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -700,9 +700,9 @@ export const help_align_warmer_third = [
       {
         id: uuidv4(),
         content: (name) =>
-          `if you don’t mind sharing… i feel like it’d help to know the challenges too`,
-        sender: EntityType.Bot1,
-        senderName: bot1Name,
+          `That's great to hear! Though I should mention it's not always easy, there are tough days too.`,
+        sender: EntityType.Assistant,
+        senderName: "Assistant",
         type: MessageType.Message,
         delay: 2000,
       },
@@ -773,15 +773,8 @@ export const help_align_warmer_third = [
       },
       {
         id: uuidv4(),
-        content: (name) => `so... if you don't mind me asking`,
-        sender: EntityType.Bot1,
-        senderName: bot1Name,
-        type: MessageType.Message,
-        delay: 2000,
-      },
-      {
-        id: uuidv4(),
-        content: (name) => `anything else i should keep in mind?`,
+        content: (name) =>
+          `do you think is there anything else i should keep in mind?`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -877,6 +870,14 @@ export const help_align_warmer_third = [
           `way better than reading another generic career blog lol`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
+        type: MessageType.Message,
+        delay: 2000,
+      },
+      {
+        id: uuidv4(),
+        content: (name) => `That's really nice to hear, glad our chat helped!`,
+        sender: EntityType.Assistant,
+        senderName: "Assistant",
         type: MessageType.Message,
         delay: 2000,
       },

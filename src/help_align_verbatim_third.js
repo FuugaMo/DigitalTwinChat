@@ -518,9 +518,17 @@ export const help_align_verbatim_third = [
         delay: 2000,
       },
       {
-        id: uuidv4(),
+        id: 102,
         content: (name) =>
-          `do you mind sharing a bit about what ${name} does?`,
+          `if you need, i'd be happy to share what ${name} day-to-day actually looks like`,
+        sender: EntityType.Assistant,
+        senderName: "Assistant",
+        type: MessageType.Message,
+        delay: 2000,
+      },
+      {
+        id: uuidv4(),
+        content: (name) => `that'd be perfect`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -612,7 +620,8 @@ export const help_align_verbatim_third = [
       },
       {
         id: uuidv4(),
-        content: (name) => `i'm curious how does ${name} feel about it overall?`,
+        content: (name) =>
+          `i'm curious how does ${name} feel about it overall?`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -695,21 +704,12 @@ export const help_align_verbatim_third = [
         type: MessageType.Message,
         delay: 2000,
       },
-
-      {
-        id: uuidv4(),
-        content: (name) => `i’m curious also, what are the tough parts?`,
-        sender: EntityType.Bot1,
-        senderName: bot1Name,
-        type: MessageType.Message,
-        delay: 2000,
-      },
       {
         id: uuidv4(),
         content: (name) =>
-          `if you don’t mind sharing…`,
-        sender: EntityType.Bot1,
-        senderName: bot1Name,
+          `That's great to hear! Though I should mention it's not always easy, there are tough days too.`,
+        sender: EntityType.Assistant,
+        senderName: "Assistant",
         type: MessageType.Message,
         delay: 2000,
       },
@@ -849,8 +849,7 @@ export const help_align_verbatim_third = [
       },
       {
         id: uuidv4(),
-        content: (name) =>
-          `this helps a lot, thanks`,
+        content: (name) => `this helps a lot, thanks`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -871,6 +870,14 @@ export const help_align_verbatim_third = [
           `way better than reading another generic career blog lol`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
+        type: MessageType.Message,
+        delay: 2000,
+      },
+      {
+        id: uuidv4(),
+        content: (name) => `That's really nice to hear, glad our chat helped!`,
+        sender: EntityType.Assistant,
+        senderName: "Assistant",
         type: MessageType.Message,
         delay: 2000,
       },
