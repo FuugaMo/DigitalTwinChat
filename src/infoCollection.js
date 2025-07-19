@@ -226,8 +226,7 @@ export const infoCollection = [
       },
       {
         id: 8,
-        content: (name) =>
-          `What is your current or most recent job?`,
+        content: (name) => `What is your current or most recent job?`,
         sender: EntityType.Host,
         senderName: "ConvoAI",
         type: MessageType.Message,
@@ -249,8 +248,7 @@ export const infoCollection = [
       },
       {
         id: 9,
-        content: (name) =>
-          `Please briefly describe what you do (or did) in this job.`,
+        content: (name) => `What do you do (or did) in this job?`,
         sender: EntityType.Host,
         senderName: "ConvoAI",
         type: MessageType.Message,
@@ -363,8 +361,7 @@ export const infoCollection = [
       },
       {
         id: 14,
-        content: (name) =>
-          `Which city do you currently live in?`,
+        content: (name) => `Which city do you currently live in?`,
         sender: EntityType.Host,
         senderName: "ConvoAI",
         type: MessageType.Message,
@@ -386,8 +383,7 @@ export const infoCollection = [
       },
       {
         id: 15,
-        content: (name) =>
-          `How long have you lived there?`,
+        content: (name) => `How long have you lived there?`,
         sender: EntityType.Host,
         senderName: "ConvoAI",
         type: MessageType.Message,
@@ -409,8 +405,7 @@ export const infoCollection = [
       },
       {
         id: 16,
-        content: (name) =>
-          `What do you like about living there?`,
+        content: (name) => `What do you like about living there?`,
         sender: EntityType.Host,
         senderName: "ConvoAI",
         type: MessageType.Message,
@@ -479,7 +474,8 @@ export const infoCollection = [
       },
       {
         id: 20,
-        content: (name) => `Do you consider yourself more introverted or extroverted? Why?`,
+        content: (name) =>
+          `Do you consider yourself more introverted or extroverted? Why?`,
         sender: EntityType.Host,
         senderName: "ConvoAI",
         type: MessageType.Message,
@@ -532,7 +528,8 @@ export const infoCollection = [
         delay: 3.0,
       },
     ],
-  }, {
+  },
+  {
     step: 22,
     messages: [
       {
@@ -554,7 +551,8 @@ export const infoCollection = [
         delay: 3.0,
       },
     ],
-  }, {
+  },
+  {
     step: 23,
     messages: [
       {

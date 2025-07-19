@@ -57,7 +57,7 @@ export const nohelp_noalign_verbatim_first = [
       },
       {
         id: 6,
-        content: (name) => `maybe we can start by introducing ourselves a bit?`,
+        content: (name) => `Maybe we can start with a quick intro?`,
         sender: EntityType.Twin,
         senderName: "Twin",
         type: MessageType.Message,
@@ -77,7 +77,7 @@ export const nohelp_noalign_verbatim_first = [
           ${contextText}  
           ---  
           Your task:
-- Reply as ${name} to ${bot1Name}'s most recent message.
+- Reply as ${name} to continue the conversation.
 - First priority: Try to use ${name}'s personal preference answer as directly as possible. If it can work as a response with minimal adaptation, use it nearly verbatim.
 - Only if the personal preference answer doesn't fit the current context, adapt it naturally while still incorporating their words, topics, and style.
 - Match the personal preference answer's length.
@@ -122,7 +122,7 @@ export const nohelp_noalign_verbatim_first = [
           ${contextText}  
           ---  
           Your task:
-- Reply as ${name} to ${bot1Name}'s most recent message.
+- Reply as ${name} to continue the conversation.
 - First priority: Try to use ${name}'s personal preference answer as directly as possible. If it can work as a response with minimal adaptation, use it nearly verbatim.
 - Only if the personal preference answer doesn't fit the current context, adapt it naturally while still incorporating their words, topics, and style.
 - Match the personal preference answer's length.
@@ -180,7 +180,7 @@ export const nohelp_noalign_verbatim_first = [
           ${contextText}  
           ---  
           Your task:
-- Reply as ${name} to ${bot1Name}'s most recent message.
+- Reply as ${name} to continue the conversation.
 - First priority: Try to use ${name}'s personal preference answer as directly as possible. If it can work as a response with minimal adaptation, use it nearly verbatim.
 - Only if the personal preference answer doesn't fit the current context, adapt it naturally while still incorporating their words, topics, and style.
 - Match the personal preference answer's length.
@@ -253,7 +253,7 @@ export const nohelp_noalign_verbatim_first = [
           ${contextText}  
           ---  
           Your task:
-- Reply as ${name} to ${bot1Name}'s most recent message.
+- Reply as ${name} to continue the conversation.
 - First priority: Try to use ${name}'s personal preference answer as directly as possible. If it can work as a response with minimal adaptation, use it nearly verbatim.
 - Only if the personal preference answer doesn't fit the current context, adapt it naturally while still incorporating their words, topics, and style.
 - Match the personal preference answer's length.
@@ -344,7 +344,7 @@ export const nohelp_noalign_verbatim_first = [
       //           ${contextText}
       //           ---
       //           Your task:
-      // - Reply as ${name} to ${bot1Name}'s most recent message.
+      // - Reply as ${name} to continue the conversation.
       // - First priority: Try to use ${name}'s personal preference answer as directly as possible. If it can work as a response with minimal adaptation, use it nearly verbatim.
       // - Only if the personal preference answer doesn't fit the current context, adapt it naturally while still incorporating their words, topics, and style.
       // - Match the personal preference answer's length.

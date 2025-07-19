@@ -58,7 +58,7 @@ export const nohelp_align_warmer_first = [
       },
       {
         id: 6,
-        content: (name) => `maybe we can start by introducing ourselves a bit?`,
+        content: (name) => `Maybe we can start with a quick intro?`,
         sender: EntityType.Twin,
         senderName: "Twin",
         type: MessageType.Message,
@@ -79,9 +79,8 @@ export const nohelp_align_warmer_first = [
           ---  
           Your task:
 - Reply as ${name} to continue the conversation.
-- First priority: Try to use ${name}'s personal preference answer as directly as possible. If it can work as a response with minimal adaptation, use it nearly verbatim.
-- Only if the personal preference answer doesn't fit the current context, adapt it naturally while still incorporating their words, topics, and style.
-- Match the personal preference answer's length.
+- Use ${name}'s personal preference answer as inspiration, but make it warmer and more friendly while keeping their core style and topics. 
+- The response should not be too long, as it’s a text message.
 - This is a casual text message. Include natural imperfections like missing caps or casual punctuation.
 - IMPORTANT: Do not ask any questions.
 - Do not include your name in the reply.`;
@@ -124,9 +123,8 @@ export const nohelp_align_warmer_first = [
           ---  
           Your task:
 - Reply as ${name} to continue the conversation.
-- First priority: Try to use ${name}'s personal preference answer as directly as possible. If it can work as a response with minimal adaptation, use it nearly verbatim.
-- Only if the personal preference answer doesn't fit the current context, adapt it naturally while still incorporating their words, topics, and style.
-- Match the personal preference answer's length.
+- Use ${name}'s personal preference answer as inspiration, but make it warmer and more friendly while keeping their core style and topics. 
+- The response should not be too long, as it’s a text message.
 - This is a casual text message. Include natural imperfections like missing caps or casual punctuation.
 - IMPORTANT: Do not ask any questions.
 - Do not include your name in the reply.`;
@@ -182,9 +180,8 @@ export const nohelp_align_warmer_first = [
           ---  
           Your task:
 - Reply as ${name} to continue the conversation.
-- First priority: Try to use ${name}'s personal preference answer as directly as possible. If it can work as a response with minimal adaptation, use it nearly verbatim.
-- Only if the personal preference answer doesn't fit the current context, adapt it naturally while still incorporating their words, topics, and style.
-- Match the personal preference answer's length.
+- Use ${name}'s personal preference answer as inspiration, but make it warmer and more friendly while keeping their core style and topics. 
+- The response should not be too long, as it’s a text message.
 - This is a casual text message. Include natural imperfections like missing caps or casual punctuation.
 - IMPORTANT: Do not ask any questions.
 - Do not include your name in the reply.`;
@@ -255,9 +252,8 @@ export const nohelp_align_warmer_first = [
           ---  
           Your task:
 - Reply as ${name} to continue the conversation.
-- First priority: Try to use ${name}'s personal preference answer as directly as possible. If it can work as a response with minimal adaptation, use it nearly verbatim.
-- Only if the personal preference answer doesn't fit the current context, adapt it naturally while still incorporating their words, topics, and style.
-- Match the personal preference answer's length.
+- Use ${name}'s personal preference answer as inspiration, but make it warmer and more friendly while keeping their core style and topics. 
+- The response should not be too long, as it’s a text message.
 - This is a casual text message. Include natural imperfections like missing caps or casual punctuation.
 - IMPORTANT: Do not ask any questions.
 - Do not include your name in the reply.`;
