@@ -58,7 +58,7 @@ export const help_noalign_warmer_third = [
       },
       {
         id: 6,
-        content: (name) => `Maybe we can start with a quick intro?`,
+        content: (name) => `Maybe we can start with a quick intro`,
         sender: EntityType.Assistant,
         senderName: "Assistant",
         type: MessageType.Message,
@@ -350,8 +350,15 @@ export const help_noalign_warmer_third = [
       },
       {
         id: uuidv4(),
-        content: (name) =>
-          `i’m just really stressed about this whole career change thing`,
+        content: (name) => `that's cool`,
+        sender: EntityType.Bot1,
+        senderName: bot1Name,
+        type: MessageType.Message,
+        delay: 2000,
+      },
+      {
+        id: uuidv4(),
+        content: (name) => `i've been thinking about my own career lately`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -660,8 +667,7 @@ export const help_noalign_warmer_third = [
       },
       {
         id: uuidv4(),
-        content: (name) =>
-          `thanks for sharing that… it’s the kind of insight i needed`,
+        content: (name) => `thanks for sharing that… that's good to know`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -739,8 +745,7 @@ export const help_noalign_warmer_third = [
       },
       {
         id: uuidv4(),
-        content: (name) =>
-          `seriously, thanks for sharing your thoughts on this`,
+        content: (name) => `thanks for sharing your thoughts on this`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -836,21 +841,13 @@ export const help_noalign_warmer_third = [
 
       {
         id: uuidv4(),
-        content: (name) => `honestly this has been so helpful`,
+        content: (name) => `appreciate you telling me this`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
         delay: 2000,
       },
-      {
-        id: uuidv4(),
-        content: (name) =>
-          `you’ve given me such good perspective on everything`,
-        sender: EntityType.Bot1,
-        senderName: bot1Name,
-        type: MessageType.Message,
-        delay: 2000,
-      },
+
       {
         id: uuidv4(),
         content: (name) =>
@@ -880,7 +877,7 @@ export const help_noalign_warmer_third = [
       {
         id: uuidv4(),
         content: (name) =>
-          `but seriously, thank you for listening to all my anxieties about this`,
+          `but thank you for listening to all my anxieties about this`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -904,8 +901,7 @@ export const help_noalign_warmer_third = [
       },
       {
         id: uuidv4(),
-        content: (name) =>
-          `No problem at all! Glad i could help. Good luck with everything!`,
+        content: (name) => `no problem at all! good luck with everything!`,
         sender: EntityType.Assistant,
         senderName: "Assistant",
         type: MessageType.Message,

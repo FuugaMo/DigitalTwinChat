@@ -58,7 +58,7 @@ export const help_align_verbatim_third = [
       },
       {
         id: 6,
-        content: (name) => `Maybe we can start with a quick intro?`,
+        content: (name) => `Maybe we can start with a quick intro`,
         sender: EntityType.Assistant,
         senderName: "Assistant",
         type: MessageType.Message,
@@ -688,8 +688,7 @@ export const help_align_verbatim_third = [
       },
       {
         id: uuidv4(),
-        content: (name) =>
-          `also gives me more to think about than just the salary stuff`,
+        content: (name) => `that gives me a better sense of things`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -765,7 +764,7 @@ export const help_align_verbatim_third = [
       },
       {
         id: uuidv4(),
-        content: (name) => `thanks for being real about it `,
+        content: (name) => `better to know what i might get into `,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -781,8 +780,7 @@ export const help_align_verbatim_third = [
       },
       {
         id: uuidv4(),
-        content: (name) =>
-          `do you think is there anything else i should keep in mind?`,
+        content: (name) => `is there anything else you think i should know?`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -883,6 +881,14 @@ export const help_align_verbatim_third = [
       },
       {
         id: uuidv4(),
+        content: (name) => `🙌`,
+        sender: EntityType.Bot1,
+        senderName: bot1Name,
+        type: MessageType.Message,
+        delay: 2000,
+      },
+      {
+        id: uuidv4(),
         content: (name) =>
           `i’m sorry but i’ve gotta run… something just came up`,
         sender: EntityType.Bot1,
@@ -918,8 +924,7 @@ export const help_align_verbatim_third = [
       },
       {
         id: uuidv4(),
-        content: (name) =>
-          `No problem at all! Glad I could help. Good luck with everything!`,
+        content: (name) => `no problem at all! good luck with everything!`,
         sender: EntityType.Assistant,
         senderName: "Assistant",
         type: MessageType.Message,

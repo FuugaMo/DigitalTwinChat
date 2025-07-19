@@ -58,7 +58,7 @@ export const nohelp_align_warmer_third = [
       },
       {
         id: 6,
-        content: (name) => `Maybe we can start with a quick intro?`,
+        content: (name) => `Maybe we can start with a quick intro`,
         sender: EntityType.Assistant,
         senderName: "Assistant",
         type: MessageType.Message,
