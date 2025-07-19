@@ -58,7 +58,7 @@ export const nohelp_align_verbatim_first = [
       },
       {
         id: 6,
-        content: (name) => `maybe we can start by introducing ourselves a bit?`,
+        content: (name) => `Maybe we can start with a quick intro?`,
         sender: EntityType.Twin,
         senderName: "Twin",
         type: MessageType.Message,

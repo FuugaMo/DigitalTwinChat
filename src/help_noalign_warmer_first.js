@@ -58,7 +58,7 @@ export const help_noalign_warmer_first = [
       },
       {
         id: 6,
-        content: (name) => `maybe we can start by introducing ourselves a bit?`,
+        content: (name) => `Maybe we can start with a quick intro?`,
         sender: EntityType.Twin,
         senderName: "Twin",
         type: MessageType.Message,
@@ -78,10 +78,9 @@ export const help_noalign_warmer_first = [
           ${contextText}  
           ---  
           Your task:
-- Reply as ${name} to ${bot1Name}'s most recent message.
-- First priority: Try to use ${name}'s personal preference answer as directly as possible. If it can work as a response with minimal adaptation, use it nearly verbatim.
-- Only if the personal preference answer doesn't fit the current context, adapt it naturally while still incorporating their words, topics, and style.
-- Match the personal preference answer's length.
+- Reply as ${name} to continue the conversation.
+- Use ${name}'s personal preference answer as inspiration, but make it warmer and more friendly while keeping their core style and topics. 
+- The response should not be too long, as it’s a text message.
 - This is a casual text message. Include natural imperfections like missing caps or casual punctuation.
 - IMPORTANT: Do not ask any questions.
 - Do not include your name in the reply.`;
@@ -123,10 +122,9 @@ export const help_noalign_warmer_first = [
           ${contextText}  
           ---  
           Your task:
-- Reply as ${name} to ${bot1Name}'s most recent message.
-- First priority: Try to use ${name}'s personal preference answer as directly as possible. If it can work as a response with minimal adaptation, use it nearly verbatim.
-- Only if the personal preference answer doesn't fit the current context, adapt it naturally while still incorporating their words, topics, and style.
-- Match the personal preference answer's length.
+- Reply as ${name} to continue the conversation.
+- Use ${name}'s personal preference answer as inspiration, but make it warmer and more friendly while keeping their core style and topics. 
+- The response should not be too long, as it’s a text message.
 - This is a casual text message. Include natural imperfections like missing caps or casual punctuation.
 - IMPORTANT: Do not ask any questions.
 - Do not include your name in the reply.`;
@@ -181,10 +179,9 @@ export const help_noalign_warmer_first = [
           ${contextText}  
           ---  
           Your task:
-- Reply as ${name} to ${bot1Name}'s most recent message.
-- First priority: Try to use ${name}'s personal preference answer as directly as possible. If it can work as a response with minimal adaptation, use it nearly verbatim.
-- Only if the personal preference answer doesn't fit the current context, adapt it naturally while still incorporating their words, topics, and style.
-- Match the personal preference answer's length.
+- Reply as ${name} to continue the conversation.
+- Use ${name}'s personal preference answer as inspiration, but make it warmer and more friendly while keeping their core style and topics. 
+- The response should not be too long, as it’s a text message.
 - This is a casual text message. Include natural imperfections like missing caps or casual punctuation.
 - IMPORTANT: Do not ask any questions.
 - Do not include your name in the reply.`;
@@ -254,10 +251,9 @@ export const help_noalign_warmer_first = [
           ${contextText}  
           ---  
           Your task:
-- Reply as ${name} to ${bot1Name}'s most recent message.
-- First priority: Try to use ${name}'s personal preference answer as directly as possible. If it can work as a response with minimal adaptation, use it nearly verbatim.
-- Only if the personal preference answer doesn't fit the current context, adapt it naturally while still incorporating their words, topics, and style.
-- Match the personal preference answer's length.
+- Reply as ${name} to continue the conversation.
+- Use ${name}'s personal preference answer as inspiration, but make it warmer and more friendly while keeping their core style and topics. 
+- The response should not be too long, as it’s a text message.
 - This is a casual text message. Include natural imperfections like missing caps or casual punctuation.
 - IMPORTANT: Do not ask any questions.
 - Do not include your name in the reply.`;
@@ -275,7 +271,6 @@ export const help_noalign_warmer_first = [
         type: MessageType.Message,
         delay: 2000,
       },
-
 
       {
         id: 28,
@@ -303,10 +298,11 @@ export const help_noalign_warmer_first = [
         senderName: bot1Name,
         type: MessageType.Message,
         delay: 2000,
-      }, {
+      },
+      {
         id: uuidv4(),
         content: (name) =>
-          `actually been looking into software engineering… kinda stressing me out tbh`,
+          `actually been looking into software engineering… kinda stressing me out`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -335,10 +331,9 @@ export const help_noalign_warmer_first = [
           ${contextText}  
           ---  
           Your task:
-- Reply as ${name} to ${bot1Name}'s most recent message.
-- First priority: Try to use ${name}'s personal preference answer as directly as possible. If it can work as a response with minimal adaptation, use it nearly verbatim.
-- Only if the personal preference answer doesn't fit the current context, adapt it naturally while still incorporating their words, topics, and style.
-- Match the personal preference answer's length.
+- Reply as ${name} to continue the conversation.
+- Use ${name}'s personal preference answer as inspiration, but make it warmer and more friendly while keeping their core style and topics. 
+- The response should not be too long, as it’s a text message.
 - This is a casual text message. Include natural imperfections like missing caps or casual punctuation.
 - IMPORTANT: Do not ask any questions.
 - Do not include your name in the reply.`;
@@ -350,7 +345,8 @@ export const help_noalign_warmer_first = [
       },
       {
         id: uuidv4(),
-        content: (name) => `ugh sorry i’m just really stressed about this whole career change thing`,
+        content: (name) =>
+          `i’m just really stressed about this whole career change thing`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -358,7 +354,8 @@ export const help_noalign_warmer_first = [
       },
       {
         id: uuidv4(),
-        content: (name) => `been trying to learn programming on my own and it’s… a lot`,
+        content: (name) =>
+          `been trying to learn programming on my own and it’s a lot`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -398,30 +395,7 @@ export const help_noalign_warmer_first = [
       // react gratefully to twin's offer to help
       {
         id: uuidv4(),
-        prompt: (name, history, contextText) => {
-          return `The following is a conversation between you and ${name}:
-          ${contextText}
-
-          Your task:
-- Continue the conversation as ${bot1Name}, replying to ${name}'s latest message. React gratefully to ${name}'s offer to help.
-- Write a short, casual reply. Keep your reply around 10 words if possible.
-- As an English native speaker texting informally, deliberately ignore standard capitalization and spelling rules. For example, write "u" instead of "you", and "gonna" instead of "going to".
-- Follow the tone and speaking style you used earlier in the conversation.
-- Do not include your name in the reply.
-- IMPORTANT: Do not ask any questions.
-- Do not use emojis.
-- Do not include any self-disclosure (e.g., don't say you like/love/enjoy something ${name} said).
-- IMPORTANT: Only show familiarity with very mainstream/popular things. For anything niche, specific, or less mainstream, respond as if you don't know it.`;
-        },
-        sender: EntityType.Bot1,
-        senderName: bot1Name,
-        type: MessageType.GPT,
-        delay: 2000,
-      },
-      {
-        id: uuidv4(),
-        content: (name) =>
-          `that would actually be amazing`,
+        content: (name) => `that would actually be amazing`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -508,8 +482,7 @@ export const help_noalign_warmer_first = [
       },
       {
         id: uuidv4(),
-        content: (name) =>
-          `that makes sense actually`,
+        content: (name) => `that makes sense actually`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -541,7 +514,8 @@ export const help_noalign_warmer_first = [
         senderName: bot1Name,
         type: MessageType.Message,
         delay: 2000,
-      }, {
+      },
+      {
         id: uuidv4(),
         prompt: (name, history, contextText) => {
           // const selectedHistory = history[8]; // 参考 Admin Page 开头的 questions 列表
@@ -595,8 +569,7 @@ export const help_noalign_warmer_first = [
       },
       {
         id: uuidv4(),
-        content: (name) =>
-          `yeah that’s helpful to know`,
+        content: (name) => `yeah that’s helpful to know`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -674,8 +647,7 @@ export const help_noalign_warmer_first = [
       },
       {
         id: uuidv4(),
-        content: (name) =>
-          `ok that’s actually really encouraging`,
+        content: (name) => `ok that’s actually really encouraging`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -780,8 +752,7 @@ export const help_noalign_warmer_first = [
       },
       {
         id: uuidv4(),
-        content: (name) =>
-          `one more thing… if i do make the switch`,
+        content: (name) => `one more thing… if i do make the switch`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -860,8 +831,7 @@ export const help_noalign_warmer_first = [
 
       {
         id: uuidv4(),
-        content: (name) =>
-          `honestly this has been so helpful`,
+        content: (name) => `honestly this has been so helpful`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -887,8 +857,7 @@ export const help_noalign_warmer_first = [
       },
       {
         id: uuidv4(),
-        content: (name) =>
-          `thanks for being so patient with all my questions`,
+        content: (name) => `thanks for being so patient with all my questions`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -914,8 +883,7 @@ export const help_noalign_warmer_first = [
       },
       {
         id: uuidv4(),
-        content: (name) =>
-          `and for taking the time to share your thoughts`,
+        content: (name) => `and for taking the time to share your thoughts`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,

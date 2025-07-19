@@ -511,7 +511,7 @@ function ChatWindow(props) {
     for (var i = 0; i < messageGroup.length; i++) {
       await timer((1 + Math.random()) * 1000);
       setIsDisplayTyping(true);
-      await timer(messageGroup[i].delay * 800); // 模拟打字等待时间
+      await timer(messageGroup[i].delay * 600); // 模拟打字等待时间
 
       const message = messageGroup[i];
 

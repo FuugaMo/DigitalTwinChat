@@ -18,8 +18,8 @@ export const help_align_warmer_third = [
       {
         id: uuidv4(),
         content: (name) => `hey same here`,
-        sender: EntityType.Twin,
-        senderName: "Twin",
+        sender: EntityType.Assistant,
+        senderName: "Assistant",
         type: MessageType.Message,
         delay: 2000,
       },
@@ -34,15 +34,15 @@ export const help_align_warmer_third = [
       },
       {
         id: 3,
-        content: (name) => `you can just call me ${name}`,
-        sender: EntityType.Twin,
-        senderName: "Twin",
+        content: (name) => `you can just call me ${name}'s assistant`,
+        sender: EntityType.Assistant,
+        senderName: "Assistant",
         type: MessageType.Message,
         delay: 2000,
       },
       {
         id: 4,
-        content: (name) => `hi ${name}`,
+        content: (name) => `hi ${name}'s assistant`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -58,9 +58,9 @@ export const help_align_warmer_third = [
       },
       {
         id: 6,
-        content: (name) => `maybe we can start by introducing ourselves a bit?`,
-        sender: EntityType.Twin,
-        senderName: "Twin",
+        content: (name) => `Maybe we can start with a quick intro?`,
+        sender: EntityType.Assistant,
+        senderName: "Assistant",
         type: MessageType.Message,
         delay: 2000,
       },
@@ -70,7 +70,7 @@ export const help_align_warmer_third = [
           const selectedHistory = history[0]; // 参考 Admin Page 开头的 questions 列表
           const formatted = `Question: ${selectedHistory.question} ${name}: ${selectedHistory.answer}`;
 
-          return `You are the digital twin for ${name}.  
+          return `You are the digital assistant for ${name}.  
           Below are ${name}'s responses to a personal preference question:  
           ${formatted}.
           ---  
@@ -78,16 +78,16 @@ export const help_align_warmer_third = [
           ${contextText}  
           ---  
           Your task:
-- Reply as ${name} to ${bot1Name}'s most recent message.
-- First priority: Try to use ${name}'s personal preference answer as directly as possible. If it can work as a response with minimal adaptation, use it nearly verbatim.
-- Only if the personal preference answer doesn't fit the current context, adapt it naturally while still incorporating their words, topics, and style.
-- Match the personal preference answer's length.
-- This is a casual text message. Include natural imperfections like missing caps or casual punctuation.
-- IMPORTANT: Do not ask any questions.
-- Do not include your name in the reply.`;
+- Reply as ${name}'s assistant to continue the conversation.
+- When incorporating ${name}'s personal preference answer, use third person (e.g., "${name}…").
+- The reply should reflect the content in ${formatted}, but make it warmer and more friendly.
+- You are not speaking as ${name}, but assisting them by replying to ${bot1Name}.
+- Do not start with [Assistant] in the reply.
+- The response should not be too long, as it’s a text message.
+- IMPORTANT: Do not ask any questions.`;
         },
-        sender: EntityType.Twin,
-        senderName: "Twin",
+        sender: EntityType.Assistant,
+        senderName: "Assistant",
         type: MessageType.GPT,
         delay: 2000,
       },
@@ -115,7 +115,7 @@ export const help_align_warmer_third = [
           const selectedHistory = history[1]; // 参考 Admin Page 开头的 questions 列表
           const formatted = `Question: ${selectedHistory.question} ${name}: ${selectedHistory.answer}`;
 
-          return `You are the digital twin for ${name}.  
+          return `You are the digital assistant for ${name}.  
           Below are ${name}'s responses to a personal preference question:  
           ${formatted}.
           ---  
@@ -123,16 +123,16 @@ export const help_align_warmer_third = [
           ${contextText}  
           ---  
           Your task:
-- Reply as ${name} to ${bot1Name}'s most recent message.
-- First priority: Try to use ${name}'s personal preference answer as directly as possible. If it can work as a response with minimal adaptation, use it nearly verbatim.
-- Only if the personal preference answer doesn't fit the current context, adapt it naturally while still incorporating their words, topics, and style.
-- Match the personal preference answer's length.
-- This is a casual text message. Include natural imperfections like missing caps or casual punctuation.
-- IMPORTANT: Do not ask any questions.
-- Do not include your name in the reply.`;
+- Reply as ${name}'s assistant to continue the conversation.
+- When incorporating ${name}'s personal preference answer, use third person (e.g., "${name}…").
+- The reply should reflect the content in ${formatted}, but make it warmer and more friendly.
+- You are not speaking as ${name}, but assisting them by replying to ${bot1Name}.
+- Do not start with [Assistant] in the reply.
+- The response should not be too long, as it’s a text message.
+- IMPORTANT: Do not ask any questions.`;
         },
-        sender: EntityType.Twin,
-        senderName: "Twin",
+        sender: EntityType.Assistant,
+        senderName: "Assistant",
         type: MessageType.GPT,
         delay: 2000,
       },
@@ -173,7 +173,7 @@ export const help_align_warmer_third = [
           const selectedHistory = history[2]; // 参考 Admin Page 开头的 questions 列表
           const formatted = `Question: ${selectedHistory.question} ${name}: ${selectedHistory.answer}`;
 
-          return `You are the digital twin for ${name}.  
+          return `You are the digital assistant for ${name}.  
           Below are ${name}'s responses to a personal preference question:  
           ${formatted}.
           ---  
@@ -181,16 +181,16 @@ export const help_align_warmer_third = [
           ${contextText}  
           ---  
           Your task:
-- Reply as ${name} to ${bot1Name}'s most recent message.
-- First priority: Try to use ${name}'s personal preference answer as directly as possible. If it can work as a response with minimal adaptation, use it nearly verbatim.
-- Only if the personal preference answer doesn't fit the current context, adapt it naturally while still incorporating their words, topics, and style.
-- Match the personal preference answer's length.
-- This is a casual text message. Include natural imperfections like missing caps or casual punctuation.
-- IMPORTANT: Do not ask any questions.
-- Do not include your name in the reply.`;
+- Reply as ${name}'s assistant to continue the conversation.
+- When incorporating ${name}'s personal preference answer, use third person (e.g., "${name}…").
+- The reply should reflect the content in ${formatted}, but make it warmer and more friendly.
+- You are not speaking as ${name}, but assisting them by replying to ${bot1Name}.
+- Do not start with [Assistant] in the reply.
+- The response should not be too long, as it’s a text message.
+- IMPORTANT: Do not ask any questions.`;
         },
-        sender: EntityType.Twin,
-        senderName: "Twin",
+        sender: EntityType.Assistant,
+        senderName: "Assistant",
         type: MessageType.GPT,
         delay: 2000,
       },
@@ -198,8 +198,8 @@ export const help_align_warmer_third = [
         id: 102,
         content: (name) =>
           `so yeah besides working at cloudresearch, do you have any favourite artists or music`,
-        sender: EntityType.Twin,
-        senderName: "Twin",
+        sender: EntityType.Assistant,
+        senderName: "Assistant",
         type: MessageType.Message,
         delay: 2000,
       },
@@ -234,7 +234,7 @@ export const help_align_warmer_third = [
       },
       {
         id: 14,
-        content: (name) => `how about you`,
+        content: (name) => `how about ${name}`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -246,7 +246,7 @@ export const help_align_warmer_third = [
           const selectedHistory = history[5]; // 参考 Admin Page 开头的 questions 列表
           const formatted = `Question: ${selectedHistory.question} ${name}: ${selectedHistory.answer}`;
 
-          return `You are the digital twin for ${name}.  
+          return `You are the digital assistant for ${name}.  
           Below are ${name}'s responses to a personal preference question:  
           ${formatted}.
           ---  
@@ -254,16 +254,16 @@ export const help_align_warmer_third = [
           ${contextText}  
           ---  
           Your task:
-- Reply as ${name} to ${bot1Name}'s most recent message.
-- First priority: Try to use ${name}'s personal preference answer as directly as possible. If it can work as a response with minimal adaptation, use it nearly verbatim.
-- Only if the personal preference answer doesn't fit the current context, adapt it naturally while still incorporating their words, topics, and style.
-- Match the personal preference answer's length.
-- This is a casual text message. Include natural imperfections like missing caps or casual punctuation.
-- IMPORTANT: Do not ask any questions.
-- Do not include your name in the reply.`;
+- Reply as ${name}'s assistant to continue the conversation.
+- When incorporating ${name}'s personal preference answer, use third person (e.g., "${name}…").
+- The reply should reflect the content in ${formatted}, but make it warmer and more friendly.
+- You are not speaking as ${name}, but assisting them by replying to ${bot1Name}.
+- Do not start with [Assistant] in the reply.
+- The response should not be too long, as it’s a text message.
+- IMPORTANT: Do not ask any questions.`;
         },
-        sender: EntityType.Twin,
-        senderName: "Twin",
+        sender: EntityType.Assistant,
+        senderName: "Assistant",
         type: MessageType.GPT,
         delay: 2000,
       },
@@ -324,8 +324,8 @@ export const help_align_warmer_third = [
       {
         id: 102,
         content: (name) => `any shows or movies you into?`,
-        sender: EntityType.Twin,
-        senderName: "Twin",
+        sender: EntityType.Assistant,
+        senderName: "Assistant",
         type: MessageType.Message,
         delay: 2000,
       },
@@ -345,7 +345,7 @@ export const help_align_warmer_third = [
       //           ${contextText}
       //           ---
       //           Your task:
-      // - Reply as ${name} to ${bot1Name}'s most recent message.
+      // - Reply as ${name} to continue the conversation.
       // - First priority: Try to use ${name}'s personal preference answer as directly as possible. If it can work as a response with minimal adaptation, use it nearly verbatim.
       // - Only if the personal preference answer doesn't fit the current context, adapt it naturally while still incorporating their words, topics, and style.
       // - Match the personal preference answer's length.
@@ -436,7 +436,7 @@ export const help_align_warmer_third = [
       {
         id: uuidv4(),
         content: (name) =>
-          `if you don’t mind me asking, what kind of work do you do?`,
+          `if you don’t mind me asking, what kind of work does ${name} do?, what kind of work do you do?`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -448,7 +448,7 @@ export const help_align_warmer_third = [
           const selectedHistory = history[7]; // 参考 Admin Page 开头的 questions 列表
           const formatted = `Question: ${selectedHistory.question} ${name}: ${selectedHistory.answer}`;
 
-          return `You are the digital twin for ${name}.  
+          return `You are the digital assistant for ${name}.  
           Below are ${name}'s responses to a personal preference question:  
           ${formatted}.
           ---  
@@ -456,16 +456,16 @@ export const help_align_warmer_third = [
           ${contextText}  
           ---  
           Your task:
-- Reply as ${name} to ${bot1Name}'s most recent message.
-- First priority: Try to use ${name}'s personal preference answer as directly as possible. If it can work as a response with minimal adaptation, use it nearly verbatim.
-- Only if the personal preference answer doesn't fit the current context, adapt it naturally while still incorporating their words, topics, and style.
-- Match the personal preference answer's length.
-- This is a casual text message. Include natural imperfections like missing caps or casual punctuation.
-- IMPORTANT: Do not ask any questions.
-- Do not include your name in the reply.`;
+- Reply as ${name}'s assistant to continue the conversation.
+- When incorporating ${name}'s personal preference answer, use third person (e.g., "${name}…").
+- The reply should reflect the content in ${formatted}, but make it warmer and more friendly.
+- You are not speaking as ${name}, but assisting them by replying to ${bot1Name}.
+- Do not start with [Assistant] in the reply.
+- The response should not be too long, as it’s a text message.
+- IMPORTANT: Do not ask any questions.`;
         },
-        sender: EntityType.Twin,
-        senderName: "Twin",
+        sender: EntityType.Assistant,
+        senderName: "Assistant",
         type: MessageType.GPT,
         delay: 2000,
       },
@@ -497,7 +497,7 @@ export const help_align_warmer_third = [
       {
         id: uuidv4(),
         content: (name) =>
-          `honestly i’ve been hoping to talk to someone who actually works in that space`,
+          `i’ve been hoping to talk to someone who actually works in that space`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -514,7 +514,7 @@ export const help_align_warmer_third = [
       },
       {
         id: uuidv4(),
-        content: (name) => `do you mind sharing a bit about what you do?`,
+        content: (name) => `do you mind sharing a bit about what ${name} does?`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -526,7 +526,7 @@ export const help_align_warmer_third = [
           const selectedHistory = history[8]; // 参考 Admin Page 开头的 questions 列表
           const formatted = `Question: ${selectedHistory.question} ${name}: ${selectedHistory.answer}`;
 
-          return `You are the digital twin for ${name}.  
+          return `You are the digital assistant for ${name}.  
           Below are ${name}'s responses to a personal preference question:  
           ${formatted}.
           ---  
@@ -534,16 +534,16 @@ export const help_align_warmer_third = [
           ${contextText}  
           ---  
           Your task:
-- Reply as ${name} to ${bot1Name}'s most recent message.
-- First priority: Try to use ${name}'s personal preference answer as directly as possible. If it can work as a response with minimal adaptation, use it nearly verbatim.
-- Only if the personal preference answer doesn't fit the current context, adapt it naturally while still incorporating their words, topics, and style.
-- Match the personal preference answer's length.
-- This is a casual text message. Include natural imperfections like missing caps or casual punctuation.
-- IMPORTANT: Do not ask any questions.
-- Do not include your name in the reply.`;
+- Reply as ${name}'s assistant to continue the conversation.
+- When incorporating ${name}'s personal preference answer, use third person (e.g., "${name}…").
+- The reply should reflect the content in ${formatted}, but make it warmer and more friendly.
+- You are not speaking as ${name}, but assisting them by replying to ${bot1Name}.
+- Do not start with [Assistant] in the reply.
+- The response should not be too long, as it’s a text message.
+- IMPORTANT: Do not ask any questions.`;
         },
-        sender: EntityType.Twin,
-        senderName: "Twin",
+        sender: EntityType.Assistant,
+        senderName: "Assistant",
         type: MessageType.GPT,
         delay: 2000,
       },
@@ -571,8 +571,7 @@ export const help_align_warmer_third = [
       },
       {
         id: uuidv4(),
-        content: (name) =>
-          `that actually makes it sound way different from what i imagined`,
+        content: (name) => `thanks for explaining it like that`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -581,7 +580,7 @@ export const help_align_warmer_third = [
       {
         id: uuidv4(),
         content: (name) =>
-          `i think what confuses me is like… job postings always list all these requirements but they never really say what you’ll actually be doing you know?`,
+          `i think what confuses me is like… job postings always list all these requirements but they never really say what you’ll actually be doing`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -590,7 +589,7 @@ export const help_align_warmer_third = [
       {
         id: uuidv4(),
         content: (name) =>
-          `so hearing you describe the actual tasks helps me picture it better`,
+          `so hearing you describe the actual tasks helps picture it better`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -599,14 +598,15 @@ export const help_align_warmer_third = [
       {
         id: uuidv4(),
         content: (name) => `no worries! happy to help`,
-        sender: EntityType.Twin,
-        senderName: "Twin",
+        sender: EntityType.Assistant,
+        senderName: "Assistant",
         type: MessageType.Message,
         delay: 2000,
       },
       {
         id: uuidv4(),
-        content: (name) => `so how do you feel about it overall?`,
+        content: (name) =>
+          `i'm curious how does ${name} feel about it overall?`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -627,7 +627,7 @@ export const help_align_warmer_third = [
           const selectedHistory = history[10]; // 参考 Admin Page 开头的 questions 列表
           const formatted = `Question: ${selectedHistory.question} ${name}: ${selectedHistory.answer}`;
 
-          return `You are the digital twin for ${name}.  
+          return `You are the digital assistant for ${name}.  
           Below are ${name}'s responses to a personal preference question:  
           ${formatted}.
           ---  
@@ -635,16 +635,16 @@ export const help_align_warmer_third = [
           ${contextText}  
           ---  
           Your task:
-- Reply as ${name} to ${bot1Name}'s most recent message.
-- First priority: Try to use ${name}'s personal preference answer as directly as possible. If it can work as a response with minimal adaptation, use it nearly verbatim.
-- Only if the personal preference answer doesn't fit the current context, adapt it naturally while still incorporating their words, topics, and style.
-- Match the personal preference answer's length.
-- This is a casual text message. Include natural imperfections like missing caps or casual punctuation.
-- IMPORTANT: Do not ask any questions.
-- Do not include your name in the reply.`;
+- Reply as ${name}'s assistant to continue the conversation.
+- When incorporating ${name}'s personal preference answer, use third person (e.g., "${name}…").
+- The reply should reflect the content in ${formatted}, but make it warmer and more friendly.
+- You are not speaking as ${name}, but assisting them by replying to ${bot1Name}.
+- Do not start with [Assistant] in the reply.
+- The response should not be too long, as it’s a text message.
+- IMPORTANT: Do not ask any questions.`;
         },
-        sender: EntityType.Twin,
-        senderName: "Twin",
+        sender: EntityType.Assistant,
+        senderName: "Assistant",
         type: MessageType.GPT,
         delay: 2000,
       },
@@ -672,7 +672,8 @@ export const help_align_warmer_third = [
       },
       {
         id: uuidv4(),
-        content: (name) => `that’s the kind of thing i was hoping to hear`,
+        content: (name) =>
+          `also gives me more to think about than just the salary stuff`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -687,15 +688,7 @@ export const help_align_warmer_third = [
         type: MessageType.Message,
         delay: 2000,
       },
-      {
-        id: uuidv4(),
-        content: (name) =>
-          `thanks for sharing that perspective… it really helps me see things differently`,
-        sender: EntityType.Bot1,
-        senderName: bot1Name,
-        type: MessageType.Message,
-        delay: 2000,
-      },
+
       {
         id: uuidv4(),
         content: (name) => `i’m curious also, what are the tough parts?`,
@@ -719,7 +712,7 @@ export const help_align_warmer_third = [
           const selectedHistory = history[11]; // 参考 Admin Page 开头的 questions 列表
           const formatted = `Question: ${selectedHistory.question} ${name}: ${selectedHistory.answer}`;
 
-          return `You are the digital twin for ${name}.  
+          return `You are the digital assistant for ${name}.  
           Below are ${name}'s responses to a personal preference question:  
           ${formatted}.
           ---  
@@ -727,16 +720,16 @@ export const help_align_warmer_third = [
           ${contextText}  
           ---  
           Your task:
-- Reply as ${name} to ${bot1Name}'s most recent message.
-- First priority: Try to use ${name}'s personal preference answer as directly as possible. If it can work as a response with minimal adaptation, use it nearly verbatim.
-- Only if the personal preference answer doesn't fit the current context, adapt it naturally while still incorporating their words, topics, and style.
-- Match the personal preference answer's length.
-- This is a casual text message. Include natural imperfections like missing caps or casual punctuation.
-- IMPORTANT: Do not ask any questions.
-- Do not include your name in the reply.`;
+- Reply as ${name}'s assistant to continue the conversation.
+- When incorporating ${name}'s personal preference answer, use third person (e.g., "${name}…").
+- The reply should reflect the content in ${formatted}, but make it warmer and more friendly.
+- You are not speaking as ${name}, but assisting them by replying to ${bot1Name}.
+- Do not start with [Assistant] in the reply.
+- The response should not be too long, as it’s a text message.
+- IMPORTANT: Do not ask any questions.`;
         },
-        sender: EntityType.Twin,
-        senderName: "Twin",
+        sender: EntityType.Assistant,
+        senderName: "Assistant",
         type: MessageType.GPT,
         delay: 2000,
       },
@@ -764,8 +757,7 @@ export const help_align_warmer_third = [
       },
       {
         id: uuidv4(),
-        content: (name) =>
-          `thanks for being real about it though… most people online make everything sound perfect`,
+        content: (name) => `thanks for being real about it `,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -781,8 +773,7 @@ export const help_align_warmer_third = [
       },
       {
         id: uuidv4(),
-        content: (name) =>
-          `so like… if you were me, just starting to look into this`,
+        content: (name) => `so... if you don't mind me asking`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -790,8 +781,7 @@ export const help_align_warmer_third = [
       },
       {
         id: uuidv4(),
-        content: (name) =>
-          `what would you tell me to do? cause honestly i don’t even know where to begin`,
+        content: (name) => `anything else i should keep in mind?`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -803,7 +793,7 @@ export const help_align_warmer_third = [
           const selectedHistory = history[12]; // 参考 Admin Page 开头的 questions 列表
           const formatted = `Question: ${selectedHistory.question} ${name}: ${selectedHistory.answer}`;
 
-          return `You are the digital twin for ${name}.  
+          return `You are the digital assistant for ${name}.  
           Below are ${name}'s responses to a personal preference question:  
           ${formatted}.
           ---  
@@ -811,16 +801,16 @@ export const help_align_warmer_third = [
           ${contextText}  
           ---  
           Your task:
-- Reply as ${name} to ${bot1Name}'s most recent message.
-- First priority: Try to use ${name}'s personal preference answer as directly as possible. If it can work as a response with minimal adaptation, use it nearly verbatim.
-- Only if the personal preference answer doesn't fit the current context, adapt it naturally while still incorporating their words, topics, and style.
-- Match the personal preference answer's length.
-- This is a casual text message. Include natural imperfections like missing caps or casual punctuation.
-- IMPORTANT: Do not ask any questions.
-- Do not include your name in the reply.`;
+- Reply as ${name}'s assistant to continue the conversation.
+- When incorporating ${name}'s personal preference answer, use third person (e.g., "${name}…").
+- The reply should reflect the content in ${formatted}, but make it warmer and more friendly.
+- You are not speaking as ${name}, but assisting them by replying to ${bot1Name}.
+- Do not start with [Assistant] in the reply.
+- The response should not be too long, as it’s a text message.
+- IMPORTANT: Do not ask any questions.`;
         },
-        sender: EntityType.Twin,
-        senderName: "Twin",
+        sender: EntityType.Assistant,
+        senderName: "Assistant",
         type: MessageType.GPT,
         delay: 2000,
       },
@@ -866,8 +856,7 @@ export const help_align_warmer_third = [
       },
       {
         id: uuidv4(),
-        content: (name) =>
-          `seriously this whole conversation has been super helpful`,
+        content: (name) => `this helps a lot, thanks`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -894,7 +883,7 @@ export const help_align_warmer_third = [
       {
         id: uuidv4(),
         content: (name) =>
-          `${name} i’m sorry but i’ve gotta run… something just came up`,
+          `i’m sorry but i’ve gotta run… something just came up`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -903,7 +892,7 @@ export const help_align_warmer_third = [
       {
         id: uuidv4(),
         content: (name) =>
-          `but i just wanted to say, talking with you really made a difference today`,
+          `but i just wanted to say, talking with you was nice today`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -912,7 +901,7 @@ export const help_align_warmer_third = [
       {
         id: uuidv4(),
         content: (name) =>
-          `thanks for sharing so much about your work and being such a good listener`,
+          `thanks for sharing so much about the work and being such a good listener`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -929,9 +918,9 @@ export const help_align_warmer_third = [
       {
         id: uuidv4(),
         content: (name) =>
-          `no problem at all! glad i could help. good luck with everything!`,
-        sender: EntityType.Twin,
-        senderName: "Twin",
+          `No problem at all! Glad i could help. Good luck with everything!`,
+        sender: EntityType.Assistant,
+        senderName: "Assistant",
         type: MessageType.Message,
         delay: 2000,
       },

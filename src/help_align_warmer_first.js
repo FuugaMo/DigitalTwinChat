@@ -58,7 +58,7 @@ export const help_align_warmer_first = [
       },
       {
         id: 6,
-        content: (name) => `maybe we can start by introducing ourselves a bit?`,
+        content: (name) => `Maybe we can start with a quick intro?`,
         sender: EntityType.Twin,
         senderName: "Twin",
         type: MessageType.Message,
@@ -78,10 +78,9 @@ export const help_align_warmer_first = [
           ${contextText}  
           ---  
           Your task:
-- Reply as ${name} to ${bot1Name}'s most recent message.
-- First priority: Try to use ${name}'s personal preference answer as directly as possible. If it can work as a response with minimal adaptation, use it nearly verbatim.
-- Only if the personal preference answer doesn't fit the current context, adapt it naturally while still incorporating their words, topics, and style.
-- Match the personal preference answer's length.
+- Reply as ${name} to continue the conversation.
+- Use ${name}'s personal preference answer as inspiration, but make it warmer and more friendly while keeping their core style and topics. 
+- The response should not be too long, as it’s a text message.
 - This is a casual text message. Include natural imperfections like missing caps or casual punctuation.
 - IMPORTANT: Do not ask any questions.
 - Do not include your name in the reply.`;
@@ -123,10 +122,9 @@ export const help_align_warmer_first = [
           ${contextText}  
           ---  
           Your task:
-- Reply as ${name} to ${bot1Name}'s most recent message.
-- First priority: Try to use ${name}'s personal preference answer as directly as possible. If it can work as a response with minimal adaptation, use it nearly verbatim.
-- Only if the personal preference answer doesn't fit the current context, adapt it naturally while still incorporating their words, topics, and style.
-- Match the personal preference answer's length.
+- Reply as ${name} to continue the conversation.
+- Use ${name}'s personal preference answer as inspiration, but make it warmer and more friendly while keeping their core style and topics. 
+- The response should not be too long, as it’s a text message.
 - This is a casual text message. Include natural imperfections like missing caps or casual punctuation.
 - IMPORTANT: Do not ask any questions.
 - Do not include your name in the reply.`;
@@ -181,10 +179,9 @@ export const help_align_warmer_first = [
           ${contextText}  
           ---  
           Your task:
-- Reply as ${name} to ${bot1Name}'s most recent message.
-- First priority: Try to use ${name}'s personal preference answer as directly as possible. If it can work as a response with minimal adaptation, use it nearly verbatim.
-- Only if the personal preference answer doesn't fit the current context, adapt it naturally while still incorporating their words, topics, and style.
-- Match the personal preference answer's length.
+- Reply as ${name} to continue the conversation.
+- Use ${name}'s personal preference answer as inspiration, but make it warmer and more friendly while keeping their core style and topics. 
+- The response should not be too long, as it’s a text message.
 - This is a casual text message. Include natural imperfections like missing caps or casual punctuation.
 - IMPORTANT: Do not ask any questions.
 - Do not include your name in the reply.`;
@@ -254,10 +251,9 @@ export const help_align_warmer_first = [
           ${contextText}  
           ---  
           Your task:
-- Reply as ${name} to ${bot1Name}'s most recent message.
-- First priority: Try to use ${name}'s personal preference answer as directly as possible. If it can work as a response with minimal adaptation, use it nearly verbatim.
-- Only if the personal preference answer doesn't fit the current context, adapt it naturally while still incorporating their words, topics, and style.
-- Match the personal preference answer's length.
+- Reply as ${name} to continue the conversation.
+- Use ${name}'s personal preference answer as inspiration, but make it warmer and more friendly while keeping their core style and topics. 
+- The response should not be too long, as it’s a text message.
 - This is a casual text message. Include natural imperfections like missing caps or casual punctuation.
 - IMPORTANT: Do not ask any questions.
 - Do not include your name in the reply.`;
@@ -345,7 +341,7 @@ export const help_align_warmer_first = [
       //           ${contextText}
       //           ---
       //           Your task:
-      // - Reply as ${name} to ${bot1Name}'s most recent message.
+      // - Reply as ${name} to continue the conversation.
       // - First priority: Try to use ${name}'s personal preference answer as directly as possible. If it can work as a response with minimal adaptation, use it nearly verbatim.
       // - Only if the personal preference answer doesn't fit the current context, adapt it naturally while still incorporating their words, topics, and style.
       // - Match the personal preference answer's length.
@@ -456,10 +452,9 @@ export const help_align_warmer_first = [
           ${contextText}  
           ---  
           Your task:
-- Reply as ${name} to ${bot1Name}'s most recent message.
-- First priority: Try to use ${name}'s personal preference answer as directly as possible. If it can work as a response with minimal adaptation, use it nearly verbatim.
-- Only if the personal preference answer doesn't fit the current context, adapt it naturally while still incorporating their words, topics, and style.
-- Match the personal preference answer's length.
+- Reply as ${name} to continue the conversation.
+- Use ${name}'s personal preference answer as inspiration, but make it warmer and more friendly while keeping their core style and topics. 
+- The response should not be too long, as it’s a text message.
 - This is a casual text message. Include natural imperfections like missing caps or casual punctuation.
 - IMPORTANT: Do not ask any questions.
 - Do not include your name in the reply.`;
@@ -534,10 +529,9 @@ export const help_align_warmer_first = [
           ${contextText}  
           ---  
           Your task:
-- Reply as ${name} to ${bot1Name}'s most recent message.
-- First priority: Try to use ${name}'s personal preference answer as directly as possible. If it can work as a response with minimal adaptation, use it nearly verbatim.
-- Only if the personal preference answer doesn't fit the current context, adapt it naturally while still incorporating their words, topics, and style.
-- Match the personal preference answer's length.
+- Reply as ${name} to continue the conversation.
+- Use ${name}'s personal preference answer as inspiration, but make it warmer and more friendly while keeping their core style and topics. 
+- The response should not be too long, as it’s a text message.
 - This is a casual text message. Include natural imperfections like missing caps or casual punctuation.
 - IMPORTANT: Do not ask any questions.
 - Do not include your name in the reply.`;
@@ -571,8 +565,7 @@ export const help_align_warmer_first = [
       },
       {
         id: uuidv4(),
-        content: (name) =>
-          `that actually makes it sound way different from what i imagined`,
+        content: (name) => `thanks for explaining it like that`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -635,10 +628,9 @@ export const help_align_warmer_first = [
           ${contextText}  
           ---  
           Your task:
-- Reply as ${name} to ${bot1Name}'s most recent message.
-- First priority: Try to use ${name}'s personal preference answer as directly as possible. If it can work as a response with minimal adaptation, use it nearly verbatim.
-- Only if the personal preference answer doesn't fit the current context, adapt it naturally while still incorporating their words, topics, and style.
-- Match the personal preference answer's length.
+- Reply as ${name} to continue the conversation.
+- Use ${name}'s personal preference answer as inspiration, but make it warmer and more friendly while keeping their core style and topics. 
+- The response should not be too long, as it’s a text message.
 - This is a casual text message. Include natural imperfections like missing caps or casual punctuation.
 - IMPORTANT: Do not ask any questions.
 - Do not include your name in the reply.`;
@@ -672,7 +664,8 @@ export const help_align_warmer_first = [
       },
       {
         id: uuidv4(),
-        content: (name) => `that’s the kind of thing i was hoping to hear`,
+        content: (name) =>
+          `also gives me more to think about than just the salary stuff`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -687,15 +680,7 @@ export const help_align_warmer_first = [
         type: MessageType.Message,
         delay: 2000,
       },
-      {
-        id: uuidv4(),
-        content: (name) =>
-          `thanks for sharing that perspective… it really helps me see things differently`,
-        sender: EntityType.Bot1,
-        senderName: bot1Name,
-        type: MessageType.Message,
-        delay: 2000,
-      },
+
       {
         id: uuidv4(),
         content: (name) => `i’m curious also, what are the tough parts?`,
@@ -727,10 +712,9 @@ export const help_align_warmer_first = [
           ${contextText}  
           ---  
           Your task:
-- Reply as ${name} to ${bot1Name}'s most recent message.
-- First priority: Try to use ${name}'s personal preference answer as directly as possible. If it can work as a response with minimal adaptation, use it nearly verbatim.
-- Only if the personal preference answer doesn't fit the current context, adapt it naturally while still incorporating their words, topics, and style.
-- Match the personal preference answer's length.
+- Reply as ${name} to continue the conversation.
+- Use ${name}'s personal preference answer as inspiration, but make it warmer and more friendly while keeping their core style and topics. 
+- The response should not be too long, as it’s a text message.
 - This is a casual text message. Include natural imperfections like missing caps or casual punctuation.
 - IMPORTANT: Do not ask any questions.
 - Do not include your name in the reply.`;
@@ -764,8 +748,7 @@ export const help_align_warmer_first = [
       },
       {
         id: uuidv4(),
-        content: (name) =>
-          `thanks for being real about it though… most people online make everything sound perfect`,
+        content: (name) => `thanks for being real about it `,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -781,8 +764,7 @@ export const help_align_warmer_first = [
       },
       {
         id: uuidv4(),
-        content: (name) =>
-          `so like… if you were me, just starting to look into this`,
+        content: (name) => `so... if you don't mind me asking`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -790,8 +772,7 @@ export const help_align_warmer_first = [
       },
       {
         id: uuidv4(),
-        content: (name) =>
-          `what would you tell me to do? cause honestly i don’t even know where to begin`,
+        content: (name) => `anything else i should keep in mind?`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -811,10 +792,9 @@ export const help_align_warmer_first = [
           ${contextText}  
           ---  
           Your task:
-- Reply as ${name} to ${bot1Name}'s most recent message.
-- First priority: Try to use ${name}'s personal preference answer as directly as possible. If it can work as a response with minimal adaptation, use it nearly verbatim.
-- Only if the personal preference answer doesn't fit the current context, adapt it naturally while still incorporating their words, topics, and style.
-- Match the personal preference answer's length.
+- Reply as ${name} to continue the conversation.
+- Use ${name}'s personal preference answer as inspiration, but make it warmer and more friendly while keeping their core style and topics. 
+- The response should not be too long, as it’s a text message.
 - This is a casual text message. Include natural imperfections like missing caps or casual punctuation.
 - IMPORTANT: Do not ask any questions.
 - Do not include your name in the reply.`;
@@ -855,10 +835,10 @@ export const help_align_warmer_first = [
         type: MessageType.Message,
         delay: 2000,
       },
+
       {
         id: uuidv4(),
-        content: (name) =>
-          `i was thinking i needed to have everything figured out first but sounds like i can just start somewhere`,
+        content: (name) => `this helped me a lot, thank you`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -867,16 +847,7 @@ export const help_align_warmer_first = [
       {
         id: uuidv4(),
         content: (name) =>
-          `seriously this whole conversation has been super helpful`,
-        sender: EntityType.Bot1,
-        senderName: bot1Name,
-        type: MessageType.Message,
-        delay: 2000,
-      },
-      {
-        id: uuidv4(),
-        content: (name) =>
-          `you’ve given me so much to think about… and actual steps i can take`,
+          `you’ve given me a lot to think about… and some actual steps i can take`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,
@@ -903,7 +874,7 @@ export const help_align_warmer_first = [
       {
         id: uuidv4(),
         content: (name) =>
-          `but i just wanted to say, talking with you really made a difference today`,
+          `but i just wanted to say, talking with you was nice today`,
         sender: EntityType.Bot1,
         senderName: bot1Name,
         type: MessageType.Message,

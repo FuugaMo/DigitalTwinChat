@@ -57,7 +57,7 @@ export const twinNonProsocialScript = [
       },
       {
         id: 6,
-        content: (name) => `maybe we can start by introducing ourselves a bit?`,
+        content: (name) => `Maybe we can start with a quick intro?`,
         sender: EntityType.Twin,
         senderName: "Twin",
         type: MessageType.Message,
@@ -77,7 +77,7 @@ export const twinNonProsocialScript = [
           ${contextText}  
           ---  
           Your task:
-- Reply as ${name} to ${bot1Name}'s most recent message.
+- Reply as ${name} to continue the conversation.
 - First priority: Try to use ${name}'s personal preference answer as directly as possible. If it can work as a response with minimal adaptation, use it nearly verbatim.
 - Only if the personal preference answer doesn't fit the current context, adapt it naturally while still incorporating their words, topics, and style.
 - Match the personal preference answer's length.
@@ -122,7 +122,7 @@ export const twinNonProsocialScript = [
           ${contextText}  
           ---  
           Your task:
-- Reply as ${name} to ${bot1Name}'s most recent message.
+- Reply as ${name} to continue the conversation.
 - First priority: Try to use ${name}'s personal preference answer as directly as possible. If it can work as a response with minimal adaptation, use it nearly verbatim.
 - Only if the personal preference answer doesn't fit the current context, adapt it naturally while still incorporating their words, topics, and style.
 - Match the personal preference answer's length.
@@ -180,7 +180,7 @@ export const twinNonProsocialScript = [
           ${contextText}  
           ---  
           Your task:
-- Reply as ${name} to ${bot1Name}'s most recent message.
+- Reply as ${name} to continue the conversation.
 - First priority: Try to use ${name}'s personal preference answer as directly as possible. If it can work as a response with minimal adaptation, use it nearly verbatim.
 - Only if the personal preference answer doesn't fit the current context, adapt it naturally while still incorporating their words, topics, and style.
 - Match the personal preference answer's length.
@@ -253,7 +253,7 @@ export const twinNonProsocialScript = [
           ${contextText}  
           ---  
           Your task:
-- Reply as ${name} to ${bot1Name}'s most recent message.
+- Reply as ${name} to continue the conversation.
 - First priority: Try to use ${name}'s personal preference answer as directly as possible. If it can work as a response with minimal adaptation, use it nearly verbatim.
 - Only if the personal preference answer doesn't fit the current context, adapt it naturally while still incorporating their words, topics, and style.
 - Match the personal preference answer's length.
@@ -298,28 +298,28 @@ export const twinNonProsocialScript = [
       //   type: MessageType.GPT,
       //   delay: 2000,
       // },
-//       {
-//         id: 18,
-//         prompt: (name, history, contextText) => {
-//           return `The following is a conversation between you and ${name}:
-//           ${contextText}
+      //       {
+      //         id: 18,
+      //         prompt: (name, history, contextText) => {
+      //           return `The following is a conversation between you and ${name}:
+      //           ${contextText}
 
-//           Your task:
-// - Continue the conversation as ${bot1Name}, replying to ${name}'s latest message.
-// - Write a short, casual reply. Keep your reply around 10 words if possible.
-// - As an English native speaker texting informally, deliberately ignore standard capitalization and spelling rules. For example, write "u" instead of "you", and "gonna" instead of "going to".
-// - Follow the tone and speaking style you used earlier in the conversation.
-// - Do not include your name in the reply.
-// - IMPORTANT: Do not ask any questions.
-// - Do not use emojis.
-// - Do not include any self-disclosure (e.g., don't say you like/love/enjoy something ${name} said).
-// - IMPORTANT: Only show familiarity with very mainstream/popular things. For anything niche, specific, or less mainstream, respond as if you don't know it.`;
-//         },
-//         sender: EntityType.Bot1,
-//         senderName: bot1Name,
-//         type: MessageType.GPT,
-//         delay: 2000,
-//       },
+      //           Your task:
+      // - Continue the conversation as ${bot1Name}, replying to ${name}'s latest message.
+      // - Write a short, casual reply. Keep your reply around 10 words if possible.
+      // - As an English native speaker texting informally, deliberately ignore standard capitalization and spelling rules. For example, write "u" instead of "you", and "gonna" instead of "going to".
+      // - Follow the tone and speaking style you used earlier in the conversation.
+      // - Do not include your name in the reply.
+      // - IMPORTANT: Do not ask any questions.
+      // - Do not use emojis.
+      // - Do not include any self-disclosure (e.g., don't say you like/love/enjoy something ${name} said).
+      // - IMPORTANT: Only show familiarity with very mainstream/popular things. For anything niche, specific, or less mainstream, respond as if you don't know it.`;
+      //         },
+      //         sender: EntityType.Bot1,
+      //         senderName: bot1Name,
+      //         type: MessageType.GPT,
+      //         delay: 2000,
+      //       },
       {
         id: 102,
         content: (name) => `any shows or movies you into?`,
@@ -344,7 +344,7 @@ export const twinNonProsocialScript = [
       //           ${contextText}
       //           ---
       //           Your task:
-      // - Reply as ${name} to ${bot1Name}'s most recent message.
+      // - Reply as ${name} to continue the conversation.
       // - First priority: Try to use ${name}'s personal preference answer as directly as possible. If it can work as a response with minimal adaptation, use it nearly verbatim.
       // - Only if the personal preference answer doesn't fit the current context, adapt it naturally while still incorporating their words, topics, and style.
       // - Match the personal preference answer's length.
